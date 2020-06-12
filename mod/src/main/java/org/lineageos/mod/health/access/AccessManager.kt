@@ -58,29 +58,3 @@ internal class AccessManager(
         return permission
     }
 }
-
-internal fun ContentProvider.assertCanRead(
-    accessManager: AccessManager,
-    metric: String
-) {
-    val callingPkg = callingPackage ?: "[unknown package]"
-    val metricInt = metric.toIntOrNull()
-    if (metricInt == null || !accessManager.canRead(callingPkg, metricInt)) {
-        throw SecurityException(
-            "$callingPkg is not allowed to read from metric $metric"
-        )
-    }
-}
-
-internal fun ContentProvider.assertCanWrite(
-    accessManager: AccessManager,
-    metric: String
-) {
-    val callingPkg = callingPackage ?: "[unknown package]"
-    val metricInt = metric.toIntOrNull()
-    if (metricInt == null || !accessManager.canWrite(callingPkg, metricInt)) {
-        throw SecurityException(
-            "$callingPkg is not allowed to write to metric $metric"
-        )
-    }
-}

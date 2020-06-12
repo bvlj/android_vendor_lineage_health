@@ -24,9 +24,10 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteQueryBuilder
 import android.net.Uri
 import org.lineageos.mod.health.access.AccessManager
-import org.lineageos.mod.health.access.assertCanRead
-import org.lineageos.mod.health.access.assertCanWrite
+import org.lineageos.mod.health.access.canRead
+import org.lineageos.mod.health.access.canWrite
 import org.lineageos.mod.health.UriConst
+import org.lineageos.mod.health.access.EmptyCursor
 import org.lineageos.mod.health.db.HealthStoreDbHelper
 import org.lineageos.mod.health.common.db.RecordColumns
 
@@ -80,7 +81,9 @@ internal abstract class RecordContentProvider(
             else -> return null
         }
 
-        assertCanRead(accessManager, metric)
+        if (!canRead(accessManager, metric)) {
+            return EmptyCursor
+        }
 
         val qb = SQLiteQueryBuilder().apply { tables = tableName }
         val db = dbHelper.readableDatabase
@@ -97,7 +100,10 @@ internal abstract class RecordContentProvider(
         if (uriMatcher.match(uri) != UriConst.MATCH_ALL) return null
 
         val metric = values?.getAsInteger(RecordColumns._METRIC).toString()
-        assertCanWrite(accessManager, metric)
+
+        if (!canWrite(accessManager, metric)) {
+            return null
+        }
 
         val db = dbHelper.writableDatabase
         val rowId = db.insert(tableName, null, values)
@@ -124,7 +130,9 @@ internal abstract class RecordContentProvider(
         val localSelectionArgs = arrayOf(metric, id)
         val localSelection = "${RecordColumns._METRIC} = ? AND ${RecordColumns._ID} = ?"
 
-        assertCanWrite(accessManager, metric)
+        if (!canWrite(accessManager, metric)) {
+            return 0
+        }
 
         val db = dbHelper.writableDatabase
         val count = db.update(tableName, values, localSelection, localSelectionArgs)
@@ -158,7 +166,9 @@ internal abstract class RecordContentProvider(
             else -> throw UnsupportedOperationException("Cannot delete this URI: $uri")
         }
 
-        assertCanWrite(accessManager, metric)
+        if (!canWrite(accessManager, metric)) {
+            return 0
+        }
 
         val db = dbHelper.writableDatabase
         val count = db.delete(tableName, localSelection, localSelectionArgs)
