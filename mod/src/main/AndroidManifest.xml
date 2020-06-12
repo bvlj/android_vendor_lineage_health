@@ -1,0 +1,114 @@
+<!--
+  Copyright (C) 2020 The LineageOS Project
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="org.lineageos.mod.health">
+
+    <!-- System-only -->
+    <permission
+        android:name="lineageos.permission.HEALTH_ACCESS"
+        android:description="@string/permission_access_desc"
+        android:label="@string/permission_access_label"
+        android:protectionLevel="system|oem" />
+
+    <!-- 3rd party -->
+    <permission
+        android:name="lineageos.permission.HEALTH_ACTIVITY"
+        android:description="@string/permission_activity_desc"
+        android:label="@string/permission_activity_label"
+        android:protectionLevel="dangerous" />
+
+    <permission
+        android:name="lineageos.permission.HEALTH_BODY"
+        android:description="@string/permission_body_desc"
+        android:label="@string/permission_body_label"
+        android:protectionLevel="dangerous" />
+
+    <permission
+        android:name="lineageos.permission.HEALTH_BREATHING"
+        android:description="@string/permission_breathing_desc"
+        android:label="@string/permission_breathing_label"
+        android:protectionLevel="dangerous" />
+
+    <permission
+        android:name="lineageos.permission.HEALTH_HEART_BLOOD"
+        android:description="@string/permission_heart_blood_desc"
+        android:label="@string/permission_heart_blood_label"
+        android:protectionLevel="dangerous" />
+
+    <permission
+        android:name="lineageos.permission.HEALTH_MINDFULNESS"
+        android:description="@string/permission_mindfulness_desc"
+        android:label="@string/permission_mindfulness_label"
+        android:protectionLevel="dangerous" />
+
+    <permission
+        android:name="lineageos.permission.HEALTH_MEDICAL_PROFILE"
+        android:description="@string/permission_medical_profile_desc"
+        android:label="@string/permission_medical_profile_label"
+        android:protectionLevel="dangerous" />
+
+
+    <application
+        android:allowBackup="false"
+        android:label="@string/app_name"
+        android:allowClearUserData="false"
+        tools:ignore="MissingApplicationIcon">
+
+        <provider
+            android:name=".providers.AccessContentProvider"
+            android:authorities="org.lineageos.mod.health"
+            android:exported="true"
+            android:permission="lineageos.permission.HEALTH_ACCESS" />
+
+        <provider
+            android:name=".providers.ActivityRecordContentProvider"
+            android:authorities="org.lineageos.mod.health"
+            android:exported="true"
+            android:permission="lineageos.permission.HEALTH_ACTIVITY" />
+
+        <provider
+            android:name=".providers.BodyRecordContentProvider"
+            android:authorities="org.lineageos.mod.health"
+            android:exported="true"
+            android:permission="lineageos.permission.HEALTH_BODY" />
+
+        <provider
+            android:name=".providers.BreathingRecordContentProvider"
+            android:authorities="org.lineageos.mod.health"
+            android:exported="true"
+            android:permission="lineageos.permission.HEALTH_BREATHING" />
+
+        <provider
+            android:name=".providers.HeartBloodRecordContentProvider"
+            android:authorities="org.lineageos.mod.health"
+            android:exported="true"
+            android:permission="lineageos.permission.HEALTH_HEART_BLOOD" />
+
+        <provider
+            android:name=".providers.MindfulnessRecordContentProvider"
+            android:authorities="org.lineageos.mod.health"
+            android:exported="true"
+            android:permission="lineageos.permission.HEALTH_MINDFULNESS" />
+
+        <provider
+            android:name=".providers.MedicalProfileProvider"
+            android:authorities="org.lineageos.mod.health"
+            android:directBootAware="true"
+            android:exported="true"
+            android:permission="lineageos.permission.HEALTH_MEDICAL_PROFILE" />
+    </application>
+</manifest>

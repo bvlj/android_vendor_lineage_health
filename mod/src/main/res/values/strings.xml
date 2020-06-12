@@ -1,0 +1,39 @@
+<!--
+  Copyright (C) 2020 The LineageOS Project
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  -->
+<resources>
+    <string name="app_name">LineageHealth Mod</string>
+
+    <string name="permission_access_label">Manage health data access</string>
+    <string name="permission_access_desc">manage health data access</string>
+
+    <string name="permission_activity_label">Access and contribute to activity health data</string>
+    <string name="permission_activity_desc">access activity health data</string>
+
+    <string name="permission_body_label">Access and contribute to body health data</string>
+    <string name="permission_body_desc">access body health data</string>
+
+    <string name="permission_breathing_label">Access and contribute to breathing health data</string>
+    <string name="permission_breathing_desc">access breathing health data</string>
+
+    <string name="permission_heart_blood_label">Access and contribute to hearth &amp; blood health data</string>
+    <string name="permission_heart_blood_desc">access hearth &amp; blood health data</string>
+
+    <string name="permission_mindfulness_label">Access and contribute to mindfulness health data</string>
+    <string name="permission_mindfulness_desc">access mindfulness health data</string>
+
+    <string name="permission_medical_profile_label">Access and contribute to the medical profile data</string>
+    <string name="permission_medical_profile_desc">access the medical profile data</string>
+</resources>
