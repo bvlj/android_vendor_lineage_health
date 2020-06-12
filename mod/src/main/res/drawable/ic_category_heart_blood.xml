@@ -1,0 +1,25 @@
+<!--
+  Copyright (C) 2020 The LineageOS Project
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+  <path
+      android:pathData="M12,21.4852L3.7624,13.2477C2.6737,12.1615 2,10.6594 2,9C2,5.6863 4.6863,3 8,3C9.5334,3 10.9393,3.5752 12,4.5216C13.0607,3.5752 14.4666,3 16,3C19.3137,3 22,5.6863 22,9C22,10.6594 21.3263,12.1615 20.2376,13.2477L12,21.4852ZM18.8206,11.8362C19.5513,11.1095 20,10.109 20,9C20,6.7909 18.2091,5 16,5C14.9742,5 14.0428,5.3835 13.3338,6.0181L13.2503,6.0928L10.5857,8.7574C9.4142,9.929 9.4142,11.8285 10.5857,13L11.6464,14.0607C11.8417,14.2559 12.1582,14.2559 12.3535,14.0607C12.5488,13.8654 12.5488,13.5488 12.3535,13.3536L11.6464,12.6465C10.6701,11.6702 10.6701,10.0872 11.6464,9.1109C12.6227,8.1346 14.2056,8.1346 15.1819,9.1109L15.889,9.818C16.0843,10.0133 16.4009,10.0133 16.5961,9.818C16.7914,9.6228 16.7914,9.3062 16.5961,9.1109L14.8284,7.3432C14.4378,6.9527 14.4378,6.3195 14.8284,5.929C15.2189,5.5384 15.8521,5.5384 16.2426,5.929L18.0104,7.6967C18.9867,8.673 18.9867,10.2559 18.0104,11.2323C17.034,12.2086 15.4511,12.2086 14.4748,11.2323L13.7677,10.5252C13.5725,10.3299 13.2559,10.3299 13.0606,10.5252C12.8653,10.7204 12.8653,11.037 13.0606,11.2323L13.7677,11.9394C14.744,12.9157 14.744,14.4986 13.7677,15.4749C12.7914,16.4512 11.2085,16.4512 10.2322,15.4749L9.1715,14.4142C7.2189,12.4616 7.2189,9.2958 9.1715,7.3432L10.5754,5.9393C9.8785,5.3519 8.9825,5.0001 8,5.0001C5.7909,5.0001 4,6.7909 4,9C4,10.1069 4.4469,11.1055 5.175,11.8318L12,18.6569L18.8206,11.8362Z"
+      android:fillColor="#000000"
+      android:fillType="evenOdd"/>
+</vector>

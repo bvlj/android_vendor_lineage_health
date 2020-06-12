@@ -22,6 +22,7 @@
         android:name="lineageos.permission.HEALTH_ACCESS"
         android:description="@string/permission_access_desc"
         android:label="@string/permission_access_label"
+        android:icon="@drawable/ic_data_access"
         android:protectionLevel="system|oem" />
 
     <!-- 3rd party -->
@@ -29,36 +30,42 @@
         android:name="lineageos.permission.HEALTH_ACTIVITY"
         android:description="@string/permission_activity_desc"
         android:label="@string/permission_activity_label"
+        android:icon="@drawable/ic_category_activity"
         android:protectionLevel="dangerous" />
 
     <permission
         android:name="lineageos.permission.HEALTH_BODY"
         android:description="@string/permission_body_desc"
         android:label="@string/permission_body_label"
+        android:icon="@drawable/ic_category_body"
         android:protectionLevel="dangerous" />
 
     <permission
         android:name="lineageos.permission.HEALTH_BREATHING"
         android:description="@string/permission_breathing_desc"
         android:label="@string/permission_breathing_label"
+        android:icon="@drawable/ic_category_breathing"
         android:protectionLevel="dangerous" />
 
     <permission
         android:name="lineageos.permission.HEALTH_HEART_BLOOD"
         android:description="@string/permission_heart_blood_desc"
         android:label="@string/permission_heart_blood_label"
+        android:icon="@drawable/ic_category_heart_blood"
         android:protectionLevel="dangerous" />
 
     <permission
         android:name="lineageos.permission.HEALTH_MINDFULNESS"
         android:description="@string/permission_mindfulness_desc"
         android:label="@string/permission_mindfulness_label"
+        android:icon="@drawable/ic_category_mindfulness"
         android:protectionLevel="dangerous" />
 
     <permission
         android:name="lineageos.permission.HEALTH_MEDICAL_PROFILE"
         android:description="@string/permission_medical_profile_desc"
         android:label="@string/permission_medical_profile_label"
+        android:icon="@drawable/ic_med_profile"
         android:protectionLevel="dangerous" />
 
 
