@@ -16,6 +16,29 @@
 
 package org.lineageos.mod.health.sdk;
 
-public final class HealthStore {
+import android.content.Context;
+import android.content.pm.PackageManager;
 
+import androidx.annotation.Keep;
+import androidx.annotation.NonNull;
+
+@Keep
+@SuppressWarnings("unused")
+public class HealthStore {
+
+    /**
+     * Determine whether HealthStore is supported on this device
+     */
+    public static boolean isSupported(@NonNull Context context) {
+        final PackageManager pm = context.getPackageManager();
+        return pm.hasSystemFeature("org.lineageos.mod.health");
+    }
+
+    /**
+     * Determine whether a particular HealthStore version is supported on this device
+     */
+    public static boolean isSupported(@NonNull Context context, int version) {
+        final PackageManager pm = context.getPackageManager();
+        return pm.hasSystemFeature("org.lineageos.mod.health", version);
+    }
 }

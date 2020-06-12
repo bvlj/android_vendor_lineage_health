@@ -17,7 +17,6 @@
 package org.lineageos.mod.health.access
 
 import android.annotation.SuppressLint
-import android.content.ContentProvider
 import android.content.ContentResolver
 import org.lineageos.mod.health.common.annotations.HealthStorePermission
 import org.lineageos.mod.health.common.annotations.MetricType

@@ -23,7 +23,7 @@ public final class Deps {
     public static class AndroidX {
 
         // Core - KTX - https://developer.android.com/jetpack/androidx/releases/annotation
-        public static final String annotation = "androidx.annotation:annotation:1.1.0";
+        public static final String annotationX = "androidx.annotation:annotation:1.1.0";
     }
 
     // Kotlin - https://github.com/JetBrains/kotlin/releases

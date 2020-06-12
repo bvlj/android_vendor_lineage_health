@@ -1,0 +1,1 @@
+-keep org.lineageos.mod.**

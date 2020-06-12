@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 import org.lineageos.build.Config
+import org.lineageos.build.Deps.AndroidX
 import org.lineageos.build.Deps.Kotlin
 import org.lineageos.build.Deps.Libraries
 
@@ -25,15 +26,12 @@ android {
     compileSdkVersion Config.compileSdk
 
     defaultConfig {
-        applicationId "org.lineageos.mod.health"
-
         minSdkVersion Config.minSdk
         targetSdkVersion Config.targetSdk
 
         versionCode Config.versionCode
         versionName Config.versionName
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
 
@@ -51,10 +49,11 @@ android {
 }
 
 dependencies {
-    // compileOnly Robolectric.androidAll
+    api project(Libraries.sdk)
 
-    implementation project(Libraries.core)
+    implementation AndroidX.annotationX
+
     implementation Kotlin.StdLib.jvm
+    implementation Kotlin.Coroutines.jvm
+    implementation Kotlin.Coroutines.android
 }
-
-apply from: "../ktlint.gradle"

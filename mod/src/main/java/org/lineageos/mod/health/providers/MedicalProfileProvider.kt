@@ -46,11 +46,7 @@ internal class MedicalProfileProvider : ContentProvider() {
         selectionArgs: Array<String>?,
         sortOrder: String?
     ): Cursor? {
-        when (uriMatcher.match(uri)) {
-            UriConst.MATCH_ITEM -> {
-            }
-            else -> return null
-        }
+        if (uriMatcher.match(uri) != UriConst.MATCH_ALL) return null
 
         val qb = SQLiteQueryBuilder().apply { tables = MedicalProfileTable.NAME }
         val db = dbHelper.readableDatabase
@@ -64,15 +60,12 @@ internal class MedicalProfileProvider : ContentProvider() {
     }
 
     override fun insert(uri: Uri, values: ContentValues?): Uri? {
-        if (uriMatcher.match(uri) != UriConst.MATCH_ITEM) return null
-
         val db = dbHelper.writableDatabase
 
         val existingId = getProfileId(db)
         if (existingId != null) {
-            throw UnsupportedOperationException(
-                "Cannot have more than one medical profile"
-            )
+            // Clear everything
+            db.delete(MedicalProfileTable.NAME, null, null)
         }
 
         val rowId = db.insert(MedicalProfileTable.NAME, null, values)
@@ -88,34 +81,15 @@ internal class MedicalProfileProvider : ContentProvider() {
         selection: String?,
         selectionArgs: Array<out String>?
     ): Int {
-        when (uriMatcher.match(uri)) {
-            UriConst.MATCH_ITEM -> {
-            }
-
-            else -> throw UnsupportedOperationException("Cannot update this URI: $uri")
-        }
-
-        val db = dbHelper.writableDatabase
-        val id = getProfileId(db) ?: throw UnsupportedOperationException(
-            "Cannot update missing medical profile"
+        throw UnsupportedOperationException(
+            "Update not is supported for Medical Profile, " +
+                "use .insert() instead."
         )
-
-        val localSelection = "${MedicalProfileColumns._ID} = ?"
-        val localSelectionArgs = arrayOf(id)
-
-        val count = db.update(MedicalProfileTable.NAME, values, localSelection, localSelectionArgs)
-        if (count > 0) {
-            context!!.contentResolver.notifyChange(HealthStoreUri.MEDICAL_PROFILE, null)
-        }
-        return count
     }
 
     override fun delete(uri: Uri, selection: String?, selectionArgs: Array<String>?): Int {
-        when (uriMatcher.match(uri)) {
-            UriConst.MATCH_METRIC -> {
-            }
-
-            else -> throw UnsupportedOperationException("Cannot delete this URI: $uri")
+        if (uriMatcher.match(uri) != UriConst.MATCH_ALL) {
+            throw UnsupportedOperationException("Cannot delete this URI: $uri")
         }
 
         val db = dbHelper.writableDatabase
@@ -128,8 +102,6 @@ internal class MedicalProfileProvider : ContentProvider() {
 
     override fun getType(uri: Uri) = when (uriMatcher.match(uri)) {
         UriConst.MATCH_ALL -> "vnd.android.cursor.dir"
-        UriConst.MATCH_ID,
-        UriConst.MATCH_ITEM -> "vnd.android.cursor.item"
         else -> null
     }
 
@@ -150,9 +122,7 @@ internal class MedicalProfileProvider : ContentProvider() {
 
     companion object {
         private val uriMatcher = UriMatcher(UriMatcher.NO_MATCH).apply {
-            addURI(HealthStoreUri.AUTHORITY, "access", UriConst.MATCH_ALL)
-            addURI(HealthStoreUri.AUTHORITY, "access/#", UriConst.MATCH_ID)
-            addURI(HealthStoreUri.AUTHORITY, "access/*/#", UriConst.MATCH_ITEM)
+            addURI(HealthStoreUri.AUTHORITY, "profile", UriConst.MATCH_ALL)
         }
     }
 }

@@ -13,9 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-include ':core'
-include ':mod'
-include ':sdk'
-include ':sdk-ktx'
 
-rootProject.name = "HealthStore"
+package org.lineageos.mod.util
+
+abstract class SingletonHolder<out T, in A> internal constructor(creator: (A) -> T) {
+    private var creator: ((A) -> T)? = creator
+
+    @Volatile
+    private var instance: T? = null
+
+    fun getInstance(arg: A) =
+        instance ?: synchronized(this) {
+            instance ?: creator!!(arg).also { instance = it }
+        }
+}

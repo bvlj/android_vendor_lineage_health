@@ -40,8 +40,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility Config.javaVersion
+        targetCompatibility Config.javaVersion
+    }
 }
 
 dependencies {
-    api project(Libraries.core)
+    implementation project(Libraries.core)
 }
