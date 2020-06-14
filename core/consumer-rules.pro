@@ -14,4 +14,4 @@
 # limitations under the License.
 #
 
--keep org.lineageos.mod.**
+-keep public class org.lineageos.mod.** { *; }
