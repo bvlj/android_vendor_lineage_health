@@ -23,7 +23,7 @@
         android:description="@string/permission_access_desc"
         android:label="@string/permission_access_label"
         android:icon="@drawable/ic_data_access"
-        android:protectionLevel="system|oem" />
+        android:protectionLevel="system|oem|signature" />
 
     <!-- 3rd party -->
     <permission
