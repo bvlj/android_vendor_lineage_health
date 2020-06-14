@@ -14,6 +14,14 @@
 // limitations under the License.
 //
 
+// Init script
+prebuilt_etc {
+    name: "lineage-health.rc",
+    sub_dir: "init",
+    src: "lineage-health.rc",
+    filename_from_src: true,
+}
+
 // Feature permission
 prebuilt_etc {
     name: "org.lineageos.mod.health.xml",
@@ -31,7 +39,7 @@ android_app {
         "mod/src/main/res"
     ],
     srcs: [
-        "core/src/main/java/**/*.java"
+        "core/src/main/java/**/*.java",
         "mod/src/main/java/**/*.kt"
     ],
 
@@ -52,6 +60,7 @@ android_app {
         "androidx.annotation_annotation",
     ],
     required: [
+        "lineage-health.rc",
         "org.lineageos.mod.health.xml"
     ],
 }
