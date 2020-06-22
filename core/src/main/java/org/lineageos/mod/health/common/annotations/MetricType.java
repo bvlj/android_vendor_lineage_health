@@ -27,7 +27,7 @@ import java.lang.annotation.RetentionPolicy;
         // Activity
         Metric.CYCLING,
         Metric.RUNNING,
-        Metric.STEPS,
+        Metric.WALKING,
         Metric.WORKOUT,
         // Body
         Metric.ABDOMINAL_CIRCUMFERENCE,

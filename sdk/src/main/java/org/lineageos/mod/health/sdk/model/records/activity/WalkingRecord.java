@@ -28,11 +28,21 @@ import org.lineageos.mod.health.common.Metric;
 
 @Keep
 @SuppressWarnings("unused")
-public final class StepsRecord extends ActivityRecord {
+public final class WalkingRecord extends ActivityRecord {
 
-    public StepsRecord(long id, long time, long duration, long steps) {
-        super(id, Metric.STEPS, time, duration, 0.0, 0,
-                0.0, 0.0, "", steps);
+    public WalkingRecord(long id, long time, long duration, long distance, long steps) {
+        super(id, Metric.WALKING, time, duration, 0.0, 0,
+                distance, 0.0, "", steps);
+    }
+
+    @Override
+    public double getDistance() {
+        return super.getDistance();
+    }
+
+    @Override
+    public void setDistance(double distance) {
+        super.setDistance(distance);
     }
 
     @Override

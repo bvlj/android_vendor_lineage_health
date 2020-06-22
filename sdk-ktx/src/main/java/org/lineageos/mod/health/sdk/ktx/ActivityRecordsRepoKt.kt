@@ -24,7 +24,7 @@ import kotlinx.coroutines.withContext
 import org.lineageos.mod.health.sdk.model.records.activity.ActivityRecord
 import org.lineageos.mod.health.sdk.model.records.activity.CyclingRecord
 import org.lineageos.mod.health.sdk.model.records.activity.RunningRecord
-import org.lineageos.mod.health.sdk.model.records.activity.StepsRecord
+import org.lineageos.mod.health.sdk.model.records.activity.WalkingRecord
 import org.lineageos.mod.health.sdk.model.records.activity.WorkoutRecord
 import org.lineageos.mod.health.sdk.repo.ActivityRecordsRepo
 import org.lineageos.mod.util.SingletonHolder
@@ -49,8 +49,8 @@ class ActivityRecordsRepoKt private constructor(
     suspend fun allRunningRecords(): List<RunningRecord> =
         withContext(dispatcher) { _repo.allRunningRecords }
 
-    suspend fun allStepsRecords(): List<StepsRecord> =
-        withContext(dispatcher) { _repo.allStepsRecords }
+    suspend fun allWalkingRecords(): List<WalkingRecord> =
+        withContext(dispatcher) { _repo.allWalkingRecords }
 
     suspend fun allWorkoutRecords(): List<WorkoutRecord> =
         withContext(dispatcher) { _repo.allWorkoutRecords }
@@ -61,8 +61,8 @@ class ActivityRecordsRepoKt private constructor(
     suspend fun runningRecord(id: Long): RunningRecord? =
         withContext(dispatcher) { _repo.getRunningRecord(id) }
 
-    suspend fun stepsRecord(id: Long): StepsRecord? =
-        withContext(dispatcher) { _repo.getStepsRecord(id) }
+    suspend fun walkingRecord(id: Long): WalkingRecord? =
+        withContext(dispatcher) { _repo.getWalkingRecord(id) }
 
     suspend fun workoutRecord(id: Long): WorkoutRecord? =
         withContext(dispatcher) { _repo.getWorkoutRecord(id) }

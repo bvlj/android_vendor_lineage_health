@@ -31,7 +31,7 @@ public final class Metric {
 
     public static final int CYCLING = ACTIVITY + 1;
     public static final int RUNNING = ACTIVITY + 2;
-    public static final int STEPS = ACTIVITY + 3;
+    public static final int WALKING = ACTIVITY + 3;
     public static final int WORKOUT = ACTIVITY + 4;
 
     public static final int ABDOMINAL_CIRCUMFERENCE = BODY + 1;

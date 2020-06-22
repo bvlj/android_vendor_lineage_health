@@ -29,7 +29,7 @@ import org.lineageos.mod.health.common.db.RecordColumns;
 import org.lineageos.mod.health.sdk.model.records.activity.ActivityRecord;
 import org.lineageos.mod.health.sdk.model.records.activity.CyclingRecord;
 import org.lineageos.mod.health.sdk.model.records.activity.RunningRecord;
-import org.lineageos.mod.health.sdk.model.records.activity.StepsRecord;
+import org.lineageos.mod.health.sdk.model.records.activity.WalkingRecord;
 import org.lineageos.mod.health.sdk.model.records.activity.WorkoutRecord;
 
 import java.util.List;
@@ -45,7 +45,7 @@ import java.util.stream.Collectors;
  * <ul>
  *     <li>{@link CyclingRecord}</li>
  *     <li>{@link RunningRecord}</li>
- *     <li>{@link StepsRecord}</li>
+ *     <li>{@link WalkingRecord}</li>
  *     <li>{@link WorkoutRecord}</li>
  * </ul>
  *
@@ -92,9 +92,9 @@ public final class ActivityRecordsRepo extends RecordsRepo<ActivityRecord> {
     }
 
     @NonNull
-    public List<StepsRecord> getAllStepsRecords() {
-        return getByMetric(Metric.STEPS).stream()
-                .map(StepsRecord.class::cast)
+    public List<WalkingRecord> getAllWalkingRecords() {
+        return getByMetric(Metric.WALKING).stream()
+                .map(WalkingRecord.class::cast)
                 .collect(Collectors.toList());
     }
 
@@ -116,8 +116,8 @@ public final class ActivityRecordsRepo extends RecordsRepo<ActivityRecord> {
     }
 
     @Nullable
-    public StepsRecord getStepsRecord(long id) {
-        return (StepsRecord) getById(Metric.STEPS, id);
+    public WalkingRecord getWalkingRecord(long id) {
+        return (WalkingRecord) getById(Metric.WALKING, id);
     }
 
     @Nullable

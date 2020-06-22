@@ -26,7 +26,7 @@ import java.lang.annotation.RetentionPolicy;
 @IntDef({
         Metric.CYCLING,
         Metric.RUNNING,
-        Metric.STEPS,
+        Metric.WALKING,
         Metric.WORKOUT,
 })
 @Retention(RetentionPolicy.SOURCE)
