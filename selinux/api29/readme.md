@@ -1,0 +1,1 @@
+Example SELinux policies implementation for Android api 29

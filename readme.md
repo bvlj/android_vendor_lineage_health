@@ -26,6 +26,7 @@ HealthStore can store multiple data entities:
     - Metrics are grouped in four macro-groups:
         - **Activity**: fitness-related metrics
         - **Body**: body-related metrics
+        - **Breathing**: breathing-related metrics
         - **Heart & blood**: heart and blood metrics
         - **Mindfulness**: mindfulness and well-being metrics
 - `MedicalProfile`
@@ -46,7 +47,33 @@ that have their data stored in a secure system location. Each `ContentProvider` 
 
 OEMs have access to an additional `ContentProvider` that can deny read and/or write access
 for each particular metric to every single app. This should be used for "OEM health manager
-applications" in order to allow the user to have complete control over the data flow. 
+applications" in order to allow the user to have complete control over the data flow.
+
+### Permissions
+
+The following Android permissions are used by the Lineage Health platform
+
+- `lineageos.permission.HEALTH_ACCESS`
+    - Access: system, oem, signature
+    - Usage: Implement policies that define granular per-app access to each metric regardless of other permissions
+- `lineageos.permission.HEALTH_ACTIVITY`
+    - Access: runtime (dangerous)
+    - Usage: Access to fitness-related metrics. May be overridden by system policies
+- `lineageos.permission.HEALTH_BODY`
+    - Access: runtime (dangerous)
+    - Usage: Access to body-related metrics. May be overridden by system policies
+- `lineageos.permission.HEALTH_BREATHING`
+    - Access: runtime (dangerous)
+    - Usage: Access to breathing-related metrics. May be overridden by system policies
+- `lineageos.permission.HEALTH_HEART_BLOOD`
+    - Access: runtime (dangerous)
+    - Usage: Access to heart and blood-related metrics. May be overridden by system policies
+- `lineageos.permission.HEALTH_MINDFULNESS`
+    - Access: runtime (dangerous)
+    - Usage: Access to mindfulness-related metrics. May be overridden by system policies
+- `lineageos.permission.HEALTH_MEDICAL_PROFILE`
+    - Access: runtime (dangerous)
+    - Usage: Access to medical profile data.
 
 ## Build
 
@@ -65,9 +92,12 @@ Due to the lack of proper kotlin support in the Android build environment it may
 be possible to successfully compile the `HealthStoreMod` target. However, it's possible
 to generate a prebuilt apk using `./gradlew :mod:assemble`.
 
-### SEPolicies & init
+### SEPolicies
 
-Additional SEPolicies and init files are required as well. These will be publicly available soon.
+Additional SEPolicies are required. This repository provides example implementation
+of SEPolicies to ensure the security of stored user data:
+
+* [Example for api 29 (Android 10)](/selinux/api29/)
 
 ## Usage
 
