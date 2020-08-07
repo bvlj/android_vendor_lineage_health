@@ -24,7 +24,6 @@ import android.net.Uri;
 import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.WorkerThread;
 
 import org.lineageos.mod.health.common.HealthStoreUri;
 import org.lineageos.mod.health.common.db.MedicalProfileColumns;

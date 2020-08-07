@@ -64,3 +64,34 @@ android_app {
         "org.lineageos.mod.health.xml"
     ],
 }
+
+// sdk jar
+android_library {
+    name: "org.lineageos.mod.health.sdk",
+    manifest: "sdk/src/main/AndroidManifest.xml",
+    resource_dirs: [
+    ],
+    srcs: [
+        "core/src/main/java/**/*.java",
+        "sdk/src/main/java/**/*.java",
+    ],
+    static_libs: [
+        "androidx.annotation_annotation",
+    ],
+}
+
+// sdk-ktx jar
+android_library {
+    name: "org.lineageos.mod.health.sdk-ktx",
+    manifest: "sdk-ktx/src/main/AndroidManifest.xml",
+    resource_dirs: [
+    ],
+    srcs: [
+        "core/src/main/java/**/*.java",
+        "sdk/src/main/java/**/*.java",
+        "sdk-ktx/src/main/java/**/*.kt",
+    ],
+    static_libs: [
+        "androidx.annotation_annotation",
+    ],
+}
