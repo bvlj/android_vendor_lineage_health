@@ -1,1 +1,1 @@
-Example SELinux policies implementation for Android api 29
+Example SELinux policy implementation for Android Q (API 29)
