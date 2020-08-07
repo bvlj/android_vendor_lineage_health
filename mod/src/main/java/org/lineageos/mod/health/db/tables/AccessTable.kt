@@ -27,7 +27,7 @@ internal object AccessTable : Table {
         "${AccessColumns._ID} INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, " +
         "${AccessColumns.PKG_NAME} TEXT NOT NULL, " +
         "${AccessColumns.METRIC} INTEGER NOT NULL, " +
-        "${AccessColumns.PERMISSIONS} INTEGER NOT NULL DEFAULT ${Permission.ALL}, " +
+        "${AccessColumns.PERMISSIONS} INTEGER NOT NULL DEFAULT ${Permission.ALL} " +
         ")"
 
     override fun onCreate(db: SQLiteDatabase) {

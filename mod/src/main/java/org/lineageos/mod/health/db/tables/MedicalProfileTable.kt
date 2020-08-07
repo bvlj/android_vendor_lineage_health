@@ -30,7 +30,7 @@ internal object MedicalProfileTable : Table {
         "${MedicalProfileColumns.MEDICATIONS} TEXT NOT NULL DEFAULT '', " +
         "${MedicalProfileColumns.NOTES} TEXT NOT NULL DEFAULT '', " +
         "${MedicalProfileColumns.ORGAN_DONOR} INTEGER NOT NULL DEFAULT 0, " +
-        "${MedicalProfileColumns.BIOLOGICAL_SEX} INTEGER NOT NULL DEFAULT 0, " +
+        "${MedicalProfileColumns.BIOLOGICAL_SEX} INTEGER NOT NULL DEFAULT 0 " +
         ")"
 
     override fun onCreate(db: SQLiteDatabase) {
