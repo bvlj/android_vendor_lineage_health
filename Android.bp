@@ -40,7 +40,8 @@ android_app {
     ],
     srcs: [
         "core/src/main/java/**/*.java",
-        "mod/src/main/java/**/*.kt"
+        "mod/src/main/java/**/*.java",
+        "mod/src/main/java/**/*.kt",
     ],
 
     certificate: "platform",

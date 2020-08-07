@@ -16,10 +16,12 @@
 
 package org.lineageos.mod.health.db
 
-import android.app.ActivityManager
 import android.content.Context
 import android.content.ContextWrapper
 import android.os.Environment
+import android.os.Process
+import android.os.UserHandle
+import org.lineageos.mod.util.UserUtil
 import java.io.File
 
 internal class DbContextWrapper(
@@ -32,11 +34,6 @@ internal class DbContextWrapper(
         val parentFolder = File("${Environment.getDataDirectory()}/$system/health/")
         parentFolder.mkdirs()
 
-        return File(parentFolder, "${currentUserId()}.db")
-    }
-
-    private fun currentUserId(): Int {
-        val getCurrentUser = ActivityManager::class.java.getDeclaredMethod("getCurrentUser")
-        return getCurrentUser.invoke(null) as? Int ?: 0
+        return File(parentFolder, "${UserUtil.getCurrentUserId()}.db")
     }
 }
