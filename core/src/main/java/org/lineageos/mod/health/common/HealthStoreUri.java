@@ -29,20 +29,20 @@ public final class HealthStoreUri {
     public static final String AUTHORITY = "org.lineageos.mod.health";
 
     @NonNull
-    public static final Uri ACCESS = Uri.parse("content:// " + AUTHORITY + "/access");
+    public static final Uri ACCESS = Uri.parse("content://" + AUTHORITY + "/access");
 
     @NonNull
-    public static final Uri ACTIVITY = Uri.parse("content:// " + AUTHORITY + "/activity");
+    public static final Uri ACTIVITY = Uri.parse("content://" + AUTHORITY + "/activity");
     @NonNull
-    public static final Uri BODY = Uri.parse("content:// " + AUTHORITY + "/body");
+    public static final Uri BODY = Uri.parse("content://" + AUTHORITY + "/body");
     @NonNull
-    public static final Uri BREATHING = Uri.parse("content:// " + AUTHORITY + "/breathing");
+    public static final Uri BREATHING = Uri.parse("content://" + AUTHORITY + "/breathing");
     @NonNull
-    public static final Uri HEART_BLOOD = Uri.parse("content:// " + AUTHORITY + "/blood");
+    public static final Uri HEART_BLOOD = Uri.parse("content://" + AUTHORITY + "/blood");
     @NonNull
-    public static final Uri MINDFULNESS = Uri.parse("content:// " + AUTHORITY + "/mindfulness");
+    public static final Uri MINDFULNESS = Uri.parse("content://" + AUTHORITY + "/mindfulness");
 
     @NonNull
-    public static final Uri MEDICAL_PROFILE = Uri.parse("content:// " + AUTHORITY + "/profile");
+    public static final Uri MEDICAL_PROFILE = Uri.parse("content://" + AUTHORITY + "/profile");
 
 }
