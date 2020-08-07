@@ -31,7 +31,7 @@ internal class HealthStoreDbHelper private constructor(
     context: Context?
 ) : SQLiteOpenHelper(
     DbContextWrapper(context, true),
-    null,
+    NAME,
     null,
     DB_VERSION
 ) {
@@ -59,5 +59,6 @@ internal class HealthStoreDbHelper private constructor(
 
     companion object : SingletonHolder<HealthStoreDbHelper, Context?>({ HealthStoreDbHelper(it) }) {
         private const val DB_VERSION = 1
+        private const val NAME = "heathStore"
     }
 }

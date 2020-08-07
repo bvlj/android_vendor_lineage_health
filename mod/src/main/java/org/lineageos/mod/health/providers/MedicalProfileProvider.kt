@@ -24,6 +24,7 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteQueryBuilder
 import android.net.Uri
+import android.util.Log
 import org.lineageos.mod.health.UriConst
 import org.lineageos.mod.health.common.HealthStoreUri
 import org.lineageos.mod.health.db.MedicalProfileDbHelper

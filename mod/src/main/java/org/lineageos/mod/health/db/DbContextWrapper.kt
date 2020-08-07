@@ -37,6 +37,6 @@ internal class DbContextWrapper(
 
     private fun currentUserId(): Int {
         val getCurrentUser = ActivityManager::class.java.getDeclaredMethod("getCurrentUser")
-        return getCurrentUser.invoke(null, getCurrentUser) as? Int ?: 0
+        return getCurrentUser.invoke(null) as? Int ?: 0
     }
 }

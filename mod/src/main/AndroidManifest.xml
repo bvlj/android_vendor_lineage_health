@@ -17,6 +17,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="org.lineageos.mod.health">
 
+    <uses-permission android:name="android.permission.INTERACT_ACROSS_USERS" />
+
     <!-- System-only -->
     <permission
         android:name="lineageos.permission.HEALTH_ACCESS"

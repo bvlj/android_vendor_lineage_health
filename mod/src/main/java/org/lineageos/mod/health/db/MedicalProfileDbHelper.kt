@@ -26,7 +26,7 @@ internal class MedicalProfileDbHelper private constructor(
     context: Context?
 ) : SQLiteOpenHelper(
     DbContextWrapper(context?.createDeviceProtectedStorageContext(), false),
-    null,
+    NAME,
     null,
     DB_VERSION
 ) {
@@ -47,5 +47,6 @@ internal class MedicalProfileDbHelper private constructor(
         MedicalProfileDbHelper(it)
     }) {
         private const val DB_VERSION = 1
+        private const val NAME = "medicalProfile"
     }
 }
