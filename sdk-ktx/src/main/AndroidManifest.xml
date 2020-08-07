@@ -13,5 +13,5 @@
   See the License for the specific language governing permissions and
   limitations under the License.
   -->
-<manifest package="org.lineageos.mod.health.sdk" />
+<manifest package="org.lineageos.mod.health.sdk.ktx" />
 
