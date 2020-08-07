@@ -78,7 +78,7 @@
             android:name=".providers.AccessContentProvider"
             android:authorities="org.lineageos.mod.health"
             android:exported="true"
-            android:permission="lineageos.permission.HEALTH_ACCESS" />
+            android:writePermission="lineageos.permission.HEALTH_ACCESS" />
 
         <provider
             android:name=".providers.ActivityRecordContentProvider"
