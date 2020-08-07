@@ -38,6 +38,7 @@ public final class BloodType {
     public static final int B_POS = 6;
     public static final int AB_NEG = 7;
     public static final int AB_POS = 8;
+    public static final int HH = 9;
 
     @IntDef({
             UNKNOWN,
@@ -48,7 +49,8 @@ public final class BloodType {
             B_NEG,
             B_POS,
             AB_NEG,
-            AB_POS
+            AB_POS,
+            HH,
     })
     @Retention(RetentionPolicy.SOURCE)
     public @interface Value {
