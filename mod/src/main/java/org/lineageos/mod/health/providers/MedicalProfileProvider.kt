@@ -112,7 +112,7 @@ internal class MedicalProfileProvider : ContentProvider() {
             null, null, null, "1"
         )
 
-        val id = if (!cursor.moveToFirst())
+        val id = if (cursor.moveToFirst())
             cursor.getLong(0).toString()
         else
             null
