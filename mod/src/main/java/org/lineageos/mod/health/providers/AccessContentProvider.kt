@@ -78,26 +78,30 @@ internal class AccessContentProvider : ContentProvider() {
             else -> return null
         }
 
-        val qb = SQLiteQueryBuilder().apply { tables = AccessTable.NAME }
-        val db = accessDbHelper.readableDatabase
+        return withMyId {
+            val qb = SQLiteQueryBuilder().apply { tables = AccessTable.NAME }
+            val db = accessDbHelper.readableDatabase
 
-        val cursor = qb.query(
-            db, projection, localSelection, selectionArgs,
-            null, null, localSortOrder
-        )
-        cursor.setNotificationUri(context!!.contentResolver, uri)
-        return cursor
+            val cursor = qb.query(
+                db, projection, localSelection, selectionArgs,
+                null, null, localSortOrder
+            )
+            cursor.setNotificationUri(context!!.contentResolver, uri)
+            cursor
+        }
     }
 
     override fun insert(uri: Uri, values: ContentValues?): Uri? {
         if (uriMatcher.match(uri) != UriConst.MATCH_ALL) return null
 
-        val db = accessDbHelper.writableDatabase
-        val rowId = db.insert(AccessTable.NAME, null, values)
-        if (rowId <= 0) return null
+        return withMyId {
+            val db = accessDbHelper.writableDatabase
+            val rowId = db.insert(AccessTable.NAME, null, values)
+            if (rowId <= 0) return@withMyId null
 
-        context!!.contentResolver.notifyChange(HealthStoreUri.ACCESS, null)
-        return ContentUris.withAppendedId(HealthStoreUri.ACCESS, rowId)
+            context!!.contentResolver.notifyChange(HealthStoreUri.ACCESS, null)
+            ContentUris.withAppendedId(HealthStoreUri.ACCESS, rowId)
+        }
     }
 
     override fun update(
@@ -128,12 +132,14 @@ internal class AccessContentProvider : ContentProvider() {
             else -> throw UnsupportedOperationException("Cannot update this URI: $uri")
         }
 
-        val db = accessDbHelper.writableDatabase
-        val count = db.update(AccessTable.NAME, values, localSelection, localSelectionArgs)
-        if (count > 0) {
-            context!!.contentResolver.notifyChange(HealthStoreUri.ACCESS, null)
+        return withMyId {
+            val db = accessDbHelper.writableDatabase
+            val count = db.update(AccessTable.NAME, values, localSelection, localSelectionArgs)
+            if (count > 0) {
+                context!!.contentResolver.notifyChange(HealthStoreUri.ACCESS, null)
+            }
+            count
         }
-        return count
     }
 
     override fun delete(uri: Uri, selection: String?, selectionArgs: Array<String>?): Int {
@@ -159,12 +165,14 @@ internal class AccessContentProvider : ContentProvider() {
             else -> throw UnsupportedOperationException("Cannot delete this URI: $uri")
         }
 
-        val db = accessDbHelper.writableDatabase
-        val count = db.delete(AccessTable.NAME, localSelection, localSelectionArgs)
-        if (count > 0) {
-            context!!.contentResolver.notifyChange(HealthStoreUri.ACCESS, null)
+       return withMyId {
+            val db = accessDbHelper.writableDatabase
+            val count = db.delete(AccessTable.NAME, localSelection, localSelectionArgs)
+            if (count > 0) {
+                context!!.contentResolver.notifyChange(HealthStoreUri.ACCESS, null)
+            }
+            count
         }
-        return count
     }
 
     override fun getType(uri: Uri) = when (uriMatcher.match(uri)) {

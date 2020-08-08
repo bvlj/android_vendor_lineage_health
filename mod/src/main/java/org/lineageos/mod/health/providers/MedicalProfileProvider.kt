@@ -49,18 +49,20 @@ internal class MedicalProfileProvider : ContentProvider() {
     ): Cursor? {
         if (uriMatcher.match(uri) != UriConst.MATCH_ALL) return null
 
-        val qb = SQLiteQueryBuilder().apply { tables = MedicalProfileTable.NAME }
-        val db = dbHelper.readableDatabase
+        return withMyId {
+            val qb = SQLiteQueryBuilder().apply { tables = MedicalProfileTable.NAME }
+            val db = dbHelper.readableDatabase
 
-        val cursor = qb.query(
-            db, projection, "", emptyArray(),
-            null, null, ""
-        )
-        cursor.setNotificationUri(context!!.contentResolver, uri)
-        return cursor
+            val cursor = qb.query(
+                db, projection, "", emptyArray(),
+                null, null, ""
+            )
+            cursor.setNotificationUri(context!!.contentResolver, uri)
+            cursor
+        }
     }
 
-    override fun insert(uri: Uri, values: ContentValues?): Uri? {
+    override fun insert(uri: Uri, values: ContentValues?): Uri? = withMyId {
         val db = dbHelper.writableDatabase
 
         val existingId = getProfileId(db)
@@ -70,10 +72,10 @@ internal class MedicalProfileProvider : ContentProvider() {
         }
 
         val rowId = db.insert(MedicalProfileTable.NAME, null, values)
-        if (rowId <= 0) return null
+        if (rowId <= 0) return@withMyId null
 
         context!!.contentResolver.notifyChange(HealthStoreUri.MEDICAL_PROFILE, null)
-        return ContentUris.withAppendedId(HealthStoreUri.MEDICAL_PROFILE, rowId)
+        ContentUris.withAppendedId(HealthStoreUri.MEDICAL_PROFILE, rowId)
     }
 
     override fun update(
@@ -93,12 +95,14 @@ internal class MedicalProfileProvider : ContentProvider() {
             throw UnsupportedOperationException("Cannot delete this URI: $uri")
         }
 
-        val db = dbHelper.writableDatabase
-        val count = db.delete(MedicalProfileTable.NAME, null, emptyArray())
-        if (count > 0) {
-            context!!.contentResolver.notifyChange(HealthStoreUri.MEDICAL_PROFILE, null)
+        return withMyId {
+            val db = dbHelper.writableDatabase
+            val count = db.delete(MedicalProfileTable.NAME, null, emptyArray())
+            if (count > 0) {
+                context!!.contentResolver.notifyChange(HealthStoreUri.MEDICAL_PROFILE, null)
+            }
+            count
         }
-        return count
     }
 
     override fun getType(uri: Uri) = when (uriMatcher.match(uri)) {

@@ -85,15 +85,17 @@ internal abstract class RecordContentProvider(
             return EmptyCursor
         }
 
-        val qb = SQLiteQueryBuilder().apply { tables = tableName }
-        val db = dbHelper.readableDatabase
+        return withMyId {
+            val qb = SQLiteQueryBuilder().apply { tables = tableName }
+            val db = dbHelper.readableDatabase
 
-        val cursor = qb.query(
-            db, projection, localSelection, selectionArgs,
-            null, null, sortOrder
-        )
-        cursor.setNotificationUri(context!!.contentResolver, uri)
-        return cursor
+            val cursor = qb.query(
+                db, projection, localSelection, selectionArgs,
+                null, null, sortOrder
+            )
+            cursor.setNotificationUri(context!!.contentResolver, uri)
+            cursor
+        }
     }
 
     override fun insert(uri: Uri, values: ContentValues?): Uri? {
@@ -105,12 +107,14 @@ internal abstract class RecordContentProvider(
             return null
         }
 
-        val db = dbHelper.writableDatabase
-        val rowId = db.insert(tableName, null, values)
-        if (rowId <= 0) return null
+        return withMyId {
+            val db = dbHelper.writableDatabase
+            val rowId = db.insert(tableName, null, values)
+            if (rowId <= 0) return@withMyId null
 
-        context!!.contentResolver.notifyChange(contentUri, null)
-        return ContentUris.withAppendedId(contentUri, rowId)
+            context!!.contentResolver.notifyChange(contentUri, null)
+            ContentUris.withAppendedId(contentUri, rowId)
+        }
     }
 
     override fun update(
@@ -134,12 +138,14 @@ internal abstract class RecordContentProvider(
             return 0
         }
 
-        val db = dbHelper.writableDatabase
-        val count = db.update(tableName, values, localSelection, localSelectionArgs)
-        if (count > 0) {
-            context!!.contentResolver.notifyChange(contentUri, null)
+        return withMyId {
+            val db = dbHelper.writableDatabase
+            val count = db.update(tableName, values, localSelection, localSelectionArgs)
+            if (count > 0) {
+                context!!.contentResolver.notifyChange(contentUri, null)
+            }
+            count
         }
-        return count
     }
 
     override fun delete(uri: Uri, selection: String?, selectionArgs: Array<String>?): Int {
@@ -170,12 +176,14 @@ internal abstract class RecordContentProvider(
             return 0
         }
 
-        val db = dbHelper.writableDatabase
-        val count = db.delete(tableName, localSelection, localSelectionArgs)
-        if (count > 0) {
-            context!!.contentResolver.notifyChange(contentUri, null)
+        return withMyId {
+            val db = dbHelper.writableDatabase
+            val count = db.delete(tableName, localSelection, localSelectionArgs)
+            if (count > 0) {
+                context!!.contentResolver.notifyChange(contentUri, null)
+            }
+            count
         }
-        return count
     }
 
     override fun getType(uri: Uri) = when (uriMatcher.match(uri)) {
