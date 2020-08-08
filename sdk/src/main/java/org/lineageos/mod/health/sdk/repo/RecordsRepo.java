@@ -16,14 +16,19 @@
 
 package org.lineageos.mod.health.sdk.repo;
 
+import android.content.ContentProviderOperation;
+import android.content.ContentProviderResult;
 import android.content.ContentResolver;
 import android.content.ContentValues;
+import android.content.OperationApplicationException;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.RemoteException;
 
 import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RestrictTo;
 
 import org.lineageos.mod.health.common.HealthStoreUri;
 import org.lineageos.mod.health.common.annotations.ActivityMetric;
@@ -80,6 +85,13 @@ public abstract class RecordsRepo<T extends Record> {
         final Uri deleteUri = getUri(record);
         final int deleted = contentResolver.delete(deleteUri, null, null);
         return deleted == 1;
+    }
+
+    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP, RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
+    public ContentProviderResult[] executeBatch(
+            @NonNull ArrayList<ContentProviderOperation> ops
+    ) throws OperationApplicationException, RemoteException {
+        return contentResolver.applyBatch(baseUri.toString(), ops);
     }
 
     @NonNull

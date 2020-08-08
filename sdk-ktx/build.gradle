@@ -49,6 +49,7 @@ android {
 }
 
 dependencies {
+    api project(Libraries.core)
     api project(Libraries.sdk)
 
     implementation AndroidX.annotationX

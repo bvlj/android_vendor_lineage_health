@@ -16,11 +16,14 @@
 
 package org.lineageos.mod.health.sdk.ktx
 
+import android.content.ContentProviderResult
 import android.content.ContentResolver
 import androidx.annotation.Keep
 import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import org.lineageos.mod.health.common.HealthStoreUri
+import org.lineageos.mod.health.sdk.ktx.batch.HsBatchOperationBuilder
 import org.lineageos.mod.health.sdk.model.records.heartblood.BloodAlcoholConcentrationRecord
 import org.lineageos.mod.health.sdk.model.records.heartblood.BloodPressureRecord
 import org.lineageos.mod.health.sdk.model.records.heartblood.GlucoseRecord
@@ -82,6 +85,15 @@ class HeartBloodRecordsRepoKt private constructor(
 
     suspend fun delete(record: HeartBloodRecord): Boolean =
         withContext(dispatcher) { _repo.delete(record) }
+
+    suspend fun batchOperation(
+        buildBlock: HsBatchOperationBuilder<HeartBloodRecord>.() -> Unit
+    ): Array<ContentProviderResult> = withContext(dispatcher) {
+        val opBuilder = HsBatchOperationBuilder<HeartBloodRecord>(HealthStoreUri.ACTIVITY)
+        opBuilder.buildBlock()
+        val ops = opBuilder.build()
+        _repo.executeBatch(ops)
+    }
 
     companion object : SingletonHolder<HeartBloodRecordsRepoKt, ContentResolver>({
         HeartBloodRecordsRepoKt(HeartBloodRecordsRepo.getInstance(it))
