@@ -15,7 +15,8 @@
   -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="org.lineageos.mod.health">
+    package="org.lineageos.mod.health"
+    android:sharedUserId="android.uid.system">
 
     <!-- System-only -->
     <permission

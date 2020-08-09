@@ -1,6 +1,6 @@
 # Lineage Health data dirs
 on post-fs-data
-    mkdir /data/system_ce/health 0700 system system
-    mkdir /data/system_de/health 0700 system system
+    mkdir /data/system_ce/health 0770 system system
+    mkdir /data/system_de/health 0770 system system
     restorecon_recursive /data/system_ce/health
     restorecon_recursive /data/system_de/health
