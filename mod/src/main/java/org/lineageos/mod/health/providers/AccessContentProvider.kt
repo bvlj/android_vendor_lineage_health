@@ -117,6 +117,7 @@ internal class AccessContentProvider : ContentProvider() {
 
         when (uriMatcher.match(uri)) {
             UriConst.MATCH_ALL -> {
+                // do nothing
             }
 
             UriConst.MATCH_ID -> {
@@ -150,6 +151,7 @@ internal class AccessContentProvider : ContentProvider() {
 
         when (uriMatcher.match(uri)) {
             UriConst.MATCH_ALL -> {
+                // do nothing
             }
 
             UriConst.MATCH_ID -> {

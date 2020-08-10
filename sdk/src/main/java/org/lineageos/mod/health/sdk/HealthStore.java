@@ -24,7 +24,10 @@ import androidx.annotation.NonNull;
 
 @Keep
 @SuppressWarnings("unused")
-public class HealthStore {
+public final class HealthStore {
+
+    private HealthStore() {
+    }
 
     /**
      * Determine whether HealthStore is supported on this device

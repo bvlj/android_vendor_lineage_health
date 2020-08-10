@@ -91,9 +91,9 @@ public abstract class RecordsRepo<T extends Record> {
 
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP, RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
     public ContentProviderResult[] executeBatch(
-            @NonNull ArrayList<ContentProviderOperation> ops
+            @NonNull List<ContentProviderOperation> ops
     ) throws OperationApplicationException, RemoteException {
-        return contentResolver.applyBatch(baseUri.toString(), ops);
+        return contentResolver.applyBatch(baseUri.toString(), new ArrayList<>(ops));
     }
 
     @NonNull

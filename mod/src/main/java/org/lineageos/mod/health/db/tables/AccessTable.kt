@@ -35,5 +35,6 @@ internal object AccessTable : Table {
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
+        // empty
     }
 }

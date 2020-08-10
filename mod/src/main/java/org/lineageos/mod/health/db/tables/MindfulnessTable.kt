@@ -36,5 +36,6 @@ internal object MindfulnessTable : Table {
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
+        // empty
     }
 }

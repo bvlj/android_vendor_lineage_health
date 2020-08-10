@@ -40,5 +40,6 @@ internal object ActivityTable : Table {
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
+        // empty
     }
 }

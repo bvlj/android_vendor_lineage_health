@@ -37,5 +37,6 @@ internal object HeartBloodTable : Table {
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
+        // empty
     }
 }

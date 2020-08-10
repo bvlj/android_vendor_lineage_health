@@ -38,5 +38,6 @@ internal object BodyTable : Table {
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
+        // empty
     }
 }
