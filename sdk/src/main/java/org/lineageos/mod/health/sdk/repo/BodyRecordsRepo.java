@@ -66,22 +66,30 @@ public final class BodyRecordsRepo extends RecordsRepo<BodyRecord> {
 
     @Nullable
     private static volatile BodyRecordsRepo instance;
+    @NonNull
+    private static final Object instanceLock = new Object();
 
     private BodyRecordsRepo(@NonNull ContentResolver contentResolver) {
         super(contentResolver, HealthStoreUri.BODY);
     }
 
     @NonNull
-    public static synchronized BodyRecordsRepo getInstance(
+    public static BodyRecordsRepo getInstance(
             @NonNull ContentResolver contentResolver) {
-        final BodyRecordsRepo currentInstance = instance;
-        if (currentInstance != null) {
-            return currentInstance;
+        BodyRecordsRepo currentInstance = instance;
+        // use double-checked locking
+        // (https://en.wikipedia.org/wiki/Double-checked_locking#Usage_in_Java)
+        if (currentInstance == null) {
+            synchronized (instanceLock) {
+                currentInstance = instance;
+                if (currentInstance == null) {
+                    currentInstance = new BodyRecordsRepo(contentResolver);
+                    instance = currentInstance;
+                }
+            }
         }
 
-        final BodyRecordsRepo newInstance = new BodyRecordsRepo(contentResolver);
-        instance = newInstance;
-        return newInstance;
+        return currentInstance;
     }
 
     @NonNull

@@ -59,22 +59,30 @@ public final class ActivityRecordsRepo extends RecordsRepo<ActivityRecord> {
 
     @Nullable
     private static volatile ActivityRecordsRepo instance;
+    @NonNull
+    private static final Object instanceLock = new Object();
 
     private ActivityRecordsRepo(@NonNull ContentResolver contentResolver) {
         super(contentResolver, HealthStoreUri.ACTIVITY);
     }
 
     @NonNull
-    public static synchronized ActivityRecordsRepo getInstance(
+    public static ActivityRecordsRepo getInstance(
             @NonNull ContentResolver contentResolver) {
-        final ActivityRecordsRepo currentInstance = instance;
-        if (currentInstance != null) {
-            return currentInstance;
+        ActivityRecordsRepo currentInstance = instance;
+        // use double-checked locking
+        // (https://en.wikipedia.org/wiki/Double-checked_locking#Usage_in_Java)
+        if (currentInstance == null) {
+            synchronized (instanceLock) {
+                currentInstance = instance;
+                if (currentInstance == null) {
+                    currentInstance = new ActivityRecordsRepo(contentResolver);
+                    instance = currentInstance;
+                }
+            }
         }
 
-        final ActivityRecordsRepo newInstance = new ActivityRecordsRepo(contentResolver);
-        instance = newInstance;
-        return newInstance;
+        return currentInstance;
     }
 
     @NonNull

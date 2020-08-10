@@ -56,22 +56,30 @@ public final class MindfulnessRecordsRepo extends RecordsRepo<MindfulnessRecord>
 
     @Nullable
     private static volatile MindfulnessRecordsRepo instance;
+    @NonNull
+    private static final Object instanceLock = new Object();
 
     private MindfulnessRecordsRepo(@NonNull ContentResolver contentResolver) {
         super(contentResolver, HealthStoreUri.MINDFULNESS);
     }
 
     @NonNull
-    public static synchronized MindfulnessRecordsRepo getInstance(
+    public static MindfulnessRecordsRepo getInstance(
             @NonNull ContentResolver contentResolver) {
-        final MindfulnessRecordsRepo currentInstance = instance;
-        if (currentInstance != null) {
-            return currentInstance;
+        MindfulnessRecordsRepo currentInstance = instance;
+        // use double-checked locking
+        // (https://en.wikipedia.org/wiki/Double-checked_locking#Usage_in_Java)
+        if (currentInstance == null) {
+            synchronized (instanceLock) {
+                currentInstance = instance;
+                if (currentInstance == null) {
+                    currentInstance = new MindfulnessRecordsRepo(contentResolver);
+                    instance = currentInstance;
+                }
+            }
         }
 
-        final MindfulnessRecordsRepo newInstance = new MindfulnessRecordsRepo(contentResolver);
-        instance = newInstance;
-        return newInstance;
+        return currentInstance;
     }
 
     @NonNull

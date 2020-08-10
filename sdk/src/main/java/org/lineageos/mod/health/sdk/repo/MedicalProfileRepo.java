@@ -53,12 +53,33 @@ public final class MedicalProfileRepo {
 
     @Nullable
     private volatile static MedicalProfileRepo instance;
+    @NonNull
+    private static final Object instanceLock = new Object();
 
     @NonNull
     private final ContentResolver contentResolver;
 
     private MedicalProfileRepo(@NonNull ContentResolver contentResolver) {
         this.contentResolver = contentResolver;
+    }
+
+    @NonNull
+    public static MedicalProfileRepo getInstance(
+            @NonNull ContentResolver contentResolver) {
+        MedicalProfileRepo currentInstance = instance;
+        // use double-checked locking
+        // (https://en.wikipedia.org/wiki/Double-checked_locking#Usage_in_Java)
+        if (currentInstance == null) {
+            synchronized (instanceLock) {
+                currentInstance = instance;
+                if (currentInstance == null) {
+                    currentInstance = new MedicalProfileRepo(contentResolver);
+                    instance = currentInstance;
+                }
+            }
+        }
+
+        return currentInstance;
     }
 
     @NonNull
@@ -96,18 +117,5 @@ public final class MedicalProfileRepo {
 
     public boolean reset() {
         return contentResolver.delete(HealthStoreUri.MEDICAL_PROFILE, null, null) == 1;
-    }
-
-    @NonNull
-    public static synchronized MedicalProfileRepo getInstance(
-            @NonNull ContentResolver contentResolver) {
-        final MedicalProfileRepo currentInstance = instance;
-        if (currentInstance != null) {
-            return currentInstance;
-        }
-
-        final MedicalProfileRepo newInstance = new MedicalProfileRepo(contentResolver);
-        instance = newInstance;
-        return newInstance;
     }
 }

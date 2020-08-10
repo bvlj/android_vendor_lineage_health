@@ -60,22 +60,30 @@ public final class HeartBloodRecordsRepo extends RecordsRepo<HeartBloodRecord> {
 
     @Nullable
     private static volatile HeartBloodRecordsRepo instance;
+    @NonNull
+    private static final Object instanceLock = new Object();
 
     private HeartBloodRecordsRepo(@NonNull ContentResolver contentResolver) {
         super(contentResolver, HealthStoreUri.HEART_BLOOD);
     }
 
     @NonNull
-    public static synchronized HeartBloodRecordsRepo getInstance(
+    public static HeartBloodRecordsRepo getInstance(
             @NonNull ContentResolver contentResolver) {
-        final HeartBloodRecordsRepo currentInstance = instance;
-        if (currentInstance != null) {
-            return currentInstance;
+        HeartBloodRecordsRepo currentInstance = instance;
+        // use double-checked locking
+        // (https://en.wikipedia.org/wiki/Double-checked_locking#Usage_in_Java)
+        if (currentInstance == null) {
+            synchronized (instanceLock) {
+                currentInstance = instance;
+                if (currentInstance == null) {
+                    currentInstance = new HeartBloodRecordsRepo(contentResolver);
+                    instance = currentInstance;
+                }
+            }
         }
 
-        final HeartBloodRecordsRepo newInstance = new HeartBloodRecordsRepo(contentResolver);
-        instance = newInstance;
-        return newInstance;
+        return currentInstance;
     }
 
     @NonNull
