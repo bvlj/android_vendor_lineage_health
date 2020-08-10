@@ -20,7 +20,6 @@ import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
-import android.util.Log;
 
 import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
@@ -70,23 +69,23 @@ public final class MedicalProfileRepo {
             return new MedicalProfile();
         }
 
-        final MedicalProfile medicalProfile;
-        if (cursor.moveToFirst()) {
-            medicalProfile = new MedicalProfile(
-                    cursor.getString(cursor.getColumnIndex(MedicalProfileColumns.ALLERGIES)),
-                    cursor.getInt(cursor.getColumnIndex(MedicalProfileColumns.BLOOD_TYPE)),
-                    cursor.getFloat(cursor.getColumnIndex(MedicalProfileColumns.HEIGHT)),
-                    cursor.getString(cursor.getColumnIndex(MedicalProfileColumns.MEDICATIONS)),
-                    cursor.getString(cursor.getColumnIndex(MedicalProfileColumns.NOTES)),
-                    cursor.getInt(cursor.getColumnIndex(MedicalProfileColumns.ORGAN_DONOR)),
-                    cursor.getInt(cursor.getColumnIndex(MedicalProfileColumns.BIOLOGICAL_SEX))
-            );
-        } else {
-            medicalProfile = new MedicalProfile();
+        try {
+            if (cursor.moveToFirst()) {
+                return new MedicalProfile(
+                        cursor.getString(cursor.getColumnIndex(MedicalProfileColumns.ALLERGIES)),
+                        cursor.getInt(cursor.getColumnIndex(MedicalProfileColumns.BLOOD_TYPE)),
+                        cursor.getFloat(cursor.getColumnIndex(MedicalProfileColumns.HEIGHT)),
+                        cursor.getString(cursor.getColumnIndex(MedicalProfileColumns.MEDICATIONS)),
+                        cursor.getString(cursor.getColumnIndex(MedicalProfileColumns.NOTES)),
+                        cursor.getInt(cursor.getColumnIndex(MedicalProfileColumns.ORGAN_DONOR)),
+                        cursor.getInt(cursor.getColumnIndex(MedicalProfileColumns.BIOLOGICAL_SEX))
+                );
+            } else {
+                return new MedicalProfile();
+            }
+        } finally {
+            cursor.close();
         }
-
-        cursor.close();
-        return medicalProfile;
     }
 
     public boolean set(@NonNull MedicalProfile medicalProfile) {

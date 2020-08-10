@@ -19,16 +19,13 @@ package org.lineageos.mod.health.providers
 import android.content.ContentProvider
 import android.content.ContentUris
 import android.content.ContentValues
-import android.content.UriMatcher
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteQueryBuilder
 import android.net.Uri
-import android.util.Log
-import org.lineageos.mod.health.UriConst
 import org.lineageos.mod.health.common.HealthStoreUri
-import org.lineageos.mod.health.db.MedicalProfileDbHelper
 import org.lineageos.mod.health.common.db.MedicalProfileColumns
+import org.lineageos.mod.health.db.MedicalProfileDbHelper
 import org.lineageos.mod.health.db.tables.MedicalProfileTable
 
 internal class MedicalProfileProvider : ContentProvider() {
@@ -102,17 +99,15 @@ internal class MedicalProfileProvider : ContentProvider() {
     override fun getType(uri: Uri) = "vnd.android.cursor.item"
 
     private fun getProfileId(db: SQLiteDatabase): String? {
-        val cursor = db.query(
+        db.query(
             true, MedicalProfileTable.NAME,
             arrayOf(MedicalProfileColumns._ID), null, null,
             null, null, null, "1"
-        )
-
-        val id = if (cursor.moveToFirst())
-            cursor.getLong(0).toString()
-        else
-            null
-        cursor.close()
-        return id
+        ).use { cursor ->
+            return if (cursor.moveToFirst())
+                cursor.getLong(0).toString()
+            else
+                null
+        }
     }
 }

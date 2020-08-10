@@ -52,9 +52,8 @@ internal class AccessManager(
             return Permission.ALL
         }
 
-        val permission = query.getInt(0)
-        query.close()
-
-        return permission
+        query.use {
+            return it.getInt(0)
+        }
     }
 }

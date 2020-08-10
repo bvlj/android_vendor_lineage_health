@@ -63,9 +63,11 @@ public abstract class RecordsRepo<T extends Record> {
             return new ArrayList<>();
         }
 
-        final List<T> list = parseCursor(cursor);
-        cursor.close();
-        return list;
+        try {
+            return parseCursor(cursor);
+        } finally {
+            cursor.close();
+        }
     }
 
     public final boolean insert(@NonNull T record) {
@@ -103,9 +105,11 @@ public abstract class RecordsRepo<T extends Record> {
             return new ArrayList<>();
         }
 
-        final List<T> list = parseCursor(cursor);
-        cursor.close();
-        return list;
+        try {
+            return parseCursor(cursor);
+        } finally {
+            cursor.close();
+        }
     }
 
     @Nullable
@@ -116,9 +120,11 @@ public abstract class RecordsRepo<T extends Record> {
             return null;
         }
 
-        final T record = cursor.moveToFirst() ? parseRow(cursor) : null;
-        cursor.close();
-        return record;
+        try {
+            return (cursor.moveToFirst() ? parseRow(cursor) : null);
+        } finally {
+            cursor.close();
+        }
     }
 
     @NonNull
