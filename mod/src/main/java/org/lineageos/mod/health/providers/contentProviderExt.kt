@@ -23,13 +23,6 @@ import android.util.Log
 fun <T> ContentProvider.withMyId(
     block: ContentProvider.() -> T
 ): T {
-    if (Build.VERSION.SDK_INT < 29) {
-        // TODO: decide what to do here. SELinux will kill the calling app
-        //       if we attempt to access the db without clearing the calling identity
-        Log.w("ContentProviderExt", "Running with original CallerId")
-        return block()
-    }
-
     val token = clearCallingIdentity()
     val result = block()
     restoreCallingIdentity(token)
