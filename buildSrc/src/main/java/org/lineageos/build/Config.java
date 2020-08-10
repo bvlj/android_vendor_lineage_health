@@ -21,7 +21,7 @@ import org.gradle.api.JavaVersion;
 public final class Config {
 
     public static final int compileSdk = 29;
-    public static final int minSdk = 27;
+    public static final int minSdk = 29;
     public static final int targetSdk = 29;
 
     public static final int versionCode = 1;
