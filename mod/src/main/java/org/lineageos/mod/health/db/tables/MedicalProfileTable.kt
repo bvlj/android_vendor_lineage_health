@@ -20,7 +20,7 @@ import android.database.sqlite.SQLiteDatabase
 import org.lineageos.mod.health.common.db.MedicalProfileColumns
 
 internal object MedicalProfileTable : Table {
-    const val NAME = "body"
+    const val NAME = "profile"
 
     private const val CREATE_CMD = "CREATE TABLE IF NOT EXISTS $NAME (" +
         "${MedicalProfileColumns._ID} INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, " +
