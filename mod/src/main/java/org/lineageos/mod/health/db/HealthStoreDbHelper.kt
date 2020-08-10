@@ -30,11 +30,15 @@ import org.lineageos.mod.util.SingletonHolder
 internal class HealthStoreDbHelper private constructor(
     context: Context?
 ) : SQLiteOpenHelper(
-    DbContextWrapper(context, true),
+    context,
     NAME,
     null,
     DB_VERSION
 ) {
+    companion object : SingletonHolder<HealthStoreDbHelper, Context?>({ HealthStoreDbHelper(it) }) {
+        private const val DB_VERSION = 1
+        private const val NAME = "healthStore"
+    }
 
     private val tables = arrayOf(
         AccessTable,
@@ -55,10 +59,5 @@ internal class HealthStoreDbHelper private constructor(
         if (db != null) {
             tables.forEach { it.onUpgrade(db, oldVersion, newVersion) }
         }
-    }
-
-    companion object : SingletonHolder<HealthStoreDbHelper, Context?>({ HealthStoreDbHelper(it) }) {
-        private const val DB_VERSION = 1
-        private const val NAME = "heathStore"
     }
 }

@@ -14,15 +14,6 @@
 // limitations under the License.
 //
 
-// Init script
-prebuilt_etc {
-    name: "lineage-health.rc",
-    product_specific: true,
-    sub_dir: "init",
-    src: "lineage-health.rc",
-    filename_from_src: true,
-}
-
 // Feature permission
 prebuilt_etc {
     name: "org.lineageos.mod.health.xml",
@@ -63,8 +54,7 @@ android_app {
         "androidx.annotation_annotation",
     ],
     required: [
-        "lineage-health.rc",
-        "org.lineageos.mod.health.xml"
+        "org.lineageos.mod.health.xml",
     ],
 }
 

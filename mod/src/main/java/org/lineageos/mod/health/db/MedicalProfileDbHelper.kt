@@ -25,11 +25,17 @@ import org.lineageos.mod.health.db.tables.MedicalProfileTable
 internal class MedicalProfileDbHelper private constructor(
     context: Context?
 ) : SQLiteOpenHelper(
-    DbContextWrapper(context?.createDeviceProtectedStorageContext(), false),
+    context?.applicationContext?.createDeviceProtectedStorageContext(),
     NAME,
     null,
     DB_VERSION
 ) {
+    companion object : SingletonHolder<MedicalProfileDbHelper, Context?>({
+        MedicalProfileDbHelper(it)
+    }) {
+        private const val DB_VERSION = 1
+        private const val NAME = "medicalProfile"
+    }
 
     override fun onCreate(db: SQLiteDatabase?) {
         if (db != null) {
@@ -41,12 +47,5 @@ internal class MedicalProfileDbHelper private constructor(
         if (db != null) {
             MedicalProfileTable.onUpgrade(db, oldVersion, newVersion)
         }
-    }
-
-    companion object : SingletonHolder<MedicalProfileDbHelper, Context?>({
-        MedicalProfileDbHelper(it)
-    }) {
-        private const val DB_VERSION = 1
-        private const val NAME = "medicalProfile"
     }
 }
