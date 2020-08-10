@@ -184,9 +184,9 @@ internal class AccessContentProvider : ContentProvider() {
 
     companion object {
         private val uriMatcher = UriMatcher(UriMatcher.NO_MATCH).apply {
-            addURI(HealthStoreUri.AUTHORITY, "access", UriConst.MATCH_ALL)
-            addURI(HealthStoreUri.AUTHORITY, "access/#", UriConst.MATCH_ID)
-            addURI(HealthStoreUri.AUTHORITY, "access/*/#", UriConst.MATCH_ITEM)
+            addURI(HealthStoreUri.Authority.ACCESS, "/all", UriConst.MATCH_ALL)
+            addURI(HealthStoreUri.Authority.ACCESS, "/#", UriConst.MATCH_ID)
+            addURI(HealthStoreUri.Authority.ACCESS, "/*/#", UriConst.MATCH_ITEM)
         }
     }
 }

@@ -16,22 +16,11 @@
 
 package org.lineageos.mod.health.providers
 
-import android.content.UriMatcher
-import org.lineageos.mod.health.UriConst
 import org.lineageos.mod.health.common.HealthStoreUri
 import org.lineageos.mod.health.db.tables.MindfulnessTable
 
 internal class MindfulnessRecordContentProvider : RecordContentProvider(
     HealthStoreUri.MINDFULNESS,
-    uriMatcher,
+    HealthStoreUri.Authority.MINDFULNESS,
     MindfulnessTable.NAME
-) {
-
-    companion object {
-        private val uriMatcher = UriMatcher(UriMatcher.NO_MATCH).apply {
-            addURI(HealthStoreUri.AUTHORITY, "mindfulness", UriConst.MATCH_ALL)
-            addURI(HealthStoreUri.AUTHORITY, "mindfulness/#", UriConst.MATCH_METRIC)
-            addURI(HealthStoreUri.AUTHORITY, "mindfulness/#/#", UriConst.MATCH_ITEM)
-        }
-    }
-}
+)

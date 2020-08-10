@@ -16,22 +16,11 @@
 
 package org.lineageos.mod.health.providers
 
-import android.content.UriMatcher
-import org.lineageos.mod.health.UriConst
 import org.lineageos.mod.health.common.HealthStoreUri
 import org.lineageos.mod.health.db.tables.BodyTable
 
 internal class BodyRecordContentProvider : RecordContentProvider(
     HealthStoreUri.BODY,
-    uriMatcher,
+    HealthStoreUri.Authority.BODY,
     BodyTable.NAME
-) {
-
-    companion object {
-        private val uriMatcher = UriMatcher(UriMatcher.NO_MATCH).apply {
-            addURI(HealthStoreUri.AUTHORITY, "body", UriConst.MATCH_ALL)
-            addURI(HealthStoreUri.AUTHORITY, "body/#", UriConst.MATCH_METRIC)
-            addURI(HealthStoreUri.AUTHORITY, "body/#/#", UriConst.MATCH_ITEM)
-        }
-    }
-}
+)

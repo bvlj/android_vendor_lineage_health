@@ -47,8 +47,6 @@ internal class MedicalProfileProvider : ContentProvider() {
         selectionArgs: Array<String>?,
         sortOrder: String?
     ): Cursor? {
-        if (uriMatcher.match(uri) != UriConst.MATCH_ALL) return null
-
         return withMyId {
             val qb = SQLiteQueryBuilder().apply { tables = MedicalProfileTable.NAME }
             val db = dbHelper.readableDatabase
@@ -91,10 +89,6 @@ internal class MedicalProfileProvider : ContentProvider() {
     }
 
     override fun delete(uri: Uri, selection: String?, selectionArgs: Array<String>?): Int {
-        if (uriMatcher.match(uri) != UriConst.MATCH_ALL) {
-            throw UnsupportedOperationException("Cannot delete this URI: $uri")
-        }
-
         return withMyId {
             val db = dbHelper.writableDatabase
             val count = db.delete(MedicalProfileTable.NAME, null, emptyArray())
@@ -105,10 +99,7 @@ internal class MedicalProfileProvider : ContentProvider() {
         }
     }
 
-    override fun getType(uri: Uri) = when (uriMatcher.match(uri)) {
-        UriConst.MATCH_ALL -> "vnd.android.cursor.dir"
-        else -> null
-    }
+    override fun getType(uri: Uri) = "vnd.android.cursor.item"
 
     private fun getProfileId(db: SQLiteDatabase): String? {
         val cursor = db.query(
@@ -123,11 +114,5 @@ internal class MedicalProfileProvider : ContentProvider() {
             null
         cursor.close()
         return id
-    }
-
-    companion object {
-        private val uriMatcher = UriMatcher(UriMatcher.NO_MATCH).apply {
-            addURI(HealthStoreUri.AUTHORITY, "profile", UriConst.MATCH_ALL)
-        }
     }
 }

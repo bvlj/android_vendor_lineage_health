@@ -22,7 +22,7 @@ internal fun ContentProvider.canRead(
     accessManager: AccessManager,
     metric: String
 ): Boolean {
-    val callingPkg = callingPackage ?: "[unknown package]"
+    val callingPkg = callingPackage ?: return false
     val metricInt = metric.toIntOrNull()
     return metricInt != null && !accessManager.canRead(callingPkg, metricInt)
 }
@@ -31,7 +31,7 @@ internal fun ContentProvider.canWrite(
     accessManager: AccessManager,
     metric: String
 ): Boolean {
-    val callingPkg = callingPackage ?: "[unknown package]"
+    val callingPkg = callingPackage ?: return false
     val metricInt = metric.toIntOrNull()
     return metricInt != null && !accessManager.canWrite(callingPkg, metricInt)
 }

@@ -26,23 +26,42 @@ public final class HealthStoreUri {
     }
 
     @NonNull
-    public static final String AUTHORITY = "org.lineageos.mod.health";
+    public static final Uri ACCESS = Uri.parse(Authority.ACCESS);
 
     @NonNull
-    public static final Uri ACCESS = Uri.parse("content://" + AUTHORITY + ".access");
+    public static final Uri ACTIVITY = Uri.parse(Authority.ACTIVITY);
+    @NonNull
+    public static final Uri BODY = Uri.parse(Authority.BODY);
+    @NonNull
+    public static final Uri BREATHING = Uri.parse(Authority.BREATHING);
+    @NonNull
+    public static final Uri HEART_BLOOD = Uri.parse(Authority.HEART_BLOOD);
+    @NonNull
+    public static final Uri MINDFULNESS = Uri.parse(Authority.MINDFULNESS);
 
     @NonNull
-    public static final Uri ACTIVITY = Uri.parse("content://" + AUTHORITY + ".activity");
-    @NonNull
-    public static final Uri BODY = Uri.parse("content://" + AUTHORITY + ".body");
-    @NonNull
-    public static final Uri BREATHING = Uri.parse("content://" + AUTHORITY + ".breathing");
-    @NonNull
-    public static final Uri HEART_BLOOD = Uri.parse("content://" + AUTHORITY + ".heart");
-    @NonNull
-    public static final Uri MINDFULNESS = Uri.parse("content://" + AUTHORITY + ".mindfulness");
+    public static final Uri MEDICAL_PROFILE = Uri.parse(Authority.MEDICAL_PROFILE);
 
-    @NonNull
-    public static final Uri MEDICAL_PROFILE = Uri.parse("content://" + AUTHORITY + ".profile");
+    public static final class Authority {
+        private Authority() {
+        }
 
+        @NonNull
+        private static final String BASE = "org.lineageos.mod.health";
+
+        @NonNull
+        public static final String ACCESS = "content://" + BASE + ".access";
+        @NonNull
+        public static final String ACTIVITY = "content://" + BASE + ".activity";
+        @NonNull
+        public static final String BODY = "content://" + BASE + ".body";
+        @NonNull
+        public static final String BREATHING = "content://" + BASE + ".breathing";
+        @NonNull
+        public static final String HEART_BLOOD = "content://" + BASE + ".heart";
+        @NonNull
+        public static final String MINDFULNESS = "content://" + BASE + ".mindfulness";
+        @NonNull
+        public static final String MEDICAL_PROFILE = "content://" + BASE + ".profile";
+    }
 }

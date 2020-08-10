@@ -16,22 +16,11 @@
 
 package org.lineageos.mod.health.providers
 
-import android.content.UriMatcher
-import org.lineageos.mod.health.UriConst
 import org.lineageos.mod.health.common.HealthStoreUri
 import org.lineageos.mod.health.db.tables.HeartBloodTable
 
 internal class HeartBloodRecordContentProvider : RecordContentProvider(
     HealthStoreUri.HEART_BLOOD,
-    uriMatcher,
+    HealthStoreUri.Authority.HEART_BLOOD,
     HeartBloodTable.NAME
-) {
-
-    companion object {
-        private val uriMatcher = UriMatcher(UriMatcher.NO_MATCH).apply {
-            addURI(HealthStoreUri.AUTHORITY, "heartBlood", UriConst.MATCH_ALL)
-            addURI(HealthStoreUri.AUTHORITY, "heartBlood/#", UriConst.MATCH_METRIC)
-            addURI(HealthStoreUri.AUTHORITY, "heartBlood/#/#", UriConst.MATCH_ITEM)
-        }
-    }
-}
+)

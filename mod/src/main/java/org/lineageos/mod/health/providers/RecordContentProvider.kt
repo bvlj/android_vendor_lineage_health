@@ -33,12 +33,16 @@ import org.lineageos.mod.health.common.db.RecordColumns
 
 internal abstract class RecordContentProvider(
     private val contentUri: Uri,
-    private val uriMatcher: UriMatcher,
+    authority: String,
     private val tableName: String
 ) : ContentProvider() {
 
     private lateinit var dbHelper: HealthStoreDbHelper
     private lateinit var accessManager: AccessManager
+    private val uriMatcher = UriMatcher(UriMatcher.NO_MATCH).apply {
+        addURI(authority, "/#", UriConst.MATCH_METRIC)
+        addURI(authority, "#/#", UriConst.MATCH_ITEM)
+    }
 
     override fun onCreate(): Boolean {
         dbHelper = HealthStoreDbHelper.getInstance(context)
