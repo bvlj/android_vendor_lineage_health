@@ -19,7 +19,7 @@ import org.lineageos.build.Config
 apply plugin: 'com.android.library'
 
 import org.lineageos.build.Config
-import org.lineageos.build.Deps.Libraries
+import org.lineageos.build.Libraries
 
 android {
     compileSdkVersion Config.compileSdk
@@ -32,6 +32,14 @@ android {
         versionName Config.versionName
 
         consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildFeatures {
+        aidl false
+        compose false
+        renderScript false
+        resValues false
+        shaders false
     }
 
     buildTypes {

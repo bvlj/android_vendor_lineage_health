@@ -18,9 +18,9 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 import org.lineageos.build.Config
-import org.lineageos.build.Deps.AndroidX
-import org.lineageos.build.Deps.Kotlin
-import org.lineageos.build.Deps.Libraries
+import org.lineageos.build.AndroidX
+import org.lineageos.build.Kotlin
+import org.lineageos.build.Libraries
 
 android {
     compileSdkVersion Config.compileSdk
@@ -33,6 +33,14 @@ android {
         versionName Config.versionName
 
         consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildFeatures {
+        aidl false
+        compose false
+        renderScript false
+        resValues false
+        shaders false
     }
 
     buildTypes {

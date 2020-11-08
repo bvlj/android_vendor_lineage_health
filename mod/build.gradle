@@ -18,8 +18,8 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 import org.lineageos.build.Config
-import org.lineageos.build.Deps.Kotlin
-import org.lineageos.build.Deps.Libraries
+import org.lineageos.build.Kotlin
+import org.lineageos.build.Libraries
 
 android {
     compileSdkVersion Config.compileSdk
@@ -55,7 +55,6 @@ android {
 }
 
 dependencies {
-    // compileOnly Robolectric.androidAll
 
     implementation project(Libraries.core)
     implementation Kotlin.StdLib.jvm

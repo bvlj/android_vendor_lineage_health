@@ -14,4 +14,18 @@
  * limitations under the License.
  */
 
-// Leave me empty
+package org.lineageos.build;
+
+import org.gradle.api.JavaVersion;
+
+object Config {
+
+    const val compileSdk = 29
+    const val minSdk = 27
+    const val targetSdk = 29
+
+    const val versionCode = 1
+    const val versionName = "1.0.0"
+
+    val javaVersion = JavaVersion.VERSION_1_8;
+}

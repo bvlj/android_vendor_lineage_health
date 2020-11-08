@@ -1,5 +1,4 @@
 import org.lineageos.build.Config
-import org.lineageos.build.Deps
 
 /*
  * Copyright (C) 2020 The LineageOS Project
@@ -19,7 +18,7 @@ import org.lineageos.build.Deps
 
 apply plugin: "com.android.library"
 
-import org.lineageos.build.Deps.AndroidX
+import org.lineageos.build.AndroidX
 
 android {
     compileSdkVersion Config.compileSdk
@@ -30,6 +29,14 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildFeatures {
+        aidl false
+        compose false
+        renderScript false
+        resValues false
+        shaders false
     }
 
     buildTypes {
