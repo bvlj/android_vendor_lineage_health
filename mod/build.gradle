@@ -17,9 +17,11 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
+import org.lineageos.build.AndroidX
 import org.lineageos.build.Config
 import org.lineageos.build.Kotlin
 import org.lineageos.build.Libraries
+import org.lineageos.build.SqlCipher
 
 android {
     compileSdkVersion Config.compileSdk
@@ -52,12 +54,22 @@ android {
     kotlinOptions {
         jvmTarget = Config.javaVersion
     }
+
+    useLibrary 'android.test.base' // for android.test.AndroidTestCase
+    useLibrary 'android.test.runner' // for android.test.MoreAsserts
 }
 
 dependencies {
-
     implementation project(Libraries.core)
     implementation Kotlin.StdLib.jvm
+
+    implementation AndroidX.sqLite
+    implementation SqlCipher.android
+
+    androidTestImplementation AndroidX.Test.core
+    androidTestImplementation AndroidX.Test.rules
+    androidTestImplementation AndroidX.Test.espressoCore
+    androidTestImplementation AndroidX.Test.Ext.junit
 }
 
 apply from: "../ktlint.gradle"

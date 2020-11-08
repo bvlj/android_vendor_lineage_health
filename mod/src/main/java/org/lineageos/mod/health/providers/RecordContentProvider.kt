@@ -21,7 +21,7 @@ import android.content.ContentUris
 import android.content.ContentValues
 import android.content.UriMatcher
 import android.database.Cursor
-import android.database.sqlite.SQLiteQueryBuilder
+import net.sqlcipher.database.SQLiteQueryBuilder
 import android.net.Uri
 import org.lineageos.mod.health.access.AccessManager
 import org.lineageos.mod.health.access.canRead
@@ -30,6 +30,7 @@ import org.lineageos.mod.health.UriConst
 import org.lineageos.mod.health.access.EmptyCursor
 import org.lineageos.mod.health.db.HealthStoreDbHelper
 import org.lineageos.mod.health.common.db.RecordColumns
+import org.lineageos.mod.health.security.KeyMaster
 
 internal abstract class RecordContentProvider(
     private val contentUri: Uri,
@@ -38,6 +39,7 @@ internal abstract class RecordContentProvider(
 ) : ContentProvider() {
 
     private lateinit var dbHelper: HealthStoreDbHelper
+    private lateinit var keyMaster: KeyMaster
     private lateinit var accessManager: AccessManager
     private val uriMatcher = UriMatcher(UriMatcher.NO_MATCH).apply {
         addURI(authority, "/#", UriConst.MATCH_METRIC)
@@ -46,6 +48,7 @@ internal abstract class RecordContentProvider(
 
     override fun onCreate(): Boolean {
         dbHelper = HealthStoreDbHelper.getInstance(context)
+        keyMaster = KeyMaster.getInstance(context!!)
         accessManager = AccessManager(context!!.contentResolver)
         return true
     }
@@ -91,7 +94,7 @@ internal abstract class RecordContentProvider(
 
         return withMyId {
             val qb = SQLiteQueryBuilder().apply { tables = tableName }
-            val db = dbHelper.readableDatabase
+            val db = dbHelper.getReadableDatabase(keyMaster.getDbKey())
 
             val cursor = qb.query(
                 db, projection, localSelection, selectionArgs,
@@ -112,7 +115,7 @@ internal abstract class RecordContentProvider(
         }
 
         return withMyId {
-            val db = dbHelper.writableDatabase
+            val db = dbHelper.getWritableDatabase(keyMaster.getDbKey())
             val rowId = db.insert(tableName, null, values)
             if (rowId <= 0) return@withMyId null
 
@@ -143,7 +146,7 @@ internal abstract class RecordContentProvider(
         }
 
         return withMyId {
-            val db = dbHelper.writableDatabase
+            val db = dbHelper.getWritableDatabase(keyMaster.getDbKey())
             val count = db.update(tableName, values, localSelection, localSelectionArgs)
             if (count > 0) {
                 context!!.contentResolver.notifyChange(contentUri, null)
@@ -181,7 +184,7 @@ internal abstract class RecordContentProvider(
         }
 
         return withMyId {
-            val db = dbHelper.writableDatabase
+            val db = dbHelper.getWritableDatabase(keyMaster.getDbKey())
             val count = db.delete(tableName, localSelection, localSelectionArgs)
             if (count > 0) {
                 context!!.contentResolver.notifyChange(contentUri, null)

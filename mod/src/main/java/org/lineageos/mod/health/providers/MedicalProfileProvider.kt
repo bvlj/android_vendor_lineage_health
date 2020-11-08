@@ -20,9 +20,9 @@ import android.content.ContentProvider
 import android.content.ContentUris
 import android.content.ContentValues
 import android.database.Cursor
-import android.database.sqlite.SQLiteDatabase
-import android.database.sqlite.SQLiteQueryBuilder
 import android.net.Uri
+import net.sqlcipher.database.SQLiteDatabase
+import net.sqlcipher.database.SQLiteQueryBuilder
 import org.lineageos.mod.health.common.HealthStoreUri
 import org.lineageos.mod.health.common.db.MedicalProfileColumns
 import org.lineageos.mod.health.db.MedicalProfileDbHelper
@@ -46,7 +46,7 @@ internal class MedicalProfileProvider : ContentProvider() {
     ): Cursor? {
         return withMyId {
             val qb = SQLiteQueryBuilder().apply { tables = MedicalProfileTable.NAME }
-            val db = dbHelper.readableDatabase
+            val db = dbHelper.getReadableDatabase(null as String?)
 
             val cursor = qb.query(
                 db, projection, "", emptyArray(),
@@ -58,7 +58,7 @@ internal class MedicalProfileProvider : ContentProvider() {
     }
 
     override fun insert(uri: Uri, values: ContentValues?): Uri? = withMyId {
-        val db = dbHelper.writableDatabase
+        val db = dbHelper.getWritableDatabase(null as String?)
 
         val existingId = getProfileId(db)
         if (existingId != null) {
@@ -87,8 +87,9 @@ internal class MedicalProfileProvider : ContentProvider() {
 
     override fun delete(uri: Uri, selection: String?, selectionArgs: Array<String>?): Int {
         return withMyId {
-            val db = dbHelper.writableDatabase
-            val count = db.delete(MedicalProfileTable.NAME, null, emptyArray())
+            android.util.Log.e("OHAI", "DELETE OP: $uri ;; $selection ;; $selectionArgs")
+            val db = dbHelper.getWritableDatabase(null as String?)
+            val count = db.delete(MedicalProfileTable.NAME, null, null)
             if (count > 0) {
                 context!!.contentResolver.notifyChange(HealthStoreUri.MEDICAL_PROFILE, null)
             }

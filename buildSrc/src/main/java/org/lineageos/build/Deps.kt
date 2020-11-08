@@ -22,6 +22,23 @@ object AndroidX {
 
     // Core - KTX - https://developer.android.com/jetpack/androidx/releases/annotation
     const val annotationX = "androidx.annotation:annotation:1.1.0"
+
+    // Core - KTX - https://developer.android.com/jetpack/androidx/releases/sqlite
+    const val sqLite = "androidx.sqlite:sqlite:2.1.0"
+
+    object Test {
+        private const val VERSION = "1.2.0"
+
+        const val core = "androidx.test:core:$VERSION"
+        const val rules = "androidx.test:rules:$VERSION"
+
+        const val espressoCore = "androidx.test.espresso:espresso-core:3.2.0"
+
+        object Ext {
+            private const val VERSION = "1.1.2-rc01"
+            const val junit = "androidx.test.ext:junit-ktx:$VERSION"
+        }
+    }
 }
 
 // Kotlin - https://github.com/JetBrains/kotlin/releases
@@ -42,6 +59,12 @@ object Kotlin {
         const val jvm = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$VERSION"
         const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$VERSION"
     }
+}
+
+object SqlCipher {
+    private const val VERSION = "4.4.1"
+
+    const val android = "net.zetetic:android-database-sqlcipher:$VERSION"
 }
 
 /**

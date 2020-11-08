@@ -21,20 +21,23 @@ import android.content.ContentUris
 import android.content.ContentValues
 import android.content.UriMatcher
 import android.database.Cursor
-import android.database.sqlite.SQLiteQueryBuilder
 import android.net.Uri
+import net.sqlcipher.database.SQLiteQueryBuilder
 import org.lineageos.mod.health.UriConst
 import org.lineageos.mod.health.common.HealthStoreUri
-import org.lineageos.mod.health.db.HealthStoreDbHelper
 import org.lineageos.mod.health.common.db.AccessColumns
+import org.lineageos.mod.health.db.HealthStoreDbHelper
 import org.lineageos.mod.health.db.tables.AccessTable
+import org.lineageos.mod.health.security.KeyMaster
 
 internal class AccessContentProvider : ContentProvider() {
 
+    private lateinit var keyMaster: KeyMaster
     private lateinit var accessDbHelper: HealthStoreDbHelper
 
     override fun onCreate(): Boolean {
         accessDbHelper = HealthStoreDbHelper.getInstance(context)
+        keyMaster = KeyMaster.getInstance(context!!)
         return true
     }
 
@@ -80,7 +83,7 @@ internal class AccessContentProvider : ContentProvider() {
 
         return withMyId {
             val qb = SQLiteQueryBuilder().apply { tables = AccessTable.NAME }
-            val db = accessDbHelper.readableDatabase
+            val db = accessDbHelper.getReadableDatabase(keyMaster.getDbKey())
 
             val cursor = qb.query(
                 db, projection, localSelection, selectionArgs,
@@ -95,7 +98,7 @@ internal class AccessContentProvider : ContentProvider() {
         if (uriMatcher.match(uri) != UriConst.MATCH_ALL) return null
 
         return withMyId {
-            val db = accessDbHelper.writableDatabase
+            val db = accessDbHelper.getWritableDatabase(keyMaster.getDbKey())
             val rowId = db.insert(AccessTable.NAME, null, values)
             if (rowId <= 0) return@withMyId null
 
@@ -134,7 +137,7 @@ internal class AccessContentProvider : ContentProvider() {
         }
 
         return withMyId {
-            val db = accessDbHelper.writableDatabase
+            val db = accessDbHelper.getWritableDatabase(keyMaster.getDbKey())
             val count = db.update(AccessTable.NAME, values, localSelection, localSelectionArgs)
             if (count > 0) {
                 context!!.contentResolver.notifyChange(HealthStoreUri.ACCESS, null)
@@ -167,8 +170,8 @@ internal class AccessContentProvider : ContentProvider() {
             else -> throw UnsupportedOperationException("Cannot delete this URI: $uri")
         }
 
-       return withMyId {
-            val db = accessDbHelper.writableDatabase
+        return withMyId {
+            val db = accessDbHelper.getWritableDatabase(keyMaster.getDbKey())
             val count = db.delete(AccessTable.NAME, localSelection, localSelectionArgs)
             if (count > 0) {
                 context!!.contentResolver.notifyChange(HealthStoreUri.ACCESS, null)

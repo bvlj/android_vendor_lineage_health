@@ -16,7 +16,7 @@
 
 package org.lineageos.mod.health.db.tables
 
-import android.database.sqlite.SQLiteDatabase
+import net.sqlcipher.database.SQLiteDatabase
 
 internal interface Table {
 

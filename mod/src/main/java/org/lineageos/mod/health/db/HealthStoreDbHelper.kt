@@ -17,18 +17,19 @@
 package org.lineageos.mod.health.db
 
 import android.content.Context
-import android.database.sqlite.SQLiteDatabase
-import android.database.sqlite.SQLiteOpenHelper
+import net.sqlcipher.database.SQLiteDatabase
+import net.sqlcipher.database.SQLiteOpenHelper
 import org.lineageos.mod.health.db.tables.AccessTable
 import org.lineageos.mod.health.db.tables.ActivityTable
 import org.lineageos.mod.health.db.tables.BodyTable
 import org.lineageos.mod.health.db.tables.BreathingTable
 import org.lineageos.mod.health.db.tables.HeartBloodTable
 import org.lineageos.mod.health.db.tables.MindfulnessTable
+import org.lineageos.mod.health.security.KeyMaster
 import org.lineageos.mod.util.SingletonHolder
 
 internal class HealthStoreDbHelper private constructor(
-    context: Context?
+    private val context: Context?
 ) : SQLiteOpenHelper(
     context,
     NAME,
@@ -59,5 +60,14 @@ internal class HealthStoreDbHelper private constructor(
         if (db != null) {
             tables.forEach { it.onUpgrade(db, oldVersion, newVersion) }
         }
+    }
+
+    override fun onConfigure(db: SQLiteDatabase?) {
+        super.onConfigure(db)
+
+        // DB not encrypted if in-memory
+        val context = context ?: return
+        val keyMaster = KeyMaster.getInstance(context)
+        db?.execSQL("PRAGMA KEY = '${keyMaster.getDbKey()}'")
     }
 }
