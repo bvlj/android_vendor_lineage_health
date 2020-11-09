@@ -13,10 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-include ':core'
-include ':mod'
-include ':sdk'
-include ':sdk-ktx'
-include ':test'
 
-rootProject.name = "HealthStore"
+package org.lineageos.mod.health.testsuite.tests
+
+sealed class TestStatus {
+
+    object ToRun : TestStatus()
+
+    object Running : TestStatus()
+
+    object Pass : TestStatus()
+
+    data class Fail(val error: String) : TestStatus()
+}

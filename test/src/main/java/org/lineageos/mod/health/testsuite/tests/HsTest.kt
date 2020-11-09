@@ -13,10 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-include ':core'
-include ':mod'
-include ':sdk'
-include ':sdk-ktx'
-include ':test'
 
-rootProject.name = "HealthStore"
+package org.lineageos.mod.health.testsuite.tests
+
+import android.content.Context
+
+abstract class HsTest {
+
+    abstract val name: String
+
+    abstract suspend fun runTest(context: Context)
+
+    protected fun assert(value: Boolean, errorMessage: String = "") {
+        if (!value) {
+            throw HsTestFailure(errorMessage)
+        }
+    }
+}
+
+class HsTestFailure(message: String) : Exception(message)
