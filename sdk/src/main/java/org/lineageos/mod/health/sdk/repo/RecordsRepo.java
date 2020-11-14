@@ -70,10 +70,18 @@ public abstract class RecordsRepo<T extends Record> {
         }
     }
 
-    public final boolean insert(@NonNull T record) {
+    public final long insert(@NonNull T record) {
         final ContentValues contentValues = record.toContentValues();
-        final Uri uri = contentResolver.insert(HealthStoreUri.ACTIVITY, contentValues);
-        return uri != null;
+        final Uri uri = contentResolver.insert(getUri(record.getMetric()), contentValues);
+
+        if (uri == null) {
+            return -1L;
+        }
+        try {
+            return Long.parseLong(uri.getLastPathSegment());
+        } catch (NumberFormatException e) {
+            return -1L;
+        }
     }
 
     public final boolean update(@NonNull T record) {
@@ -144,13 +152,19 @@ public abstract class RecordsRepo<T extends Record> {
     }
 
     @NonNull
+    private Uri getUri(@ActivityMetric int metric) {
+        final String path = String.format(Locale.ROOT, "%1$d", metric);
+        return Uri.withAppendedPath(baseUri, path);
+    }
+
+    @NonNull
     private Uri getUri(@NonNull Record activityRecord) {
         return getUri(activityRecord.getMetric(), activityRecord.getId());
     }
 
     @NonNull
     private Uri getUri(@ActivityMetric int metric, long id) {
-        final String path = String.format(Locale.ROOT, "/%1$d/%2$d", metric, id);
+        final String path = String.format(Locale.ROOT, "%1$d/%2$d", metric, id);
         return Uri.withAppendedPath(baseUri, path);
     }
 }

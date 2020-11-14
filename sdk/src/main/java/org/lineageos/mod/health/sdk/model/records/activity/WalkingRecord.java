@@ -30,7 +30,7 @@ import org.lineageos.mod.health.common.Metric;
 @SuppressWarnings("unused")
 public final class WalkingRecord extends ActivityRecord {
 
-    public WalkingRecord(long id, long time, long duration, long distance, long steps) {
+    public WalkingRecord(long id, long time, long duration, double distance, long steps) {
         super(id, Metric.WALKING, time, duration, 0.0, 0,
                 distance, 0.0, "", steps);
     }

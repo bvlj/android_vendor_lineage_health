@@ -63,7 +63,7 @@ class MindfulnessRecordsRepoKt private constructor(
     suspend fun sleepRecord(id: Long): SleepRecord? =
         withContext(dispatcher) { _repo.getSleepRecord(id) }
 
-    suspend fun insert(record: MindfulnessRecord): Boolean =
+    suspend fun insert(record: MindfulnessRecord): Long =
         withContext(dispatcher) { _repo.insert(record) }
 
     suspend fun update(record: MindfulnessRecord): Boolean =

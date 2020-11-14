@@ -71,7 +71,7 @@ class ActivityRecordsRepoKt private constructor(
     suspend fun workoutRecord(id: Long): WorkoutRecord? =
         withContext(dispatcher) { _repo.getWorkoutRecord(id) }
 
-    suspend fun insert(record: ActivityRecord): Boolean =
+    suspend fun insert(record: ActivityRecord): Long =
         withContext(dispatcher) { _repo.insert(record) }
 
     suspend fun update(record: ActivityRecord): Boolean =

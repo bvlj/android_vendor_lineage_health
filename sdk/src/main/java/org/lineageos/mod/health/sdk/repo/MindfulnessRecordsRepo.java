@@ -122,13 +122,22 @@ public final class MindfulnessRecordsRepo extends RecordsRepo<MindfulnessRecord>
     @NonNull
     @Override
     protected MindfulnessRecord parseRow(@NonNull Cursor cursor) {
-        return new MindfulnessRecord(
-                cursor.getLong(cursor.getColumnIndex(RecordColumns._ID)),
-                cursor.getInt(cursor.getColumnIndex(RecordColumns._METRIC)),
-                cursor.getLong(cursor.getColumnIndex(RecordColumns.TIME)),
-                cursor.getLong(cursor.getColumnIndex(RecordColumns.DURATION)),
-                cursor.getInt(cursor.getColumnIndex(RecordColumns.MOOD)),
-                cursor.getString(cursor.getColumnIndex(RecordColumns.NOTES))
-        );
+        final long id = cursor.getLong(cursor.getColumnIndex(RecordColumns._ID));
+        final int metric = cursor.getInt(cursor.getColumnIndex(RecordColumns._METRIC));
+        final long time = cursor.getLong(cursor.getColumnIndex(RecordColumns.TIME));
+        final long duration = cursor.getLong(cursor.getColumnIndex(RecordColumns.DURATION));
+        final int moodLevel = cursor.getInt(cursor.getColumnIndex(RecordColumns.MOOD));
+        final String notes = cursor.getString(cursor.getColumnIndex(RecordColumns.NOTES));
+
+        switch (metric) {
+            case Metric.MEDITATION:
+                return new MeditationRecord(id, time, duration);
+            case Metric.MOOD:
+                return new MoodRecord(id, time, moodLevel, notes);
+            case Metric.SLEEP:
+                return new SleepRecord(id, time, duration);
+            default:
+                return new MindfulnessRecord(id, metric, time, duration, moodLevel, notes);
+        }
     }
 }

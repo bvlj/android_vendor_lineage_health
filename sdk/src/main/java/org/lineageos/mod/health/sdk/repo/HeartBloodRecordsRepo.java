@@ -149,14 +149,30 @@ public final class HeartBloodRecordsRepo extends RecordsRepo<HeartBloodRecord> {
     @NonNull
     @Override
     protected HeartBloodRecord parseRow(@NonNull Cursor cursor) {
-        return new HeartBloodRecord(
-                cursor.getLong(cursor.getColumnIndex(RecordColumns._ID)),
-                cursor.getInt(cursor.getColumnIndex(RecordColumns._METRIC)),
-                cursor.getLong(cursor.getColumnIndex(RecordColumns.TIME)),
-                cursor.getInt(cursor.getColumnIndex(RecordColumns.BEFORE_MEAL)),
-                cursor.getInt(cursor.getColumnIndex(RecordColumns.PRESSURE_SYSTOLIC)),
-                cursor.getInt(cursor.getColumnIndex(RecordColumns.PRESSURE_DIASTOLIC)),
-                cursor.getDouble(cursor.getColumnIndex(RecordColumns.VALUE))
-        );
+        final long id = cursor.getLong(cursor.getColumnIndex(RecordColumns._ID));
+        final int metric = cursor.getInt(cursor.getColumnIndex(RecordColumns._METRIC));
+        final long time = cursor.getLong(cursor.getColumnIndex(RecordColumns.TIME));
+        final int beforeMeal = cursor.getInt(cursor.getColumnIndex(RecordColumns.BEFORE_MEAL));
+        final int pressureSystolic = cursor.getInt(cursor.getColumnIndex(
+                RecordColumns.PRESSURE_SYSTOLIC));
+        final int pressureDiastolic = cursor.getInt(cursor.getColumnIndex(
+                RecordColumns.PRESSURE_DIASTOLIC));
+        final double value = cursor.getDouble(cursor.getColumnIndex(RecordColumns.VALUE));
+
+        switch (metric) {
+            case Metric.BLOOD_ALCOHOL_CONCENTRATION:
+                return new BloodAlcoholConcentrationRecord(id, time, value);
+            case Metric.BLOOD_PRESSURE:
+                return new BloodPressureRecord(id, time, pressureSystolic, pressureDiastolic);
+            case Metric.GLUCOSE:
+                return new GlucoseRecord(id, time, beforeMeal, value);
+            case Metric.HEART_RATE:
+                return new HeartRateRecord(id, time, value);
+            case Metric.PERFUSION_INDEX:
+                return new PerfusionIndexRecord(id, time, value);
+            default:
+                return new HeartBloodRecord(id, metric, time, beforeMeal, pressureSystolic,
+                        pressureDiastolic, value);
+        }
     }
 }

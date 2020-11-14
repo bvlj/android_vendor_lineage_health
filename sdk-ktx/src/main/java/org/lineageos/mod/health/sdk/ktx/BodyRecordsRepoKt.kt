@@ -98,7 +98,7 @@ class BodyRecordsRepoKt private constructor(
     suspend fun weightRecord(id: Long): WeightRecord? =
         withContext(dispatcher) { _repo.getWeightRecord(id) }
 
-    suspend fun insert(record: BodyRecord): Boolean =
+    suspend fun insert(record: BodyRecord): Long =
         withContext(dispatcher) { _repo.insert(record) }
 
     suspend fun update(record: BodyRecord): Boolean =

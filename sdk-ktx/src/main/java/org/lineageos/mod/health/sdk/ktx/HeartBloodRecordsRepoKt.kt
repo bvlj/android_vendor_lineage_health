@@ -77,7 +77,7 @@ class HeartBloodRecordsRepoKt private constructor(
     suspend fun perfusionIndexRecord(id: Long): PerfusionIndexRecord? =
         withContext(dispatcher) { _repo.getPerfusionIndexRecord(id) }
 
-    suspend fun insert(record: HeartBloodRecord): Boolean =
+    suspend fun insert(record: HeartBloodRecord): Long =
         withContext(dispatcher) { _repo.insert(record) }
 
     suspend fun update(record: HeartBloodRecord): Boolean =

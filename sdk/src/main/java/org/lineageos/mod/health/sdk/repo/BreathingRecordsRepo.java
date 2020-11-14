@@ -149,12 +149,25 @@ public final class BreathingRecordsRepo extends RecordsRepo<BreathingRecord> {
     @NonNull
     @Override
     protected BreathingRecord parseRow(@NonNull Cursor cursor) {
-        return new BreathingRecord(
-                cursor.getLong(cursor.getColumnIndex(RecordColumns._ID)),
-                cursor.getInt(cursor.getColumnIndex(RecordColumns._METRIC)),
-                cursor.getLong(cursor.getColumnIndex(RecordColumns.TIME)),
-                cursor.getString(cursor.getColumnIndex(RecordColumns.NOTES)),
-                cursor.getDouble(cursor.getColumnIndex(RecordColumns.VALUE))
-        );
+        final long id = cursor.getLong(cursor.getColumnIndex(RecordColumns._ID));
+        final int metric = cursor.getInt(cursor.getColumnIndex(RecordColumns._METRIC));
+        final long time = cursor.getLong(cursor.getColumnIndex(RecordColumns.TIME));
+        final String notes = cursor.getString(cursor.getColumnIndex(RecordColumns.NOTES));
+        final double value = cursor.getDouble(cursor.getColumnIndex(RecordColumns.VALUE));
+
+        switch (metric) {
+            case Metric.INHALER_USAGE:
+                return new InhalerUsageRecord(id, time, notes);
+            case Metric.OXYGEN_SATURATION:
+                return new OxygenSaturationRecord(id, time, value);
+            case Metric.PEAK_EXPIRATORY_FLOW:
+                return new PeakExpiratoryFlowRecord(id, time, value);
+            case Metric.RESPIRATORY_RATE:
+                return new RespiratoryRateRecord(id, time, value);
+            case Metric.VITAL_CAPACITY:
+                return new VitalCapacityRecord(id, time, value);
+            default:
+                return new BreathingRecord(id, metric, time, notes, value);
+        }
     }
 }

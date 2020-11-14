@@ -191,15 +191,39 @@ public final class BodyRecordsRepo extends RecordsRepo<BodyRecord> {
     @NonNull
     @Override
     protected BodyRecord parseRow(@NonNull Cursor cursor) {
-        return new BodyRecord(
-                cursor.getLong(cursor.getColumnIndex(RecordColumns._ID)),
-                cursor.getInt(cursor.getColumnIndex(RecordColumns._METRIC)),
-                cursor.getLong(cursor.getColumnIndex(RecordColumns.TIME)),
-                cursor.getString(cursor.getColumnIndex(RecordColumns.NOTES)),
-                cursor.getInt(cursor.getColumnIndex(RecordColumns.SYMPTOMS_OTHER)),
-                cursor.getInt(cursor.getColumnIndex(RecordColumns.SYMPTOMS_PHYSICAL)),
-                cursor.getInt(cursor.getColumnIndex(RecordColumns.SEXUAL_ACTIVITY)),
-                cursor.getDouble(cursor.getColumnIndex(RecordColumns.VALUE))
-        );
+        final long id = cursor.getLong(cursor.getColumnIndex(RecordColumns._ID));
+        final int metric = cursor.getInt(cursor.getColumnIndex(RecordColumns._METRIC));
+        final long time = cursor.getLong(cursor.getColumnIndex(RecordColumns.TIME));
+        final String notes = cursor.getString(cursor.getColumnIndex(RecordColumns.NOTES));
+        final int otherSymptoms = cursor.getInt(cursor.getColumnIndex(
+                RecordColumns.SYMPTOMS_OTHER));
+        final int physicalSymptoms = cursor.getInt(cursor.getColumnIndex(
+                RecordColumns.SYMPTOMS_PHYSICAL));
+        final int sexualActivity = cursor.getInt(cursor.getColumnIndex(
+                RecordColumns.SEXUAL_ACTIVITY));
+        final double value = cursor.getDouble(cursor.getColumnIndex(RecordColumns.VALUE));
+
+        switch (metric) {
+            case Metric.ABDOMINAL_CIRCUMFERENCE:
+                return new AbdominalCircumferenceRecord(id, time, value);
+            case Metric.BODY_MASS_INDEX:
+                return new BodyMassIndexRecord(id, time, value);
+            case Metric.BODY_TEMPERATURE:
+                return new BodyTemperatureRecord(id, time, value);
+            case Metric.LEAN_BODY_MASS:
+                return new LeanBodyMassRecord(id, time, value);
+            case Metric.MENSTRUAL_CYCLE:
+                return new MenstrualCycleRecord(id, time, otherSymptoms, physicalSymptoms,
+                        sexualActivity, value);
+            case Metric.UV_INDEX:
+                return new UvIndexRecord(id, time, value);
+            case Metric.WATER_INTAKE:
+                return new WaterIntakeRecord(id, time, notes, value);
+            case Metric.WEIGHT:
+                return new WeightRecord(id, time, value);
+            default:
+                return new BodyRecord(id, metric, time, notes, otherSymptoms,
+                        physicalSymptoms, sexualActivity, value);
+        }
     }
 }

@@ -53,9 +53,7 @@ import java.util.stream.Collectors;
  * main / UI thread.
  */
 @Keep
-@SuppressWarnings("unused")
 public final class ActivityRecordsRepo extends RecordsRepo<ActivityRecord> {
-    private static final String DEFAULT_ORDER = RecordColumns.TIME + " DESC";
 
     @Nullable
     private static volatile ActivityRecordsRepo instance;
@@ -135,17 +133,31 @@ public final class ActivityRecordsRepo extends RecordsRepo<ActivityRecord> {
 
     @NonNull
     protected ActivityRecord parseRow(@NonNull Cursor cursor) {
-        return new ActivityRecord(
-                cursor.getLong(cursor.getColumnIndex(RecordColumns._ID)),
-                cursor.getInt(cursor.getColumnIndex(RecordColumns._METRIC)),
-                cursor.getLong(cursor.getColumnIndex(RecordColumns.TIME)),
-                cursor.getLong(cursor.getColumnIndex(RecordColumns.DURATION)),
-                cursor.getDouble(cursor.getColumnIndex(RecordColumns.AVG_SPEED)),
-                cursor.getInt(cursor.getColumnIndex(RecordColumns.CALORIES)),
-                cursor.getDouble(cursor.getColumnIndex(RecordColumns.DISTANCE)),
-                cursor.getDouble(cursor.getColumnIndex(RecordColumns.ELEVATION_GAIN)),
-                cursor.getString(cursor.getColumnIndex(RecordColumns.NOTES)),
-                cursor.getLong(cursor.getColumnIndex(RecordColumns.STEPS))
-        );
+        final long id = cursor.getLong(cursor.getColumnIndex(RecordColumns._ID));
+        final int metric = cursor.getInt(cursor.getColumnIndex(RecordColumns._METRIC));
+        final long time = cursor.getLong(cursor.getColumnIndex(RecordColumns.TIME));
+        final long duration = cursor.getLong(cursor.getColumnIndex(RecordColumns.DURATION));
+        final double avgSpeed = cursor.getDouble(cursor.getColumnIndex(RecordColumns.AVG_SPEED));
+        final int calories = cursor.getInt(cursor.getColumnIndex(RecordColumns.CALORIES));
+        final double distance = cursor.getDouble(cursor.getColumnIndex(RecordColumns.DISTANCE));
+        final double elevationGain = cursor.getDouble(cursor.getColumnIndex(
+                RecordColumns.ELEVATION_GAIN));
+        final String notes = cursor.getString(cursor.getColumnIndex(RecordColumns.NOTES));
+        final long steps = cursor.getLong(cursor.getColumnIndex(RecordColumns.STEPS));
+
+        switch (metric) {
+            case Metric.CYCLING:
+                return new CyclingRecord(id, time, duration, avgSpeed, distance, elevationGain);
+            case Metric.RUNNING:
+                return new RunningRecord(id, time, duration, avgSpeed, distance);
+            case Metric.WALKING:
+                return new WalkingRecord(id, time, duration, distance, steps);
+            case Metric.WORKOUT:
+                return new WorkoutRecord(id, time, duration, calories, notes);
+            default:
+                return new ActivityRecord(id, metric, time, duration, avgSpeed, calories,
+                        distance, elevationGain, notes, steps);
+        }
+
     }
 }

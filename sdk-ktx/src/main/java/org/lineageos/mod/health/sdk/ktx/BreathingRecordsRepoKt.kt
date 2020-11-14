@@ -77,7 +77,7 @@ class BreathingRecordsRepoKt private constructor(
     suspend fun vitalCapacityRecord(id: Long): VitalCapacityRecord? =
         withContext(dispatcher) { _repo.getVitalCapacityRecord(id) }
 
-    suspend fun insert(record: BreathingRecord): Boolean =
+    suspend fun insert(record: BreathingRecord): Long =
         withContext(dispatcher) { _repo.insert(record) }
 
     suspend fun update(record: BreathingRecord): Boolean =
