@@ -19,6 +19,7 @@ package org.lineageos.mod.health.testsuite.tests
 import android.content.Context
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import org.lineageos.mod.health.testsuite.tests.impl.CyclingRecordTest
 import org.lineageos.mod.health.testsuite.tests.impl.MedicalProfileTest
 import org.lineageos.mod.health.testsuite.tests.impl.ModTest
 
@@ -27,6 +28,7 @@ class TestRunner(
 ) {
     private val tests = arrayOf(
         ModTest(),
+        CyclingRecordTest(),
         MedicalProfileTest(),
     )
 
@@ -45,6 +47,7 @@ class TestRunner(
                 test.runTest(context)
                 TestStatus.Pass
             } catch (e: Exception) {
+                if (e !is HsTestFailure) e.printStackTrace()
                 TestStatus.Fail(e.message ?: "???")
             }
             results[i] = results[i].copy(status = status)
