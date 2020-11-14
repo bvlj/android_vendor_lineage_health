@@ -17,19 +17,18 @@
 package org.lineageos.mod.health.providers
 
 import android.content.ContentProvider
-import android.content.ContentUris
 import android.content.ContentValues
 import android.content.UriMatcher
 import android.database.Cursor
-import net.sqlcipher.database.SQLiteQueryBuilder
 import android.net.Uri
+import net.sqlcipher.database.SQLiteQueryBuilder
+import org.lineageos.mod.health.UriConst
 import org.lineageos.mod.health.access.AccessManager
+import org.lineageos.mod.health.access.EmptyCursor
 import org.lineageos.mod.health.access.canRead
 import org.lineageos.mod.health.access.canWrite
-import org.lineageos.mod.health.UriConst
-import org.lineageos.mod.health.access.EmptyCursor
-import org.lineageos.mod.health.db.HealthStoreDbHelper
 import org.lineageos.mod.health.common.db.RecordColumns
+import org.lineageos.mod.health.db.HealthStoreDbHelper
 import org.lineageos.mod.health.security.KeyMaster
 
 internal abstract class RecordContentProvider(
@@ -42,7 +41,7 @@ internal abstract class RecordContentProvider(
     private lateinit var keyMaster: KeyMaster
     private lateinit var accessManager: AccessManager
     private val uriMatcher = UriMatcher(UriMatcher.NO_MATCH).apply {
-        addURI(authority, "/#", UriConst.MATCH_METRIC)
+        addURI(authority, "#", UriConst.MATCH_METRIC)
         addURI(authority, "#/#", UriConst.MATCH_ITEM)
     }
 
@@ -97,7 +96,7 @@ internal abstract class RecordContentProvider(
             val db = dbHelper.getReadableDatabase(keyMaster.getDbKey())
 
             val cursor = qb.query(
-                db, projection, localSelection, selectionArgs,
+                db, projection, localSelection, localSelectionArgs,
                 null, null, sortOrder
             )
             cursor.setNotificationUri(context!!.contentResolver, uri)
@@ -106,12 +105,24 @@ internal abstract class RecordContentProvider(
     }
 
     override fun insert(uri: Uri, values: ContentValues?): Uri? {
-        if (uriMatcher.match(uri) != UriConst.MATCH_ALL) return null
+        if (uriMatcher.match(uri) != UriConst.MATCH_METRIC || values == null) return null
 
-        val metric = values?.getAsInteger(RecordColumns._METRIC).toString()
+        val metric = values.getAsInteger(RecordColumns._METRIC).toString()
+        val pathMetric = uri.lastPathSegment
+        if (metric != pathMetric) {
+            throw IllegalArgumentException(
+                "Trying to insert a record with metric $metric as a metric $pathMetric"
+            )
+        }
 
         if (!canWrite(accessManager, metric)) {
             return null
+        }
+
+        val id = values.getAsLong(RecordColumns._ID) ?: -1L
+        if (id < 1L) {
+            // Generate a new ID
+            values.remove(RecordColumns._ID)
         }
 
         return withMyId {
@@ -120,7 +131,7 @@ internal abstract class RecordContentProvider(
             if (rowId <= 0) return@withMyId null
 
             context!!.contentResolver.notifyChange(contentUri, null)
-            ContentUris.withAppendedId(contentUri, rowId)
+            Uri.withAppendedPath(contentUri, "$metric/$rowId")
         }
     }
 
@@ -194,7 +205,6 @@ internal abstract class RecordContentProvider(
     }
 
     override fun getType(uri: Uri) = when (uriMatcher.match(uri)) {
-        UriConst.MATCH_ALL,
         UriConst.MATCH_METRIC -> "vnd.android.cursor.dir"
         UriConst.MATCH_ITEM -> "vnd.android.cursor.item"
         else -> null

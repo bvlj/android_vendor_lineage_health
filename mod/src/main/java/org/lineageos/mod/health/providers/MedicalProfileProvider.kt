@@ -87,7 +87,6 @@ internal class MedicalProfileProvider : ContentProvider() {
 
     override fun delete(uri: Uri, selection: String?, selectionArgs: Array<String>?): Int {
         return withMyId {
-            android.util.Log.e("OHAI", "DELETE OP: $uri ;; $selection ;; $selectionArgs")
             val db = dbHelper.getWritableDatabase(null as String?)
             val count = db.delete(MedicalProfileTable.NAME, null, null)
             if (count > 0) {

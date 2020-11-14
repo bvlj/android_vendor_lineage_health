@@ -72,6 +72,11 @@ internal class KeyMaster private constructor(
         val iv = prefs[KEY_IV]
         val encrypted = prefs[KEY_SECRET]
 
+        if (iv.isEmpty() || encrypted.isEmpty()) {
+            initialize()
+            return getDbKey()
+        }
+
         val entry = retrieveKey()
             ?: throw SecurityException("Failed to retrieve generated key")
         val cipher = Cipher.getInstance(TRANSFORMATION).apply {

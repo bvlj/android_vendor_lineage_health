@@ -21,26 +21,27 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 
 public final class HealthStoreUri {
+    private static final String PROTOCOL = "content://";
 
     private HealthStoreUri() {
     }
 
     @NonNull
-    public static final Uri ACCESS = Uri.parse(Authority.ACCESS);
+    public static final Uri ACCESS = Uri.parse(PROTOCOL + Authority.ACCESS);
 
     @NonNull
-    public static final Uri ACTIVITY = Uri.parse(Authority.ACTIVITY);
+    public static final Uri ACTIVITY = Uri.parse(PROTOCOL + Authority.ACTIVITY);
     @NonNull
-    public static final Uri BODY = Uri.parse(Authority.BODY);
+    public static final Uri BODY = Uri.parse(PROTOCOL + Authority.BODY);
     @NonNull
-    public static final Uri BREATHING = Uri.parse(Authority.BREATHING);
+    public static final Uri BREATHING = Uri.parse(PROTOCOL + Authority.BREATHING);
     @NonNull
-    public static final Uri HEART_BLOOD = Uri.parse(Authority.HEART_BLOOD);
+    public static final Uri HEART_BLOOD = Uri.parse(PROTOCOL + Authority.HEART_BLOOD);
     @NonNull
-    public static final Uri MINDFULNESS = Uri.parse(Authority.MINDFULNESS);
+    public static final Uri MINDFULNESS = Uri.parse(PROTOCOL + Authority.MINDFULNESS);
 
     @NonNull
-    public static final Uri MEDICAL_PROFILE = Uri.parse(Authority.MEDICAL_PROFILE);
+    public static final Uri MEDICAL_PROFILE = Uri.parse(PROTOCOL + Authority.MEDICAL_PROFILE);
 
     public static final class Authority {
         private Authority() {
@@ -50,18 +51,18 @@ public final class HealthStoreUri {
         private static final String BASE = "org.lineageos.mod.health";
 
         @NonNull
-        public static final String ACCESS = "content://" + BASE + ".access";
+        public static final String ACCESS = BASE + ".access";
         @NonNull
-        public static final String ACTIVITY = "content://" + BASE + ".activity";
+        public static final String ACTIVITY = BASE + ".activity";
         @NonNull
-        public static final String BODY = "content://" + BASE + ".body";
+        public static final String BODY = BASE + ".body";
         @NonNull
-        public static final String BREATHING = "content://" + BASE + ".breathing";
+        public static final String BREATHING = BASE + ".breathing";
         @NonNull
-        public static final String HEART_BLOOD = "content://" + BASE + ".heart";
+        public static final String HEART_BLOOD = BASE + ".heart";
         @NonNull
-        public static final String MINDFULNESS = "content://" + BASE + ".mindfulness";
+        public static final String MINDFULNESS = BASE + ".mindfulness";
         @NonNull
-        public static final String MEDICAL_PROFILE = "content://" + BASE + ".profile";
+        public static final String MEDICAL_PROFILE = BASE + ".profile";
     }
 }
