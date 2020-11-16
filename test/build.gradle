@@ -58,7 +58,6 @@ dependencies {
     implementation Kotlin.Coroutines.jvm
     implementation Kotlin.Coroutines.android
 
-    implementation project(Libraries.core)
     implementation project(Libraries.sdkKtx)
 }
 

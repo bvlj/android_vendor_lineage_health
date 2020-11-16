@@ -23,7 +23,6 @@ import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.withContext
 import org.lineageos.mod.health.common.HealthStoreUri
-import org.lineageos.mod.health.sdk.ktx.batch.HsBatchOperation
 import org.lineageos.mod.health.sdk.ktx.batch.HsBatchOperationBuilder
 import org.lineageos.mod.health.sdk.model.records.activity.ActivityRecord
 import org.lineageos.mod.health.sdk.model.records.activity.CyclingRecord

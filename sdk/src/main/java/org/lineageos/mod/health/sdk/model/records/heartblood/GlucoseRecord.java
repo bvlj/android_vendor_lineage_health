@@ -22,7 +22,6 @@ import org.lineageos.mod.health.sdk.model.values.MealRelation;
 import org.lineageos.mod.health.common.Metric;
 
 @Keep
-@SuppressWarnings("unused")
 public final class GlucoseRecord extends HeartBloodRecord {
 
     public GlucoseRecord(long id, long time,

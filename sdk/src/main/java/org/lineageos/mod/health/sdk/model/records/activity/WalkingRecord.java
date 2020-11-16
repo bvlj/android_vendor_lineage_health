@@ -27,7 +27,6 @@ import org.lineageos.mod.health.common.Metric;
  */
 
 @Keep
-@SuppressWarnings("unused")
 public final class WalkingRecord extends ActivityRecord {
 
     public WalkingRecord(long id, long time, long duration, double distance, long steps) {

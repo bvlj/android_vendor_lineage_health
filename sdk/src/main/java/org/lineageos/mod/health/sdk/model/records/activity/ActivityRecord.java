@@ -31,7 +31,6 @@ import java.util.Objects;
  * Generic activity record
  */
 @Keep
-@SuppressWarnings("unused")
 public class ActivityRecord extends Record {
 
     private long duration;

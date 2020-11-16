@@ -32,7 +32,6 @@ import org.lineageos.mod.health.common.Metric;
  * <a href="https://en.wikipedia.org/wiki/Running">More info</a>
  */
 @Keep
-@SuppressWarnings("unused")
 public final class RunningRecord extends ActivityRecord {
 
     public RunningRecord(long id, long time, long duration,

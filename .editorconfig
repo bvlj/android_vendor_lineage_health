@@ -1,3 +1,4 @@
 [*.{kt,kts}]
 
+# noinspection EditorConfigKeyCorrectness
 disabled_rules=import-ordering

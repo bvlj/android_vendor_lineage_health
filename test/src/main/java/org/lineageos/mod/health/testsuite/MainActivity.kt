@@ -25,7 +25,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Button
-import android.widget.ImageView
 import android.widget.ListView
 import android.widget.TextView
 import kotlinx.coroutines.flow.collect
@@ -96,22 +95,25 @@ class MainActivity : Activity() {
                 ?: LayoutInflater.from(context).inflate(R.layout.item_result, parent, false)
 
             val item = getItem(position) ?: return view
-            val icon = view.findViewById<ImageView>(android.R.id.icon)
             val title = view.findViewById<TextView>(android.R.id.title)
 
-            when (item.status) {
-                is TestStatus.Pass -> icon.setImageResource(R.drawable.ic_pass)
-                is TestStatus.Running -> icon.setImageResource(R.drawable.ic_running)
-                is TestStatus.Fail -> icon.setImageResource(R.drawable.ic_fail)
-                else -> icon.setImageDrawable(null)
+            val drawable = when (item.status) {
+                is TestStatus.Pass -> view.context.getDrawable(R.drawable.ic_pass)
+                is TestStatus.Running -> view.context.getDrawable(R.drawable.ic_running)
+                is TestStatus.Fail -> view.context.getDrawable(R.drawable.ic_fail)
+                else -> null
             }
 
-            title.text = StringBuilder().apply {
-                append(item.name)
-                if (item.status is TestStatus.Fail) {
-                    append("\n\t${item.status.error}")
+            title.apply {
+                setCompoundDrawables(drawable, null, null, null)
+                text = StringBuilder().apply {
+                    append(item.name)
+                    if (item.status is TestStatus.Fail) {
+                        append("\n\t${item.status.error}")
+                    }
                 }
             }
+
             return view
         }
     }

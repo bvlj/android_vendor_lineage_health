@@ -22,7 +22,6 @@ import org.lineageos.mod.health.sdk.model.values.MealRelation;
 import org.lineageos.mod.health.common.Metric;
 
 @Keep
-@SuppressWarnings("unused")
 public final class BloodPressureRecord extends HeartBloodRecord {
 
     public BloodPressureRecord(long id, long time, long systolic, long diastolic) {

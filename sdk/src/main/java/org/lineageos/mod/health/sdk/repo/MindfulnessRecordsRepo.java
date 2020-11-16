@@ -51,7 +51,6 @@ import java.util.stream.Collectors;
  * main / UI thread.
  */
 @Keep
-@SuppressWarnings("unused")
 public final class MindfulnessRecordsRepo extends RecordsRepo<MindfulnessRecord> {
 
     @Nullable

@@ -30,7 +30,6 @@ import org.lineageos.mod.health.common.db.RecordColumns;
 import java.util.Objects;
 
 @Keep
-@SuppressWarnings("unused")
 public class BodyRecord extends Record {
 
     @NonNull

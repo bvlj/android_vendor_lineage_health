@@ -22,7 +22,6 @@ import org.lineageos.mod.health.common.Metric;
 import org.lineageos.mod.health.sdk.model.values.MoodLevel;
 
 @Keep
-@SuppressWarnings("unused")
 public final class MeditationRecord extends MindfulnessRecord {
 
     public MeditationRecord(long id, long time, long duration) {

@@ -21,7 +21,6 @@ import androidx.annotation.Keep;
 import org.lineageos.mod.health.common.Metric;
 
 @Keep
-@SuppressWarnings("unused")
 public final class PeakExpiratoryFlowRecord extends BreathingRecord {
 
     public PeakExpiratoryFlowRecord(long id, long time, double value) {

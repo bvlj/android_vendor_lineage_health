@@ -28,7 +28,6 @@ import org.lineageos.mod.health.sdk.model.values.MoodLevel;
 import java.util.Objects;
 
 @Keep
-@SuppressWarnings("unused")
 public class MindfulnessRecord extends Record {
 
     private long duration;

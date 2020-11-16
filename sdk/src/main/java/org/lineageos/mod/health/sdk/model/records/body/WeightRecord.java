@@ -24,7 +24,6 @@ import org.lineageos.mod.health.sdk.model.values.SexualActivity;
 import org.lineageos.mod.health.common.Metric;
 
 @Keep
-@SuppressWarnings("unused")
 public final class WeightRecord extends BodyRecord {
 
     public WeightRecord(long id, long time, double value) {

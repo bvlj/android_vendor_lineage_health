@@ -29,7 +29,6 @@ import org.lineageos.mod.health.sdk.model.values.OrganDonor;
 import java.util.Objects;
 
 @Keep
-@SuppressWarnings("unused")
 public final class MedicalProfile {
 
     @NonNull

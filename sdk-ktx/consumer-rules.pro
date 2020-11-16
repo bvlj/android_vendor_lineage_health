@@ -1,1 +1,1 @@
--keep public class org.lineageos.mod.** { *; }
+-keep public class org.lineageos.mod.* { *; }

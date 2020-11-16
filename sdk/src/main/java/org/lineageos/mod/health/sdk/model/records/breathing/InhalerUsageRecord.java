@@ -22,7 +22,6 @@ import androidx.annotation.NonNull;
 import org.lineageos.mod.health.common.Metric;
 
 @Keep
-@SuppressWarnings("unused")
 public final class InhalerUsageRecord extends BreathingRecord {
 
     public InhalerUsageRecord(long id, long time, @NonNull String notes) {

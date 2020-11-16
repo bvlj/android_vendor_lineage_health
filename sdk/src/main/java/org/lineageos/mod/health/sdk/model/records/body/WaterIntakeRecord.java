@@ -25,7 +25,6 @@ import org.lineageos.mod.health.sdk.model.values.SexualActivity;
 import org.lineageos.mod.health.common.Metric;
 
 @Keep
-@SuppressWarnings("unused")
 public final class WaterIntakeRecord extends BodyRecord {
 
     public WaterIntakeRecord(long id, long time, @NonNull String notes, double value) {

@@ -30,7 +30,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
 
-import org.lineageos.mod.health.common.HealthStoreUri;
 import org.lineageos.mod.health.common.annotations.ActivityMetric;
 import org.lineageos.mod.health.common.annotations.MetricType;
 import org.lineageos.mod.health.common.db.RecordColumns;
@@ -41,7 +40,6 @@ import java.util.List;
 import java.util.Locale;
 
 @Keep
-@SuppressWarnings("unused")
 public abstract class RecordsRepo<T extends Record> {
     protected static final String DEFAULT_ORDER = RecordColumns.TIME + " DESC";
 

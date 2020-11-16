@@ -39,7 +39,6 @@ import org.lineageos.mod.health.sdk.model.profile.MedicalProfile;
  * main / UI thread.
  */
 @Keep
-@SuppressWarnings("unused")
 public final class MedicalProfileRepo {
     private static final String[] DEFAULT_PROJECTION = {
             MedicalProfileColumns.ALLERGIES,

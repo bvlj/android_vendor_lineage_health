@@ -23,7 +23,6 @@ import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 
 @Keep
-@SuppressWarnings("unused")
 public final class HealthStore {
 
     private HealthStore() {

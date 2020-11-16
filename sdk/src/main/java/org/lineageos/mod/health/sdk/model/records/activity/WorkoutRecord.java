@@ -33,7 +33,6 @@ import org.lineageos.mod.health.common.Metric;
  * <a href="https://en.wikipedia.org/wiki/Exercise">More info</a>
  */
 @Keep
-@SuppressWarnings("unused")
 public final class WorkoutRecord extends ActivityRecord {
 
     public WorkoutRecord(long id, long time, long duration,

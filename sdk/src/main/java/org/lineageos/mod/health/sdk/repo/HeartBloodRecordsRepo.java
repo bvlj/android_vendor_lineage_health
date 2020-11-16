@@ -55,7 +55,6 @@ import java.util.stream.Collectors;
  * main / UI thread.
  */
 @Keep
-@SuppressWarnings("unused")
 public final class HeartBloodRecordsRepo extends RecordsRepo<HeartBloodRecord> {
 
     @Nullable

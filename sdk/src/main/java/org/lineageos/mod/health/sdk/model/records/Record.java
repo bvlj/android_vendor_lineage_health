@@ -26,7 +26,6 @@ import org.lineageos.mod.health.common.annotations.MetricType;
 import java.util.Objects;
 
 @Keep
-@SuppressWarnings("unused")
 public abstract class Record {
 
     protected final long id;

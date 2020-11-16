@@ -19,7 +19,6 @@ package org.lineageos.mod.health.sdk.ktx.batch
 import android.content.ContentProviderOperation
 import android.net.Uri
 import org.lineageos.mod.health.sdk.model.records.Record
-import org.lineageos.mod.health.sdk.model.records.activity.ActivityRecord
 
 class HsBatchOperationBuilder<T : Record> internal constructor(
     private val uri: Uri

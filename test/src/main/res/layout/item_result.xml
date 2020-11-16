@@ -13,30 +13,16 @@
   See the License for the specific language governing permissions and
   limitations under the License.
   -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@android:id/title"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
     android:paddingStart="16dp"
     android:paddingTop="8dp"
     android:paddingEnd="16dp"
-    android:paddingBottom="8dp">
-
-    <ImageView
-        android:id="@android:id/icon"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
-        android:contentDescription="@null"
-        android:layout_gravity="top"
-        tools:src="@drawable/ic_fail" />
-
-    <TextView
-        android:id="@android:id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_marginStart="16dp"
-        android:textColor="?android:attr/textColorPrimary"
-        tools:text="# Test 1234\nFailed to do something" />
-</LinearLayout>
+    android:drawablePadding="16dp"
+    android:paddingBottom="8dp"
+    android:textColor="?android:attr/textColorPrimary"
+    tools:drawableStart="@drawable/ic_fail"
+    tools:text="# Test 1234\nFailed to do something" />

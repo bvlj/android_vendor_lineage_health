@@ -33,7 +33,6 @@ import org.lineageos.mod.health.common.Metric;
  * <a href="https://en.wikipedia.org/wiki/Cycling">More info</a>
  */
 @Keep
-@SuppressWarnings("unused")
 public final class CyclingRecord extends ActivityRecord {
 
     public CyclingRecord(long id, long time,

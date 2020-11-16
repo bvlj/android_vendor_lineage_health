@@ -22,7 +22,6 @@ import org.lineageos.mod.health.sdk.model.values.MealRelation;
 import org.lineageos.mod.health.common.Metric;
 
 @Keep
-@SuppressWarnings("unused")
 public final class PerfusionIndexRecord extends HeartBloodRecord {
 
     public PerfusionIndexRecord(long id, long time, double value) {

@@ -27,7 +27,6 @@ import org.lineageos.mod.health.common.db.RecordColumns;
 import java.util.Objects;
 
 @Keep
-@SuppressWarnings("unused")
 public class BreathingRecord extends Record {
 
     @NonNull
