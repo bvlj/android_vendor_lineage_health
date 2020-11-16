@@ -10,6 +10,13 @@
 /.idea/navEditor.xml
 /.idea/workspace.xml
 
+# Eclipse / VSCode
+/.project
+/.settings/
+*/.classpath
+*/.project
+*/.settings/
+
 # build system
 .cxx/
 .externalNativeBuild/
