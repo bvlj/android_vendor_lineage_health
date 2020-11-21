@@ -36,6 +36,7 @@ android {
 
     buildFeatures {
         aidl false
+        buildConfig false
         compose false
         renderScript false
         resValues false
