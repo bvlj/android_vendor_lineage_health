@@ -23,9 +23,10 @@ import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.lineageos.mod.health.sdk.HealthStore
 
 @RunWith(AndroidJUnit4::class)
-class SimpleTest {
+class ModTest {
     private lateinit var context: Context
 
     @Before
@@ -36,5 +37,18 @@ class SimpleTest {
     @Test
     fun helloTest() {
         Assert.assertTrue(context.packageName.contains("org.lineageos.mod"))
+    }
+
+    @Test
+    fun modInstalled() {
+        val apps = context.packageManager.getInstalledApplications(0)
+        Assert.assertTrue(
+            apps.find { it.packageName == "org.lineageos.mod.health" } != null,
+        )
+    }
+
+    @Test
+    fun featureXml() {
+        Assert.assertTrue(HealthStore.isSupported(context))
     }
 }

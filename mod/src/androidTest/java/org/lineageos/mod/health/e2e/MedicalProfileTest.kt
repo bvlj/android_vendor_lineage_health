@@ -14,24 +14,48 @@
  * limitations under the License.
  */
 
-package org.lineageos.mod.health.testsuite.tests.impl
+package org.lineageos.mod.health.e2e
 
-import android.content.Context
-import org.lineageos.mod.health.sdk.ktx.MedicalProfileRepoKt
+import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.platform.app.InstrumentationRegistry
+import org.junit.After
+import org.junit.Assert
+import org.junit.Before
+import org.junit.Test
+import org.junit.runner.RunWith
 import org.lineageos.mod.health.sdk.model.profile.MedicalProfile
 import org.lineageos.mod.health.sdk.model.values.BiologicalSex
 import org.lineageos.mod.health.sdk.model.values.BloodType
 import org.lineageos.mod.health.sdk.model.values.OrganDonor
-import org.lineageos.mod.health.testsuite.tests.HsTest
+import org.lineageos.mod.health.sdk.repo.MedicalProfileRepo
 
-class MedicalProfileTest : HsTest() {
+@RunWith(AndroidJUnit4::class)
+class MedicalProfileTest {
+    private lateinit var repo: MedicalProfileRepo
 
-    override val name = "Medical profile test"
+    @Before
+    fun setup() {
+        val context = InstrumentationRegistry.getInstrumentation().targetContext
 
-    override suspend fun runTest(context: Context) {
-        val repo = MedicalProfileRepoKt.getInstance(context.contentResolver)
+        repo = MedicalProfileRepo.getInstance(context.contentResolver)
 
-        val testProfile1 = MedicalProfile(
+        Assert.assertTrue(repo.reset())
+    }
+
+    @After
+    fun tearDown() {
+        Assert.assertTrue(repo.reset())
+    }
+
+    @Test
+    fun testDefault() {
+        Assert.assertTrue(repo.reset())
+        Assert.assertEquals(repo.get(), MedicalProfile())
+    }
+
+    @Test
+    fun helloTest() {
+        val a = MedicalProfile(
             "Allergies - test",
             BloodType.A_NEG,
             Float.MAX_VALUE,
@@ -40,7 +64,7 @@ class MedicalProfileTest : HsTest() {
             OrganDonor.NO,
             BiologicalSex.MALE
         )
-        val testProfile2 = MedicalProfile(
+        val b = MedicalProfile(
             "Allergies - test",
             BloodType.B_NEG,
             10f,
@@ -50,14 +74,11 @@ class MedicalProfileTest : HsTest() {
             BiologicalSex.UNKNOWN
         )
 
-        assert(testProfile1 != testProfile2, "Test profile 1 should not be equal to test profile 2")
-        repo.reset()
-        assert(repo.get() == MedicalProfile(), "Reset profile is not empty")
-        assert(repo.set(testProfile1), "Failed to set test profile 1")
-        assert(repo.get() == testProfile1, "Saved profile does not match test profile 1")
-        assert(repo.set(testProfile2), "Failed to set test profile 2")
-        assert(repo.get() != testProfile1, "Saved profile should not match test profile 1")
-        assert(repo.get() == testProfile2, "Saved profile does not match test profile 2")
-        assert(repo.reset(), "Failed to reset")
+        Assert.assertNotEquals(a, b)
+        Assert.assertTrue(repo.set(a))
+        Assert.assertEquals(a, repo.get())
+        Assert.assertTrue(repo.set(b))
+        Assert.assertNotEquals(a, repo.get())
+        Assert.assertEquals(b, repo.get())
     }
 }
