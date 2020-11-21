@@ -22,6 +22,7 @@ import kotlinx.coroutines.flow.flow
 import org.lineageos.mod.health.testsuite.tests.impl.CyclingRecordTest
 import org.lineageos.mod.health.testsuite.tests.impl.MedicalProfileTest
 import org.lineageos.mod.health.testsuite.tests.impl.ModTest
+import org.lineageos.mod.health.testsuite.tests.impl.RunningRecordTest
 
 class TestRunner(
     private val context: Context
@@ -29,6 +30,7 @@ class TestRunner(
     private val tests = arrayOf(
         ModTest(),
         CyclingRecordTest(),
+        RunningRecordTest(),
         MedicalProfileTest(),
     )
 
