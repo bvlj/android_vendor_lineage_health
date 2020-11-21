@@ -13,12 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+@file:Suppress("unused")
 
 package org.lineageos.build
 
 // AndroidX - https://developer.android.com/jetpack/androidx/versions
 object AndroidX {
-    const val gradlePlugin = "com.android.tools.build:gradle:4.1.0"
+    const val gradlePlugin = "com.android.tools.build:gradle:4.1.1"
 
     // Core - KTX - https://developer.android.com/jetpack/androidx/releases/annotation
     const val annotationX = "androidx.annotation:annotation:1.1.0"
@@ -43,7 +44,7 @@ object AndroidX {
 
 // Kotlin - https://github.com/JetBrains/kotlin/releases
 object Kotlin {
-    private const val VERSION = "1.4.10"
+    private const val VERSION = "1.4.20"
 
     const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$VERSION"
 
