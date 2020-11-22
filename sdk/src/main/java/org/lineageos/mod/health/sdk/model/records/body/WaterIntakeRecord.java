@@ -19,9 +19,9 @@ package org.lineageos.mod.health.sdk.model.records.body;
 import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 
-import org.lineageos.mod.health.sdk.model.values.MenstrualCycleOtherSymptoms;
-import org.lineageos.mod.health.sdk.model.values.MenstrualCyclePhysicalSymptoms;
-import org.lineageos.mod.health.sdk.model.values.SexualActivity;
+import org.lineageos.mod.health.common.values.MenstrualCycleOtherSymptoms;
+import org.lineageos.mod.health.common.values.MenstrualCyclePhysicalSymptoms;
+import org.lineageos.mod.health.common.values.SexualActivity;
 import org.lineageos.mod.health.common.Metric;
 
 @Keep

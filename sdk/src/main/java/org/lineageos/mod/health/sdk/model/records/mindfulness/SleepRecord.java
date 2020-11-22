@@ -19,7 +19,7 @@ package org.lineageos.mod.health.sdk.model.records.mindfulness;
 import androidx.annotation.Keep;
 
 import org.lineageos.mod.health.common.Metric;
-import org.lineageos.mod.health.sdk.model.values.MoodLevel;
+import org.lineageos.mod.health.common.values.MoodLevel;
 
 @Keep
 public final class SleepRecord extends MindfulnessRecord {

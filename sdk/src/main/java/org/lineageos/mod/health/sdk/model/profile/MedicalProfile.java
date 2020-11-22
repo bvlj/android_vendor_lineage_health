@@ -22,9 +22,9 @@ import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 
 import org.lineageos.mod.health.common.db.MedicalProfileColumns;
-import org.lineageos.mod.health.sdk.model.values.BiologicalSex;
-import org.lineageos.mod.health.sdk.model.values.BloodType;
-import org.lineageos.mod.health.sdk.model.values.OrganDonor;
+import org.lineageos.mod.health.common.values.BiologicalSex;
+import org.lineageos.mod.health.common.values.BloodType;
+import org.lineageos.mod.health.common.values.OrganDonor;
 
 import java.util.Objects;
 

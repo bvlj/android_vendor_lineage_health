@@ -14,31 +14,16 @@
  * limitations under the License.
  */
 
-package org.lineageos.mod.health.sdk.model.values;
+package org.lineageos.mod.health.common.values;
 
-import androidx.annotation.IntDef;
+public final class Permission {
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-
-/**
- * Biological sex
- */
-public final class BiologicalSex {
-
-    private BiologicalSex() {
+    private Permission() {
     }
 
-    public static final int UNKNOWN = 0;
-    public static final int FEMALE = 1;
-    public static final int MALE = 2;
+    public static final int READ = 1;
+    public static final int WRITE = 1 << 1;
 
-    @IntDef({
-            UNKNOWN,
-            FEMALE,
-            MALE
-    })
-    @Retention(RetentionPolicy.SOURCE)
-    public @interface Value {
-    }
+    public static final int NONE = 0;
+    public static final int ALL = READ | WRITE;
 }

@@ -24,9 +24,9 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.lineageos.mod.health.sdk.model.profile.MedicalProfile
-import org.lineageos.mod.health.sdk.model.values.BiologicalSex
-import org.lineageos.mod.health.sdk.model.values.BloodType
-import org.lineageos.mod.health.sdk.model.values.OrganDonor
+import org.lineageos.mod.health.common.values.BiologicalSex
+import org.lineageos.mod.health.common.values.BloodType
+import org.lineageos.mod.health.common.values.OrganDonor
 import org.lineageos.mod.health.sdk.repo.MedicalProfileRepo
 
 @RunWith(AndroidJUnit4::class)

@@ -21,11 +21,12 @@ import android.content.ContentValues;
 import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 
-import org.lineageos.mod.health.sdk.model.values.MenstrualCycleOtherSymptoms;
-import org.lineageos.mod.health.sdk.model.values.MenstrualCyclePhysicalSymptoms;
-import org.lineageos.mod.health.sdk.model.values.SexualActivity;
-import org.lineageos.mod.health.sdk.model.records.Record;
 import org.lineageos.mod.health.common.db.RecordColumns;
+import org.lineageos.mod.health.common.values.MenstrualCycleOtherSymptoms;
+import org.lineageos.mod.health.common.values.MenstrualCyclePhysicalSymptoms;
+import org.lineageos.mod.health.common.values.SexualActivity;
+import org.lineageos.mod.health.common.values.annotations.BodyMetric;
+import org.lineageos.mod.health.sdk.model.records.Record;
 
 import java.util.Objects;
 
@@ -42,11 +43,11 @@ public class BodyRecord extends Record {
     private int sexualActivity;
     private double value;
 
-    public BodyRecord(long id, int metric, long time, @NonNull String notes,
-               @MenstrualCycleOtherSymptoms.Value int otherSymptoms,
-               @MenstrualCyclePhysicalSymptoms.Value int physicalSymptoms,
-               @SexualActivity.Value int sexualActivity,
-               double value) {
+    public BodyRecord(long id, @BodyMetric int metric, long time, @NonNull String notes,
+                      @MenstrualCycleOtherSymptoms.Value int otherSymptoms,
+                      @MenstrualCyclePhysicalSymptoms.Value int physicalSymptoms,
+                      @SexualActivity.Value int sexualActivity,
+                      double value) {
         super(id, metric, time);
         this.notes = notes;
         this.otherSymptoms = otherSymptoms;

@@ -21,7 +21,7 @@ import android.content.ContentValues;
 import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 
-import org.lineageos.mod.health.common.annotations.MetricType;
+import org.lineageos.mod.health.common.values.annotations.MetricType;
 
 import java.util.Objects;
 

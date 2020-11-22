@@ -18,9 +18,9 @@ package org.lineageos.mod.health.access
 
 import android.annotation.SuppressLint
 import android.content.ContentResolver
-import org.lineageos.mod.health.common.annotations.HealthStorePermission
-import org.lineageos.mod.health.common.annotations.MetricType
-import org.lineageos.mod.health.common.annotations.Permission
+import org.lineageos.mod.health.common.values.annotations.HealthStorePermission
+import org.lineageos.mod.health.common.values.annotations.MetricType
+import org.lineageos.mod.health.common.values.Permission
 import org.lineageos.mod.health.common.HealthStoreUri
 import org.lineageos.mod.health.common.db.AccessColumns
 

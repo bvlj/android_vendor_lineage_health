@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.lineageos.mod.health.sdk.model.values;
+package org.lineageos.mod.health.common.values;
 
 import androidx.annotation.IntDef;
 

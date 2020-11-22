@@ -30,8 +30,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RestrictTo;
 
-import org.lineageos.mod.health.common.annotations.ActivityMetric;
-import org.lineageos.mod.health.common.annotations.MetricType;
+import org.lineageos.mod.health.common.values.annotations.ActivityMetric;
+import org.lineageos.mod.health.common.values.annotations.MetricType;
 import org.lineageos.mod.health.common.db.RecordColumns;
 import org.lineageos.mod.health.sdk.model.records.Record;
 

@@ -14,16 +14,22 @@
  * limitations under the License.
  */
 
-package org.lineageos.mod.health.common.annotations;
+package org.lineageos.mod.health.common.values.annotations;
 
-public final class Permission {
+import androidx.annotation.IntDef;
 
-    private Permission() {
-    }
+import org.lineageos.mod.health.common.Metric;
 
-    public static final int READ = 1;
-    public static final int WRITE = 1 << 1;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 
-    public static final int NONE = 0;
-    public static final int ALL = READ | WRITE;
+@IntDef({
+        Metric.BLOOD_ALCOHOL_CONCENTRATION,
+        Metric.BLOOD_PRESSURE,
+        Metric.GLUCOSE,
+        Metric.HEART_RATE,
+        Metric.PERFUSION_INDEX,
+})
+@Retention(RetentionPolicy.SOURCE)
+public @interface HeartBloodMetric {
 }

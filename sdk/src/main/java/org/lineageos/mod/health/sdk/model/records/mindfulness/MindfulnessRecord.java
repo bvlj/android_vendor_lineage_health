@@ -22,8 +22,9 @@ import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 
 import org.lineageos.mod.health.common.db.RecordColumns;
+import org.lineageos.mod.health.common.values.MoodLevel;
+import org.lineageos.mod.health.common.values.annotations.MindfulnessMetric;
 import org.lineageos.mod.health.sdk.model.records.Record;
-import org.lineageos.mod.health.sdk.model.values.MoodLevel;
 
 import java.util.Objects;
 
@@ -36,7 +37,7 @@ public class MindfulnessRecord extends Record {
     @NonNull
     private String notes;
 
-    public MindfulnessRecord(long id, int metric, long time, long duration,
+    public MindfulnessRecord(long id, @MindfulnessMetric int metric, long time, long duration,
                              @MoodLevel.Value int moodLevel, @NonNull String notes) {
         super(id, metric, time);
         this.duration = duration;

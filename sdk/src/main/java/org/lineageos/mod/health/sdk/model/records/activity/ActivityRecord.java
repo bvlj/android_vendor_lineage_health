@@ -22,7 +22,7 @@ import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 
 import org.lineageos.mod.health.sdk.model.records.Record;
-import org.lineageos.mod.health.common.annotations.ActivityMetric;
+import org.lineageos.mod.health.common.values.annotations.ActivityMetric;
 import org.lineageos.mod.health.common.db.RecordColumns;
 
 import java.util.Objects;

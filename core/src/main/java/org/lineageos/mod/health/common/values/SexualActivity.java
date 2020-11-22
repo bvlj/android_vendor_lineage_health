@@ -14,22 +14,35 @@
  * limitations under the License.
  */
 
-package org.lineageos.mod.health.common.annotations;
+package org.lineageos.mod.health.common.values;
 
 import androidx.annotation.IntDef;
-
-import org.lineageos.mod.health.common.Metric;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-@IntDef({
-        Metric.INHALER_USAGE,
-        Metric.OXYGEN_SATURATION,
-        Metric.PEAK_EXPIRATORY_FLOW,
-        Metric.RESPIRATORY_RATE,
-        Metric.VITAL_CAPACITY,
-})
-@Retention(RetentionPolicy.SOURCE)
-public @interface BreathingMetric {
+public final class SexualActivity {
+
+    private SexualActivity() {
+    }
+
+    public static final int NONE = 0;
+    public static final int MASTURBATION = 1;
+    public static final int NO_SEX = 1 << 1;
+    public static final int PROTECTED_SEX = 1 << 2;
+    public static final int SEX = 1 << 3;
+
+    @IntDef(flag = true,
+            value = {
+                    NONE,
+                    MASTURBATION,
+                    NO_SEX,
+                    PROTECTED_SEX,
+                    SEX
+            }
+    )
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface Value {
+    }
+
 }

@@ -14,33 +14,45 @@
  * limitations under the License.
  */
 
-package org.lineageos.mod.health.sdk.model.values;
+package org.lineageos.mod.health.common.values;
 
 import androidx.annotation.IntDef;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-public final class SexualActivity {
+/**
+ * Blood type
+ */
+public final class BloodType {
 
-    private SexualActivity() {
+    private BloodType() {
     }
 
-    public static final int NONE = 0;
-    public static final int MASTURBATION = 1;
-    public static final int NO_SEX = 1 << 1;
-    public static final int PROTECTED_SEX = 1 << 2;
+    public static final int UNKNOWN = 0;
+    public static final int O_NEG = 1;
+    public static final int O_POS = 2;
+    public static final int A_NEG = 3;
+    public static final int A_POS = 4;
+    public static final int B_NEG = 5;
+    public static final int B_POS = 6;
+    public static final int AB_NEG = 7;
+    public static final int AB_POS = 8;
+    public static final int HH = 9;
 
-    @IntDef(flag = true,
-            value = {
-                    NONE,
-                    MASTURBATION,
-                    NO_SEX,
-                    PROTECTED_SEX,
-            }
-    )
+    @IntDef({
+            UNKNOWN,
+            O_NEG,
+            O_POS,
+            A_NEG,
+            A_POS,
+            B_NEG,
+            B_POS,
+            AB_NEG,
+            AB_POS,
+            HH,
+    })
     @Retention(RetentionPolicy.SOURCE)
     public @interface Value {
     }
-
 }

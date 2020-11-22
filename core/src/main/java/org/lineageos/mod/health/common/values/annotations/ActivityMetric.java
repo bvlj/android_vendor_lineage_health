@@ -14,28 +14,21 @@
  * limitations under the License.
  */
 
-package org.lineageos.mod.health.sdk.model.values;
+package org.lineageos.mod.health.common.values.annotations;
 
 import androidx.annotation.IntDef;
+
+import org.lineageos.mod.health.common.Metric;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-public final class MealRelation {
-
-    private MealRelation() {
-    }
-
-    public static final int UNKNOWN = 0;
-    public static final int BEFORE = 1;
-    public static final int AFTER = 2;
-
-    @IntDef({
-            UNKNOWN,
-            BEFORE,
-            AFTER
-    })
-    @Retention(RetentionPolicy.SOURCE)
-    public @interface Value {
-    }
+@IntDef({
+        Metric.CYCLING,
+        Metric.RUNNING,
+        Metric.WALKING,
+        Metric.WORKOUT,
+})
+@Retention(RetentionPolicy.SOURCE)
+public @interface ActivityMetric {
 }

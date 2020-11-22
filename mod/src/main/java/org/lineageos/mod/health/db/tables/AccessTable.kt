@@ -17,7 +17,7 @@
 package org.lineageos.mod.health.db.tables
 
 import net.sqlcipher.database.SQLiteDatabase
-import org.lineageos.mod.health.common.annotations.Permission
+import org.lineageos.mod.health.common.values.Permission
 import org.lineageos.mod.health.common.db.AccessColumns
 
 internal object AccessTable : Table {

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.lineageos.mod.health.common.annotations;
+package org.lineageos.mod.health.common.values.annotations;
 
 import androidx.annotation.IntDef;
 
@@ -29,5 +29,5 @@ import java.lang.annotation.RetentionPolicy;
         Metric.SLEEP,
 })
 @Retention(RetentionPolicy.SOURCE)
-@interface MindfulnessMetric {
+public @interface MindfulnessMetric {
 }

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.lineageos.mod.health.common.annotations;
+package org.lineageos.mod.health.common.values.annotations;
 
 import androidx.annotation.IntDef;
 
@@ -24,11 +24,12 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 @IntDef({
-        Metric.CYCLING,
-        Metric.RUNNING,
-        Metric.WALKING,
-        Metric.WORKOUT,
+        Metric.INHALER_USAGE,
+        Metric.OXYGEN_SATURATION,
+        Metric.PEAK_EXPIRATORY_FLOW,
+        Metric.RESPIRATORY_RATE,
+        Metric.VITAL_CAPACITY,
 })
 @Retention(RetentionPolicy.SOURCE)
-public @interface ActivityMetric {
+public @interface BreathingMetric {
 }

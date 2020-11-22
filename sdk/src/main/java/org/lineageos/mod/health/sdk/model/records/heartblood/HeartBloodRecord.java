@@ -21,7 +21,8 @@ import android.content.ContentValues;
 import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 
-import org.lineageos.mod.health.sdk.model.values.MealRelation;
+import org.lineageos.mod.health.common.values.MealRelation;
+import org.lineageos.mod.health.common.values.annotations.HeartBloodMetric;
 import org.lineageos.mod.health.sdk.model.records.Record;
 import org.lineageos.mod.health.common.db.RecordColumns;
 
@@ -36,7 +37,7 @@ public class HeartBloodRecord extends Record {
     private long diastolic;
     private double value;
 
-    public HeartBloodRecord(long id, int metric, long time,
+    public HeartBloodRecord(long id, @HeartBloodMetric int metric, long time,
                             @MealRelation.Value int beforeMeal,
                             long systolic, long diastolic,
                             double value) {

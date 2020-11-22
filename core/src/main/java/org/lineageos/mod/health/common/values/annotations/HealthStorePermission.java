@@ -14,9 +14,11 @@
  * limitations under the License.
  */
 
-package org.lineageos.mod.health.common.annotations;
+package org.lineageos.mod.health.common.values.annotations;
 
 import androidx.annotation.IntDef;
+
+import org.lineageos.mod.health.common.values.Permission;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

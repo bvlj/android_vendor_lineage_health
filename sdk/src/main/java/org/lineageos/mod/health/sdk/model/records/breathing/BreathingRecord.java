@@ -21,6 +21,7 @@ import android.content.ContentValues;
 import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 
+import org.lineageos.mod.health.common.values.annotations.BreathingMetric;
 import org.lineageos.mod.health.sdk.model.records.Record;
 import org.lineageos.mod.health.common.db.RecordColumns;
 
@@ -33,7 +34,7 @@ public class BreathingRecord extends Record {
     private String notes;
     private double value;
 
-    public BreathingRecord(long id, int metric, long time,
+    public BreathingRecord(long id, @BreathingMetric int metric, long time,
                            @NonNull String notes, double value) {
         super(id, metric, time);
         this.notes = notes;

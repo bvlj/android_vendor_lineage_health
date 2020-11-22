@@ -20,7 +20,7 @@ import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 
 import org.lineageos.mod.health.common.Metric;
-import org.lineageos.mod.health.sdk.model.values.MoodLevel;
+import org.lineageos.mod.health.common.values.MoodLevel;
 
 @Keep
 public final class MoodRecord extends MindfulnessRecord {
