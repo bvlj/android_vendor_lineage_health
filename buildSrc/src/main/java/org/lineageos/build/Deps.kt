@@ -24,7 +24,7 @@ object AndroidX {
     // Core - KTX - https://developer.android.com/jetpack/androidx/releases/annotation
     const val annotationX = "androidx.annotation:annotation:1.1.0"
 
-    // Core - KTX - https://developer.android.com/jetpack/androidx/releases/sqlite
+    // SQLite - https://developer.android.com/jetpack/androidx/releases/sqlite
     const val sqLite = "androidx.sqlite:sqlite:2.1.0"
 
     object Test {
@@ -65,6 +65,7 @@ object Kotlin {
 object SqlCipher {
     private const val VERSION = "4.4.1"
 
+    // Android - https://github.com/sqlcipher/android-database-sqlcipher/releases
     const val android = "net.zetetic:android-database-sqlcipher:$VERSION"
 }
 
