@@ -25,8 +25,8 @@ import org.lineageos.mod.health.common.Metric;
 public final class GlucoseRecord extends HeartBloodRecord {
 
     public GlucoseRecord(long id, long time,
-                         @MealRelation.Value int beforeMeal, double value) {
-        super(id, Metric.GLUCOSE, time, beforeMeal, 0, 0, value);
+                         @MealRelation.Value int mealRelation, double value) {
+        super(id, Metric.GLUCOSE, time, mealRelation, 0, 0, value);
     }
 
     @Override
@@ -37,5 +37,15 @@ public final class GlucoseRecord extends HeartBloodRecord {
     @Override
     public void setValue(double value) {
         super.setValue(value);
+    }
+
+    @Override
+    public int getMealRelation() {
+        return super.getMealRelation();
+    }
+
+    @Override
+    public void setMealRelation(int mealRelation) {
+        super.setMealRelation(mealRelation);
     }
 }

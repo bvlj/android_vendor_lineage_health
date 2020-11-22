@@ -30,6 +30,7 @@ import org.lineageos.mod.health.access.canWrite
 import org.lineageos.mod.health.common.db.RecordColumns
 import org.lineageos.mod.health.db.HealthStoreDbHelper
 import org.lineageos.mod.health.security.KeyMaster
+import org.lineageos.mod.health.validators.RecordValidator
 
 internal abstract class RecordContentProvider(
     private val contentUri: Uri,
@@ -119,11 +120,7 @@ internal abstract class RecordContentProvider(
             return null
         }
 
-        val id = values.getAsLong(RecordColumns._ID) ?: -1L
-        if (id < 1L) {
-            // Generate a new ID
-            values.remove(RecordColumns._ID)
-        }
+        RecordValidator.validate(values)
 
         return withMyId {
             val db = dbHelper.getWritableDatabase(keyMaster.getDbKey())
@@ -141,6 +138,9 @@ internal abstract class RecordContentProvider(
         selection: String?,
         selectionArgs: Array<String>?
     ): Int {
+        if (values == null) {
+            return 0
+        }
         if (uriMatcher.match(uri) != UriConst.MATCH_ITEM) {
             throw UnsupportedOperationException("Cannot update this URI: $uri")
         }
@@ -155,6 +155,8 @@ internal abstract class RecordContentProvider(
         if (!canWrite(accessManager, metric)) {
             return 0
         }
+
+        RecordValidator.validate(values)
 
         return withMyId {
             val db = dbHelper.getWritableDatabase(keyMaster.getDbKey())

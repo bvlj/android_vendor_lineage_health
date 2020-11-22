@@ -151,7 +151,7 @@ public final class HeartBloodRecordsRepo extends RecordsRepo<HeartBloodRecord> {
         final long id = cursor.getLong(cursor.getColumnIndex(RecordColumns._ID));
         final int metric = cursor.getInt(cursor.getColumnIndex(RecordColumns._METRIC));
         final long time = cursor.getLong(cursor.getColumnIndex(RecordColumns.TIME));
-        final int beforeMeal = cursor.getInt(cursor.getColumnIndex(RecordColumns.BEFORE_MEAL));
+        final int beforeMeal = cursor.getInt(cursor.getColumnIndex(RecordColumns.MEAL_RELATION));
         final int pressureSystolic = cursor.getInt(cursor.getColumnIndex(
                 RecordColumns.PRESSURE_SYSTOLIC));
         final int pressureDiastolic = cursor.getInt(cursor.getColumnIndex(

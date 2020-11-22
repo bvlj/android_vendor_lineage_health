@@ -21,6 +21,7 @@ import android.content.ContentValues;
 import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 
+import org.lineageos.mod.health.HealthStore;
 import org.lineageos.mod.health.sdk.model.records.Record;
 import org.lineageos.mod.health.common.values.annotations.ActivityMetric;
 import org.lineageos.mod.health.common.db.RecordColumns;
@@ -118,6 +119,7 @@ public class ActivityRecord extends Record {
     @Override
     public final ContentValues toContentValues() {
         final ContentValues cv = new ContentValues();
+        cv.put(RecordColumns._VERSION, HealthStore.Version.CURRENT);
         cv.put(RecordColumns._ID, id);
         cv.put(RecordColumns._METRIC, metric);
         cv.put(RecordColumns.TIME, time);

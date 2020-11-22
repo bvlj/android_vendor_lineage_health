@@ -26,7 +26,7 @@ internal object HeartBloodTable : Table {
         "${RecordColumns._ID} INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, " +
         "${RecordColumns._METRIC} INTEGER NOT NULL, " +
         "${RecordColumns.TIME} INTEGER NOT NULL DEFAULT 0, " +
-        "${RecordColumns.BEFORE_MEAL} INTEGER NOT NULL DEFAULT 0, " +
+        "${RecordColumns.MEAL_RELATION} INTEGER NOT NULL DEFAULT 0, " +
         "${RecordColumns.PRESSURE_SYSTOLIC} INTEGER NOT NULL DEFAULT 0, " +
         "${RecordColumns.PRESSURE_DIASTOLIC} INTEGER NOT NULL DEFAULT 0, " +
         "${RecordColumns.VALUE} REAL NOT NULL DEFAULT 0 " +

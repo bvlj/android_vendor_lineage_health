@@ -26,10 +26,10 @@ public interface RecordColumns extends BaseColumns {
     String _METRIC = "_metric";
 
     @NonNull
-    String AVG_SPEED = "avg_speed";
+    String _VERSION = "_version";
 
     @NonNull
-    String BEFORE_MEAL = "before_meal";
+    String AVG_SPEED = "avg_speed";
 
     @NonNull
     String CALORIES = "calories";
@@ -48,6 +48,9 @@ public interface RecordColumns extends BaseColumns {
 
     @NonNull
     String PRESSURE_DIASTOLIC = "pressure_diastolic";
+
+    @NonNull
+    String MEAL_RELATION = "meal_relation";
 
     @NonNull
     String MOOD = "mood";

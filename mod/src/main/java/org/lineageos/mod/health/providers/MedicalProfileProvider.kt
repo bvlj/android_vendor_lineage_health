@@ -21,12 +21,11 @@ import android.content.ContentUris
 import android.content.ContentValues
 import android.database.Cursor
 import android.net.Uri
-import net.sqlcipher.database.SQLiteDatabase
 import net.sqlcipher.database.SQLiteQueryBuilder
 import org.lineageos.mod.health.common.HealthStoreUri
-import org.lineageos.mod.health.common.db.MedicalProfileColumns
 import org.lineageos.mod.health.db.MedicalProfileDbHelper
 import org.lineageos.mod.health.db.tables.MedicalProfileTable
+import org.lineageos.mod.health.validators.MedicalProfileValidator
 
 internal class MedicalProfileProvider : ContentProvider() {
 
@@ -58,13 +57,13 @@ internal class MedicalProfileProvider : ContentProvider() {
     }
 
     override fun insert(uri: Uri, values: ContentValues?): Uri? = withMyId {
+        if (values == null) return@withMyId null
         val db = dbHelper.getWritableDatabase(null as String?)
 
-        val existingId = getProfileId(db)
-        if (existingId != null) {
-            // Clear everything
-            db.delete(MedicalProfileTable.NAME, null, null)
-        }
+        // Clear everything
+        db.delete(MedicalProfileTable.NAME, null, null)
+
+        MedicalProfileValidator.validate(values)
 
         val rowId = db.insert(MedicalProfileTable.NAME, null, values)
         if (rowId <= 0) return@withMyId null
@@ -97,17 +96,4 @@ internal class MedicalProfileProvider : ContentProvider() {
     }
 
     override fun getType(uri: Uri) = "vnd.android.cursor.item"
-
-    private fun getProfileId(db: SQLiteDatabase): String? {
-        db.query(
-            true, MedicalProfileTable.NAME,
-            arrayOf(MedicalProfileColumns._ID), null, null,
-            null, null, null, "1"
-        ).use { cursor ->
-            return if (cursor.moveToFirst())
-                cursor.getLong(0).toString()
-            else
-                null
-        }
-    }
 }

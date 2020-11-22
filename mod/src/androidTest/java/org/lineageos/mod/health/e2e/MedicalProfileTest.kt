@@ -37,24 +37,22 @@ class MedicalProfileTest {
     fun setup() {
         val context = InstrumentationRegistry.getInstrumentation().targetContext
 
-        repo = MedicalProfileRepo.getInstance(context.contentResolver)
-
-        Assert.assertTrue(repo.reset())
+        repo = MedicalProfileRepo.getInstance(context.contentResolver).apply { reset() }
     }
 
     @After
     fun tearDown() {
-        Assert.assertTrue(repo.reset())
+        repo.reset()
     }
 
     @Test
     fun testDefault() {
-        Assert.assertTrue(repo.reset())
+        repo.reset()
         Assert.assertEquals(repo.get(), MedicalProfile())
     }
 
     @Test
-    fun helloTest() {
+    fun testInsert() {
         val a = MedicalProfile(
             "Allergies - test",
             BloodType.A_NEG,

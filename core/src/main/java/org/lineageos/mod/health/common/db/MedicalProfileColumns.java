@@ -23,6 +23,9 @@ import androidx.annotation.NonNull;
 public interface MedicalProfileColumns extends BaseColumns {
 
     @NonNull
+    String _VERSION = "_version";
+
+    @NonNull
     String ALLERGIES = "allergies";
 
     @NonNull

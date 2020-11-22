@@ -174,7 +174,7 @@ public final class BodyRecordsRepo extends RecordsRepo<BodyRecord> {
 
     @Nullable
     public UvIndexRecord getUvIndexRecord(long id) {
-        return (UvIndexRecord) getById(Metric.MENSTRUAL_CYCLE, id);
+        return (UvIndexRecord) getById(Metric.UV_INDEX, id);
     }
 
     @Nullable

@@ -21,6 +21,7 @@ import android.content.ContentValues;
 import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 
+import org.lineageos.mod.health.HealthStore;
 import org.lineageos.mod.health.common.values.MealRelation;
 import org.lineageos.mod.health.common.values.annotations.HeartBloodMetric;
 import org.lineageos.mod.health.sdk.model.records.Record;
@@ -32,29 +33,29 @@ import java.util.Objects;
 public class HeartBloodRecord extends Record {
 
     @MealRelation.Value
-    private int beforeMeal;
+    private int mealRelation;
     private long systolic;
     private long diastolic;
     private double value;
 
     public HeartBloodRecord(long id, @HeartBloodMetric int metric, long time,
-                            @MealRelation.Value int beforeMeal,
+                            @MealRelation.Value int mealRelation,
                             long systolic, long diastolic,
                             double value) {
         super(id, metric, time);
-        this.beforeMeal = beforeMeal;
+        this.mealRelation = mealRelation;
         this.systolic = systolic;
         this.diastolic = diastolic;
         this.value = value;
     }
 
     @MealRelation.Value
-    protected int getBeforeMeal() {
-        return beforeMeal;
+    protected int getMealRelation() {
+        return mealRelation;
     }
 
-    protected void setBeforeMeal(@MealRelation.Value int beforeMeal) {
-        this.beforeMeal = beforeMeal;
+    protected void setMealRelation(@MealRelation.Value int mealRelation) {
+        this.mealRelation = mealRelation;
     }
 
     protected long getSystolic() {
@@ -85,10 +86,11 @@ public class HeartBloodRecord extends Record {
     @Override
     public final ContentValues toContentValues() {
         final ContentValues cv = new ContentValues();
+        cv.put(RecordColumns._VERSION, HealthStore.Version.CURRENT);
         cv.put(RecordColumns._ID, id);
         cv.put(RecordColumns._METRIC, metric);
         cv.put(RecordColumns.TIME, time);
-        cv.put(RecordColumns.BEFORE_MEAL, beforeMeal);
+        cv.put(RecordColumns.MEAL_RELATION, mealRelation);
         cv.put(RecordColumns.PRESSURE_SYSTOLIC, systolic);
         cv.put(RecordColumns.PRESSURE_DIASTOLIC, diastolic);
         cv.put(RecordColumns.VALUE, value);
@@ -101,7 +103,7 @@ public class HeartBloodRecord extends Record {
         if (!(o instanceof HeartBloodRecord)) return false;
         if (!super.equals(o)) return false;
         final HeartBloodRecord that = (HeartBloodRecord) o;
-        return beforeMeal == that.beforeMeal &&
+        return mealRelation == that.mealRelation &&
                 systolic == that.systolic &&
                 diastolic == that.diastolic &&
                 Double.compare(that.value, value) == 0;
@@ -109,6 +111,6 @@ public class HeartBloodRecord extends Record {
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), beforeMeal, systolic, diastolic, value);
+        return Objects.hash(super.hashCode(), mealRelation, systolic, diastolic, value);
     }
 }

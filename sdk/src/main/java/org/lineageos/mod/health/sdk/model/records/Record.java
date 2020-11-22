@@ -64,13 +64,12 @@ public abstract class Record {
         if (this == o) return true;
         if (!(o instanceof Record)) return false;
         final Record record = (Record) o;
-        return id == record.id &&
-                metric == record.metric &&
+        return metric == record.metric &&
                 time == record.time;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, metric, time);
+        return Objects.hash(metric, time);
     }
 }
