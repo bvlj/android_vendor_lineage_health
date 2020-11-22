@@ -23,11 +23,11 @@ import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.lineageos.mod.health.sdk.model.records.activity.CyclingRecord
+import org.lineageos.mod.health.sdk.model.records.activity.WalkingRecord
 import org.lineageos.mod.health.sdk.repo.ActivityRecordsRepo
 
 @RunWith(AndroidJUnit4::class)
-class CyclingRecordTest {
+class WalkingRecordTest {
     private lateinit var repo: ActivityRecordsRepo
 
     @Before
@@ -36,47 +36,44 @@ class CyclingRecordTest {
         repo = ActivityRecordsRepo.getInstance(context.contentResolver)
 
         // Cleanup
-        repo.allCyclingRecords.forEach { repo.delete(it) }
+        repo.allWalkingRecords.forEach { repo.delete(it) }
     }
 
     @After
     fun tearDown() {
-        repo.allCyclingRecords.forEach { repo.delete(it) }
-        Assert.assertEquals(0, repo.allCyclingRecords.size)
+        repo.allWalkingRecords.forEach { repo.delete(it) }
+        Assert.assertEquals(0, repo.allWalkingRecords.size)
     }
 
     @Test
     fun testInsert() {
-        val a = CyclingRecord(
+        val a = WalkingRecord(
             0L,
             System.currentTimeMillis(),
             1000L,
-            12.0,
-            50.0,
-            5.0
+            6.5,
+            500,
         )
         val idA = repo.insert(a)
         Assert.assertNotEquals(-1L, idA)
-        Assert.assertEquals(a, repo.getCyclingRecord(idA))
+        Assert.assertEquals(a, repo.getWalkingRecord(idA))
     }
 
     @Test
     fun testMultipleInsert() {
-        val a = CyclingRecord(
+        val a = WalkingRecord(
             0L,
             System.currentTimeMillis(),
             1000L,
-            12.0,
-            50.0,
-            5.0
+            6.5,
+            500,
         )
-        val b = CyclingRecord(
+        val b = WalkingRecord(
             0L,
             System.currentTimeMillis() - 1000L,
-            60L,
-            1.0,
-            9.1,
-            88.4
+            45L,
+            1.47,
+            891,
         )
         val idA = repo.insert(a)
         val idB = repo.insert(b)
@@ -85,23 +82,22 @@ class CyclingRecordTest {
         Assert.assertNotEquals(-1L, idB)
         Assert.assertNotEquals(idA, idB)
 
-        Assert.assertEquals(a, repo.getCyclingRecord(idA))
-        Assert.assertEquals(b, repo.getCyclingRecord(idB))
+        Assert.assertEquals(a, repo.getWalkingRecord(idA))
+        Assert.assertEquals(b, repo.getWalkingRecord(idB))
     }
 
     @Test
     fun testUpdate() {
-        val a = CyclingRecord(
+        val a = WalkingRecord(
             0L,
             System.currentTimeMillis(),
             1000L,
-            12.0,
-            50.0,
-            5.0
+            6.5,
+            500,
         )
         val idA = repo.insert(a)
         Assert.assertNotEquals(-1L, idA)
-        val fromDb = repo.getCyclingRecord(idA)
+        val fromDb = repo.getWalkingRecord(idA)
         if (fromDb == null) {
             Assert.fail("fromDb == null")
             return
@@ -109,56 +105,53 @@ class CyclingRecordTest {
 
         Assert.assertEquals(a, fromDb)
         fromDb.apply {
-            duration += 5
-            avgSpeed *= 0.4
-            elevationGain = 2.0
+            time = System.currentTimeMillis() - 90L
+            steps -= 89
         }
         Assert.assertNotEquals(a, fromDb)
         Assert.assertTrue(repo.update(fromDb))
-        Assert.assertEquals(fromDb, repo.getCyclingRecord(idA))
+        Assert.assertEquals(fromDb, repo.getWalkingRecord(idA))
     }
 
     @Test
     fun testDelete() {
-        val a = CyclingRecord(
+        val a = WalkingRecord(
             0L,
             System.currentTimeMillis(),
             1000L,
-            12.0,
-            50.0,
-            5.0
+            6.5,
+            500,
         )
-        val initialSize = repo.allCyclingRecords.size
+        val initialSize = repo.allWalkingRecords.size
         val idA = repo.insert(a)
-        val finalSize = repo.allCyclingRecords.size
+        val finalSize = repo.allWalkingRecords.size
 
         Assert.assertNotEquals(-1L, idA)
         Assert.assertTrue(finalSize > initialSize)
 
-        val fromDb = repo.getCyclingRecord(idA)
+        val fromDb = repo.getWalkingRecord(idA)
         if (fromDb == null) {
             Assert.fail("fromDb == null")
         } else {
             repo.delete(fromDb)
         }
 
-        Assert.assertEquals(finalSize - 1, repo.allCyclingRecords.size)
-        Assert.assertNull(repo.getCyclingRecord(idA))
+        Assert.assertEquals(finalSize - 1, repo.allWalkingRecords.size)
+        Assert.assertNull(repo.getWalkingRecord(idA))
     }
 
     @Test
     fun testValidator() {
-        val a = CyclingRecord(
+        val a = WalkingRecord(
             0L,
             -1L,
             -4L,
             -88.2,
-            -33.3,
-            -9.9
+            -44,
         )
         val idA = repo.insert(a)
         Assert.assertNotEquals(-1L, idA)
-        val fromDb = repo.getCyclingRecord(idA)
+        val fromDb = repo.getWalkingRecord(idA)
         if (fromDb == null) {
             Assert.fail("fromDb == null")
             return
@@ -166,7 +159,7 @@ class CyclingRecordTest {
 
         Assert.assertNotEquals(a.time, fromDb.time)
         Assert.assertEquals(0L, fromDb.duration)
-        Assert.assertEquals(0.0, fromDb.avgSpeed, 0.0)
         Assert.assertEquals(0.0, fromDb.distance, 0.0)
+        Assert.assertEquals(0, fromDb.steps)
     }
 }

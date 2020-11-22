@@ -139,4 +139,27 @@ class RunningRecordTest {
         Assert.assertEquals(finalSize - 1, repo.allRunningRecords.size)
         Assert.assertNull(repo.getRunningRecord(idA))
     }
+
+    @Test
+    fun testValidator() {
+        val a = RunningRecord(
+            0L,
+            -1L,
+            -4L,
+            -88.2,
+            -33.3,
+        )
+        val idA = repo.insert(a)
+        Assert.assertNotEquals(-1L, idA)
+        val fromDb = repo.getRunningRecord(idA)
+        if (fromDb == null) {
+            Assert.fail("fromDb == null")
+            return
+        }
+
+        Assert.assertNotEquals(a.time, fromDb.time)
+        Assert.assertEquals(0L, fromDb.duration)
+        Assert.assertEquals(0.0, fromDb.avgSpeed, 0.0)
+        Assert.assertEquals(0.0, fromDb.distance, 0.0)
+    }
 }

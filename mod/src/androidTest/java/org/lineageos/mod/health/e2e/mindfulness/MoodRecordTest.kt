@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.lineageos.mod.health.e2e.activity
+package org.lineageos.mod.health.e2e.mindfulness
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
@@ -23,60 +23,55 @@ import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.lineageos.mod.health.sdk.model.records.activity.CyclingRecord
-import org.lineageos.mod.health.sdk.repo.ActivityRecordsRepo
+import org.lineageos.mod.health.common.values.MoodLevel
+import org.lineageos.mod.health.sdk.model.records.mindfulness.MoodRecord
+import org.lineageos.mod.health.sdk.repo.MindfulnessRecordsRepo
 
 @RunWith(AndroidJUnit4::class)
-class CyclingRecordTest {
-    private lateinit var repo: ActivityRecordsRepo
+class MoodRecordTest {
+    private lateinit var repo: MindfulnessRecordsRepo
 
     @Before
     fun setup() {
         val context = InstrumentationRegistry.getInstrumentation().targetContext
-        repo = ActivityRecordsRepo.getInstance(context.contentResolver)
+        repo = MindfulnessRecordsRepo.getInstance(context.contentResolver)
 
         // Cleanup
-        repo.allCyclingRecords.forEach { repo.delete(it) }
+        repo.allMoodRecords.forEach { repo.delete(it) }
     }
 
     @After
     fun tearDown() {
-        repo.allCyclingRecords.forEach { repo.delete(it) }
-        Assert.assertEquals(0, repo.allCyclingRecords.size)
+        repo.allMoodRecords.forEach { repo.delete(it) }
+        Assert.assertEquals(0, repo.allMoodRecords.size)
     }
 
     @Test
     fun testInsert() {
-        val a = CyclingRecord(
+        val a = MoodRecord(
             0L,
             System.currentTimeMillis(),
-            1000L,
-            12.0,
-            50.0,
-            5.0
+            MoodLevel.EXCITED or MoodLevel.HAPPY,
+            "Excited and happy now"
         )
         val idA = repo.insert(a)
         Assert.assertNotEquals(-1L, idA)
-        Assert.assertEquals(a, repo.getCyclingRecord(idA))
+        Assert.assertEquals(a, repo.getMoodRecord(idA))
     }
 
     @Test
     fun testMultipleInsert() {
-        val a = CyclingRecord(
+        val a = MoodRecord(
             0L,
             System.currentTimeMillis(),
-            1000L,
-            12.0,
-            50.0,
-            5.0
+            MoodLevel.EXCITED or MoodLevel.HAPPY,
+            "Excited and happy now"
         )
-        val b = CyclingRecord(
+        val b = MoodRecord(
             0L,
             System.currentTimeMillis() - 1000L,
-            60L,
-            1.0,
-            9.1,
-            88.4
+            MoodLevel.NERVOUS or MoodLevel.TIRED or MoodLevel.STRESSED,
+            "Feeling bad now"
         )
         val idA = repo.insert(a)
         val idB = repo.insert(b)
@@ -85,23 +80,21 @@ class CyclingRecordTest {
         Assert.assertNotEquals(-1L, idB)
         Assert.assertNotEquals(idA, idB)
 
-        Assert.assertEquals(a, repo.getCyclingRecord(idA))
-        Assert.assertEquals(b, repo.getCyclingRecord(idB))
+        Assert.assertEquals(a, repo.getMoodRecord(idA))
+        Assert.assertEquals(b, repo.getMoodRecord(idB))
     }
 
     @Test
     fun testUpdate() {
-        val a = CyclingRecord(
+        val a = MoodRecord(
             0L,
             System.currentTimeMillis(),
-            1000L,
-            12.0,
-            50.0,
-            5.0
+            MoodLevel.EXCITED or MoodLevel.HAPPY,
+            "Excited and happy now"
         )
         val idA = repo.insert(a)
         Assert.assertNotEquals(-1L, idA)
-        val fromDb = repo.getCyclingRecord(idA)
+        val fromDb = repo.getMoodRecord(idA)
         if (fromDb == null) {
             Assert.fail("fromDb == null")
             return
@@ -109,64 +102,59 @@ class CyclingRecordTest {
 
         Assert.assertEquals(a, fromDb)
         fromDb.apply {
-            duration += 5
-            avgSpeed *= 0.4
-            elevationGain = 2.0
+            time = System.currentTimeMillis()
+            moodLevel = MoodLevel.ANGRY
+            notes = "It didn't go as expected"
         }
         Assert.assertNotEquals(a, fromDb)
         Assert.assertTrue(repo.update(fromDb))
-        Assert.assertEquals(fromDb, repo.getCyclingRecord(idA))
+        Assert.assertEquals(fromDb, repo.getMoodRecord(idA))
     }
 
     @Test
     fun testDelete() {
-        val a = CyclingRecord(
+        val a = MoodRecord(
             0L,
             System.currentTimeMillis(),
-            1000L,
-            12.0,
-            50.0,
-            5.0
+            MoodLevel.EXCITED or MoodLevel.HAPPY,
+            "Excited and happy now"
         )
-        val initialSize = repo.allCyclingRecords.size
+        val initialSize = repo.allMoodRecords.size
         val idA = repo.insert(a)
-        val finalSize = repo.allCyclingRecords.size
+        val finalSize = repo.allMoodRecords.size
 
         Assert.assertNotEquals(-1L, idA)
         Assert.assertTrue(finalSize > initialSize)
 
-        val fromDb = repo.getCyclingRecord(idA)
+        val fromDb = repo.getMoodRecord(idA)
         if (fromDb == null) {
             Assert.fail("fromDb == null")
         } else {
             repo.delete(fromDb)
         }
 
-        Assert.assertEquals(finalSize - 1, repo.allCyclingRecords.size)
-        Assert.assertNull(repo.getCyclingRecord(idA))
+        Assert.assertEquals(finalSize - 1, repo.allMoodRecords.size)
+        Assert.assertNull(repo.getMoodRecord(idA))
     }
 
     @Test
     fun testValidator() {
-        val a = CyclingRecord(
+        val a = MoodRecord(
             0L,
             -1L,
-            -4L,
-            -88.2,
-            -33.3,
-            -9.9
+            1 shl 11 or 1 shl 8,
+            "Valid note"
         )
         val idA = repo.insert(a)
         Assert.assertNotEquals(-1L, idA)
-        val fromDb = repo.getCyclingRecord(idA)
+        val fromDb = repo.getMoodRecord(idA)
         if (fromDb == null) {
             Assert.fail("fromDb == null")
             return
         }
 
         Assert.assertNotEquals(a.time, fromDb.time)
-        Assert.assertEquals(0L, fromDb.duration)
-        Assert.assertEquals(0.0, fromDb.avgSpeed, 0.0)
-        Assert.assertEquals(0.0, fromDb.distance, 0.0)
+        Assert.assertEquals(0, fromDb.moodLevel)
+        Assert.assertEquals(a.notes, fromDb.notes)
     }
 }

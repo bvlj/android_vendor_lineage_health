@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.lineageos.mod.health.e2e.activity
+package org.lineageos.mod.health.e2e.breathing
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
@@ -23,60 +23,51 @@ import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.lineageos.mod.health.sdk.model.records.activity.CyclingRecord
-import org.lineageos.mod.health.sdk.repo.ActivityRecordsRepo
+import org.lineageos.mod.health.sdk.model.records.breathing.OxygenSaturationRecord
+import org.lineageos.mod.health.sdk.repo.BreathingRecordsRepo
 
 @RunWith(AndroidJUnit4::class)
-class CyclingRecordTest {
-    private lateinit var repo: ActivityRecordsRepo
+class OxygenSaturationRecordTest {
+    private lateinit var repo: BreathingRecordsRepo
 
     @Before
     fun setup() {
         val context = InstrumentationRegistry.getInstrumentation().targetContext
-        repo = ActivityRecordsRepo.getInstance(context.contentResolver)
+        repo = BreathingRecordsRepo.getInstance(context.contentResolver)
 
         // Cleanup
-        repo.allCyclingRecords.forEach { repo.delete(it) }
+        repo.allOxygenSaturationRecords.forEach { repo.delete(it) }
     }
 
     @After
     fun tearDown() {
-        repo.allCyclingRecords.forEach { repo.delete(it) }
-        Assert.assertEquals(0, repo.allCyclingRecords.size)
+        repo.allOxygenSaturationRecords.forEach { repo.delete(it) }
+        Assert.assertEquals(0, repo.allOxygenSaturationRecords.size)
     }
 
     @Test
     fun testInsert() {
-        val a = CyclingRecord(
+        val a = OxygenSaturationRecord(
             0L,
             System.currentTimeMillis(),
-            1000L,
-            12.0,
-            50.0,
-            5.0
+            0.96,
         )
         val idA = repo.insert(a)
         Assert.assertNotEquals(-1L, idA)
-        Assert.assertEquals(a, repo.getCyclingRecord(idA))
+        Assert.assertEquals(a, repo.getOxygenSaturationRecord(idA))
     }
 
     @Test
     fun testMultipleInsert() {
-        val a = CyclingRecord(
+        val a = OxygenSaturationRecord(
             0L,
             System.currentTimeMillis(),
-            1000L,
-            12.0,
-            50.0,
-            5.0
+            0.96,
         )
-        val b = CyclingRecord(
+        val b = OxygenSaturationRecord(
             0L,
             System.currentTimeMillis() - 1000L,
-            60L,
-            1.0,
-            9.1,
-            88.4
+            0.929,
         )
         val idA = repo.insert(a)
         val idB = repo.insert(b)
@@ -85,23 +76,20 @@ class CyclingRecordTest {
         Assert.assertNotEquals(-1L, idB)
         Assert.assertNotEquals(idA, idB)
 
-        Assert.assertEquals(a, repo.getCyclingRecord(idA))
-        Assert.assertEquals(b, repo.getCyclingRecord(idB))
+        Assert.assertEquals(a, repo.getOxygenSaturationRecord(idA))
+        Assert.assertEquals(b, repo.getOxygenSaturationRecord(idB))
     }
 
     @Test
     fun testUpdate() {
-        val a = CyclingRecord(
+        val a = OxygenSaturationRecord(
             0L,
             System.currentTimeMillis(),
-            1000L,
-            12.0,
-            50.0,
-            5.0
+            0.96,
         )
         val idA = repo.insert(a)
         Assert.assertNotEquals(-1L, idA)
-        val fromDb = repo.getCyclingRecord(idA)
+        val fromDb = repo.getOxygenSaturationRecord(idA)
         if (fromDb == null) {
             Assert.fail("fromDb == null")
             return
@@ -109,64 +97,55 @@ class CyclingRecordTest {
 
         Assert.assertEquals(a, fromDb)
         fromDb.apply {
-            duration += 5
-            avgSpeed *= 0.4
-            elevationGain = 2.0
+            time = System.currentTimeMillis()
+            value += 0.04
         }
         Assert.assertNotEquals(a, fromDb)
         Assert.assertTrue(repo.update(fromDb))
-        Assert.assertEquals(fromDb, repo.getCyclingRecord(idA))
+        Assert.assertEquals(fromDb, repo.getOxygenSaturationRecord(idA))
     }
 
     @Test
     fun testDelete() {
-        val a = CyclingRecord(
+        val a = OxygenSaturationRecord(
             0L,
             System.currentTimeMillis(),
-            1000L,
-            12.0,
-            50.0,
-            5.0
+            0.96,
         )
-        val initialSize = repo.allCyclingRecords.size
+        val initialSize = repo.allOxygenSaturationRecords.size
         val idA = repo.insert(a)
-        val finalSize = repo.allCyclingRecords.size
+        val finalSize = repo.allOxygenSaturationRecords.size
 
         Assert.assertNotEquals(-1L, idA)
         Assert.assertTrue(finalSize > initialSize)
 
-        val fromDb = repo.getCyclingRecord(idA)
+        val fromDb = repo.getOxygenSaturationRecord(idA)
         if (fromDb == null) {
             Assert.fail("fromDb == null")
         } else {
             repo.delete(fromDb)
         }
 
-        Assert.assertEquals(finalSize - 1, repo.allCyclingRecords.size)
-        Assert.assertNull(repo.getCyclingRecord(idA))
+        Assert.assertEquals(finalSize - 1, repo.allOxygenSaturationRecords.size)
+        Assert.assertNull(repo.getOxygenSaturationRecord(idA))
     }
 
     @Test
     fun testValidator() {
-        val a = CyclingRecord(
+        val a = OxygenSaturationRecord(
             0L,
             -1L,
-            -4L,
-            -88.2,
-            -33.3,
-            -9.9
+            1.1
         )
         val idA = repo.insert(a)
         Assert.assertNotEquals(-1L, idA)
-        val fromDb = repo.getCyclingRecord(idA)
+        val fromDb = repo.getOxygenSaturationRecord(idA)
         if (fromDb == null) {
             Assert.fail("fromDb == null")
             return
         }
 
         Assert.assertNotEquals(a.time, fromDb.time)
-        Assert.assertEquals(0L, fromDb.duration)
-        Assert.assertEquals(0.0, fromDb.avgSpeed, 0.0)
-        Assert.assertEquals(0.0, fromDb.distance, 0.0)
+        Assert.assertEquals(0.0, fromDb.value, 0.0)
     }
 }
