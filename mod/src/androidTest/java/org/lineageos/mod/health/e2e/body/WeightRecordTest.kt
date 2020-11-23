@@ -23,7 +23,6 @@ import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.lineageos.mod.health.sdk.model.records.body.UvIndexRecord
 import org.lineageos.mod.health.sdk.model.records.body.WeightRecord
 import org.lineageos.mod.health.sdk.repo.BodyRecordsRepo
 

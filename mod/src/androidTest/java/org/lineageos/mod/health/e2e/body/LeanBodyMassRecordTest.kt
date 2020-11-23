@@ -23,7 +23,6 @@ import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.lineageos.mod.health.sdk.model.records.body.BodyTemperatureRecord
 import org.lineageos.mod.health.sdk.model.records.body.LeanBodyMassRecord
 import org.lineageos.mod.health.sdk.repo.BodyRecordsRepo
 

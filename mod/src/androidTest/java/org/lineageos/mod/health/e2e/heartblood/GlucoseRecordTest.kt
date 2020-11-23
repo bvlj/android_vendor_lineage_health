@@ -24,7 +24,6 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.lineageos.mod.health.common.values.MealRelation
-import org.lineageos.mod.health.sdk.model.records.heartblood.BloodAlcoholConcentrationRecord
 import org.lineageos.mod.health.sdk.model.records.heartblood.GlucoseRecord
 import org.lineageos.mod.health.sdk.repo.HeartBloodRecordsRepo
 

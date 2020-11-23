@@ -16,14 +16,11 @@
 
 package org.lineageos.mod.health.sdk.ktx
 
-import android.content.ContentProviderResult
 import android.content.ContentResolver
 import androidx.annotation.Keep
 import kotlinx.coroutines.CoroutineName
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import org.lineageos.mod.health.common.HealthStoreUri
-import org.lineageos.mod.health.sdk.ktx.batch.HsBatchOperationBuilder
 import org.lineageos.mod.health.sdk.model.records.breathing.BreathingRecord
 import org.lineageos.mod.health.sdk.model.records.breathing.InhalerUsageRecord
 import org.lineageos.mod.health.sdk.model.records.breathing.OxygenSaturationRecord
@@ -85,15 +82,6 @@ class BreathingRecordsRepoKt private constructor(
 
     suspend fun delete(record: BreathingRecord): Boolean =
         withContext(dispatcher) { _repo.delete(record) }
-
-    suspend fun batchOperation(
-        buildBlock: HsBatchOperationBuilder<BreathingRecord>.() -> Unit
-    ): Array<ContentProviderResult> = withContext(dispatcher) {
-        val opBuilder = HsBatchOperationBuilder<BreathingRecord>(HealthStoreUri.ACTIVITY)
-        opBuilder.buildBlock()
-        val ops = opBuilder.build()
-        _repo.executeBatch(ops)
-    }
 
     companion object : SingletonHolder<BreathingRecordsRepoKt, ContentResolver>({
         BreathingRecordsRepoKt(BreathingRecordsRepo.getInstance(it))

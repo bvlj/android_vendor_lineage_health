@@ -28,6 +28,9 @@ import org.junit.runner.RunWith
 import org.lineageos.mod.health.common.HealthStoreUri
 import org.lineageos.mod.health.common.Metric
 import org.lineageos.mod.health.common.db.RecordColumns
+import org.lineageos.mod.health.common.values.MoodLevel
+import org.lineageos.mod.health.sdk.model.records.mindfulness.MeditationRecord
+import org.lineageos.mod.health.sdk.model.records.mindfulness.MoodRecord
 import org.lineageos.mod.health.sdk.model.records.mindfulness.SleepRecord
 import org.lineageos.mod.health.sdk.repo.MindfulnessRecordsRepo
 
@@ -73,5 +76,55 @@ class MindfulnessRecordsTest {
         )
         cr.insert(invalidUri, cv)
         Assert.fail("Did not throw IllegalArgumentException")
+    }
+
+    @Test
+    fun testBatch() {
+        repo.apply {
+            allMeditationRecords.forEach { repo.delete(it) }
+            allMoodRecords.forEach { repo.delete(it) }
+            allSleepRecords.forEach { repo.delete(it) }
+        }
+
+        val idA = repo.insert(MoodRecord(
+            0L,
+            System.currentTimeMillis(),
+            MoodLevel.HAPPY,
+            "A note"
+        ))
+        val a = repo.getMoodRecord(idA)
+        if (a == null) {
+            Assert.fail("a == null")
+            return
+        }
+        val idB = repo.insert(MeditationRecord(
+            0L,
+            System.currentTimeMillis(),
+            1234560L
+        ))
+        val b = repo.getMeditationRecord(idB)
+        if (b == null) {
+            Assert.fail("b == null")
+            return
+        }
+        b.duration += 7
+
+        repo.executeBatch {
+            it.insert(MoodRecord(0L, System.currentTimeMillis(), MoodLevel.ANGRY, ""))
+            it.insert(MoodRecord(0L, System.currentTimeMillis(), MoodLevel.SAD, ""))
+            it.insert(SleepRecord(0L, System.currentTimeMillis(), 90000L))
+            it.update(b)
+            it.delete(a)
+        }
+
+        Assert.assertEquals(1, repo.allMeditationRecords.size)
+        Assert.assertEquals(2, repo.allMoodRecords.size)
+        Assert.assertEquals(1, repo.allSleepRecords.size)
+
+        repo.apply {
+            allMeditationRecords.forEach { repo.delete(it) }
+            allMoodRecords.forEach { repo.delete(it) }
+            allSleepRecords.forEach { repo.delete(it) }
+        }
     }
 }

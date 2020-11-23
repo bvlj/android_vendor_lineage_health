@@ -28,11 +28,10 @@ import android.os.RemoteException;
 import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RestrictTo;
 
+import org.lineageos.mod.health.common.db.RecordColumns;
 import org.lineageos.mod.health.common.values.annotations.ActivityMetric;
 import org.lineageos.mod.health.common.values.annotations.MetricType;
-import org.lineageos.mod.health.common.db.RecordColumns;
 import org.lineageos.mod.health.sdk.model.records.Record;
 
 import java.util.ArrayList;
@@ -95,11 +94,14 @@ public abstract class RecordsRepo<T extends Record> {
         return deleted == 1;
     }
 
-    @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP, RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public ContentProviderResult[] executeBatch(
-            @NonNull List<ContentProviderOperation> ops
-    ) throws OperationApplicationException, RemoteException {
-        return contentResolver.applyBatch(baseUri.toString(), new ArrayList<>(ops));
+    @NonNull
+    public final ContentProviderResult[] executeBatch(
+            @NonNull BatchOperations.Builder<T> builder) throws
+            OperationApplicationException, RemoteException {
+        final BatchOperations<T> batchOperations = new BatchOperations<>(baseUri);
+        builder.build(batchOperations);
+        final ArrayList<ContentProviderOperation> operations = batchOperations.build();
+        return contentResolver.applyBatch(baseUri.getAuthority(), operations);
     }
 
     @NonNull

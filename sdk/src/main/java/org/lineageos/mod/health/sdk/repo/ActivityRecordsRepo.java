@@ -16,8 +16,12 @@
 
 package org.lineageos.mod.health.sdk.repo;
 
+import android.content.ContentProviderOperation;
+import android.content.ContentProviderResult;
 import android.content.ContentResolver;
+import android.content.OperationApplicationException;
 import android.database.Cursor;
+import android.os.RemoteException;
 
 import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
