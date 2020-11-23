@@ -15,6 +15,7 @@
  */
 
 import org.lineageos.build.AndroidX
+import org.lineageos.build.Google
 import org.lineageos.build.Kotlin
 
 buildscript {

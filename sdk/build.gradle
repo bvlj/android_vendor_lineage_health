@@ -59,3 +59,5 @@ android {
 dependencies {
     implementation project(Libraries.core)
 }
+
+apply from: "../doclava.gradle"

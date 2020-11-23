@@ -42,6 +42,15 @@ object AndroidX {
     }
 }
 
+object Google {
+
+    object DocLava {
+        private const val VERSION = "1.0.6"
+
+        const val docLava = "com.google.doclava:doclava:$VERSION"
+    }
+}
+
 // Kotlin - https://github.com/JetBrains/kotlin/releases
 object Kotlin {
     private const val VERSION = "1.4.20"

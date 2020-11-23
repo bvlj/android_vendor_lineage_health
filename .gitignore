@@ -28,3 +28,6 @@
 
 # build output
 /*/release/
+
+# javadoc
+/javadocs/
