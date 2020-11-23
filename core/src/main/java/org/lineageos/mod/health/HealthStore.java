@@ -16,6 +16,8 @@
 
 package org.lineageos.mod.health;
 
+import android.content.ContentProvider;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.pm.FeatureInfo;
 import android.content.pm.PackageManager;
@@ -23,6 +25,9 @@ import android.content.pm.PackageManager;
 import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 
+/**
+ * General information about the HealthStore
+ */
 @Keep
 public final class HealthStore {
     private static final String FEATURE_NAME = "org.lineageos.mod.health";
@@ -39,10 +44,11 @@ public final class HealthStore {
     }
 
     /**
-     * Get the HealthStore version supported on this device
+     * Get the HealthStore version supported on this device.
      *
      * @return -1 if unsupported or the version declared on the healthstore
      * feature xml
+     * @see Version
      */
     public static int getSupportedVersion(@NonNull Context context) {
         final PackageManager pm = context.getPackageManager();
@@ -56,16 +62,36 @@ public final class HealthStore {
         return -1;
     }
 
+    /**
+     * Version information used to understand what format the client app
+     * is using (if any). By inserting a <code>"_version"</code> field in
+     * the {@link ContentValues} sent to the {@link ContentProvider},
+     * will allow for graceful conversion of the data to the installed mod
+     * version on the mod side.
+     *
+     * If no <code>"_version"</code> is specified, the mod will assume
+     * the {@link Version#MIN} value and will attempt to upgrade the
+     * values to the {@link Version#CURRENT} format.
+     *
+     * When "upgrading" {@link ContentValues}, it is possible
+     * some data might be dropped or changed, make sure to look
+     * at the logcat for warnings printed by the mod component
+     * for more specific information.
+     *
+     * If the official SDK is being used, the versioning will be
+     * managed internally by the SDK itself with no additional
+     * effort required by the SDK user's end.
+     */
     public static class Version {
 
         /**
          * Actinium (Ac)
-         *
+         * <br>
          * Released: November 2020.
          * Notes: Initial release. HealthStore Mod version
          * are defined by elements of the periodic table in
          * alphabetic order.
-         *
+         * <br>
          * Actinium is a silvery radioactive metallic element. Actinium glows in
          * the dark due to its intense radioactivity with a blue light.
          */

@@ -23,6 +23,16 @@ import org.lineageos.mod.health.common.Metric;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
+/**
+ * {@link IntDef} annotation to mark that a value
+ * needs to be one of the following:
+ *
+ * <ul>
+ *     <li>{@link Metric#MEDITATION}</li>
+ *     <li>{@link Metric#MOOD}</li>
+ *     <li>{@link Metric#SLEEP}</li>
+ * </ul>
+ */
 @IntDef({
         Metric.MEDITATION,
         Metric.MOOD,

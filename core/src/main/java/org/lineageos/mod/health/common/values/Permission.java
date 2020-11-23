@@ -16,6 +16,13 @@
 
 package org.lineageos.mod.health.common.values;
 
+import org.lineageos.mod.health.common.db.AccessColumns;
+
+/**
+ * Access control permissions.
+ *
+ * @see AccessColumns
+ */
 public final class Permission {
 
     private Permission() {

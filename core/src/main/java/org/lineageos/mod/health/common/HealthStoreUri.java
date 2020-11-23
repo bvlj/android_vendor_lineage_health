@@ -26,23 +26,79 @@ public final class HealthStoreUri {
     private HealthStoreUri() {
     }
 
+    /**
+     * Base {@link Uri} for the access ContentProvider.
+     * <br>
+     * This is to be used only by system / oem apps to manage
+     * control access.
+     */
     @NonNull
     public static final Uri ACCESS = Uri.parse(PROTOCOL + Authority.ACCESS);
 
+    /**
+     * Base {@link Uri} for the Activity ContentProvider.
+     *
+     * <ul>
+     *     <li><code>/#</code>: all elements of a metric. Can be used for insert and queries</li>
+     *     <li><code>/#/#</code>: a specific element of a metric. Can be used for update and delete</li>
+     * </ul>
+     */
     @NonNull
     public static final Uri ACTIVITY = Uri.parse(PROTOCOL + Authority.ACTIVITY);
+
+    /**
+     * Base {@link Uri} for the Body ContentProvider.
+     *
+     * <ul>
+     *     <li><code>/#</code>: all elements of a metric. Can be used for insert and queries</li>
+     *     <li><code>/#/#</code>: a specific element of a metric. Can be used for update and delete</li>
+     * </ul>
+     */
     @NonNull
     public static final Uri BODY = Uri.parse(PROTOCOL + Authority.BODY);
+
+    /**
+     * Base {@link Uri} for the Breathing ContentProvider.
+     *
+     * <ul>
+     *     <li><code>/#</code>: all elements of a metric. Can be used for insert and queries</li>
+     *     <li><code>/#/#</code>: a specific element of a metric. Can be used for update and delete</li>
+     * </ul>
+     */
     @NonNull
     public static final Uri BREATHING = Uri.parse(PROTOCOL + Authority.BREATHING);
+
+    /**
+     * Base {@link Uri} for the Heart &amp; Blood ContentProvider.
+     *
+     * <ul>
+     *     <li><code>/#</code>: all elements of a metric. Can be used for insert and queries</li>
+     *     <li><code>/#/#</code>: a specific element of a metric. Can be used for update and delete</li>
+     * </ul>
+     */
     @NonNull
     public static final Uri HEART_BLOOD = Uri.parse(PROTOCOL + Authority.HEART_BLOOD);
+
+    /**
+     * Base {@link Uri} for the Mindfulness ContentProvider.
+     *
+     * <ul>
+     *     <li><code>/#</code>: all elements of a metric. Can be used for insert and queries</li>
+     *     <li><code>/#/#</code>: a specific element of a metric. Can be used for update and delete</li>
+     * </ul>
+     */
     @NonNull
     public static final Uri MINDFULNESS = Uri.parse(PROTOCOL + Authority.MINDFULNESS);
 
+    /**
+     * Base {@link Uri} for the MedicalProfile ContentProvider.
+     */
     @NonNull
     public static final Uri MEDICAL_PROFILE = Uri.parse(PROTOCOL + Authority.MEDICAL_PROFILE);
 
+    /**
+     * ContentProviders authorities.
+     */
     public static final class Authority {
         private Authority() {
         }

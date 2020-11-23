@@ -20,14 +20,40 @@ import android.provider.BaseColumns;
 
 import androidx.annotation.NonNull;
 
+import org.lineageos.mod.health.common.Metric;
+import org.lineageos.mod.health.common.values.Permission;
+
+/**
+ * Access control table columns.
+ */
 public interface AccessColumns extends BaseColumns {
 
+    /**
+     * Invoking package name.
+     *
+     * {@link String} must not be empty / null.
+     */
     @NonNull
     String PKG_NAME = "pkg_name";
 
+    /**
+     * Target metric.
+     *
+     * {@link Integer}: One of {@link Metric} values
+     *
+     * @see Metric
+     */
     @NonNull
     String METRIC = "metric";
 
+    /**
+     * Permissions granted to the corresponding {@link AccessColumns#PKG_NAME} over the
+     * {@link AccessColumns#METRIC}.
+     *
+     * {@link Integer}: Defaults to {@link Permission#ALL}.
+     *
+     * @see Permission
+     */
     @NonNull
     String PERMISSIONS = "permissions";
 }

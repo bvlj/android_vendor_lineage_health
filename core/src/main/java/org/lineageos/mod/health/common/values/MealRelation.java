@@ -18,9 +18,16 @@ package org.lineageos.mod.health.common.values;
 
 import androidx.annotation.IntDef;
 
+import org.lineageos.mod.health.common.Metric;
+
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
+/**
+ * Relation to a meal.
+ *
+ * @see Metric#GLUCOSE
+ */
 public final class MealRelation {
 
     private MealRelation() {

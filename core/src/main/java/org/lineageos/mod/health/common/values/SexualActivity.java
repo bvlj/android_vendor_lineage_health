@@ -18,9 +18,16 @@ package org.lineageos.mod.health.common.values;
 
 import androidx.annotation.IntDef;
 
+import org.lineageos.mod.health.common.Metric;
+
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
+/**
+ * Sexual activity.
+ *
+ * @see Metric#MENSTRUAL_CYCLE
+ */
 public final class SexualActivity {
 
     private SexualActivity() {

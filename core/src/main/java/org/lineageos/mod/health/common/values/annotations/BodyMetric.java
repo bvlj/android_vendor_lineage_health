@@ -23,6 +23,22 @@ import org.lineageos.mod.health.common.Metric;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
+/**
+ * {@link IntDef} annotation to mark that a value
+ * needs to be one of the following:
+ *
+ * <ul>
+ *     <li>{@link Metric#ABDOMINAL_CIRCUMFERENCE}</li>
+ *     <li>{@link Metric#BODY_MASS_INDEX}</li>
+ *     <li>{@link Metric#BODY_TEMPERATURE}</li>
+ *     <li>{@link Metric#LEAN_BODY_MASS}</li>
+ *     <li>{@link Metric#MENSTRUAL_CYCLE}</li>
+ *     <li>{@link Metric#UV_INDEX}</li>
+ *     <li>{@link Metric#LEAN_BODY_MASS}</li>
+ *     <li>{@link Metric#WATER_INTAKE}</li>
+ *     <li>{@link Metric#WEIGHT}</li>
+ * </ul>
+ */
 @IntDef({
         Metric.ABDOMINAL_CIRCUMFERENCE,
         Metric.BODY_MASS_INDEX,

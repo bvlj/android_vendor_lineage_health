@@ -18,11 +18,15 @@ package org.lineageos.mod.health.common.values;
 
 import androidx.annotation.IntDef;
 
+import org.lineageos.mod.health.common.db.MedicalProfileColumns;
+
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 /**
- * Indicate whether someone is an organ donor
+ * Indicate whether someone is an organ donor.
+ *
+ * @see MedicalProfileColumns#ORGAN_DONOR
  */
 public final class OrganDonor {
 

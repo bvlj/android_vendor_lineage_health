@@ -23,6 +23,17 @@ import org.lineageos.mod.health.common.values.Permission;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
+/**
+ * {@link IntDef} annotation to mark that a value
+ * needs to be one of the following:
+ *
+ * <ul>
+ *     <li>{@link Permission#READ}</li>
+ *     <li>{@link Permission#WRITE}</li>
+ *     <li>{@link Permission#NONE}</li>
+ *     <li>{@link Permission#ALL}</li>
+ * </ul>
+ */
 @IntDef({
         Permission.READ,
         Permission.WRITE,

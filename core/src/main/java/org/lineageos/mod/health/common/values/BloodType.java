@@ -18,11 +18,15 @@ package org.lineageos.mod.health.common.values;
 
 import androidx.annotation.IntDef;
 
+import org.lineageos.mod.health.common.db.MedicalProfileColumns;
+
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 /**
- * Blood type
+ * Blood type.
+ *
+ * @see MedicalProfileColumns#BLOOD_TYPE
  */
 public final class BloodType {
 

@@ -23,6 +23,18 @@ import org.lineageos.mod.health.common.Metric;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
+/**
+ * {@link IntDef} annotation to mark that a value
+ * needs to be one of the following:
+ *
+ * <ul>
+ *     <li>{@link Metric#BLOOD_ALCOHOL_CONCENTRATION}</li>
+ *     <li>{@link Metric#BLOOD_PRESSURE}</li>
+ *     <li>{@link Metric#GLUCOSE}</li>
+ *     <li>{@link Metric#HEART_RATE}</li>
+ *     <li>{@link Metric#PERFUSION_INDEX}</li>
+ * </ul>
+ */
 @IntDef({
         Metric.BLOOD_ALCOHOL_CONCENTRATION,
         Metric.BLOOD_PRESSURE,

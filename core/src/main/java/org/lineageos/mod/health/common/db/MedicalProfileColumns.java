@@ -20,29 +20,81 @@ import android.provider.BaseColumns;
 
 import androidx.annotation.NonNull;
 
+import org.lineageos.mod.health.HealthStore.Version;
+import org.lineageos.mod.health.common.values.BiologicalSex;
+import org.lineageos.mod.health.common.values.BloodType;
+import org.lineageos.mod.health.common.values.OrganDonor;
+
+/**
+ * Medical profile table columns.
+ */
 public interface MedicalProfileColumns extends BaseColumns {
 
+    /**
+     * @see Version
+     */
     @NonNull
     String _VERSION = "_version";
 
+    /**
+     * Information about user's allergies.
+     *
+     * {@link String} (default to <pre>""</pre>)
+     */
     @NonNull
     String ALLERGIES = "allergies";
 
+    /**
+     * Information about user's blood type.
+     *
+     * {@link Integer} (default to {@link BloodType#UNKNOWN})
+     *
+     * @see BloodType
+     */
     @NonNull
     String BLOOD_TYPE = "blood_type";
 
+    /**
+     * Information about user's height in centimeters (cm).
+     *
+     * {@link Float} (default to <pre>0f</pre>)
+     */
     @NonNull
     String HEIGHT = "height";
 
+    /**
+     * Information about user's medications.
+     *
+     * {@link String} (default to <pre>""</pre>)
+     */
     @NonNull
     String MEDICATIONS = "medications";
 
+    /**
+     * Notes about the user.
+     *
+     * {@link String} (default to <pre>""</pre>)
+     */
     @NonNull
     String NOTES = "notes";
 
+    /**
+     * Information about whether the user is an organ donor.
+     *
+     * {@link Integer} (default to {@link OrganDonor#UNKNOWN})
+     *
+     * @see OrganDonor
+     */
     @NonNull
     String ORGAN_DONOR = "organ_donor";
 
+    /**
+     * Information about the user's biological sex.
+     *
+     * {@link Integer} (default to {@link BiologicalSex#UNKNOWN})
+     *
+     * @see BiologicalSex
+     */
     @NonNull
     String BIOLOGICAL_SEX = "sex";
 }
