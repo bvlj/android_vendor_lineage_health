@@ -17,14 +17,12 @@
 package org.lineageos.mod.health.validators
 
 import android.content.ContentValues
-import android.util.Log
 import org.lineageos.mod.health.HealthStore
 import org.lineageos.mod.health.common.Metric
 import org.lineageos.mod.health.common.db.MedicalProfileColumns
 import org.lineageos.mod.health.common.db.RecordColumns
 
 object RecordValidator : Validator() {
-    private const val TAG = "RecordValidator"
 
     override fun pullVersion(cv: ContentValues): Int {
         val version = cv.getAsInteger(RecordColumns._VERSION)
@@ -100,24 +98,21 @@ object RecordValidator : Validator() {
         fun validateAvgSpeed(cv: ContentValues) {
             val value = cv.getAsDouble(RecordColumns.AVG_SPEED) ?: 0.0
             if (value < 0.0 || value > 2.998e8) {
-                Log.w(TAG, "Removing invalid speed ${value}km/s")
-                cv.remove(RecordColumns.AVG_SPEED)
+                throw ValidationException("Invalid speed (was ${value})")
             }
         }
 
         fun validateCalories(cv: ContentValues) {
             val value = cv.getAsInteger(RecordColumns.CALORIES) ?: 0
             if (value < 0) {
-                Log.w(TAG, "Removing invalid calories ${value}cal")
-                cv.remove(RecordColumns.CALORIES)
+                throw ValidationException("Invalid negative calories (was ${value})")
             }
         }
 
         fun validateDistance(cv: ContentValues) {
             val value = cv.getAsDouble(RecordColumns.DISTANCE) ?: 0.0
             if (value < 0.0) {
-                Log.w(TAG, "Removing invalid distance ${value}km")
-                cv.remove(RecordColumns.DISTANCE)
+                throw ValidationException("Invalid negative distance (was ${value})")
             }
         }
 
@@ -132,16 +127,14 @@ object RecordValidator : Validator() {
         fun validateMealRelation(cv: ContentValues) {
             val value = cv.getAsInteger(RecordColumns.MEAL_RELATION)
             if (value < 0 || value > 2) {
-                Log.w(TAG, "Removing invalid meal relation value $value")
-                cv.remove(RecordColumns.MEAL_RELATION)
+                throw ValidationException("Invalid meal relation (was $value)")
             }
         }
 
         fun validateMoodLevel(cv: ContentValues) {
             val value = cv.getAsInteger(RecordColumns.MOOD)
             if (value < 0L || value >= 1 shl 11) {
-                Log.w(TAG, "Removing mood level $value")
-                cv.remove(RecordColumns.MOOD)
+                throw ValidationException("Invalid mood level (was $value)")
             }
         }
 
@@ -149,41 +142,37 @@ object RecordValidator : Validator() {
             val systolic = cv.getAsInteger(RecordColumns.PRESSURE_SYSTOLIC) ?: 0
             val diastolic = cv.getAsInteger(RecordColumns.PRESSURE_DIASTOLIC) ?: 0
             if (systolic < 0 || diastolic < 0) {
-                Log.w(TAG, "Removing invalid pressure (sys: $systolic, dia: $diastolic)")
-                cv.remove(RecordColumns.PRESSURE_SYSTOLIC)
-                cv.remove(RecordColumns.PRESSURE_DIASTOLIC)
+                throw ValidationException(
+                    "Invalid negative pressure (was sys: $systolic, dia: $diastolic)"
+                )
             }
         }
 
         fun validateSexualActivity(cv: ContentValues) {
             val value = cv.getAsInteger(RecordColumns.SEXUAL_ACTIVITY) ?: 0
             if (value < 0 || value >= 1 shl 4) {
-                Log.w(TAG, "Removing invalid sexual activity $value")
-                cv.remove(RecordColumns.SEXUAL_ACTIVITY)
+                throw ValidationException("Invalid sexual activity (was $value)")
             }
         }
 
         fun validateSteps(cv: ContentValues) {
             val value = cv.getAsLong(RecordColumns.STEPS) ?: -1L
             if (value < 0L) {
-                Log.w(TAG, "Removing invalid steps count $value")
-                cv.remove(RecordColumns.STEPS)
+                throw ValidationException("Invalid steps count (was $value)")
             }
         }
 
         fun validateSymptomsPhysical(cv: ContentValues) {
             val value = cv.getAsInteger(RecordColumns.SYMPTOMS_PHYSICAL) ?: 0
             if (value < 0 || value >= 1 shl 9) {
-                Log.w(TAG, "Removing invalid physical symptoms $value")
-                cv.remove(RecordColumns.SYMPTOMS_PHYSICAL)
+                throw ValidationException("Invalid physical symptoms (was $value)")
             }
         }
 
         fun validateSymptomsOther(cv: ContentValues) {
             val value = cv.getAsInteger(RecordColumns.SYMPTOMS_OTHER)
             if (value < 0 || value >= 1 shl 8) {
-                Log.w(TAG, "Removing invalid physical symptoms $value")
-                cv.remove(RecordColumns.SYMPTOMS_OTHER)
+                throw ValidationException("Invalid physical symptoms (was $value)")
             }
         }
 
@@ -191,36 +180,23 @@ object RecordValidator : Validator() {
             val value = cv.getAsLong(RecordColumns.TIME) ?: -1L
             val duration = cv.getAsLong(RecordColumns.DURATION) ?: 0L
             if (value < 0L) {
-                Log.w(TAG, "Changing invalid timestamp $value to current timestamp…")
-                cv.put(RecordColumns.TIME, System.currentTimeMillis())
-            }
-            if (duration < 0L) {
-                Log.w(TAG, "Setting invalid duration $value to 0")
-                cv.put(RecordColumns.DURATION, 0L)
+                throw ValidationException("Invalid negative timestamp (was $value)")
+            } else if (duration < 0L) {
+                throw ValidationException("Invalid negative duration (was $value)")
             }
         }
 
         fun validateValueNonNeg(cv: ContentValues) {
             val value = cv.getAsDouble(RecordColumns.VALUE) ?: 0.0
             if (value < 0.0) {
-                Log.w(
-                    TAG,
-                    "Removing negative value $value. " +
-                        "Column \"${RecordColumns.VALUE}\" must be positive"
-                )
-                cv.remove(RecordColumns.VALUE)
+                throw ValidationException("Invalid negative value of `value` (was $value)")
             }
         }
 
         fun validateValuePercent(cv: ContentValues) {
             val value = cv.getAsDouble(RecordColumns.VALUE) ?: 0.0
             if (value < 0.0 || value > 1.0) {
-                Log.w(
-                    TAG,
-                    "Removing out-of-range value $value. " +
-                        "Column \"${RecordColumns.VALUE}\" must be between 0.0 and 1.0"
-                )
-                cv.remove(RecordColumns.VALUE)
+                throw ValidationException("Out-of-range value of `value` (was $value)")
             }
         }
     }

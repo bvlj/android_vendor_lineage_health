@@ -23,10 +23,10 @@ import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.lineageos.mod.health.sdk.model.profile.MedicalProfile
 import org.lineageos.mod.health.common.values.BiologicalSex
 import org.lineageos.mod.health.common.values.BloodType
 import org.lineageos.mod.health.common.values.OrganDonor
+import org.lineageos.mod.health.sdk.model.profile.MedicalProfile
 import org.lineageos.mod.health.sdk.repo.MedicalProfileRepo
 
 @RunWith(AndroidJUnit4::class)
@@ -56,7 +56,7 @@ class MedicalProfileTest {
         val a = MedicalProfile(
             "Allergies - test",
             BloodType.A_NEG,
-            Float.MAX_VALUE,
+            178f,
             "Medications - test",
             "Notes - test",
             OrganDonor.NO,

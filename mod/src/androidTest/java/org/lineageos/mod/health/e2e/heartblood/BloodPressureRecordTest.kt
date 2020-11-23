@@ -25,6 +25,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.lineageos.mod.health.sdk.model.records.heartblood.BloodPressureRecord
 import org.lineageos.mod.health.sdk.repo.HeartBloodRecordsRepo
+import org.lineageos.mod.health.validators.Validator
 
 @RunWith(AndroidJUnit4::class)
 class BloodPressureRecordTest {
@@ -136,24 +137,16 @@ class BloodPressureRecordTest {
         Assert.assertNull(repo.getBloodPressureRecord(idA))
     }
 
-    @Test
+    @Test(expected = Validator.ValidationException::class)
     fun testValidator() {
-        val a = BloodPressureRecord(
-            0L,
-            -1L,
-            -12,
-            10
+        repo.insert(
+            BloodPressureRecord(
+                0L,
+                System.currentTimeMillis(),
+                -12,
+                10
+            )
         )
-        val idA = repo.insert(a)
-        Assert.assertNotEquals(-1L, idA)
-        val fromDb = repo.getBloodPressureRecord(idA)
-        if (fromDb == null) {
-            Assert.fail("fromDb == null")
-            return
-        }
-
-        Assert.assertNotEquals(a.time, fromDb.time)
-        Assert.assertEquals(0, fromDb.systolic)
-        Assert.assertEquals(0, fromDb.diastolic)
+        Assert.fail()
     }
 }

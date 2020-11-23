@@ -45,7 +45,7 @@ import org.lineageos.mod.health.common.values.SexualActivity;
  *     </li>
  *     <li>
  *         Invalid data (eg. speed higher than 2.99e8 km/s or invalid flag values) will be
- *         rejected and overwritten with a default value (eg. 0).
+ *         rejected with an exception that will describe the failure point.
  *     </li>
  *     <li>
  *         The access control may prevent one or more specific apps to access one or more

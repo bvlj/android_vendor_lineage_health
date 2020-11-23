@@ -28,6 +28,7 @@ import org.lineageos.mod.health.common.values.MenstrualCyclePhysicalSymptoms
 import org.lineageos.mod.health.common.values.SexualActivity
 import org.lineageos.mod.health.sdk.model.records.body.MenstrualCycleRecord
 import org.lineageos.mod.health.sdk.repo.BodyRecordsRepo
+import org.lineageos.mod.health.validators.Validator
 
 @RunWith(AndroidJUnit4::class)
 class MenstrualCycleRecordTest {
@@ -152,29 +153,19 @@ class MenstrualCycleRecordTest {
         Assert.assertNull(repo.getMenstrualCycleRecord(idA))
     }
 
-    @Test
+    @Test(expected = Validator.ValidationException::class)
     fun testValidator() {
-        val a = MenstrualCycleRecord(
-            0L,
-            -1L,
-            1 shl 11 or 1 shl 3,
-            1 shl 10 or 1 shl 5,
-            1 shl 6,
-            -2.0
+        repo.insert(
+            MenstrualCycleRecord(
+                0L,
+                -1L,
+                1 shl 11 or 1 shl 3,
+                1 shl 10 or 1 shl 5,
+                1 shl 6,
+                -2.0
+            )
         )
-        val idA = repo.insert(a)
-        Assert.assertNotEquals(-1L, idA)
-        val fromDb = repo.getMenstrualCycleRecord(idA)
-        if (fromDb == null) {
-            Assert.fail("fromDb == null")
-            return
-        }
-
-        Assert.assertNotEquals(a.time, fromDb.time)
-        Assert.assertEquals(MenstrualCycleOtherSymptoms.NONE, fromDb.otherSymptoms)
-        Assert.assertEquals(MenstrualCyclePhysicalSymptoms.NONE, fromDb.physicalSymptoms)
-        Assert.assertEquals(SexualActivity.NONE, fromDb.sexualActivity)
-        Assert.assertEquals(0.0, fromDb.value, 0.0)
+        Assert.fail()
     }
 
 }

@@ -25,6 +25,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.lineageos.mod.health.sdk.model.records.breathing.InhalerUsageRecord
 import org.lineageos.mod.health.sdk.repo.BreathingRecordsRepo
+import org.lineageos.mod.health.validators.Validator
 
 @RunWith(AndroidJUnit4::class)
 class InhalerUsageRecordTest {
@@ -130,22 +131,15 @@ class InhalerUsageRecordTest {
         Assert.assertNull(repo.getInhalerUsageRecord(idA))
     }
 
-    @Test
+    @Test(expected = Validator.ValidationException::class)
     fun testValidator() {
-        val a = InhalerUsageRecord(
-            0L,
-            -1L,
-            "Valid note",
+        repo.insert(
+            InhalerUsageRecord(
+                0L,
+                -1L,
+                "Valid note",
+            )
         )
-        val idA = repo.insert(a)
-        Assert.assertNotEquals(-1L, idA)
-        val fromDb = repo.getInhalerUsageRecord(idA)
-        if (fromDb == null) {
-            Assert.fail("fromDb == null")
-            return
-        }
-
-        Assert.assertNotEquals(a.time, fromDb.time)
-        Assert.assertEquals(a.notes, fromDb.notes)
+        Assert.fail()
     }
 }

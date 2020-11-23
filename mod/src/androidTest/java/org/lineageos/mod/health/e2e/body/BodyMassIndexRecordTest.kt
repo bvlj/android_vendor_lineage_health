@@ -25,6 +25,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.lineageos.mod.health.sdk.model.records.body.BodyMassIndexRecord
 import org.lineageos.mod.health.sdk.repo.BodyRecordsRepo
+import org.lineageos.mod.health.validators.Validator
 
 @RunWith(AndroidJUnit4::class)
 class BodyMassIndexRecordTest {
@@ -130,21 +131,15 @@ class BodyMassIndexRecordTest {
         Assert.assertNull(repo.getBodyMassIndexRecord(idA))
     }
 
-    @Test
+    @Test(expected = Validator.ValidationException::class)
     fun testValidator() {
-        val a = BodyMassIndexRecord(
-            0L,
-            -1L,
-            -6.8,
+        repo.insert(
+            BodyMassIndexRecord(
+                0L,
+                -4L,
+                6.8,
+            )
         )
-        val idA = repo.insert(a)
-        Assert.assertNotEquals(-1L, idA)
-        val fromDb = repo.getBodyMassIndexRecord(idA)
-        if (fromDb == null) {
-            Assert.fail("fromDb == null")
-            return
-        }
-
-        Assert.assertNotEquals(a.time, fromDb.time)
+        Assert.fail()
     }
 }

@@ -26,6 +26,7 @@ import org.junit.runner.RunWith
 import org.lineageos.mod.health.common.values.MoodLevel
 import org.lineageos.mod.health.sdk.model.records.mindfulness.MoodRecord
 import org.lineageos.mod.health.sdk.repo.MindfulnessRecordsRepo
+import org.lineageos.mod.health.validators.Validator
 
 @RunWith(AndroidJUnit4::class)
 class MoodRecordTest {
@@ -137,24 +138,16 @@ class MoodRecordTest {
         Assert.assertNull(repo.getMoodRecord(idA))
     }
 
-    @Test
+    @Test(expected = Validator.ValidationException::class)
     fun testValidator() {
-        val a = MoodRecord(
-            0L,
-            -1L,
-            1 shl 11 or 1 shl 8,
-            "Valid note"
+        repo.insert(
+            MoodRecord(
+                0L,
+                System.currentTimeMillis(),
+                1 shl 11 or 1 shl 8,
+                "Valid note"
+            )
         )
-        val idA = repo.insert(a)
-        Assert.assertNotEquals(-1L, idA)
-        val fromDb = repo.getMoodRecord(idA)
-        if (fromDb == null) {
-            Assert.fail("fromDb == null")
-            return
-        }
-
-        Assert.assertNotEquals(a.time, fromDb.time)
-        Assert.assertEquals(0, fromDb.moodLevel)
-        Assert.assertEquals(a.notes, fromDb.notes)
+        Assert.fail()
     }
 }

@@ -26,6 +26,7 @@ import org.junit.runner.RunWith
 import org.lineageos.mod.health.common.values.MealRelation
 import org.lineageos.mod.health.sdk.model.records.heartblood.GlucoseRecord
 import org.lineageos.mod.health.sdk.repo.HeartBloodRecordsRepo
+import org.lineageos.mod.health.validators.Validator
 
 @RunWith(AndroidJUnit4::class)
 class GlucoseRecordTest {
@@ -136,25 +137,17 @@ class GlucoseRecordTest {
         Assert.assertNull(repo.getGlucoseRecord(idA))
     }
 
-    @Test
+    @Test(expected = Validator.ValidationException::class)
     fun testValidator() {
-        val a = GlucoseRecord(
-            0L,
-            -1L,
-            1 shl 7,
-            -81.0
+        repo.insert(
+            GlucoseRecord(
+                0L,
+                System.currentTimeMillis(),
+                1 shl 7,
+                -81.0
+            )
         )
-        val idA = repo.insert(a)
-        Assert.assertNotEquals(-1L, idA)
-        val fromDb = repo.getGlucoseRecord(idA)
-        if (fromDb == null) {
-            Assert.fail("fromDb == null")
-            return
-        }
-
-        Assert.assertNotEquals(a.time, fromDb.time)
-        Assert.assertEquals(0.0, fromDb.value, 0.0)
-        Assert.assertEquals(MealRelation.UNKNOWN, fromDb.mealRelation)
+        Assert.fail()
     }
 
 }

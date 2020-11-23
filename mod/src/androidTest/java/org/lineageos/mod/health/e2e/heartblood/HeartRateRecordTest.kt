@@ -25,6 +25,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.lineageos.mod.health.sdk.model.records.heartblood.HeartRateRecord
 import org.lineageos.mod.health.sdk.repo.HeartBloodRecordsRepo
+import org.lineageos.mod.health.validators.Validator
 
 @RunWith(AndroidJUnit4::class)
 class HeartRateRecordTest {
@@ -130,22 +131,14 @@ class HeartRateRecordTest {
         Assert.assertNull(repo.getHeartRateRecord(idA))
     }
 
-    @Test
+    @Test(expected = Validator.ValidationException::class)
     fun testValidator() {
-        val a = HeartRateRecord(
-            0L,
-            -1L,
-            -12.0,
+        repo.insert(
+            HeartRateRecord(
+                0L, System.currentTimeMillis(),
+                -12.0,
+            )
         )
-        val idA = repo.insert(a)
-        Assert.assertNotEquals(-1L, idA)
-        val fromDb = repo.getHeartRateRecord(idA)
-        if (fromDb == null) {
-            Assert.fail("fromDb == null")
-            return
-        }
-
-        Assert.assertNotEquals(a.time, fromDb.time)
-        Assert.assertEquals(0.0, fromDb.value, 0.0)
+        Assert.fail()
     }
 }

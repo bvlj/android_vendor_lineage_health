@@ -25,6 +25,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.lineageos.mod.health.sdk.model.records.body.WaterIntakeRecord
 import org.lineageos.mod.health.sdk.repo.BodyRecordsRepo
+import org.lineageos.mod.health.validators.Validator
 
 @RunWith(AndroidJUnit4::class)
 class WaterIntakeRecordTest {
@@ -135,24 +136,16 @@ class WaterIntakeRecordTest {
         Assert.assertNull(repo.getWaterIntakeRecord(idA))
     }
 
-    @Test
+    @Test(expected = Validator.ValidationException::class)
     fun testValidator() {
-        val a = WaterIntakeRecord(
-            0L,
-            -1L,
-            "Peed half glass of water",
-            -0.5
+        repo.insert(
+            WaterIntakeRecord(
+                0L,
+                System.currentTimeMillis(),
+                "Peed half glass of water",
+                -0.5
+            )
         )
-        val idA = repo.insert(a)
-        Assert.assertNotEquals(-1L, idA)
-        val fromDb = repo.getWaterIntakeRecord(idA)
-        if (fromDb == null) {
-            Assert.fail("fromDb == null")
-            return
-        }
-
-        Assert.assertNotEquals(a.time, fromDb.time)
-        Assert.assertEquals(0.0, fromDb.value, 0.0)
-        Assert.assertEquals(a.notes, fromDb.notes)
+        Assert.fail()
     }
 }

@@ -25,6 +25,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.lineageos.mod.health.sdk.model.records.activity.WorkoutRecord
 import org.lineageos.mod.health.sdk.repo.ActivityRecordsRepo
+import org.lineageos.mod.health.validators.Validator
 
 @RunWith(AndroidJUnit4::class)
 class WorkoutRecordTest {
@@ -140,26 +141,17 @@ class WorkoutRecordTest {
         Assert.assertNull(repo.getWorkoutRecord(idA))
     }
 
-    @Test
+    @Test(expected = Validator.ValidationException::class)
     fun testValidator() {
-        val a = WorkoutRecord(
-            0L,
-            -1L,
-            -4L,
-            -88,
-            "Valid notes",
+        repo.insert(
+            WorkoutRecord(
+                0L,
+                -1L,
+                4L,
+                88,
+                "Valid notes"
+            )
         )
-        val idA = repo.insert(a)
-        Assert.assertNotEquals(-1L, idA)
-        val fromDb = repo.getWorkoutRecord(idA)
-        if (fromDb == null) {
-            Assert.fail("fromDb == null")
-            return
-        }
-
-        Assert.assertNotEquals(a.time, fromDb.time)
-        Assert.assertEquals(0L, fromDb.duration)
-        Assert.assertEquals(0, fromDb.calories)
-        Assert.assertEquals(a.notes, fromDb.notes)
+        Assert.fail()
     }
 }

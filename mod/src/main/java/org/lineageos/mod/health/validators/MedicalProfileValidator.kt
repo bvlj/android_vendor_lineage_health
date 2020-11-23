@@ -17,12 +17,10 @@
 package org.lineageos.mod.health.validators
 
 import android.content.ContentValues
-import android.util.Log
 import org.lineageos.mod.health.HealthStore
 import org.lineageos.mod.health.common.db.MedicalProfileColumns
 
 internal object MedicalProfileValidator : Validator() {
-    private const val TAG = "MedicalProfileValidator"
 
     override fun pullVersion(cv: ContentValues): Int {
         val version = cv.getAsInteger(MedicalProfileColumns._VERSION)
@@ -50,32 +48,28 @@ internal object MedicalProfileValidator : Validator() {
         fun validateBloodType(cv: ContentValues) {
             val value = cv.getAsInteger(MedicalProfileColumns.BLOOD_TYPE)
             if (value == null || value < 0 || value > 9) {
-                Log.w(TAG, "Removing invalid blood type value $value")
-                cv.remove(MedicalProfileColumns.BLOOD_TYPE)
+                throw ValidationException("Invalid blood type value (was $value)")
             }
         }
 
         fun validateHeight(cv: ContentValues) {
             val value = cv.getAsFloat(MedicalProfileColumns.HEIGHT) ?: 0f
-            if (value < 0f) {
-                Log.w(TAG, "Removing invalid height ${value}m")
-                cv.remove(MedicalProfileColumns.HEIGHT)
+            if (value < 0f || value > 300f) {
+                throw ValidationException("Invalid height (was $value cm)")
             }
         }
 
         fun validateOrganDonor(cv: ContentValues) {
             val value = cv.getAsInteger(MedicalProfileColumns.ORGAN_DONOR)
             if (value == null || value < 0 || value > 2) {
-                Log.w(TAG, "Removing invalid organ donor value $value")
-                cv.remove(MedicalProfileColumns.ORGAN_DONOR)
+                throw ValidationException("Invalid organ donor value (was $value)")
             }
         }
 
         fun validateBiologicalSex(cv: ContentValues) {
             val value = cv.getAsInteger(MedicalProfileColumns.BIOLOGICAL_SEX)
             if (value == null || value < 0 || value > 2) {
-                Log.w(TAG, "Removing invalid biological sex value $value")
-                cv.remove(MedicalProfileColumns.BIOLOGICAL_SEX)
+                throw ValidationException("Invalid biological sex value (was $value)")
             }
         }
     }
