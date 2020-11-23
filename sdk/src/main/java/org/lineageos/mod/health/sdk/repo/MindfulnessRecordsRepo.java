@@ -51,6 +51,11 @@ import java.util.stream.Collectors;
  * <p>
  * Operations performed in this class should be executed outside of the
  * main / UI thread.
+ *
+ * @see MindfulnessRecord
+ * @see MeditationRecord
+ * @see MoodRecord
+ * @see SleepRecord
  */
 @Keep
 public final class MindfulnessRecordsRepo extends RecordsRepo<MindfulnessRecord> {

@@ -29,6 +29,19 @@ import org.lineageos.mod.health.common.values.OrganDonor;
 
 import java.util.Objects;
 
+/**
+ * Medical Profile data class.
+ *
+ * <ul>
+ *     <li>{@link String} allergies</li>
+ *     <li>{@link Integer} bloodType: {@link BloodType}</li>
+ *     <li>{@link Float} height: height in centimeters (cm)</li>
+ *     <li>{@link String} medication</li>
+ *     <li>{@link String} notes</li>
+ *     <li>{@link Integer} organDonor: {@link OrganDonor}</li>
+ *     <li>{@link Integer} biologicalSex: {@link BiologicalSex}</li>
+ * </ul>
+ */
 @Keep
 public final class MedicalProfile {
 
@@ -62,6 +75,12 @@ public final class MedicalProfile {
         this.biologicalSex = BiologicalSex.UNKNOWN;
     }
 
+    /**
+     * @param bloodType {@link BloodType}
+     * @param height Height in centimeters (cm)
+     * @param organDonor {@link OrganDonor}
+     * @param biologicalSex {@link BiologicalSex}
+     */
     public MedicalProfile(@NonNull String allergies, @BloodType.Value int bloodType,
                           float height, @NonNull String medications,
                           @NonNull String notes, @OrganDonor.Value int organDonor,
@@ -84,11 +103,17 @@ public final class MedicalProfile {
         this.allergies = allergies;
     }
 
+    /**
+     * @see BloodType
+     */
     @BloodType.Value
     public int getBloodType() {
         return bloodType;
     }
 
+    /**
+     * @see BloodType
+     */
     public void setBloodType(@BloodType.Value int bloodType) {
         this.bloodType = bloodType;
     }
@@ -119,24 +144,39 @@ public final class MedicalProfile {
         this.notes = notes;
     }
 
+    /**
+     * @see OrganDonor
+     */
     @OrganDonor.Value
     public int getOrganDonor() {
         return organDonor;
     }
 
+    /**
+     * @see OrganDonor
+     */
     public void setOrganDonor(@OrganDonor.Value int organDonor) {
         this.organDonor = organDonor;
     }
 
+    /**
+     * @see BiologicalSex
+     */
     @BiologicalSex.Value
     public int getBiologicalSex() {
         return biologicalSex;
     }
 
+    /**
+     * @see BiologicalSex
+     */
     public void setBiologicalSex(@BiologicalSex.Value int biologicalSex) {
         this.biologicalSex = biologicalSex;
     }
 
+    /**
+     * @return ContentValues to be used by the ContentProvider
+     */
     @NonNull
     public ContentValues toContentValues() {
         final ContentValues cv = new ContentValues();

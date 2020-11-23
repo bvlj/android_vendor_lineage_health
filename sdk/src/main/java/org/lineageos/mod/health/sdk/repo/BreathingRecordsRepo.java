@@ -55,6 +55,12 @@ import java.util.stream.Collectors;
  * <p>
  * Operations performed in this class should be executed outside of the
  * main / UI thread.
+ *
+ * @see BreathingRecord
+ * @see InhalerUsageRecord
+ * @see PeakExpiratoryFlowRecord
+ * @see RespiratoryRateRecord
+ * @see VitalCapacityRecord
  */
 @Keep
 public final class BreathingRecordsRepo extends RecordsRepo<BreathingRecord> {

@@ -22,6 +22,20 @@ import androidx.annotation.NonNull;
 import org.lineageos.mod.health.common.Metric;
 import org.lineageos.mod.health.common.values.MoodLevel;
 
+/**
+ * Meditation record.
+ *
+ * <ul>
+ *     <li>{@link Long} id: db identifier (default to <code>0L</code>)</li>
+ *     <li>{@link Long} time: timestamp ({@link System#currentTimeMillis()})</li>
+ *     <li>{@link Integer} mood level: {@link MoodLevel}</li>
+ *     <li>{@link String} notes: notes about the mood</li>
+ * </ul>
+ *
+ * <a href="https://en.wikipedia.org/wiki/Mood_(psychology)">More info</a>
+ *
+ * @see Metric#MOOD
+ */
 @Keep
 public final class MoodRecord extends MindfulnessRecord {
 
@@ -29,13 +43,20 @@ public final class MoodRecord extends MindfulnessRecord {
         super(id, Metric.MOOD, time, 0, moodLevel, notes);
     }
 
+    /**
+     * @see MoodLevel
+     */
+    @MoodLevel.Value
     @Override
     public int getMoodLevel() {
         return super.getMoodLevel();
     }
 
+    /**
+     * @see MoodLevel
+     */
     @Override
-    public void setMoodLevel(int moodLevel) {
+    public void setMoodLevel(@MoodLevel.Value int moodLevel) {
         super.setMoodLevel(moodLevel);
     }
 

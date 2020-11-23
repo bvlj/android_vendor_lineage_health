@@ -18,11 +18,24 @@ package org.lineageos.mod.health.sdk.model.records.body;
 
 import androidx.annotation.Keep;
 
+import org.lineageos.mod.health.common.Metric;
 import org.lineageos.mod.health.common.values.MenstrualCycleOtherSymptoms;
 import org.lineageos.mod.health.common.values.MenstrualCyclePhysicalSymptoms;
 import org.lineageos.mod.health.common.values.SexualActivity;
-import org.lineageos.mod.health.common.Metric;
 
+/**
+ * Body Mass Index record.
+ *
+ * <ul>
+ *     <li>{@link Long} id: db identifier (default to <code>0L</code>)</li>
+ *     <li>{@link Long} time: timestamp ({@link System#currentTimeMillis()})</li>
+ *     <li>{@link Double} value: BMI in kilogram over meters squared (kg/(m^2))</li>
+ * </ul>
+ *
+ * <a href="https://en.wikipedia.org/wiki/Body_mass_index">More info</a>
+ *
+ * @see Metric#BODY_MASS_INDEX
+ */
 @Keep
 public final class BodyMassIndexRecord extends BodyRecord {
 
@@ -30,5 +43,21 @@ public final class BodyMassIndexRecord extends BodyRecord {
         super(id, Metric.BODY_MASS_INDEX, time, "",
                 MenstrualCycleOtherSymptoms.NONE, MenstrualCyclePhysicalSymptoms.NONE,
                 SexualActivity.NONE, value);
+    }
+
+    /**
+     * @return BMI in kilogram over meters squared (kg/(m^2))
+     */
+    @Override
+    public double getValue() {
+        return super.getValue();
+    }
+
+    /**
+     * @param value BMI in kilogram over meters squared (kg/(m^2))
+     */
+    @Override
+    public void setValue(double value) {
+        super.setValue(value);
     }
 }

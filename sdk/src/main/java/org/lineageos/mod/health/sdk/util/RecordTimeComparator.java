@@ -23,6 +23,9 @@ import org.lineageos.mod.health.sdk.model.records.Record;
 
 import java.util.Comparator;
 
+/**
+ * @hide
+ */
 @RestrictTo(RestrictTo.Scope.LIBRARY)
 public final class RecordTimeComparator implements Comparator<Record> {
 

@@ -25,6 +25,9 @@ import org.lineageos.mod.health.common.values.annotations.MetricType;
 
 import java.util.Objects;
 
+/**
+ * Base Record data class.
+ */
 @Keep
 public abstract class Record {
 
@@ -33,6 +36,11 @@ public abstract class Record {
     protected final int metric;
     protected long time;
 
+    /**
+     * @param id Record id or 0L when building a new record
+     * @param metric {@link MetricType}
+     * @param time Timestamp from epoch in milliseconds (ms, {@link System#currentTimeMillis()})
+     */
     public Record(long id, @MetricType int metric, long time) {
         this.id = id;
         this.metric = metric;
@@ -43,6 +51,9 @@ public abstract class Record {
         return id;
     }
 
+    /**
+     * @see MetricType
+     */
     @MetricType
     public int getMetric() {
         return metric;
@@ -56,9 +67,17 @@ public abstract class Record {
         this.time = time;
     }
 
+    /**
+     * @return ContentValues to be used with ContentProviders to represent this record.
+     */
     @NonNull
     public abstract ContentValues toContentValues();
 
+    /**
+     * Equality check.
+     *
+     * Does not compare the record ids.
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -68,6 +87,11 @@ public abstract class Record {
                 time == record.time;
     }
 
+    /**
+     * HashCode method.
+     *
+     * Does not include the record id.
+     */
     @Override
     public int hashCode() {
         return Objects.hash(metric, time);

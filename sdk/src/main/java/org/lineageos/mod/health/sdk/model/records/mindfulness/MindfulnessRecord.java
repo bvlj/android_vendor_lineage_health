@@ -20,6 +20,7 @@ import android.content.ContentValues;
 
 import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
+import androidx.annotation.RestrictTo;
 
 import org.lineageos.mod.health.HealthStore;
 import org.lineageos.mod.health.common.db.RecordColumns;
@@ -29,6 +30,14 @@ import org.lineageos.mod.health.sdk.model.records.Record;
 
 import java.util.Objects;
 
+/**
+ * Generic mindfulness record.
+ *
+ * @see MindfulnessMetric
+ * @see MeditationRecord
+ * @see MoodRecord
+ * @see SleepRecord
+ */
 @Keep
 public class MindfulnessRecord extends Record {
 
@@ -38,6 +47,10 @@ public class MindfulnessRecord extends Record {
     @NonNull
     private String notes;
 
+    /**
+     * @hide
+     */
+    @RestrictTo(RestrictTo.Scope.LIBRARY)
     public MindfulnessRecord(long id, @MindfulnessMetric int metric, long time, long duration,
                              @MoodLevel.Value int moodLevel, @NonNull String notes) {
         super(id, metric, time);

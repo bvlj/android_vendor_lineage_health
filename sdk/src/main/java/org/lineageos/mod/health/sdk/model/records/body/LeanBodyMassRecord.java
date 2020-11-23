@@ -18,11 +18,24 @@ package org.lineageos.mod.health.sdk.model.records.body;
 
 import androidx.annotation.Keep;
 
+import org.lineageos.mod.health.common.Metric;
 import org.lineageos.mod.health.common.values.MenstrualCycleOtherSymptoms;
 import org.lineageos.mod.health.common.values.MenstrualCyclePhysicalSymptoms;
 import org.lineageos.mod.health.common.values.SexualActivity;
-import org.lineageos.mod.health.common.Metric;
 
+/**
+ * Lean Body Mass record.
+ *
+ * <ul>
+ *     <li>{@link Long} id: db identifier (default to <code>0L</code>)</li>
+ *     <li>{@link Long} time: timestamp ({@link System#currentTimeMillis()})</li>
+ *     <li>{@link Double} value: LBM value</li>
+ * </ul>
+ *
+ * <a href="https://en.wikipedia.org/wiki/Lean_body_mass">More info</a>
+ *
+ * @see Metric#LEAN_BODY_MASS
+ */
 @Keep
 public final class LeanBodyMassRecord extends BodyRecord {
 
@@ -30,5 +43,21 @@ public final class LeanBodyMassRecord extends BodyRecord {
         super(id, Metric.LEAN_BODY_MASS, time, "",
                 MenstrualCycleOtherSymptoms.NONE, MenstrualCyclePhysicalSymptoms.NONE,
                 SexualActivity.NONE, value);
+    }
+
+    /**
+     * @return LBM value
+     */
+    @Override
+    public double getValue() {
+        return super.getValue();
+    }
+
+    /**
+     * @param value LBM value
+     */
+    @Override
+    public void setValue(double value) {
+        super.setValue(value);
     }
 }

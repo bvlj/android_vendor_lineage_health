@@ -20,6 +20,7 @@ import android.content.ContentProviderOperation;
 import android.net.Uri;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RestrictTo;
 
 import org.lineageos.mod.health.sdk.model.records.Record;
 
@@ -27,36 +28,56 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * Batch operations performed on a repository
+ */
 public final class BatchOperations<T extends Record> {
     @NonNull
     private final Uri baseUri;
     @NonNull
     private final List<BatchOperation> operations;
 
+    /**
+     * @hide
+     */
+    @RestrictTo(RestrictTo.Scope.LIBRARY)
     BatchOperations(@NonNull final Uri baseUri) {
         this.baseUri = baseUri;
         this.operations = new ArrayList<>();
     }
 
+    /**
+     * Delete a record
+     */
     @NonNull
     public BatchOperations<T> delete(@NonNull T record) {
         operations.add(new BatchOperation.Delete<>(record));
         return this;
     }
 
+    /**
+     * Insert a record
+     */
     @NonNull
     public BatchOperations<T> insert(@NonNull T record) {
         operations.add(new BatchOperation.Insert<>(record));
         return this;
     }
 
+    /**
+     * Update a record
+     */
     @NonNull
     public BatchOperations<T> update(@NonNull T record) {
         operations.add(new BatchOperation.Update<>(record));
         return this;
     }
 
+    /**
+     * @hide
+     */
     @NonNull
+    @RestrictTo(RestrictTo.Scope.LIBRARY)
     ArrayList<ContentProviderOperation> build() {
         final ArrayList<ContentProviderOperation> list = new ArrayList<>();
 

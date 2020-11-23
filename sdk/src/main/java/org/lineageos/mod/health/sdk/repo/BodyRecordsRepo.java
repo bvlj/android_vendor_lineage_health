@@ -61,6 +61,16 @@ import java.util.stream.Collectors;
  * <p>
  * Operations performed in this class should be executed outside of the
  * main / UI thread.
+ *
+ * @see BodyRecord
+ * @see AbdominalCircumferenceRecord
+ * @see BodyMassIndexRecord
+ * @see BodyTemperatureRecord
+ * @see LeanBodyMassRecord
+ * @see MenstrualCycleRecord
+ * @see UvIndexRecord
+ * @see WaterIntakeRecord
+ * @see WeightRecord
  */
 @Keep
 public final class BodyRecordsRepo extends RecordsRepo<BodyRecord> {

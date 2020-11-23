@@ -53,6 +53,12 @@ import java.util.stream.Collectors;
  *
  * Operations performed in this class should be executed outside of the
  * main / UI thread.
+ *
+ * @see ActivityRecord
+ * @see CyclingRecord
+ * @see RunningRecord
+ * @see WalkingRecord
+ * @see WorkoutRecord
  */
 @Keep
 public final class ActivityRecordsRepo extends RecordsRepo<ActivityRecord> {

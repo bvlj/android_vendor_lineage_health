@@ -20,16 +20,19 @@ import android.content.ContentValues;
 
 import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
+import androidx.annotation.RestrictTo;
 
 import org.lineageos.mod.health.HealthStore;
-import org.lineageos.mod.health.sdk.model.records.Record;
-import org.lineageos.mod.health.common.values.annotations.ActivityMetric;
 import org.lineageos.mod.health.common.db.RecordColumns;
+import org.lineageos.mod.health.common.values.annotations.ActivityMetric;
+import org.lineageos.mod.health.sdk.model.records.Record;
 
 import java.util.Objects;
 
 /**
- * Generic activity record
+ * Generic activity record.
+ *
+ * @see ActivityMetric
  */
 @Keep
 public class ActivityRecord extends Record {
@@ -43,6 +46,10 @@ public class ActivityRecord extends Record {
     private String notes;
     private long steps;
 
+    /**
+     * @hide
+     */
+    @RestrictTo(RestrictTo.Scope.LIBRARY)
     public ActivityRecord(long id, @ActivityMetric int metric,
                    long time, long duration,
                    double avgSpeed, int calories,

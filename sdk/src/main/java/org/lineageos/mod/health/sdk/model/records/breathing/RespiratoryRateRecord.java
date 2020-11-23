@@ -20,6 +20,19 @@ import androidx.annotation.Keep;
 
 import org.lineageos.mod.health.common.Metric;
 
+/**
+ * Respiratory rate record.
+ *
+ * <ul>
+ *     <li>{@link Long} id: db identifier (default to <code>0L</code>)</li>
+ *     <li>{@link Long} time: timestamp ({@link System#currentTimeMillis()})</li>
+ *     <li>{@link Double} value: respiratory rate in breaths per minute</li>
+ * </ul>
+ *
+ * <a href="https://en.wikipedia.org/wiki/Respiratory_rate">More info</a>
+ *
+ * @see Metric#RESPIRATORY_RATE
+ */
 @Keep
 public final class RespiratoryRateRecord extends BreathingRecord {
 
@@ -27,11 +40,17 @@ public final class RespiratoryRateRecord extends BreathingRecord {
         super(id, Metric.RESPIRATORY_RATE, time, "", value);
     }
 
+    /**
+     * @return Respiratory rate in breaths per minute
+     */
     @Override
     public double getValue() {
         return super.getValue();
     }
 
+    /**
+     * @param value Respiratory rate in breaths per minute
+     */
     @Override
     public void setValue(double value) {
         super.setValue(value);

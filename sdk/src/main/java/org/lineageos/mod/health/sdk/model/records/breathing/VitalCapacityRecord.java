@@ -20,6 +20,19 @@ import androidx.annotation.Keep;
 
 import org.lineageos.mod.health.common.Metric;
 
+/**
+ * Vital capacity record.
+ *
+ * <ul>
+ *     <li>{@link Long} id: db identifier (default to <code>0L</code>)</li>
+ *     <li>{@link Long} time: timestamp ({@link System#currentTimeMillis()})</li>
+ *     <li>{@link Double} value: vital capacity in centimeters cube (cm^3)</li>
+ * </ul>
+ *
+ * <a href="https://en.wikipedia.org/wiki/Vital_capacity">More info</a>
+ *
+ * @see Metric#VITAL_CAPACITY
+ */
 @Keep
 public final class VitalCapacityRecord extends BreathingRecord {
 
@@ -27,11 +40,17 @@ public final class VitalCapacityRecord extends BreathingRecord {
         super(id, Metric.VITAL_CAPACITY, time, "", value);
     }
 
+    /**
+     * @return Vital capacity in centimeters cube (cm^3)
+     */
     @Override
     public double getValue() {
         return super.getValue();
     }
 
+    /**
+     * @param value Vital capacity in centimeters cube (cm^3)
+     */
     @Override
     public void setValue(double value) {
         super.setValue(value);

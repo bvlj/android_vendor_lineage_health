@@ -40,12 +40,24 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * Base records repo.
+ */
 @Keep
 public abstract class RecordsRepo<T extends Record> {
+    /**
+     * @hide
+     */
     protected static final String DEFAULT_ORDER = RecordColumns.TIME + " DESC";
 
+    /**
+     * @hide
+     */
     @NonNull
     protected final ContentResolver contentResolver;
+    /**
+     * @hide
+     */
     @NonNull
     private final Uri baseUri;
 

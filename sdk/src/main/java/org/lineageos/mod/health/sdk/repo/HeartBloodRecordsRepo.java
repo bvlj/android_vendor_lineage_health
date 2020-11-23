@@ -49,12 +49,19 @@ import java.util.stream.Collectors;
  *     <li>{@link BloodAlcoholConcentrationRecord}</li>
  *     <li>{@link BloodPressureRecord}</li>
  *     <li>{@link GlucoseRecord}</li>
- *     <li>{@link HeartBloodRecord}</li>
+ *     <li>{@link HeartRateRecord}</li>
  *     <li>{@link PerfusionIndexRecord}</li>
  * </ul>
  * <p>
  * Operations performed in this class should be executed outside of the
  * main / UI thread.
+ *
+ * @see HeartBloodRecord
+ * @see BloodAlcoholConcentrationRecord
+ * @see BloodPressureRecord
+ * @see GlucoseRecord
+ * @see HeartRateRecord
+ * @see PerfusionIndexRecord
  */
 @Keep
 public final class HeartBloodRecordsRepo extends RecordsRepo<HeartBloodRecord> {

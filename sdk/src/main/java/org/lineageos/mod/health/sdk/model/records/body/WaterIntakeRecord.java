@@ -24,6 +24,19 @@ import org.lineageos.mod.health.common.values.MenstrualCyclePhysicalSymptoms;
 import org.lineageos.mod.health.common.values.SexualActivity;
 import org.lineageos.mod.health.common.Metric;
 
+/**
+ * Water intake record.
+ *
+ * <ul>
+ *     <li>{@link Long} id: db identifier (default to <code>0L</code>)</li>
+ *     <li>{@link Long} time: timestamp ({@link System#currentTimeMillis()})</li>
+ *     <li>{@link Double} value: number of drank glasses of water</li>
+ * </ul>
+ *
+ * <a href="https://en.wikipedia.org/wiki/Drinking_water">More info</a>
+ *
+ * @see Metric#WATER_INTAKE
+ */
 @Keep
 public final class WaterIntakeRecord extends BodyRecord {
 
@@ -42,5 +55,21 @@ public final class WaterIntakeRecord extends BodyRecord {
     @Override
     public void setNotes(@NonNull String notes) {
         super.setNotes(notes);
+    }
+
+    /**
+     * @return Number of drank glasses of water
+     */
+    @Override
+    public double getValue() {
+        return super.getValue();
+    }
+
+    /**
+     * @param value Number of drank glasses of water
+     */
+    @Override
+    public void setValue(double value) {
+        super.setValue(value);
     }
 }

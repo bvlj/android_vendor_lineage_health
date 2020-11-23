@@ -21,6 +21,19 @@ import androidx.annotation.Keep;
 import org.lineageos.mod.health.common.Metric;
 import org.lineageos.mod.health.common.values.MoodLevel;
 
+/**
+ * Meditation record.
+ *
+ * <ul>
+ *     <li>{@link Long} id: db identifier (default to <code>0L</code>)</li>
+ *     <li>{@link Long} time: timestamp ({@link System#currentTimeMillis()})</li>
+ *     <li>{@link Long} duration: duration in milliseconds (ms)</li>
+ * </ul>
+ *
+ * <a href="https://en.wikipedia.org/wiki/Sleep">More info</a>
+ *
+ * @see Metric#SLEEP
+ */
 @Keep
 public final class SleepRecord extends MindfulnessRecord {
 

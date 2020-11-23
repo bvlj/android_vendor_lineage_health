@@ -20,6 +20,19 @@ import androidx.annotation.Keep;
 
 import org.lineageos.mod.health.common.Metric;
 
+/**
+ * Peak expiratory flow record.
+ *
+ * <ul>
+ *     <li>{@link Long} id: db identifier (default to <code>0L</code>)</li>
+ *     <li>{@link Long} time: timestamp ({@link System#currentTimeMillis()})</li>
+ *     <li>{@link Double} value: PEF value</li>
+ * </ul>
+ *
+ * <a href="https://en.wikipedia.org/wiki/Peak_expiratory_flow">More info</a>
+ *
+ * @see Metric#PEAK_EXPIRATORY_FLOW
+ */
 @Keep
 public final class PeakExpiratoryFlowRecord extends BreathingRecord {
 
@@ -27,11 +40,17 @@ public final class PeakExpiratoryFlowRecord extends BreathingRecord {
         super(id, Metric.PEAK_EXPIRATORY_FLOW, time, "", value);
     }
 
+    /**
+     * @return PEF value
+     */
     @Override
     public double getValue() {
         return super.getValue();
     }
 
+    /**
+     * @param value PEF value
+     */
     @Override
     public void setValue(double value) {
         super.setValue(value);

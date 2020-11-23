@@ -21,6 +21,19 @@ import androidx.annotation.NonNull;
 
 import org.lineageos.mod.health.common.Metric;
 
+/**
+ * Inhaler usage record.
+ *
+ * <ul>
+ *     <li>{@link Long} id: db identifier (default to <code>0L</code>)</li>
+ *     <li>{@link Long} time: timestamp ({@link System#currentTimeMillis()})</li>
+ *     <li>{@link String} notes: notes about the inhaler usage</li>
+ * </ul>
+ *
+ * <a href="https://en.wikipedia.org/wiki/Inhaler">More info</a>
+ *
+ * @see Metric#INHALER_USAGE
+ */
 @Keep
 public final class InhalerUsageRecord extends BreathingRecord {
 

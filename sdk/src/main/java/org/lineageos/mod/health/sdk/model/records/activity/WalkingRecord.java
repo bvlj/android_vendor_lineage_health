@@ -21,11 +21,20 @@ import androidx.annotation.Keep;
 import org.lineageos.mod.health.common.Metric;
 
 /**
- * Steps count record.
+ * Walking activity / Step counter.
+ *
+ * <ul>
+ *     <li>{@link Long} id: db identifier (default to <code>0L</code>)</li>
+ *     <li>{@link Long} time: timestamp ({@link System#currentTimeMillis()})</li>
+ *     <li>{@link Long} duration: duration in milliseconds (ms)</li>
+ *     <li>{@link Double} distance: distance in kilometers (km)</li>
+ *     <li>{@link Integer} steps: number of steps</li>
+ * </ul>
  *
  * <a href="https://en.wikipedia.org/wiki/Walking">More info</a>
+ *
+ * @see Metric#WALKING
  */
-
 @Keep
 public final class WalkingRecord extends ActivityRecord {
 
@@ -34,21 +43,33 @@ public final class WalkingRecord extends ActivityRecord {
                 distance, 0.0, "", steps);
     }
 
+    /**
+     * @return Distance in kilometers (km)
+     */
     @Override
     public double getDistance() {
         return super.getDistance();
     }
 
+    /**
+     * @param distance Distance in kilometers (km)
+     */
     @Override
     public void setDistance(double distance) {
         super.setDistance(distance);
     }
 
+    /**
+     * @return Number of steps
+     */
     @Override
     public long getSteps() {
         return super.getSteps();
     }
 
+    /**
+     * @param steps Number of steps
+     */
     @Override
     public void setSteps(long steps) {
         super.setSteps(steps);

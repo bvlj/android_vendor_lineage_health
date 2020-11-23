@@ -20,6 +20,7 @@ import android.content.ContentValues;
 
 import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
+import androidx.annotation.RestrictTo;
 
 import org.lineageos.mod.health.HealthStore;
 import org.lineageos.mod.health.common.values.annotations.BreathingMetric;
@@ -28,6 +29,11 @@ import org.lineageos.mod.health.common.db.RecordColumns;
 
 import java.util.Objects;
 
+/**
+ * Generic Breathing record.
+ *
+ * @see BreathingMetric
+ */
 @Keep
 public class BreathingRecord extends Record {
 
@@ -35,6 +41,10 @@ public class BreathingRecord extends Record {
     private String notes;
     private double value;
 
+    /**
+     * @hide
+     */
+    @RestrictTo(RestrictTo.Scope.LIBRARY)
     public BreathingRecord(long id, @BreathingMetric int metric, long time,
                            @NonNull String notes, double value) {
         super(id, metric, time);

@@ -18,9 +18,22 @@ package org.lineageos.mod.health.sdk.model.records.heartblood;
 
 import androidx.annotation.Keep;
 
-import org.lineageos.mod.health.common.values.MealRelation;
 import org.lineageos.mod.health.common.Metric;
+import org.lineageos.mod.health.common.values.MealRelation;
 
+/**
+ * Blood-alcohol concentration record.
+ *
+ * <ul>
+ *     <li>{@link Long} id: db identifier (default to <code>0L</code>)</li>
+ *     <li>{@link Long} time: timestamp ({@link System#currentTimeMillis()})</li>
+ *     <li>{@link Double} value: BAC percent value (range 0.00 .. 1.00)</li>
+ * </ul>
+ *
+ * <a href="https://en.wikipedia.org/wiki/Blood_alcohol_content">More info</a>
+ *
+ * @see Metric#BLOOD_ALCOHOL_CONCENTRATION
+ */
 @Keep
 public final class BloodAlcoholConcentrationRecord extends HeartBloodRecord {
 
@@ -29,11 +42,17 @@ public final class BloodAlcoholConcentrationRecord extends HeartBloodRecord {
                 MealRelation.UNKNOWN, 0, 0, value);
     }
 
+    /**
+     * @return BAC percent value (range 0.00 .. 1.00)
+     */
     @Override
     public double getValue() {
         return super.getValue();
     }
 
+    /**
+     * @param value BAC percent value (range 0.00 .. 1.00)
+     */
     @Override
     public void setValue(double value) {
         super.setValue(value);

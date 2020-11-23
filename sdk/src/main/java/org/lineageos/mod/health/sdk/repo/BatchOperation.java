@@ -20,6 +20,9 @@ import androidx.annotation.NonNull;
 
 import org.lineageos.mod.health.sdk.model.records.Record;
 
+/**
+ * @hide
+ */
 abstract class BatchOperation {
     @NonNull
     final Record record;

@@ -23,6 +23,19 @@ import org.lineageos.mod.health.common.values.MenstrualCyclePhysicalSymptoms;
 import org.lineageos.mod.health.common.values.SexualActivity;
 import org.lineageos.mod.health.common.Metric;
 
+/**
+ * Mass record.
+ *
+ * <ul>
+ *     <li>{@link Long} id: db identifier (default to <code>0L</code>)</li>
+ *     <li>{@link Long} time: timestamp ({@link System#currentTimeMillis()})</li>
+ *     <li>{@link Double} value: mass in kilograms (kg)</li>
+ * </ul>
+ *
+ * <a href="https://en.wikipedia.org/wiki/Human_body_weight">More info</a>
+ *
+ * @see Metric#WEIGHT
+ */
 @Keep
 public final class WeightRecord extends BodyRecord {
 
@@ -30,5 +43,21 @@ public final class WeightRecord extends BodyRecord {
         super(id, Metric.WEIGHT, time, "",
                 MenstrualCycleOtherSymptoms.NONE, MenstrualCyclePhysicalSymptoms.NONE,
                 SexualActivity.NONE, value);
+    }
+
+    /**
+     * @return Mass in kilograms (kg)
+     */
+    @Override
+    public double getValue() {
+        return super.getValue();
+    }
+
+    /**
+     * @param value Mass in kilograms (kg)
+     */
+    @Override
+    public void setValue(double value) {
+        super.setValue(value);
     }
 }

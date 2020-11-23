@@ -20,6 +20,7 @@ import android.content.ContentValues;
 
 import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
+import androidx.annotation.RestrictTo;
 
 import org.lineageos.mod.health.HealthStore;
 import org.lineageos.mod.health.common.db.RecordColumns;
@@ -31,6 +32,11 @@ import org.lineageos.mod.health.sdk.model.records.Record;
 
 import java.util.Objects;
 
+/**
+ * Generic Body record.
+ *
+ * @see BodyMetric
+ */
 @Keep
 public class BodyRecord extends Record {
 
@@ -44,6 +50,10 @@ public class BodyRecord extends Record {
     private int sexualActivity;
     private double value;
 
+    /**
+     * @hide
+     */
+    @RestrictTo(RestrictTo.Scope.LIBRARY)
     public BodyRecord(long id, @BodyMetric int metric, long time, @NonNull String notes,
                       @MenstrualCycleOtherSymptoms.Value int otherSymptoms,
                       @MenstrualCyclePhysicalSymptoms.Value int physicalSymptoms,
@@ -93,11 +103,11 @@ public class BodyRecord extends Record {
         this.sexualActivity = sexualActivity;
     }
 
-    public double getValue() {
+    protected double getValue() {
         return value;
     }
 
-    public void setValue(double value) {
+    protected void setValue(double value) {
         this.value = value;
     }
 

@@ -24,12 +24,16 @@ import org.lineageos.mod.health.common.Metric;
  * Running activity.
  *
  * <ul>
- *     <li>Duration in minutes</li>
- *     <li>Distance in km</li>
- *     <li>Average speed in km/h</li>
+ *     <li>{@link Long} id: db identifier (default to <code>0L</code>)</li>
+ *     <li>{@link Long} time: timestamp ({@link System#currentTimeMillis()})</li>
+ *     <li>{@link Long} duration: duration in milliseconds (ms)</li>
+ *     <li>{@link Double} distance: distance in kilometers (km)</li>
+ *     <li>{@link Double} avg_speed: average speed in kilometers per hour (km/h)</li>
  * </ul>
  *
  * <a href="https://en.wikipedia.org/wiki/Running">More info</a>
+ *
+ * @see Metric#RUNNING
  */
 @Keep
 public final class RunningRecord extends ActivityRecord {
@@ -40,21 +44,33 @@ public final class RunningRecord extends ActivityRecord {
                 distance, 0, "", 0);
     }
 
+    /**
+     * @return Average speed in kilometers per hour (km/h)
+     */
     @Override
     public double getAvgSpeed() {
         return super.getAvgSpeed();
     }
 
+    /**
+     * @param avgSpeed Average speed in kilometers per hour (km/h)
+     */
     @Override
     public void setAvgSpeed(double avgSpeed) {
         super.setAvgSpeed(avgSpeed);
     }
 
+    /**
+     * @return Distance in kilometers (km)
+     */
     @Override
     public double getDistance() {
         return super.getDistance();
     }
 
+    /**
+     * @param distance Distance in kilometers (km)
+     */
     @Override
     public void setDistance(double distance) {
         super.setDistance(distance);

@@ -37,6 +37,8 @@ import org.lineageos.mod.health.sdk.model.profile.MedicalProfile;
  * <p>
  * Operations performed in this class should be executed outside of the
  * main / UI thread.
+ *
+ * @see MedicalProfile
  */
 @Keep
 public final class MedicalProfileRepo {

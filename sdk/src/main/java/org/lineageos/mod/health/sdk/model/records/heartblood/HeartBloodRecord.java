@@ -20,15 +20,26 @@ import android.content.ContentValues;
 
 import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
+import androidx.annotation.RestrictTo;
 
 import org.lineageos.mod.health.HealthStore;
+import org.lineageos.mod.health.common.db.RecordColumns;
 import org.lineageos.mod.health.common.values.MealRelation;
 import org.lineageos.mod.health.common.values.annotations.HeartBloodMetric;
 import org.lineageos.mod.health.sdk.model.records.Record;
-import org.lineageos.mod.health.common.db.RecordColumns;
 
 import java.util.Objects;
 
+/**
+ * Generic Heart &amp; Blood record.
+ *
+ * @see HeartBloodMetric
+ * @see BloodAlcoholConcentrationRecord
+ * @see BloodPressureRecord
+ * @see GlucoseRecord
+ * @see HeartRateRecord
+ * @see PerfusionIndexRecord
+ */
 @Keep
 public class HeartBloodRecord extends Record {
 
@@ -38,6 +49,10 @@ public class HeartBloodRecord extends Record {
     private long diastolic;
     private double value;
 
+    /**
+     * @hide
+     */
+    @RestrictTo(RestrictTo.Scope.LIBRARY)
     public HeartBloodRecord(long id, @HeartBloodMetric int metric, long time,
                             @MealRelation.Value int mealRelation,
                             long systolic, long diastolic,

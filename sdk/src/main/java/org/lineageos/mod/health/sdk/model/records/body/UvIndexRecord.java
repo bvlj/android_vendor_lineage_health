@@ -18,11 +18,24 @@ package org.lineageos.mod.health.sdk.model.records.body;
 
 import androidx.annotation.Keep;
 
+import org.lineageos.mod.health.common.Metric;
 import org.lineageos.mod.health.common.values.MenstrualCycleOtherSymptoms;
 import org.lineageos.mod.health.common.values.MenstrualCyclePhysicalSymptoms;
 import org.lineageos.mod.health.common.values.SexualActivity;
-import org.lineageos.mod.health.common.Metric;
 
+/**
+ * Uv Index record.
+ *
+ * <ul>
+ *     <li>{@link Long} id: db identifier (default to <code>0L</code>)</li>
+ *     <li>{@link Long} time: timestamp ({@link System#currentTimeMillis()})</li>
+ *     <li>{@link Double} value: UV index value (range 0.0 .. 11.0+)</li>
+ * </ul>
+ *
+ * <a href="https://en.wikipedia.org/wiki/Ultraviolet_index">More info</a>
+ *
+ * @see Metric#UV_INDEX
+ */
 @Keep
 public final class UvIndexRecord extends BodyRecord {
 
@@ -30,5 +43,21 @@ public final class UvIndexRecord extends BodyRecord {
         super(id, Metric.UV_INDEX, time, "",
                 MenstrualCycleOtherSymptoms.NONE, MenstrualCyclePhysicalSymptoms.NONE,
                 SexualActivity.NONE, value);
+    }
+
+    /**
+     * @return UV index value (range 0.0 .. 11.0+)
+     */
+    @Override
+    public double getValue() {
+        return super.getValue();
+    }
+
+    /**
+     * @param value UV index value (range 0.0 .. 11.0+)
+     */
+    @Override
+    public void setValue(double value) {
+        super.setValue(value);
     }
 }
