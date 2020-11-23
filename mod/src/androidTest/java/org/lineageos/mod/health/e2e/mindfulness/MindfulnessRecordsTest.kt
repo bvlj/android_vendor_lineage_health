@@ -82,22 +82,26 @@ class MindfulnessRecordsTest {
     fun testBatch() {
         repo.deleteAll()
 
-        val idA = repo.insert(MoodRecord(
-            0L,
-            System.currentTimeMillis(),
-            MoodLevel.HAPPY,
-            "A note"
-        ))
+        val idA = repo.insert(
+            MoodRecord(
+                0L,
+                System.currentTimeMillis(),
+                MoodLevel.HAPPY,
+                "A note"
+            )
+        )
         val a = repo.getMoodRecord(idA)
         if (a == null) {
             Assert.fail("a == null")
             return
         }
-        val idB = repo.insert(MeditationRecord(
-            0L,
-            System.currentTimeMillis(),
-            1234560L
-        ))
+        val idB = repo.insert(
+            MeditationRecord(
+                0L,
+                System.currentTimeMillis(),
+                1234560L
+            )
+        )
         val b = repo.getMeditationRecord(idB)
         if (b == null) {
             Assert.fail("b == null")

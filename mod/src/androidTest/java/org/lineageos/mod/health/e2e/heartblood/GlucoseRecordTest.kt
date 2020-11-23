@@ -149,5 +149,4 @@ class GlucoseRecordTest {
         )
         Assert.fail()
     }
-
 }

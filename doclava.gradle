@@ -41,8 +41,7 @@ task javadoc(type: Javadoc, dependsOn: project.configurations.doclava) {
 }
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
-    //noinspection GrDeprecatedAPIUsage
-    classifier = 'javadoc'
+    archiveClassifier.set("javadoc")
     from javadoc.destinationDir
 }
 

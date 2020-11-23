@@ -167,5 +167,4 @@ class MenstrualCycleRecordTest {
         )
         Assert.fail()
     }
-
 }

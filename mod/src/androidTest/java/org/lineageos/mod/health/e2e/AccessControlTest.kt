@@ -60,11 +60,14 @@ class AccessControlTest {
     @Test
     fun blockRead() {
         // Make weight write-only
-        cr.insert(HealthStoreUri.ACCESS, ContentValues().apply {
-            put(AccessColumns.PKG_NAME, myPkgName)
-            put(AccessColumns.METRIC, Metric.WEIGHT)
-            put(AccessColumns.PERMISSIONS, Permission.WRITE)
-        })
+        cr.insert(
+            HealthStoreUri.ACCESS,
+            ContentValues().apply {
+                put(AccessColumns.PKG_NAME, myPkgName)
+                put(AccessColumns.METRIC, Metric.WEIGHT)
+                put(AccessColumns.PERMISSIONS, Permission.WRITE)
+            }
+        )
 
         // Should be able to insert…
         val idA = bodyRepo.insert(
@@ -88,11 +91,15 @@ class AccessControlTest {
 
         // Grant permission again
         val path = Uri.withAppendedPath(HealthStoreUri.ACCESS, "$myPkgName/${Metric.WEIGHT}")
-        val updated = cr.update(path, ContentValues().apply {
-            put(AccessColumns.PKG_NAME, myPkgName)
-            put(AccessColumns.METRIC, Metric.WEIGHT)
-            put(AccessColumns.PERMISSIONS, Permission.ALL)
-        }, null, null)
+        val updated = cr.update(
+            path,
+            ContentValues().apply {
+                put(AccessColumns.PKG_NAME, myPkgName)
+                put(AccessColumns.METRIC, Metric.WEIGHT)
+                put(AccessColumns.PERMISSIONS, Permission.ALL)
+            },
+            null, null
+        )
         Assert.assertTrue(updated > 0)
 
         Assert.assertFalse(bodyRepo.allWeightRecords.isEmpty())
@@ -121,11 +128,14 @@ class AccessControlTest {
         Assert.assertNotEquals(-1L, idB)
 
         // Make weight read-only
-        cr.insert(HealthStoreUri.ACCESS, ContentValues().apply {
-            put(AccessColumns.PKG_NAME, myPkgName)
-            put(AccessColumns.METRIC, Metric.WEIGHT)
-            put(AccessColumns.PERMISSIONS, Permission.READ)
-        })
+        cr.insert(
+            HealthStoreUri.ACCESS,
+            ContentValues().apply {
+                put(AccessColumns.PKG_NAME, myPkgName)
+                put(AccessColumns.METRIC, Metric.WEIGHT)
+                put(AccessColumns.PERMISSIONS, Permission.READ)
+            }
+        )
 
         // Should be able to read…
         val a = bodyRepo.getWeightRecord(idA)
@@ -150,11 +160,15 @@ class AccessControlTest {
 
         // Grant permission again
         val path = Uri.withAppendedPath(HealthStoreUri.ACCESS, "$myPkgName/${Metric.WEIGHT}")
-        val updated = cr.update(path, ContentValues().apply {
-            put(AccessColumns.PKG_NAME, myPkgName)
-            put(AccessColumns.METRIC, Metric.WEIGHT)
-            put(AccessColumns.PERMISSIONS, Permission.ALL)
-        }, null, null)
+        val updated = cr.update(
+            path,
+            ContentValues().apply {
+                put(AccessColumns.PKG_NAME, myPkgName)
+                put(AccessColumns.METRIC, Metric.WEIGHT)
+                put(AccessColumns.PERMISSIONS, Permission.ALL)
+            },
+            null, null
+        )
         Assert.assertTrue(updated > 0)
 
         // It should be possible to write again
@@ -198,13 +212,15 @@ class AccessControlTest {
         Assert.assertFalse(bodyRepo.allWeightRecords.isEmpty())
         Assert.assertFalse(bodyRepo.allBodyTemperatureRecords.isEmpty())
 
-
         // Revoke weight access
-        cr.insert(HealthStoreUri.ACCESS, ContentValues().apply {
-            put(AccessColumns.PKG_NAME, myPkgName)
-            put(AccessColumns.METRIC, Metric.WEIGHT)
-            put(AccessColumns.PERMISSIONS, Permission.NONE)
-        })
+        cr.insert(
+            HealthStoreUri.ACCESS,
+            ContentValues().apply {
+                put(AccessColumns.PKG_NAME, myPkgName)
+                put(AccessColumns.METRIC, Metric.WEIGHT)
+                put(AccessColumns.PERMISSIONS, Permission.NONE)
+            }
+        )
 
         // Shouldn't be able to read weight records…
         Assert.assertNull(bodyRepo.getWeightRecord(idA))
@@ -225,11 +241,15 @@ class AccessControlTest {
 
         // Grant permission again
         val path = Uri.withAppendedPath(HealthStoreUri.ACCESS, "$myPkgName/${Metric.WEIGHT}")
-        val updated = cr.update(path, ContentValues().apply {
-            put(AccessColumns.PKG_NAME, myPkgName)
-            put(AccessColumns.METRIC, Metric.WEIGHT)
-            put(AccessColumns.PERMISSIONS, Permission.ALL)
-        }, null, null)
+        val updated = cr.update(
+            path,
+            ContentValues().apply {
+                put(AccessColumns.PKG_NAME, myPkgName)
+                put(AccessColumns.METRIC, Metric.WEIGHT)
+                put(AccessColumns.PERMISSIONS, Permission.ALL)
+            },
+            null, null
+        )
         Assert.assertTrue(updated > 0)
 
         // It should be possible to write…

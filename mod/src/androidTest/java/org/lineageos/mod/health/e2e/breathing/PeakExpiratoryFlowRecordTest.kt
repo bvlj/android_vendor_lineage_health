@@ -142,5 +142,4 @@ class PeakExpiratoryFlowRecordTest {
         )
         Assert.fail()
     }
-
 }

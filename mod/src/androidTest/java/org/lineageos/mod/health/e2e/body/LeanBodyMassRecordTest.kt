@@ -133,11 +133,13 @@ class LeanBodyMassRecordTest {
 
     @Test(expected = Validator.ValidationException::class)
     fun testValidator() {
-        repo.insert(LeanBodyMassRecord(
-            0L,
-            System.currentTimeMillis(),
-            11.8,
-        ))
+        repo.insert(
+            LeanBodyMassRecord(
+                0L,
+                System.currentTimeMillis(),
+                11.8,
+            )
+        )
         Assert.fail()
     }
 }

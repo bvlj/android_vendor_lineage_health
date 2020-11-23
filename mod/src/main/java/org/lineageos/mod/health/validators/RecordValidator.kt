@@ -98,21 +98,21 @@ object RecordValidator : Validator() {
         fun validateAvgSpeed(cv: ContentValues) {
             val value = cv.getAsDouble(RecordColumns.AVG_SPEED) ?: 0.0
             if (value < 0.0 || value > 2.998e8) {
-                throw ValidationException("Invalid speed (was ${value})")
+                throw ValidationException("Invalid speed (was $value)")
             }
         }
 
         fun validateCalories(cv: ContentValues) {
             val value = cv.getAsInteger(RecordColumns.CALORIES) ?: 0
             if (value < 0) {
-                throw ValidationException("Invalid negative calories (was ${value})")
+                throw ValidationException("Invalid negative calories (was $value)")
             }
         }
 
         fun validateDistance(cv: ContentValues) {
             val value = cv.getAsDouble(RecordColumns.DISTANCE) ?: 0.0
             if (value < 0.0) {
-                throw ValidationException("Invalid negative distance (was ${value})")
+                throw ValidationException("Invalid negative distance (was $value)")
             }
         }
 

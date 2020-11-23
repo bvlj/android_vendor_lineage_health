@@ -143,13 +143,15 @@ class RunningRecordTest {
 
     @Test(expected = Validator.ValidationException::class)
     fun testValidator() {
-        repo.insert(RunningRecord(
-            0L,
-            System.currentTimeMillis(),
-            4L,
-            -88.2,
-            -33.3,
-        ))
+        repo.insert(
+            RunningRecord(
+                0L,
+                System.currentTimeMillis(),
+                4L,
+                -88.2,
+                -33.3,
+            )
+        )
         Assert.fail()
     }
 }
