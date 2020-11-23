@@ -30,7 +30,9 @@ import org.lineageos.mod.health.sdk.model.records.mindfulness.MeditationRecord;
 import org.lineageos.mod.health.sdk.model.records.mindfulness.MindfulnessRecord;
 import org.lineageos.mod.health.sdk.model.records.mindfulness.MoodRecord;
 import org.lineageos.mod.health.sdk.model.records.mindfulness.SleepRecord;
+import org.lineageos.mod.health.sdk.util.RecordTimeComparator;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -79,6 +81,17 @@ public final class MindfulnessRecordsRepo extends RecordsRepo<MindfulnessRecord>
         }
 
         return currentInstance;
+    }
+
+    @NonNull
+    @Override
+    public List<MindfulnessRecord> getAll() {
+        final List<MindfulnessRecord> list = new ArrayList<>();
+        list.addAll(getAllMeditationRecords());
+        list.addAll(getAllMoodRecords());
+        list.addAll(getAllSleepRecords());
+        list.sort(new RecordTimeComparator());
+        return list;
     }
 
     @NonNull

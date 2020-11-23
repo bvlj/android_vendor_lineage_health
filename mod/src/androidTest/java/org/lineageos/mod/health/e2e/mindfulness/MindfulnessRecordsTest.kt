@@ -80,11 +80,7 @@ class MindfulnessRecordsTest {
 
     @Test
     fun testBatch() {
-        repo.apply {
-            allMeditationRecords.forEach { repo.delete(it) }
-            allMoodRecords.forEach { repo.delete(it) }
-            allSleepRecords.forEach { repo.delete(it) }
-        }
+        repo.deleteAll()
 
         val idA = repo.insert(MoodRecord(
             0L,
@@ -120,11 +116,8 @@ class MindfulnessRecordsTest {
         Assert.assertEquals(1, repo.allMeditationRecords.size)
         Assert.assertEquals(2, repo.allMoodRecords.size)
         Assert.assertEquals(1, repo.allSleepRecords.size)
+        Assert.assertEquals(4, repo.all.size)
 
-        repo.apply {
-            allMeditationRecords.forEach { repo.delete(it) }
-            allMoodRecords.forEach { repo.delete(it) }
-            allSleepRecords.forEach { repo.delete(it) }
-        }
+        repo.deleteAll()
     }
 }

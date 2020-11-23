@@ -28,6 +28,8 @@ import android.os.RemoteException;
 import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RestrictTo;
+import androidx.annotation.VisibleForTesting;
 
 import org.lineageos.mod.health.common.db.RecordColumns;
 import org.lineageos.mod.health.common.values.annotations.ActivityMetric;
@@ -53,19 +55,7 @@ public abstract class RecordsRepo<T extends Record> {
     }
 
     @NonNull
-    public final List<T> getAll() {
-        final Cursor cursor = contentResolver.query(baseUri, null,
-                null, null, DEFAULT_ORDER);
-        if (cursor == null) {
-            return new ArrayList<>();
-        }
-
-        try {
-            return parseCursor(cursor);
-        } finally {
-            cursor.close();
-        }
-    }
+    public abstract List<T> getAll();
 
     public final long insert(@NonNull T record) {
         final ContentValues contentValues = record.toContentValues();
@@ -166,5 +156,21 @@ public abstract class RecordsRepo<T extends Record> {
     private Uri getUri(@ActivityMetric int metric, long id) {
         final String path = String.format(Locale.ROOT, "%1$d/%2$d", metric, id);
         return Uri.withAppendedPath(baseUri, path);
+    }
+
+
+    /* Test only */
+
+    @RestrictTo(RestrictTo.Scope.TESTS)
+    @VisibleForTesting
+    public boolean deleteAll()  {
+        final List<T> records = getAll();
+        try {
+            executeBatch(composer -> records.forEach(composer::delete));
+        } catch (OperationApplicationException | RemoteException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 }

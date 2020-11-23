@@ -32,7 +32,9 @@ import org.lineageos.mod.health.sdk.model.records.breathing.OxygenSaturationReco
 import org.lineageos.mod.health.sdk.model.records.breathing.PeakExpiratoryFlowRecord;
 import org.lineageos.mod.health.sdk.model.records.breathing.RespiratoryRateRecord;
 import org.lineageos.mod.health.sdk.model.records.breathing.VitalCapacityRecord;
+import org.lineageos.mod.health.sdk.util.RecordTimeComparator;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -83,6 +85,19 @@ public final class BreathingRecordsRepo extends RecordsRepo<BreathingRecord> {
         }
 
         return currentInstance;
+    }
+
+    @NonNull
+    @Override
+    public List<BreathingRecord> getAll() {
+        final List<BreathingRecord> list = new ArrayList<>();
+        list.addAll(getAllInhalerUsageRecords());
+        list.addAll(getAllOxygenSaturationRecords());
+        list.addAll(getAllPeakExpiratoryFlowRecords());
+        list.addAll(getAllRespiratoryRateRecords());
+        list.addAll(getAllVitalCapacityRecords());
+        list.sort(new RecordTimeComparator());
+        return list;
     }
 
     @NonNull

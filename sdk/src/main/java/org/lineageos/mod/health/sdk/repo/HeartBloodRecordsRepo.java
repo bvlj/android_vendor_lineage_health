@@ -32,7 +32,9 @@ import org.lineageos.mod.health.sdk.model.records.heartblood.GlucoseRecord;
 import org.lineageos.mod.health.sdk.model.records.heartblood.HeartBloodRecord;
 import org.lineageos.mod.health.sdk.model.records.heartblood.HeartRateRecord;
 import org.lineageos.mod.health.sdk.model.records.heartblood.PerfusionIndexRecord;
+import org.lineageos.mod.health.sdk.util.RecordTimeComparator;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -83,6 +85,19 @@ public final class HeartBloodRecordsRepo extends RecordsRepo<HeartBloodRecord> {
         }
 
         return currentInstance;
+    }
+
+    @NonNull
+    @Override
+    public List<HeartBloodRecord> getAll() {
+        final List<HeartBloodRecord> list = new ArrayList<>();
+        list.addAll(getAllBloodAlcoholConcentrationRecords());
+        list.addAll(getAllBloodPressureRecords());
+        list.addAll(getAllGlucoseRecords());
+        list.addAll(getAllHeartRateRecords());
+        list.addAll(getAllPerfusionIndexRecords());
+        list.sort(new RecordTimeComparator());
+        return list;
     }
 
     @NonNull

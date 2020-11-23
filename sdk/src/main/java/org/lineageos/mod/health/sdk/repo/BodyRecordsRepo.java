@@ -35,7 +35,9 @@ import org.lineageos.mod.health.sdk.model.records.body.MenstrualCycleRecord;
 import org.lineageos.mod.health.sdk.model.records.body.UvIndexRecord;
 import org.lineageos.mod.health.sdk.model.records.body.WaterIntakeRecord;
 import org.lineageos.mod.health.sdk.model.records.body.WeightRecord;
+import org.lineageos.mod.health.sdk.util.RecordTimeComparator;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -89,6 +91,22 @@ public final class BodyRecordsRepo extends RecordsRepo<BodyRecord> {
         }
 
         return currentInstance;
+    }
+
+    @NonNull
+    @Override
+    public List<BodyRecord> getAll() {
+        final List<BodyRecord> list = new ArrayList<>();
+        list.addAll(getAllAbdominalCircumferenceRecords());
+        list.addAll(getAllBodyMassIndexRecords());
+        list.addAll(getAllBodyTemperatureRecords());
+        list.addAll(getAllLeanBodyMassRecords());
+        list.addAll(getAllMenstrualCycleRecords());
+        list.addAll(getAllUvIndexRecords());
+        list.addAll(getAllWaterIntakeRecords());
+        list.addAll(getAllWeightRecords());
+        list.sort(new RecordTimeComparator());
+        return list;
     }
 
     @NonNull

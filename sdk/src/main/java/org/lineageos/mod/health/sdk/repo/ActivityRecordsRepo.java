@@ -16,12 +16,8 @@
 
 package org.lineageos.mod.health.sdk.repo;
 
-import android.content.ContentProviderOperation;
-import android.content.ContentProviderResult;
 import android.content.ContentResolver;
-import android.content.OperationApplicationException;
 import android.database.Cursor;
-import android.os.RemoteException;
 
 import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
@@ -35,7 +31,9 @@ import org.lineageos.mod.health.sdk.model.records.activity.CyclingRecord;
 import org.lineageos.mod.health.sdk.model.records.activity.RunningRecord;
 import org.lineageos.mod.health.sdk.model.records.activity.WalkingRecord;
 import org.lineageos.mod.health.sdk.model.records.activity.WorkoutRecord;
+import org.lineageos.mod.health.sdk.util.RecordTimeComparator;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -85,6 +83,18 @@ public final class ActivityRecordsRepo extends RecordsRepo<ActivityRecord> {
         }
 
         return currentInstance;
+    }
+
+    @NonNull
+    @Override
+    public List<ActivityRecord> getAll() {
+        final List<ActivityRecord> list = new ArrayList<>();
+        list.addAll(getAllCyclingRecords());
+        list.addAll(getAllRunningRecords());
+        list.addAll(getAllWalkingRecords());
+        list.addAll(getAllWorkoutRecords());
+        list.sort(new RecordTimeComparator());
+        return list;
     }
 
     @NonNull
