@@ -18,6 +18,7 @@ package org.lineageos.mod.health.access
 
 import android.annotation.SuppressLint
 import android.content.ContentResolver
+import android.net.Uri
 import org.lineageos.mod.health.common.values.annotations.HealthStorePermission
 import org.lineageos.mod.health.common.values.annotations.MetricType
 import org.lineageos.mod.health.common.values.Permission
@@ -39,11 +40,11 @@ internal class AccessManager(
     @HealthStorePermission
     @SuppressLint("Recycle") // AStudio goes mad over the elvis operator
     private fun getPermissionsFor(pkgName: String, @MetricType metric: Int): Int {
+        val uri = Uri.withAppendedPath(HealthStoreUri.ACCESS, "$pkgName/$metric")
         val query = contentResolver.query(
-            HealthStoreUri.ACCESS,
+            uri,
             arrayOf(AccessColumns.PERMISSIONS),
-            "${AccessColumns.PKG_NAME} = ? AND ${AccessColumns.METRIC} = ?",
-            arrayOf(pkgName, metric.toString()),
+            null,
             null
         ) ?: return Permission.NONE
 

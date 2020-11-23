@@ -24,10 +24,10 @@ internal object AccessTable : Table {
     const val NAME = "access"
 
     private const val CREATE_CMD = "CREATE TABLE IF NOT EXISTS $NAME (" +
-        "${AccessColumns._ID} INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, " +
         "${AccessColumns.PKG_NAME} TEXT NOT NULL, " +
         "${AccessColumns.METRIC} INTEGER NOT NULL, " +
-        "${AccessColumns.PERMISSIONS} INTEGER NOT NULL DEFAULT ${Permission.ALL} " +
+        "${AccessColumns.PERMISSIONS} INTEGER NOT NULL DEFAULT ${Permission.ALL}, " +
+        "PRIMARY KEY (${AccessColumns.PKG_NAME}, ${AccessColumns.METRIC}) " +
         ")"
 
     override fun onCreate(db: SQLiteDatabase) {

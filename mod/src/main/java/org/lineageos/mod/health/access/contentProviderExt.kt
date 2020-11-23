@@ -24,7 +24,7 @@ internal fun ContentProvider.canRead(
 ): Boolean {
     val callingPkg = callingPackage ?: return false
     val metricInt = metric.toIntOrNull()
-    return metricInt != null && !accessManager.canRead(callingPkg, metricInt)
+    return metricInt != null && accessManager.canRead(callingPkg, metricInt)
 }
 
 internal fun ContentProvider.canWrite(
@@ -33,5 +33,5 @@ internal fun ContentProvider.canWrite(
 ): Boolean {
     val callingPkg = callingPackage ?: return false
     val metricInt = metric.toIntOrNull()
-    return metricInt != null && !accessManager.canWrite(callingPkg, metricInt)
+    return metricInt != null && accessManager.canWrite(callingPkg, metricInt)
 }

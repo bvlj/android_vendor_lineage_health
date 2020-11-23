@@ -86,7 +86,7 @@ internal class AccessContentProvider : ContentProvider() {
             val db = accessDbHelper.getReadableDatabase(keyMaster.getDbKey())
 
             val cursor = qb.query(
-                db, projection, localSelection, selectionArgs,
+                db, projection, localSelection, localSelectionArgs,
                 null, null, localSortOrder
             )
             cursor.setNotificationUri(context!!.contentResolver, uri)
@@ -95,8 +95,6 @@ internal class AccessContentProvider : ContentProvider() {
     }
 
     override fun insert(uri: Uri, values: ContentValues?): Uri? {
-        if (uriMatcher.match(uri) != UriConst.MATCH_ALL) return null
-
         return withMyId {
             val db = accessDbHelper.getWritableDatabase(keyMaster.getDbKey())
             val rowId = db.insert(AccessTable.NAME, null, values)
@@ -123,14 +121,18 @@ internal class AccessContentProvider : ContentProvider() {
                 // do nothing
             }
 
-            UriConst.MATCH_ID -> {
+            UriConst.MATCH_ITEM -> {
                 if (selection != null || selectionArgs != null) {
                     throw UnsupportedOperationException(
                         "Cannot update URI $uri with a WHERE clause"
                     )
                 }
-                localSelection = "${AccessColumns._ID} = ?"
-                localSelectionArgs = arrayOf(segments[segments.size - 1])
+
+                localSelection = " ${AccessColumns.PKG_NAME} = ? AND ${AccessColumns.METRIC} = ?"
+
+                val pkg = segments[segments.size - 2]
+                val metric = segments[segments.size - 1]
+                localSelectionArgs = arrayOf(pkg, metric)
             }
 
             else -> throw UnsupportedOperationException("Cannot update this URI: $uri")
@@ -157,14 +159,18 @@ internal class AccessContentProvider : ContentProvider() {
                 // do nothing
             }
 
-            UriConst.MATCH_ID -> {
+            UriConst.MATCH_ITEM -> {
                 if (localSelection.isNotEmpty() || localSelectionArgs.isNotEmpty()) {
                     throw UnsupportedOperationException(
                         "Cannot delete URI $uri with a WHERE clause"
                     )
                 }
-                localSelection = "${AccessColumns._ID} = ?"
-                localSelectionArgs = arrayOf(segments[segments.size - 1])
+
+                localSelection = " ${AccessColumns.PKG_NAME} = ? AND ${AccessColumns.METRIC} = ?"
+
+                val pkg = segments[segments.size - 2]
+                val metric = segments[segments.size - 1]
+                localSelectionArgs = arrayOf(pkg, metric)
             }
 
             else -> throw UnsupportedOperationException("Cannot delete this URI: $uri")
@@ -182,7 +188,6 @@ internal class AccessContentProvider : ContentProvider() {
 
     override fun getType(uri: Uri) = when (uriMatcher.match(uri)) {
         UriConst.MATCH_ALL -> "vnd.android.cursor.dir"
-        UriConst.MATCH_ID,
         UriConst.MATCH_ITEM -> "vnd.android.cursor.item"
         else -> null
     }
@@ -190,7 +195,6 @@ internal class AccessContentProvider : ContentProvider() {
     companion object {
         private val uriMatcher = UriMatcher(UriMatcher.NO_MATCH).apply {
             addURI(HealthStoreUri.Authority.ACCESS, "/all", UriConst.MATCH_ALL)
-            addURI(HealthStoreUri.Authority.ACCESS, "/#", UriConst.MATCH_ID)
             addURI(HealthStoreUri.Authority.ACCESS, "/*/#", UriConst.MATCH_ITEM)
         }
     }
