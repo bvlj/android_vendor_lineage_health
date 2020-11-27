@@ -19,4 +19,9 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
--keep public class org.lineageos.mod.* { *; }
+-keep class org.lineageos.mod.* { *; }
+-keep class net.sqlcipher.* { *; }
+-keep class net.sqlcipher.database.* { *; }
+-keepclassmembers class * {
+    native <methods>;
+}

@@ -29,7 +29,7 @@ android_app {
 
     manifest: "mod/src/main/AndroidManifest.xml",
     resource_dirs: [
-        "mod/src/main/res"
+        "mod/src/main/res",
     ],
     srcs: [
         "core/src/main/java/**/*.java",
@@ -42,21 +42,24 @@ android_app {
     privileged: true,
     product_specific: true,
     sdk_version: "current",
+    use_embedded_native_libs: true,
 
+    jni_libs: [
+        "libsqlcipher",
+    ],
+    kotlincflags: [
+        "-Xjvm-default=enable",
+    ],
     optimize: {
         proguard_flags_files: ["mod/proguard-rules.pro"],
     },
-
-    kotlincflags: [
-        "-Xjvm-default=enable"
+    required: [
+        "org.lineageos.mod.health.xml",
     ],
     static_libs: [
         "androidx.annotation_annotation",
         "org.lineageos.mod.health.ext.sqlite",
         "org.lineageos.mod.health.ext.sqlcipher",
-    ],
-    required: [
-        "org.lineageos.mod.health.xml",
     ],
 }
 
@@ -96,16 +99,36 @@ android_library {
 // SqLite - Android X
 android_library_import {
     name: "org.lineageos.mod.health.ext.sqlite",
-    aars: ["mod/libs/sqlite-2.1.0.aar"]
+    aars: ["mod/libs/sqlite-2.1.0.aar"],
     sdk_version: "28",
     min_sdk_version: "14",
 }
 
-// SqlCipher lib
+// SqlCipher
+cc_prebuilt_library_shared {
+    name: "libsqlcipher",
+    strip: {
+        none: true,
+    },
+    target: {
+        android_arm: {
+            srcs: ["mod/libs/sqlcipher/armeabi-v7a/libsqlcipher.so"],
+        },
+        android_arm64: {
+            srcs: ["mod/libs/sqlcipher/arm64-v8a/libsqlcipher.so"],
+        },
+        android_x86: {
+            srcs: ["mod/libs/sqlcipher/x86/libsqlcipher.so"],
+        },
+        android_x86_64: {
+            srcs: ["mod/libs/sqlcipher/x86_64/libsqlcipher.so"],
+        },
+    },
+}
+
 android_library_import {
     name: "org.lineageos.mod.health.ext.sqlcipher",
-    aars: ["mod/libs/sqlcipher-4.4.1.aar"]
+    aars: ["mod/libs/sqlcipher/sqlcipher-4.4.1.aar"],
     sdk_version: "26",
     min_sdk_version: "16",
 }
-
