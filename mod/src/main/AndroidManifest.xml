@@ -69,12 +69,17 @@
         android:protectionLevel="dangerous" />
 
     <application
-        android:name=".App"
         android:allowBackup="false"
         android:label="@string/app_name"
         android:allowClearUserData="false"
         tools:ignore="MissingApplicationIcon"
         tools:replace="android:allowBackup">
+
+        <provider
+            android:name=".providers.InitProvider"
+            android:authorities="org.lineageos.mod.health.init"
+            android:enabled="true"
+            android:exported="false" />
 
         <provider
             android:name=".providers.AccessContentProvider"
