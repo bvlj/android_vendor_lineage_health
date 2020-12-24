@@ -26,7 +26,7 @@ object Config {
     const val targetSdk = 29
 
     const val versionCode = 1
-    const val versionName = "1.0.0"
+    const val versionName = "1.0.0-alpha00"
 
     val javaVersion = JavaVersion.VERSION_1_8
 }
