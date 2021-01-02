@@ -11,7 +11,6 @@ Lineage Health Mod (HealthStore)
     - [core](#core)
     - [mod](#mod)
     - [sdk](#sdk)
-        - [sdk-ktx](#sdk-ktx)
 
 ## Info
 
@@ -55,7 +54,7 @@ applications" in order to allow the user to have complete control over the data 
 The following Android permissions are used by the Lineage Health platform
 
 - `lineageos.permission.HEALTH_ACCESS`
-    - Access: system, oem, signature
+    - Access: system, signature
     - Usage: Implement policies that define granular per-app access to each metric regardless of other permissions
 - `lineageos.permission.HEALTH_ACTIVITY`
     - Access: runtime (dangerous)
@@ -95,7 +94,7 @@ to generate a prebuilt apk using `./gradlew :mod:assemble`.
 
 ### SEPolicies
 
-Additional SEPolicies are required. This repository provides example implementation
+Additional SEPolicies are available. This repository provides example implementation
 of SEPolicies to increase the security of stored user data by restricting access to
 the Mod app data:
 
@@ -165,18 +164,3 @@ Provides simple APIs for the usage of the `ContentProvider`s through data object
 - Dependencies
     - [`:core`](#core)
         - [androidX/annotation](https://developer.android.com/jetpack/androidx/releases/annotation)
-
-
-#### :sdk-ktx
-
-Wraps provides extensions of repositories of the `:sdk` module that make use of Kotlin coroutines
-using `suspend` functions.
-
-- Language: Kotlin
-- Dependencies
-    - [`:sdk`](#sdk)
-        - [`:core`](#core)
-            - [androidX/annotation](https://developer.android.com/jetpack/androidx/releases/annotation)
-    - [kotlin/stdlib/jvm](https://github.com/JetBrains/kotlin/releases)
-    - [kotlinX/coroutines/jvm](https://github.com/Kotlin/kotlinx.coroutines/releases)
-    - [kotlinX/coroutines/android](https://github.com/Kotlin/kotlinx.coroutines/releases)

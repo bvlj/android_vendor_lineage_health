@@ -1,1 +1,0 @@
--keep public class org.lineageos.mod.* { *; }

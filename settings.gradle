@@ -16,6 +16,5 @@
 include ':core'
 include ':mod'
 include ':sdk'
-include ':sdk-ktx'
 
 rootProject.name = "HealthStore"
