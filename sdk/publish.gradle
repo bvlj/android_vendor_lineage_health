@@ -14,11 +14,12 @@
  * limitations under the License.
  */
 apply plugin: "maven-publish"
+apply plugin: "com.jfrog.bintray"
 
 import org.lineageos.build.Config
 
-def LIB_GROUP_ID = "org.lineageos.mod"
-def LIB_ARTIFACT_ID = "health-sdk"
+def LIB_GROUP_ID = "org.lineageos"
+def LIB_ARTIFACT_ID = "mod.health-sdk"
 def LIB_VERSION = Config.versionName
 
 task sourceJar(type: Jar) {
@@ -61,6 +62,29 @@ publishing {
                     node.appendNode("version", it.version)
                 }
             }
+        }
+    }
+}
+
+bintray {
+    def localProps = new Properties()
+    localProps.load(project.rootProject.file("local.properties").newDataInputStream())
+
+    user = localProps.getProperty("bintray.username", "")
+    key = localProps.getProperty("bintray.key", "")
+    publications = ["droidlib"]
+
+    pkg {
+        repo = "${LIB_GROUP_ID}"
+        name = "${LIB_ARTIFACT_ID}"
+        userOrg = localProps.getProperty("bintray.org", "")
+        licenses = ["Apache-2.0"]
+        vcsUrl = localProps.getProperty("github.url", "")
+
+        version {
+            name = "${LIB_VERSION}"
+            desc = "SDK version ${LIB_VERSION}"
+            released = new Date()
         }
     }
 }

@@ -42,6 +42,12 @@ object AndroidX {
     }
 }
 
+object Bintray {
+    private const val VERSION = "1.8.5"
+
+    const val gradlePlugin = "com.jfrog.bintray.gradle:gradle-bintray-plugin:$VERSION"
+}
+
 object Google {
 
     object DocLava {

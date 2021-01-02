@@ -15,6 +15,7 @@
  */
 
 import org.lineageos.build.AndroidX
+import org.lineageos.build.Bintray
 import org.lineageos.build.Google
 import org.lineageos.build.Kotlin
 
@@ -27,6 +28,7 @@ buildscript {
     dependencies {
         classpath AndroidX.gradlePlugin
         classpath Kotlin.gradlePlugin
+        classpath Bintray.gradlePlugin
     }
 }
 
