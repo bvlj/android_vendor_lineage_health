@@ -16,130 +16,57 @@
 
 package org.lineageos.mod.health.e2e.body
 
+import android.content.Context
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.platform.app.InstrumentationRegistry
-import org.junit.After
-import org.junit.Assert
-import org.junit.Before
-import org.junit.Test
 import org.junit.runner.RunWith
+import org.lineageos.mod.health.e2e.RecordTest
+import org.lineageos.mod.health.sdk.model.records.body.BodyRecord
 import org.lineageos.mod.health.sdk.model.records.body.UvIndexRecord
 import org.lineageos.mod.health.sdk.repo.BodyRecordsRepo
-import org.lineageos.mod.health.validators.Validator
 
 @RunWith(AndroidJUnit4::class)
-class UvIndexRecordTest {
-    private lateinit var repo: BodyRecordsRepo
+class UvIndexRecordTest : RecordTest<BodyRecord, UvIndexRecord, BodyRecordsRepo>() {
 
-    @Before
-    fun setup() {
-        val context = InstrumentationRegistry.getInstrumentation().targetContext
-        repo = BodyRecordsRepo.getInstance(context.contentResolver)
-
-        // Cleanup
-        repo.allUvIndexRecords.forEach { repo.delete(it) }
+    override fun getRepo(context: Context): BodyRecordsRepo {
+        return BodyRecordsRepo.getInstance(context.contentResolver)
     }
 
-    @After
-    fun tearDown() {
-        repo.allUvIndexRecords.forEach { repo.delete(it) }
-        Assert.assertEquals(0, repo.allUvIndexRecords.size)
+    override fun getById(id: Long): UvIndexRecord? {
+        return repo.getUvIndexRecord(id)
     }
 
-    @Test
-    fun testInsert() {
-        val a = UvIndexRecord(
+    override fun getAllInMetric(): List<UvIndexRecord> {
+        return repo.allUvIndexRecords
+    }
+
+    override fun testRecordA(): UvIndexRecord {
+        return UvIndexRecord(
             0L,
             System.currentTimeMillis(),
             3.1,
         )
-        val idA = repo.insert(a)
-        Assert.assertNotEquals(-1L, idA)
-        Assert.assertEquals(a, repo.getUvIndexRecord(idA))
     }
 
-    @Test
-    fun testMultipleInsert() {
-        val a = UvIndexRecord(
-            0L,
-            System.currentTimeMillis(),
-            3.1,
-        )
-        val b = UvIndexRecord(
+    override fun testRecordB(): UvIndexRecord {
+        return UvIndexRecord(
             0L,
             System.currentTimeMillis() - 1000L,
             4.2,
         )
-        val idA = repo.insert(a)
-        val idB = repo.insert(b)
-
-        Assert.assertNotEquals(-1L, idA)
-        Assert.assertNotEquals(-1L, idB)
-        Assert.assertNotEquals(idA, idB)
-
-        Assert.assertEquals(a, repo.getUvIndexRecord(idA))
-        Assert.assertEquals(b, repo.getUvIndexRecord(idB))
     }
 
-    @Test
-    fun testUpdate() {
-        val a = UvIndexRecord(
+    override fun invalidRecord(): UvIndexRecord {
+        return UvIndexRecord(
             0L,
             System.currentTimeMillis(),
-            3.1,
+            -6.8,
         )
-        val idA = repo.insert(a)
-        Assert.assertNotEquals(-1L, idA)
-        val fromDb = repo.getUvIndexRecord(idA)
-        if (fromDb == null) {
-            Assert.fail("fromDb == null")
-            return
-        }
+    }
 
-        Assert.assertEquals(a, fromDb)
-        fromDb.apply {
+    override fun updateTestRecord(record: UvIndexRecord) {
+        record.apply {
             time = System.currentTimeMillis()
             value += 0.01
         }
-        Assert.assertNotEquals(a, fromDb)
-        Assert.assertTrue(repo.update(fromDb))
-        Assert.assertEquals(fromDb, repo.getUvIndexRecord(idA))
-    }
-
-    @Test
-    fun testDelete() {
-        val a = UvIndexRecord(
-            0L,
-            System.currentTimeMillis(),
-            0.8,
-        )
-        val initialSize = repo.allUvIndexRecords.size
-        val idA = repo.insert(a)
-        val finalSize = repo.allUvIndexRecords.size
-
-        Assert.assertNotEquals(-1L, idA)
-        Assert.assertTrue(finalSize > initialSize)
-
-        val fromDb = repo.getUvIndexRecord(idA)
-        if (fromDb == null) {
-            Assert.fail("fromDb == null")
-        } else {
-            repo.delete(fromDb)
-        }
-
-        Assert.assertEquals(finalSize - 1, repo.allUvIndexRecords.size)
-        Assert.assertNull(repo.getUvIndexRecord(idA))
-    }
-
-    @Test(expected = Validator.ValidationException::class)
-    fun testValidator() {
-        repo.insert(
-            UvIndexRecord(
-                0L,
-                System.currentTimeMillis(),
-                -6.8,
-            )
-        )
-        Assert.fail()
     }
 }

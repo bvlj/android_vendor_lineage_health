@@ -16,39 +16,31 @@
 
 package org.lineageos.mod.health.e2e.activity
 
+import android.content.Context
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.platform.app.InstrumentationRegistry
-import org.junit.After
-import org.junit.Assert
-import org.junit.Before
-import org.junit.Test
 import org.junit.runner.RunWith
+import org.lineageos.mod.health.e2e.RecordTest
+import org.lineageos.mod.health.sdk.model.records.activity.ActivityRecord
 import org.lineageos.mod.health.sdk.model.records.activity.CyclingRecord
 import org.lineageos.mod.health.sdk.repo.ActivityRecordsRepo
-import org.lineageos.mod.health.validators.Validator
 
 @RunWith(AndroidJUnit4::class)
-class CyclingRecordTest {
-    private lateinit var repo: ActivityRecordsRepo
+class CyclingRecordTest : RecordTest<ActivityRecord, CyclingRecord, ActivityRecordsRepo>() {
 
-    @Before
-    fun setup() {
-        val context = InstrumentationRegistry.getInstrumentation().targetContext
-        repo = ActivityRecordsRepo.getInstance(context.contentResolver)
-
-        // Cleanup
-        repo.allCyclingRecords.forEach { repo.delete(it) }
+    override fun getRepo(context: Context): ActivityRecordsRepo {
+        return ActivityRecordsRepo.getInstance(context.contentResolver)
     }
 
-    @After
-    fun tearDown() {
-        repo.allCyclingRecords.forEach { repo.delete(it) }
-        Assert.assertEquals(0, repo.allCyclingRecords.size)
+    override fun getById(id: Long): CyclingRecord? {
+        return repo.getCyclingRecord(id)
     }
 
-    @Test
-    fun testInsert() {
-        val a = CyclingRecord(
+    override fun getAllInMetric(): List<CyclingRecord> {
+        return repo.allCyclingRecords
+    }
+
+    override fun testRecordA(): CyclingRecord {
+        return CyclingRecord(
             0L,
             System.currentTimeMillis(),
             1000L,
@@ -56,22 +48,10 @@ class CyclingRecordTest {
             50.0,
             5.0
         )
-        val idA = repo.insert(a)
-        Assert.assertNotEquals(-1L, idA)
-        Assert.assertEquals(a, repo.getCyclingRecord(idA))
     }
 
-    @Test
-    fun testMultipleInsert() {
-        val a = CyclingRecord(
-            0L,
-            System.currentTimeMillis(),
-            1000L,
-            12.0,
-            50.0,
-            5.0
-        )
-        val b = CyclingRecord(
+    override fun testRecordB(): CyclingRecord {
+        return CyclingRecord(
             0L,
             System.currentTimeMillis() - 1000L,
             60L,
@@ -79,86 +59,24 @@ class CyclingRecordTest {
             9.1,
             88.4
         )
-        val idA = repo.insert(a)
-        val idB = repo.insert(b)
-
-        Assert.assertNotEquals(-1L, idA)
-        Assert.assertNotEquals(-1L, idB)
-        Assert.assertNotEquals(idA, idB)
-
-        Assert.assertEquals(a, repo.getCyclingRecord(idA))
-        Assert.assertEquals(b, repo.getCyclingRecord(idB))
     }
 
-    @Test
-    fun testUpdate() {
-        val a = CyclingRecord(
+    override fun invalidRecord(): CyclingRecord {
+        return CyclingRecord(
             0L,
             System.currentTimeMillis(),
-            1000L,
-            12.0,
-            50.0,
-            5.0
+            -4L,
+            -88.2,
+            -33.3,
+            -9.9
         )
-        val idA = repo.insert(a)
-        Assert.assertNotEquals(-1L, idA)
-        val fromDb = repo.getCyclingRecord(idA)
-        if (fromDb == null) {
-            Assert.fail("fromDb == null")
-            return
-        }
+    }
 
-        Assert.assertEquals(a, fromDb)
-        fromDb.apply {
+    override fun updateTestRecord(record: CyclingRecord) {
+        record.apply {
             duration += 5
             avgSpeed *= 0.4
             elevationGain = 2.0
         }
-        Assert.assertNotEquals(a, fromDb)
-        Assert.assertTrue(repo.update(fromDb))
-        Assert.assertEquals(fromDb, repo.getCyclingRecord(idA))
-    }
-
-    @Test
-    fun testDelete() {
-        val a = CyclingRecord(
-            0L,
-            System.currentTimeMillis(),
-            1000L,
-            12.0,
-            50.0,
-            5.0
-        )
-        val initialSize = repo.allCyclingRecords.size
-        val idA = repo.insert(a)
-        val finalSize = repo.allCyclingRecords.size
-
-        Assert.assertNotEquals(-1L, idA)
-        Assert.assertTrue(finalSize > initialSize)
-
-        val fromDb = repo.getCyclingRecord(idA)
-        if (fromDb == null) {
-            Assert.fail("fromDb == null")
-        } else {
-            repo.delete(fromDb)
-        }
-
-        Assert.assertEquals(finalSize - 1, repo.allCyclingRecords.size)
-        Assert.assertNull(repo.getCyclingRecord(idA))
-    }
-
-    @Test(expected = Validator.ValidationException::class)
-    fun testValidator() {
-        repo.insert(
-            CyclingRecord(
-                0L,
-                System.currentTimeMillis(),
-                -4L,
-                -88.2,
-                -33.3,
-                -9.9
-            )
-        )
-        Assert.fail()
     }
 }

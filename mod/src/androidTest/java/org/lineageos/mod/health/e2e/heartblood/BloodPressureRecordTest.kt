@@ -16,137 +16,62 @@
 
 package org.lineageos.mod.health.e2e.heartblood
 
+import android.content.Context
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.platform.app.InstrumentationRegistry
-import org.junit.After
-import org.junit.Assert
-import org.junit.Before
-import org.junit.Test
 import org.junit.runner.RunWith
+import org.lineageos.mod.health.e2e.RecordTest
 import org.lineageos.mod.health.sdk.model.records.heartblood.BloodPressureRecord
+import org.lineageos.mod.health.sdk.model.records.heartblood.HeartBloodRecord
 import org.lineageos.mod.health.sdk.repo.HeartBloodRecordsRepo
-import org.lineageos.mod.health.validators.Validator
 
 @RunWith(AndroidJUnit4::class)
-class BloodPressureRecordTest {
-    private lateinit var repo: HeartBloodRecordsRepo
+class BloodPressureRecordTest :
+    RecordTest<HeartBloodRecord, BloodPressureRecord, HeartBloodRecordsRepo>() {
 
-    @Before
-    fun setup() {
-        val context = InstrumentationRegistry.getInstrumentation().targetContext
-        repo = HeartBloodRecordsRepo.getInstance(context.contentResolver)
-
-        // Cleanup
-        repo.allBloodPressureRecords.forEach { repo.delete(it) }
+    override fun getRepo(context: Context): HeartBloodRecordsRepo {
+        return HeartBloodRecordsRepo.getInstance(context.contentResolver)
     }
 
-    @After
-    fun tearDown() {
-        repo.allBloodPressureRecords.forEach { repo.delete(it) }
-        Assert.assertEquals(0, repo.allBloodPressureRecords.size)
+    override fun getById(id: Long): BloodPressureRecord? {
+        return repo.getBloodPressureRecord(id)
     }
 
-    @Test
-    fun testInsert() {
-        val a = BloodPressureRecord(
+    override fun getAllInMetric(): List<BloodPressureRecord> {
+        return repo.allBloodPressureRecords
+    }
+
+    override fun testRecordA(): BloodPressureRecord {
+        return BloodPressureRecord(
             0L,
             System.currentTimeMillis(),
             110,
             82
         )
-        val idA = repo.insert(a)
-        Assert.assertNotEquals(-1L, idA)
-        Assert.assertEquals(a, repo.getBloodPressureRecord(idA))
     }
 
-    @Test
-    fun testMultipleInsert() {
-        val a = BloodPressureRecord(
-            0L,
-            System.currentTimeMillis(),
-            110,
-            82
-        )
-        val b = BloodPressureRecord(
+    override fun testRecordB(): BloodPressureRecord {
+        return BloodPressureRecord(
             0L,
             System.currentTimeMillis() - 1000L,
             131,
             91
         )
-        val idA = repo.insert(a)
-        val idB = repo.insert(b)
-
-        Assert.assertNotEquals(-1L, idA)
-        Assert.assertNotEquals(-1L, idB)
-        Assert.assertNotEquals(idA, idB)
-
-        Assert.assertEquals(a, repo.getBloodPressureRecord(idA))
-        Assert.assertEquals(b, repo.getBloodPressureRecord(idB))
     }
 
-    @Test
-    fun testUpdate() {
-        val a = BloodPressureRecord(
+    override fun invalidRecord(): BloodPressureRecord {
+        return BloodPressureRecord(
             0L,
             System.currentTimeMillis(),
-            110,
-            82
+            -12,
+            10
         )
-        val idA = repo.insert(a)
-        Assert.assertNotEquals(-1L, idA)
-        val fromDb = repo.getBloodPressureRecord(idA)
-        if (fromDb == null) {
-            Assert.fail("fromDb == null")
-            return
-        }
+    }
 
-        Assert.assertEquals(a, fromDb)
-        fromDb.apply {
+    override fun updateTestRecord(record: BloodPressureRecord) {
+        record.apply {
             time = System.currentTimeMillis()
             systolic += 3
             diastolic += 4
         }
-        Assert.assertNotEquals(a, fromDb)
-        Assert.assertTrue(repo.update(fromDb))
-        Assert.assertEquals(fromDb, repo.getBloodPressureRecord(idA))
-    }
-
-    @Test
-    fun testDelete() {
-        val a = BloodPressureRecord(
-            0L,
-            System.currentTimeMillis(),
-            110,
-            82
-        )
-        val initialSize = repo.allBloodPressureRecords.size
-        val idA = repo.insert(a)
-        val finalSize = repo.allBloodPressureRecords.size
-
-        Assert.assertNotEquals(-1L, idA)
-        Assert.assertTrue(finalSize > initialSize)
-
-        val fromDb = repo.getBloodPressureRecord(idA)
-        if (fromDb == null) {
-            Assert.fail("fromDb == null")
-        } else {
-            repo.delete(fromDb)
-        }
-
-        Assert.assertEquals(finalSize - 1, repo.allBloodPressureRecords.size)
-        Assert.assertNull(repo.getBloodPressureRecord(idA))
-    }
-
-    @Test(expected = Validator.ValidationException::class)
-    fun testValidator() {
-        repo.insert(
-            BloodPressureRecord(
-                0L,
-                System.currentTimeMillis(),
-                -12,
-                10
-            )
-        )
-        Assert.fail()
     }
 }

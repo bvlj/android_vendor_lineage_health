@@ -16,130 +16,58 @@
 
 package org.lineageos.mod.health.e2e.breathing
 
+import android.content.Context
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.platform.app.InstrumentationRegistry
-import org.junit.After
-import org.junit.Assert
-import org.junit.Before
-import org.junit.Test
 import org.junit.runner.RunWith
+import org.lineageos.mod.health.e2e.RecordTest
+import org.lineageos.mod.health.sdk.model.records.breathing.BreathingRecord
 import org.lineageos.mod.health.sdk.model.records.breathing.PeakExpiratoryFlowRecord
 import org.lineageos.mod.health.sdk.repo.BreathingRecordsRepo
-import org.lineageos.mod.health.validators.Validator
 
 @RunWith(AndroidJUnit4::class)
-class PeakExpiratoryFlowRecordTest {
-    private lateinit var repo: BreathingRecordsRepo
+class PeakExpiratoryFlowRecordTest :
+    RecordTest<BreathingRecord, PeakExpiratoryFlowRecord, BreathingRecordsRepo>() {
 
-    @Before
-    fun setup() {
-        val context = InstrumentationRegistry.getInstrumentation().targetContext
-        repo = BreathingRecordsRepo.getInstance(context.contentResolver)
-
-        // Cleanup
-        repo.allPeakExpiratoryFlowRecords.forEach { repo.delete(it) }
+    override fun getRepo(context: Context): BreathingRecordsRepo {
+        return BreathingRecordsRepo.getInstance(context.contentResolver)
     }
 
-    @After
-    fun tearDown() {
-        repo.allPeakExpiratoryFlowRecords.forEach { repo.delete(it) }
-        Assert.assertEquals(0, repo.allPeakExpiratoryFlowRecords.size)
+    override fun getById(id: Long): PeakExpiratoryFlowRecord? {
+        return repo.getPeakExpiratoryFlowRecord(id)
     }
 
-    @Test
-    fun testInsert() {
-        val a = PeakExpiratoryFlowRecord(
+    override fun getAllInMetric(): List<PeakExpiratoryFlowRecord> {
+        return repo.allPeakExpiratoryFlowRecords
+    }
+
+    override fun testRecordA(): PeakExpiratoryFlowRecord {
+        return PeakExpiratoryFlowRecord(
             0L,
             System.currentTimeMillis(),
             620.0,
         )
-        val idA = repo.insert(a)
-        Assert.assertNotEquals(-1L, idA)
-        Assert.assertEquals(a, repo.getPeakExpiratoryFlowRecord(idA))
     }
 
-    @Test
-    fun testMultipleInsert() {
-        val a = PeakExpiratoryFlowRecord(
-            0L,
-            System.currentTimeMillis(),
-            620.0,
-        )
-        val b = PeakExpiratoryFlowRecord(
+    override fun testRecordB(): PeakExpiratoryFlowRecord {
+        return PeakExpiratoryFlowRecord(
             0L,
             System.currentTimeMillis() - 1000L,
             536.0,
         )
-        val idA = repo.insert(a)
-        val idB = repo.insert(b)
-
-        Assert.assertNotEquals(-1L, idA)
-        Assert.assertNotEquals(-1L, idB)
-        Assert.assertNotEquals(idA, idB)
-
-        Assert.assertEquals(a, repo.getPeakExpiratoryFlowRecord(idA))
-        Assert.assertEquals(b, repo.getPeakExpiratoryFlowRecord(idB))
     }
 
-    @Test
-    fun testUpdate() {
-        val a = PeakExpiratoryFlowRecord(
+    override fun invalidRecord(): PeakExpiratoryFlowRecord {
+        return PeakExpiratoryFlowRecord(
             0L,
-            System.currentTimeMillis(),
-            620.0,
+            -1L,
+            -101.0
         )
-        val idA = repo.insert(a)
-        Assert.assertNotEquals(-1L, idA)
-        val fromDb = repo.getPeakExpiratoryFlowRecord(idA)
-        if (fromDb == null) {
-            Assert.fail("fromDb == null")
-            return
-        }
+    }
 
-        Assert.assertEquals(a, fromDb)
-        fromDb.apply {
+    override fun updateTestRecord(record: PeakExpiratoryFlowRecord) {
+        record.apply {
             time = System.currentTimeMillis()
             value -= 10
         }
-        Assert.assertNotEquals(a, fromDb)
-        Assert.assertTrue(repo.update(fromDb))
-        Assert.assertEquals(fromDb, repo.getPeakExpiratoryFlowRecord(idA))
-    }
-
-    @Test
-    fun testDelete() {
-        val a = PeakExpiratoryFlowRecord(
-            0L,
-            System.currentTimeMillis(),
-            620.0,
-        )
-        val initialSize = repo.allPeakExpiratoryFlowRecords.size
-        val idA = repo.insert(a)
-        val finalSize = repo.allPeakExpiratoryFlowRecords.size
-
-        Assert.assertNotEquals(-1L, idA)
-        Assert.assertTrue(finalSize > initialSize)
-
-        val fromDb = repo.getPeakExpiratoryFlowRecord(idA)
-        if (fromDb == null) {
-            Assert.fail("fromDb == null")
-        } else {
-            repo.delete(fromDb)
-        }
-
-        Assert.assertEquals(finalSize - 1, repo.allPeakExpiratoryFlowRecords.size)
-        Assert.assertNull(repo.getPeakExpiratoryFlowRecord(idA))
-    }
-
-    @Test(expected = Validator.ValidationException::class)
-    fun testValidator() {
-        repo.insert(
-            PeakExpiratoryFlowRecord(
-                0L,
-                -1L,
-                -101.0
-            )
-        )
-        Assert.fail()
     }
 }

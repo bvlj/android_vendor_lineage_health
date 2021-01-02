@@ -16,130 +16,58 @@
 
 package org.lineageos.mod.health.e2e.heartblood
 
+import android.content.Context
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.platform.app.InstrumentationRegistry
-import org.junit.After
-import org.junit.Assert
-import org.junit.Before
-import org.junit.Test
 import org.junit.runner.RunWith
+import org.lineageos.mod.health.e2e.RecordTest
+import org.lineageos.mod.health.sdk.model.records.heartblood.HeartBloodRecord
 import org.lineageos.mod.health.sdk.model.records.heartblood.PerfusionIndexRecord
 import org.lineageos.mod.health.sdk.repo.HeartBloodRecordsRepo
-import org.lineageos.mod.health.validators.Validator
 
 @RunWith(AndroidJUnit4::class)
-class PerfusionIndexRecordTest {
-    private lateinit var repo: HeartBloodRecordsRepo
+class PerfusionIndexRecordTest :
+    RecordTest<HeartBloodRecord, PerfusionIndexRecord, HeartBloodRecordsRepo>() {
 
-    @Before
-    fun setup() {
-        val context = InstrumentationRegistry.getInstrumentation().targetContext
-        repo = HeartBloodRecordsRepo.getInstance(context.contentResolver)
-
-        // Cleanup
-        repo.allPerfusionIndexRecords.forEach { repo.delete(it) }
+    override fun getRepo(context: Context): HeartBloodRecordsRepo {
+        return HeartBloodRecordsRepo.getInstance(context.contentResolver)
     }
 
-    @After
-    fun tearDown() {
-        repo.allPerfusionIndexRecords.forEach { repo.delete(it) }
-        Assert.assertEquals(0, repo.allPerfusionIndexRecords.size)
+    override fun getById(id: Long): PerfusionIndexRecord? {
+        return repo.getPerfusionIndexRecord(id)
     }
 
-    @Test
-    fun testInsert() {
-        val a = PerfusionIndexRecord(
+    override fun getAllInMetric(): List<PerfusionIndexRecord> {
+        return repo.allPerfusionIndexRecords
+    }
+
+    override fun testRecordA(): PerfusionIndexRecord {
+        return PerfusionIndexRecord(
             0L,
             System.currentTimeMillis(),
             0.05,
         )
-        val idA = repo.insert(a)
-        Assert.assertNotEquals(-1L, idA)
-        Assert.assertEquals(a, repo.getPerfusionIndexRecord(idA))
     }
 
-    @Test
-    fun testMultipleInsert() {
-        val a = PerfusionIndexRecord(
-            0L,
-            System.currentTimeMillis(),
-            0.05,
-        )
-        val b = PerfusionIndexRecord(
+    override fun testRecordB(): PerfusionIndexRecord {
+        return PerfusionIndexRecord(
             0L,
             System.currentTimeMillis() - 1000L,
             0.12,
         )
-        val idA = repo.insert(a)
-        val idB = repo.insert(b)
-
-        Assert.assertNotEquals(-1L, idA)
-        Assert.assertNotEquals(-1L, idB)
-        Assert.assertNotEquals(idA, idB)
-
-        Assert.assertEquals(a, repo.getPerfusionIndexRecord(idA))
-        Assert.assertEquals(b, repo.getPerfusionIndexRecord(idB))
     }
 
-    @Test
-    fun testUpdate() {
-        val a = PerfusionIndexRecord(
+    override fun invalidRecord(): PerfusionIndexRecord {
+        return PerfusionIndexRecord(
             0L,
             System.currentTimeMillis(),
-            0.05,
+            1.2,
         )
-        val idA = repo.insert(a)
-        Assert.assertNotEquals(-1L, idA)
-        val fromDb = repo.getPerfusionIndexRecord(idA)
-        if (fromDb == null) {
-            Assert.fail("fromDb == null")
-            return
-        }
+    }
 
-        Assert.assertEquals(a, fromDb)
-        fromDb.apply {
+    override fun updateTestRecord(record: PerfusionIndexRecord) {
+        record.apply {
             time = System.currentTimeMillis()
             value += 0.2
         }
-        Assert.assertNotEquals(a, fromDb)
-        Assert.assertTrue(repo.update(fromDb))
-        Assert.assertEquals(fromDb, repo.getPerfusionIndexRecord(idA))
-    }
-
-    @Test
-    fun testDelete() {
-        val a = PerfusionIndexRecord(
-            0L,
-            System.currentTimeMillis(),
-            0.05,
-        )
-        val initialSize = repo.allPerfusionIndexRecords.size
-        val idA = repo.insert(a)
-        val finalSize = repo.allPerfusionIndexRecords.size
-
-        Assert.assertNotEquals(-1L, idA)
-        Assert.assertTrue(finalSize > initialSize)
-
-        val fromDb = repo.getPerfusionIndexRecord(idA)
-        if (fromDb == null) {
-            Assert.fail("fromDb == null")
-        } else {
-            repo.delete(fromDb)
-        }
-
-        Assert.assertEquals(finalSize - 1, repo.allPerfusionIndexRecords.size)
-        Assert.assertNull(repo.getPerfusionIndexRecord(idA))
-    }
-
-    @Test(expected = Validator.ValidationException::class)
-    fun testValidator() {
-        repo.insert(
-            PerfusionIndexRecord(
-                0L,
-                System.currentTimeMillis(),
-                1.2,
-            )
-        )
-        Assert.fail()
     }
 }

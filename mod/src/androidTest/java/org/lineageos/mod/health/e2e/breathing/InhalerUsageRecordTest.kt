@@ -16,130 +16,58 @@
 
 package org.lineageos.mod.health.e2e.breathing
 
+import android.content.Context
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.platform.app.InstrumentationRegistry
-import org.junit.After
-import org.junit.Assert
-import org.junit.Before
-import org.junit.Test
 import org.junit.runner.RunWith
+import org.lineageos.mod.health.e2e.RecordTest
+import org.lineageos.mod.health.sdk.model.records.breathing.BreathingRecord
 import org.lineageos.mod.health.sdk.model.records.breathing.InhalerUsageRecord
 import org.lineageos.mod.health.sdk.repo.BreathingRecordsRepo
-import org.lineageos.mod.health.validators.Validator
 
 @RunWith(AndroidJUnit4::class)
-class InhalerUsageRecordTest {
-    private lateinit var repo: BreathingRecordsRepo
+class InhalerUsageRecordTest :
+    RecordTest<BreathingRecord, InhalerUsageRecord, BreathingRecordsRepo>() {
 
-    @Before
-    fun setup() {
-        val context = InstrumentationRegistry.getInstrumentation().targetContext
-        repo = BreathingRecordsRepo.getInstance(context.contentResolver)
-
-        // Cleanup
-        repo.allInhalerUsageRecords.forEach { repo.delete(it) }
+    override fun getRepo(context: Context): BreathingRecordsRepo {
+        return BreathingRecordsRepo.getInstance(context.contentResolver)
     }
 
-    @After
-    fun tearDown() {
-        repo.allInhalerUsageRecords.forEach { repo.delete(it) }
-        Assert.assertEquals(0, repo.allInhalerUsageRecords.size)
+    override fun getById(id: Long): InhalerUsageRecord? {
+        return repo.getInhalerUsageRecord(id)
     }
 
-    @Test
-    fun testInsert() {
-        val a = InhalerUsageRecord(
+    override fun getAllInMetric(): List<InhalerUsageRecord> {
+        return repo.allInhalerUsageRecords
+    }
+
+    override fun testRecordA(): InhalerUsageRecord {
+        return InhalerUsageRecord(
             0L,
             System.currentTimeMillis(),
             "A note",
         )
-        val idA = repo.insert(a)
-        Assert.assertNotEquals(-1L, idA)
-        Assert.assertEquals(a, repo.getInhalerUsageRecord(idA))
     }
 
-    @Test
-    fun testMultipleInsert() {
-        val a = InhalerUsageRecord(
-            0L,
-            System.currentTimeMillis(),
-            "A note",
-        )
-        val b = InhalerUsageRecord(
+    override fun testRecordB(): InhalerUsageRecord {
+        return InhalerUsageRecord(
             0L,
             System.currentTimeMillis() - 1000L,
             "Another note",
         )
-        val idA = repo.insert(a)
-        val idB = repo.insert(b)
-
-        Assert.assertNotEquals(-1L, idA)
-        Assert.assertNotEquals(-1L, idB)
-        Assert.assertNotEquals(idA, idB)
-
-        Assert.assertEquals(a, repo.getInhalerUsageRecord(idA))
-        Assert.assertEquals(b, repo.getInhalerUsageRecord(idB))
     }
 
-    @Test
-    fun testUpdate() {
-        val a = InhalerUsageRecord(
+    override fun invalidRecord(): InhalerUsageRecord {
+        return InhalerUsageRecord(
             0L,
-            System.currentTimeMillis(),
-            "A note",
+            -1L,
+            "Valid note",
         )
-        val idA = repo.insert(a)
-        Assert.assertNotEquals(-1L, idA)
-        val fromDb = repo.getInhalerUsageRecord(idA)
-        if (fromDb == null) {
-            Assert.fail("fromDb == null")
-            return
-        }
+    }
 
-        Assert.assertEquals(a, fromDb)
-        fromDb.apply {
+    override fun updateTestRecord(record: InhalerUsageRecord) {
+        record.apply {
             time = System.currentTimeMillis()
             notes = "A better note"
         }
-        Assert.assertNotEquals(a, fromDb)
-        Assert.assertTrue(repo.update(fromDb))
-        Assert.assertEquals(fromDb, repo.getInhalerUsageRecord(idA))
-    }
-
-    @Test
-    fun testDelete() {
-        val a = InhalerUsageRecord(
-            0L,
-            System.currentTimeMillis(),
-            "A note",
-        )
-        val initialSize = repo.allInhalerUsageRecords.size
-        val idA = repo.insert(a)
-        val finalSize = repo.allInhalerUsageRecords.size
-
-        Assert.assertNotEquals(-1L, idA)
-        Assert.assertTrue(finalSize > initialSize)
-
-        val fromDb = repo.getInhalerUsageRecord(idA)
-        if (fromDb == null) {
-            Assert.fail("fromDb == null")
-        } else {
-            repo.delete(fromDb)
-        }
-
-        Assert.assertEquals(finalSize - 1, repo.allInhalerUsageRecords.size)
-        Assert.assertNull(repo.getInhalerUsageRecord(idA))
-    }
-
-    @Test(expected = Validator.ValidationException::class)
-    fun testValidator() {
-        repo.insert(
-            InhalerUsageRecord(
-                0L,
-                -1L,
-                "Valid note",
-            )
-        )
-        Assert.fail()
     }
 }

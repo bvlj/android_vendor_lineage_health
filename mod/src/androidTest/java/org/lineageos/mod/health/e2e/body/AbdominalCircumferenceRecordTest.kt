@@ -16,130 +16,58 @@
 
 package org.lineageos.mod.health.e2e.body
 
+import android.content.Context
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.platform.app.InstrumentationRegistry
-import org.junit.After
-import org.junit.Assert
-import org.junit.Before
-import org.junit.Test
 import org.junit.runner.RunWith
+import org.lineageos.mod.health.e2e.RecordTest
 import org.lineageos.mod.health.sdk.model.records.body.AbdominalCircumferenceRecord
+import org.lineageos.mod.health.sdk.model.records.body.BodyRecord
 import org.lineageos.mod.health.sdk.repo.BodyRecordsRepo
-import org.lineageos.mod.health.validators.Validator
 
 @RunWith(AndroidJUnit4::class)
-class AbdominalCircumferenceRecordTest {
-    private lateinit var repo: BodyRecordsRepo
+class AbdominalCircumferenceRecordTest :
+    RecordTest<BodyRecord, AbdominalCircumferenceRecord, BodyRecordsRepo>() {
 
-    @Before
-    fun setup() {
-        val context = InstrumentationRegistry.getInstrumentation().targetContext
-        repo = BodyRecordsRepo.getInstance(context.contentResolver)
-
-        // Cleanup
-        repo.allAbdominalCircumferenceRecords.forEach { repo.delete(it) }
+    override fun getRepo(context: Context): BodyRecordsRepo {
+        return BodyRecordsRepo.getInstance(context.contentResolver)
     }
 
-    @After
-    fun tearDown() {
-        repo.allAbdominalCircumferenceRecords.forEach { repo.delete(it) }
-        Assert.assertEquals(0, repo.allAbdominalCircumferenceRecords.size)
+    override fun getById(id: Long): AbdominalCircumferenceRecord? {
+        return repo.getAbdominalCircumferenceRecord(id)
     }
 
-    @Test
-    fun testInsert() {
-        val a = AbdominalCircumferenceRecord(
+    override fun getAllInMetric(): List<AbdominalCircumferenceRecord> {
+        return repo.allAbdominalCircumferenceRecords
+    }
+
+    override fun testRecordA(): AbdominalCircumferenceRecord {
+        return AbdominalCircumferenceRecord(
             0L,
             System.currentTimeMillis(),
             56.8,
         )
-        val idA = repo.insert(a)
-        Assert.assertNotEquals(-1L, idA)
-        Assert.assertEquals(a, repo.getAbdominalCircumferenceRecord(idA))
     }
 
-    @Test
-    fun testMultipleInsert() {
-        val a = AbdominalCircumferenceRecord(
-            0L,
-            System.currentTimeMillis(),
-            56.8,
-        )
-        val b = AbdominalCircumferenceRecord(
+    override fun testRecordB(): AbdominalCircumferenceRecord {
+        return AbdominalCircumferenceRecord(
             0L,
             System.currentTimeMillis() - 1000L,
             44.24,
         )
-        val idA = repo.insert(a)
-        val idB = repo.insert(b)
-
-        Assert.assertNotEquals(-1L, idA)
-        Assert.assertNotEquals(-1L, idB)
-        Assert.assertNotEquals(idA, idB)
-
-        Assert.assertEquals(a, repo.getAbdominalCircumferenceRecord(idA))
-        Assert.assertEquals(b, repo.getAbdominalCircumferenceRecord(idB))
     }
 
-    @Test
-    fun testUpdate() {
-        val a = AbdominalCircumferenceRecord(
+    override fun invalidRecord(): AbdominalCircumferenceRecord {
+        return AbdominalCircumferenceRecord(
             0L,
             System.currentTimeMillis(),
-            56.8,
+            -6.8,
         )
-        val idA = repo.insert(a)
-        Assert.assertNotEquals(-1L, idA)
-        val fromDb = repo.getAbdominalCircumferenceRecord(idA)
-        if (fromDb == null) {
-            Assert.fail("fromDb == null")
-            return
-        }
+    }
 
-        Assert.assertEquals(a, fromDb)
-        fromDb.apply {
+    override fun updateTestRecord(record: AbdominalCircumferenceRecord) {
+        record.apply {
             time = System.currentTimeMillis()
             value += 5.0
         }
-        Assert.assertNotEquals(a, fromDb)
-        Assert.assertTrue(repo.update(fromDb))
-        Assert.assertEquals(fromDb, repo.getAbdominalCircumferenceRecord(idA))
-    }
-
-    @Test
-    fun testDelete() {
-        val a = AbdominalCircumferenceRecord(
-            0L,
-            System.currentTimeMillis(),
-            56.8,
-        )
-        val initialSize = repo.allAbdominalCircumferenceRecords.size
-        val idA = repo.insert(a)
-        val finalSize = repo.allAbdominalCircumferenceRecords.size
-
-        Assert.assertNotEquals(-1L, idA)
-        Assert.assertTrue(finalSize > initialSize)
-
-        val fromDb = repo.getAbdominalCircumferenceRecord(idA)
-        if (fromDb == null) {
-            Assert.fail("fromDb == null")
-        } else {
-            repo.delete(fromDb)
-        }
-
-        Assert.assertEquals(finalSize - 1, repo.allAbdominalCircumferenceRecords.size)
-        Assert.assertNull(repo.getAbdominalCircumferenceRecord(idA))
-    }
-
-    @Test(expected = Validator.ValidationException::class)
-    fun testValidator() {
-        repo.insert(
-            AbdominalCircumferenceRecord(
-                0L,
-                System.currentTimeMillis(),
-                -6.8,
-            )
-        )
-        Assert.fail()
     }
 }

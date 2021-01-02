@@ -16,130 +16,58 @@
 
 package org.lineageos.mod.health.e2e.breathing
 
+import android.content.Context
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.platform.app.InstrumentationRegistry
-import org.junit.After
-import org.junit.Assert
-import org.junit.Before
-import org.junit.Test
 import org.junit.runner.RunWith
+import org.lineageos.mod.health.e2e.RecordTest
+import org.lineageos.mod.health.sdk.model.records.breathing.BreathingRecord
 import org.lineageos.mod.health.sdk.model.records.breathing.VitalCapacityRecord
 import org.lineageos.mod.health.sdk.repo.BreathingRecordsRepo
-import org.lineageos.mod.health.validators.Validator
 
 @RunWith(AndroidJUnit4::class)
-class VitalCapacityRecordTest {
-    private lateinit var repo: BreathingRecordsRepo
+class VitalCapacityRecordTest :
+    RecordTest<BreathingRecord, VitalCapacityRecord, BreathingRecordsRepo>() {
 
-    @Before
-    fun setup() {
-        val context = InstrumentationRegistry.getInstrumentation().targetContext
-        repo = BreathingRecordsRepo.getInstance(context.contentResolver)
-
-        // Cleanup
-        repo.allVitalCapacityRecords.forEach { repo.delete(it) }
+    override fun getRepo(context: Context): BreathingRecordsRepo {
+        return BreathingRecordsRepo.getInstance(context.contentResolver)
     }
 
-    @After
-    fun tearDown() {
-        repo.allVitalCapacityRecords.forEach { repo.delete(it) }
-        Assert.assertEquals(0, repo.allVitalCapacityRecords.size)
+    override fun getById(id: Long): VitalCapacityRecord? {
+        return repo.getVitalCapacityRecord(id)
     }
 
-    @Test
-    fun testInsert() {
-        val a = VitalCapacityRecord(
+    override fun getAllInMetric(): List<VitalCapacityRecord> {
+        return repo.allVitalCapacityRecords
+    }
+
+    override fun testRecordA(): VitalCapacityRecord {
+        return VitalCapacityRecord(
             0L,
             System.currentTimeMillis(),
             3225.0,
         )
-        val idA = repo.insert(a)
-        Assert.assertNotEquals(-1L, idA)
-        Assert.assertEquals(a, repo.getVitalCapacityRecord(idA))
     }
 
-    @Test
-    fun testMultipleInsert() {
-        val a = VitalCapacityRecord(
-            0L,
-            System.currentTimeMillis(),
-            3225.0,
-        )
-        val b = VitalCapacityRecord(
+    override fun testRecordB(): VitalCapacityRecord {
+        return VitalCapacityRecord(
             0L,
             System.currentTimeMillis() - 1000L,
             3500.0,
         )
-        val idA = repo.insert(a)
-        val idB = repo.insert(b)
-
-        Assert.assertNotEquals(-1L, idA)
-        Assert.assertNotEquals(-1L, idB)
-        Assert.assertNotEquals(idA, idB)
-
-        Assert.assertEquals(a, repo.getVitalCapacityRecord(idA))
-        Assert.assertEquals(b, repo.getVitalCapacityRecord(idB))
     }
 
-    @Test
-    fun testUpdate() {
-        val a = VitalCapacityRecord(
+    override fun invalidRecord(): VitalCapacityRecord {
+        return VitalCapacityRecord(
             0L,
-            System.currentTimeMillis(),
-            3225.0,
+            -1L,
+            -82.4
         )
-        val idA = repo.insert(a)
-        Assert.assertNotEquals(-1L, idA)
-        val fromDb = repo.getVitalCapacityRecord(idA)
-        if (fromDb == null) {
-            Assert.fail("fromDb == null")
-            return
-        }
+    }
 
-        Assert.assertEquals(a, fromDb)
-        fromDb.apply {
+    override fun updateTestRecord(record: VitalCapacityRecord) {
+        record.apply {
             time = System.currentTimeMillis()
             value -= 100
         }
-        Assert.assertNotEquals(a, fromDb)
-        Assert.assertTrue(repo.update(fromDb))
-        Assert.assertEquals(fromDb, repo.getVitalCapacityRecord(idA))
-    }
-
-    @Test
-    fun testDelete() {
-        val a = VitalCapacityRecord(
-            0L,
-            System.currentTimeMillis(),
-            3225.0,
-        )
-        val initialSize = repo.allVitalCapacityRecords.size
-        val idA = repo.insert(a)
-        val finalSize = repo.allVitalCapacityRecords.size
-
-        Assert.assertNotEquals(-1L, idA)
-        Assert.assertTrue(finalSize > initialSize)
-
-        val fromDb = repo.getVitalCapacityRecord(idA)
-        if (fromDb == null) {
-            Assert.fail("fromDb == null")
-        } else {
-            repo.delete(fromDb)
-        }
-
-        Assert.assertEquals(finalSize - 1, repo.allVitalCapacityRecords.size)
-        Assert.assertNull(repo.getVitalCapacityRecord(idA))
-    }
-
-    @Test(expected = Validator.ValidationException::class)
-    fun testValidator() {
-        repo.insert(
-            VitalCapacityRecord(
-                0L,
-                -1L,
-                -82.4
-            )
-        )
-        Assert.fail()
     }
 }

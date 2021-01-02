@@ -16,130 +16,57 @@
 
 package org.lineageos.mod.health.e2e.body
 
+import android.content.Context
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.platform.app.InstrumentationRegistry
-import org.junit.After
-import org.junit.Assert
-import org.junit.Before
-import org.junit.Test
 import org.junit.runner.RunWith
+import org.lineageos.mod.health.e2e.RecordTest
+import org.lineageos.mod.health.sdk.model.records.body.BodyRecord
 import org.lineageos.mod.health.sdk.model.records.body.LeanBodyMassRecord
 import org.lineageos.mod.health.sdk.repo.BodyRecordsRepo
-import org.lineageos.mod.health.validators.Validator
 
 @RunWith(AndroidJUnit4::class)
-class LeanBodyMassRecordTest {
-    private lateinit var repo: BodyRecordsRepo
+class LeanBodyMassRecordTest : RecordTest<BodyRecord, LeanBodyMassRecord, BodyRecordsRepo>() {
 
-    @Before
-    fun setup() {
-        val context = InstrumentationRegistry.getInstrumentation().targetContext
-        repo = BodyRecordsRepo.getInstance(context.contentResolver)
-
-        // Cleanup
-        repo.allLeanBodyMassRecords.forEach { repo.delete(it) }
+    override fun getRepo(context: Context): BodyRecordsRepo {
+        return BodyRecordsRepo.getInstance(context.contentResolver)
     }
 
-    @After
-    fun tearDown() {
-        repo.allLeanBodyMassRecords.forEach { repo.delete(it) }
-        Assert.assertEquals(0, repo.allLeanBodyMassRecords.size)
+    override fun getById(id: Long): LeanBodyMassRecord? {
+        return repo.getLeanBodyMassRecord(id)
     }
 
-    @Test
-    fun testInsert() {
-        val a = LeanBodyMassRecord(
+    override fun getAllInMetric(): List<LeanBodyMassRecord> {
+        return repo.allLeanBodyMassRecords
+    }
+
+    override fun testRecordA(): LeanBodyMassRecord {
+        return LeanBodyMassRecord(
             0L,
             System.currentTimeMillis(),
             0.8,
         )
-        val idA = repo.insert(a)
-        Assert.assertNotEquals(-1L, idA)
-        Assert.assertEquals(a, repo.getLeanBodyMassRecord(idA))
     }
 
-    @Test
-    fun testMultipleInsert() {
-        val a = LeanBodyMassRecord(
-            0L,
-            System.currentTimeMillis(),
-            0.8,
-        )
-        val b = LeanBodyMassRecord(
+    override fun testRecordB(): LeanBodyMassRecord {
+        return LeanBodyMassRecord(
             0L,
             System.currentTimeMillis() - 1000L,
             0.74,
         )
-        val idA = repo.insert(a)
-        val idB = repo.insert(b)
-
-        Assert.assertNotEquals(-1L, idA)
-        Assert.assertNotEquals(-1L, idB)
-        Assert.assertNotEquals(idA, idB)
-
-        Assert.assertEquals(a, repo.getLeanBodyMassRecord(idA))
-        Assert.assertEquals(b, repo.getLeanBodyMassRecord(idB))
     }
 
-    @Test
-    fun testUpdate() {
-        val a = LeanBodyMassRecord(
+    override fun invalidRecord(): LeanBodyMassRecord {
+        return LeanBodyMassRecord(
             0L,
             System.currentTimeMillis(),
-            0.8,
+            11.8,
         )
-        val idA = repo.insert(a)
-        Assert.assertNotEquals(-1L, idA)
-        val fromDb = repo.getLeanBodyMassRecord(idA)
-        if (fromDb == null) {
-            Assert.fail("fromDb == null")
-            return
-        }
+    }
 
-        Assert.assertEquals(a, fromDb)
-        fromDb.apply {
+    override fun updateTestRecord(record: LeanBodyMassRecord) {
+        record.apply {
             time = System.currentTimeMillis()
             value += 0.03
         }
-        Assert.assertNotEquals(a, fromDb)
-        Assert.assertTrue(repo.update(fromDb))
-        Assert.assertEquals(fromDb, repo.getLeanBodyMassRecord(idA))
-    }
-
-    @Test
-    fun testDelete() {
-        val a = LeanBodyMassRecord(
-            0L,
-            System.currentTimeMillis(),
-            0.8,
-        )
-        val initialSize = repo.allLeanBodyMassRecords.size
-        val idA = repo.insert(a)
-        val finalSize = repo.allLeanBodyMassRecords.size
-
-        Assert.assertNotEquals(-1L, idA)
-        Assert.assertTrue(finalSize > initialSize)
-
-        val fromDb = repo.getLeanBodyMassRecord(idA)
-        if (fromDb == null) {
-            Assert.fail("fromDb == null")
-        } else {
-            repo.delete(fromDb)
-        }
-
-        Assert.assertEquals(finalSize - 1, repo.allLeanBodyMassRecords.size)
-        Assert.assertNull(repo.getLeanBodyMassRecord(idA))
-    }
-
-    @Test(expected = Validator.ValidationException::class)
-    fun testValidator() {
-        repo.insert(
-            LeanBodyMassRecord(
-                0L,
-                System.currentTimeMillis(),
-                11.8,
-            )
-        )
-        Assert.fail()
     }
 }

@@ -30,6 +30,7 @@ import org.lineageos.mod.health.common.Metric
 import org.lineageos.mod.health.common.db.RecordColumns
 import org.lineageos.mod.health.sdk.model.records.breathing.InhalerUsageRecord
 import org.lineageos.mod.health.sdk.repo.BreathingRecordsRepo
+import org.lineageos.mod.health.sdk.repo.OperationResult
 
 @RunWith(AndroidJUnit4::class)
 class BreathingRecordsTest {
@@ -50,14 +51,14 @@ class BreathingRecordsTest {
             System.currentTimeMillis(),
             "A note",
         )
-        val idA = repo.insert(a)
+        val idA = (repo.insert(a) as OperationResult.Success<*>).result as Long
         Assert.assertNull(repo.getOxygenSaturationRecord(idA))
         val fromDb = repo.getInhalerUsageRecord(idA)
         if (fromDb == null) {
             Assert.fail("fromDb == null")
             return
         }
-        Assert.assertTrue(repo.delete(fromDb))
+        Assert.assertTrue(repo.delete(fromDb) is OperationResult.Success<*>)
     }
 
     @Test(expected = IllegalArgumentException::class)

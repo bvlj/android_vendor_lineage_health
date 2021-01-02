@@ -33,6 +33,7 @@ import org.lineageos.mod.health.sdk.model.records.mindfulness.MeditationRecord
 import org.lineageos.mod.health.sdk.model.records.mindfulness.MoodRecord
 import org.lineageos.mod.health.sdk.model.records.mindfulness.SleepRecord
 import org.lineageos.mod.health.sdk.repo.MindfulnessRecordsRepo
+import org.lineageos.mod.health.sdk.repo.OperationResult
 
 @RunWith(AndroidJUnit4::class)
 class MindfulnessRecordsTest {
@@ -53,14 +54,14 @@ class MindfulnessRecordsTest {
             System.currentTimeMillis(),
             1580000,
         )
-        val idA = repo.insert(a)
+        val idA = (repo.insert(a) as OperationResult.Success<*>).result as Long
         Assert.assertNull(repo.getMeditationRecord(idA))
         val fromDb = repo.getSleepRecord(idA)
         if (fromDb == null) {
             Assert.fail("fromDb == null")
             return
         }
-        Assert.assertTrue(repo.delete(fromDb))
+        Assert.assertTrue(repo.delete(fromDb) is OperationResult.Success<*>)
     }
 
     @Test(expected = IllegalArgumentException::class)
@@ -82,26 +83,30 @@ class MindfulnessRecordsTest {
     fun testBatch() {
         repo.deleteAll()
 
-        val idA = repo.insert(
-            MoodRecord(
-                0L,
-                System.currentTimeMillis(),
-                MoodLevel.HAPPY,
-                "A note"
-            )
-        )
+        val idA = (
+            repo.insert(
+                MoodRecord(
+                    0L,
+                    System.currentTimeMillis(),
+                    MoodLevel.HAPPY,
+                    "A note"
+                )
+            ) as OperationResult.Success<*>
+            ).result as Long
         val a = repo.getMoodRecord(idA)
         if (a == null) {
             Assert.fail("a == null")
             return
         }
-        val idB = repo.insert(
-            MeditationRecord(
-                0L,
-                System.currentTimeMillis(),
-                1234560L
-            )
-        )
+        val idB = (
+            repo.insert(
+                MeditationRecord(
+                    0L,
+                    System.currentTimeMillis(),
+                    1234560L
+                )
+            ) as OperationResult.Success<*>
+            ).result as Long
         val b = repo.getMeditationRecord(idB)
         if (b == null) {
             Assert.fail("b == null")

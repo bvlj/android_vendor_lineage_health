@@ -16,136 +16,60 @@
 
 package org.lineageos.mod.health.e2e.body
 
+import android.content.Context
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.platform.app.InstrumentationRegistry
-import org.junit.After
-import org.junit.Assert
-import org.junit.Before
-import org.junit.Test
 import org.junit.runner.RunWith
+import org.lineageos.mod.health.e2e.RecordTest
+import org.lineageos.mod.health.sdk.model.records.body.BodyRecord
 import org.lineageos.mod.health.sdk.model.records.body.WaterIntakeRecord
 import org.lineageos.mod.health.sdk.repo.BodyRecordsRepo
-import org.lineageos.mod.health.validators.Validator
 
 @RunWith(AndroidJUnit4::class)
-class WaterIntakeRecordTest {
-    private lateinit var repo: BodyRecordsRepo
+class WaterIntakeRecordTest : RecordTest<BodyRecord, WaterIntakeRecord, BodyRecordsRepo>() {
 
-    @Before
-    fun setup() {
-        val context = InstrumentationRegistry.getInstrumentation().targetContext
-        repo = BodyRecordsRepo.getInstance(context.contentResolver)
-
-        // Cleanup
-        repo.allWaterIntakeRecords.forEach { repo.delete(it) }
+    override fun getRepo(context: Context): BodyRecordsRepo {
+        return BodyRecordsRepo.getInstance(context.contentResolver)
     }
 
-    @After
-    fun tearDown() {
-        repo.allWaterIntakeRecords.forEach { repo.delete(it) }
-        Assert.assertEquals(0, repo.allWaterIntakeRecords.size)
+    override fun getById(id: Long): WaterIntakeRecord? {
+        return repo.getWaterIntakeRecord(id)
     }
 
-    @Test
-    fun testInsert() {
-        val a = WaterIntakeRecord(
+    override fun getAllInMetric(): List<WaterIntakeRecord> {
+        return repo.allWaterIntakeRecords
+    }
+
+    override fun testRecordA(): WaterIntakeRecord {
+        return WaterIntakeRecord(
             0L,
             System.currentTimeMillis(),
             "Half glass of water",
             0.5
         )
-        val idA = repo.insert(a)
-        Assert.assertNotEquals(-1L, idA)
-        Assert.assertEquals(a, repo.getWaterIntakeRecord(idA))
     }
 
-    @Test
-    fun testMultipleInsert() {
-        val a = WaterIntakeRecord(
-            0L,
-            System.currentTimeMillis(),
-            "Half glass of water",
-            0.5
-        )
-        val b = WaterIntakeRecord(
+    override fun testRecordB(): WaterIntakeRecord {
+        return WaterIntakeRecord(
             0L,
             System.currentTimeMillis() - 1000L,
             "Two glasses of water",
             2.0
         )
-        val idA = repo.insert(a)
-        val idB = repo.insert(b)
-
-        Assert.assertNotEquals(-1L, idA)
-        Assert.assertNotEquals(-1L, idB)
-        Assert.assertNotEquals(idA, idB)
-
-        Assert.assertEquals(a, repo.getWaterIntakeRecord(idA))
-        Assert.assertEquals(b, repo.getWaterIntakeRecord(idB))
     }
 
-    @Test
-    fun testUpdate() {
-        val a = WaterIntakeRecord(
+    override fun invalidRecord(): WaterIntakeRecord {
+        return WaterIntakeRecord(
             0L,
             System.currentTimeMillis(),
-            "Half glass of water",
-            0.5
+            "Peed half glass of water",
+            -0.5
         )
-        val idA = repo.insert(a)
-        Assert.assertNotEquals(-1L, idA)
-        val fromDb = repo.getWaterIntakeRecord(idA)
-        if (fromDb == null) {
-            Assert.fail("fromDb == null")
-            return
-        }
+    }
 
-        Assert.assertEquals(a, fromDb)
-        fromDb.apply {
+    override fun updateTestRecord(record: WaterIntakeRecord) {
+        record.apply {
             notes = "A glass of water"
             value = 1.0
         }
-        Assert.assertNotEquals(a, fromDb)
-        Assert.assertTrue(repo.update(fromDb))
-        Assert.assertEquals(fromDb, repo.getWaterIntakeRecord(idA))
-    }
-
-    @Test
-    fun testDelete() {
-        val a = WaterIntakeRecord(
-            0L,
-            System.currentTimeMillis(),
-            "Half glass of water",
-            0.5
-        )
-        val initialSize = repo.allWaterIntakeRecords.size
-        val idA = repo.insert(a)
-        val finalSize = repo.allWaterIntakeRecords.size
-
-        Assert.assertNotEquals(-1L, idA)
-        Assert.assertTrue(finalSize > initialSize)
-
-        val fromDb = repo.getWaterIntakeRecord(idA)
-        if (fromDb == null) {
-            Assert.fail("fromDb == null")
-        } else {
-            repo.delete(fromDb)
-        }
-
-        Assert.assertEquals(finalSize - 1, repo.allWaterIntakeRecords.size)
-        Assert.assertNull(repo.getWaterIntakeRecord(idA))
-    }
-
-    @Test(expected = Validator.ValidationException::class)
-    fun testValidator() {
-        repo.insert(
-            WaterIntakeRecord(
-                0L,
-                System.currentTimeMillis(),
-                "Peed half glass of water",
-                -0.5
-            )
-        )
-        Assert.fail()
     }
 }

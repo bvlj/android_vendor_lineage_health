@@ -16,130 +16,58 @@
 
 package org.lineageos.mod.health.e2e.heartblood
 
+import android.content.Context
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.platform.app.InstrumentationRegistry
-import org.junit.After
-import org.junit.Assert
-import org.junit.Before
-import org.junit.Test
 import org.junit.runner.RunWith
+import org.lineageos.mod.health.e2e.RecordTest
 import org.lineageos.mod.health.sdk.model.records.heartblood.BloodAlcoholConcentrationRecord
+import org.lineageos.mod.health.sdk.model.records.heartblood.HeartBloodRecord
 import org.lineageos.mod.health.sdk.repo.HeartBloodRecordsRepo
-import org.lineageos.mod.health.validators.Validator
 
 @RunWith(AndroidJUnit4::class)
-class BloodAlcoholConcentrationRecordTest {
-    private lateinit var repo: HeartBloodRecordsRepo
+class BloodAlcoholConcentrationRecordTest :
+    RecordTest<HeartBloodRecord, BloodAlcoholConcentrationRecord, HeartBloodRecordsRepo>() {
 
-    @Before
-    fun setup() {
-        val context = InstrumentationRegistry.getInstrumentation().targetContext
-        repo = HeartBloodRecordsRepo.getInstance(context.contentResolver)
-
-        // Cleanup
-        repo.allBloodAlcoholConcentrationRecords.forEach { repo.delete(it) }
+    override fun getRepo(context: Context): HeartBloodRecordsRepo {
+        return HeartBloodRecordsRepo.getInstance(context.contentResolver)
     }
 
-    @After
-    fun tearDown() {
-        repo.allBloodAlcoholConcentrationRecords.forEach { repo.delete(it) }
-        Assert.assertEquals(0, repo.allBloodAlcoholConcentrationRecords.size)
+    override fun getById(id: Long): BloodAlcoholConcentrationRecord? {
+        return repo.getBloodAlcoholConcentrationRecord(id)
     }
 
-    @Test
-    fun testInsert() {
-        val a = BloodAlcoholConcentrationRecord(
+    override fun getAllInMetric(): List<BloodAlcoholConcentrationRecord> {
+        return repo.allBloodAlcoholConcentrationRecords
+    }
+
+    override fun testRecordA(): BloodAlcoholConcentrationRecord {
+        return BloodAlcoholConcentrationRecord(
             0L,
             System.currentTimeMillis(),
             0.05,
         )
-        val idA = repo.insert(a)
-        Assert.assertNotEquals(-1L, idA)
-        Assert.assertEquals(a, repo.getBloodAlcoholConcentrationRecord(idA))
     }
 
-    @Test
-    fun testMultipleInsert() {
-        val a = BloodAlcoholConcentrationRecord(
-            0L,
-            System.currentTimeMillis(),
-            0.05,
-        )
-        val b = BloodAlcoholConcentrationRecord(
+    override fun testRecordB(): BloodAlcoholConcentrationRecord {
+        return BloodAlcoholConcentrationRecord(
             0L,
             System.currentTimeMillis() - 1000L,
             0.12,
         )
-        val idA = repo.insert(a)
-        val idB = repo.insert(b)
-
-        Assert.assertNotEquals(-1L, idA)
-        Assert.assertNotEquals(-1L, idB)
-        Assert.assertNotEquals(idA, idB)
-
-        Assert.assertEquals(a, repo.getBloodAlcoholConcentrationRecord(idA))
-        Assert.assertEquals(b, repo.getBloodAlcoholConcentrationRecord(idB))
     }
 
-    @Test
-    fun testUpdate() {
-        val a = BloodAlcoholConcentrationRecord(
+    override fun invalidRecord(): BloodAlcoholConcentrationRecord {
+        return BloodAlcoholConcentrationRecord(
             0L,
-            System.currentTimeMillis(),
-            0.05,
+            -1L,
+            1.1
         )
-        val idA = repo.insert(a)
-        Assert.assertNotEquals(-1L, idA)
-        val fromDb = repo.getBloodAlcoholConcentrationRecord(idA)
-        if (fromDb == null) {
-            Assert.fail("fromDb == null")
-            return
-        }
+    }
 
-        Assert.assertEquals(a, fromDb)
-        fromDb.apply {
+    override fun updateTestRecord(record: BloodAlcoholConcentrationRecord) {
+        record.apply {
             time = System.currentTimeMillis()
             value += 0.9
         }
-        Assert.assertNotEquals(a, fromDb)
-        Assert.assertTrue(repo.update(fromDb))
-        Assert.assertEquals(fromDb, repo.getBloodAlcoholConcentrationRecord(idA))
-    }
-
-    @Test
-    fun testDelete() {
-        val a = BloodAlcoholConcentrationRecord(
-            0L,
-            System.currentTimeMillis(),
-            0.05,
-        )
-        val initialSize = repo.allBloodAlcoholConcentrationRecords.size
-        val idA = repo.insert(a)
-        val finalSize = repo.allBloodAlcoholConcentrationRecords.size
-
-        Assert.assertNotEquals(-1L, idA)
-        Assert.assertTrue(finalSize > initialSize)
-
-        val fromDb = repo.getBloodAlcoholConcentrationRecord(idA)
-        if (fromDb == null) {
-            Assert.fail("fromDb == null")
-        } else {
-            repo.delete(fromDb)
-        }
-
-        Assert.assertEquals(finalSize - 1, repo.allBloodAlcoholConcentrationRecords.size)
-        Assert.assertNull(repo.getBloodAlcoholConcentrationRecord(idA))
-    }
-
-    @Test(expected = Validator.ValidationException::class)
-    fun testValidator() {
-        repo.insert(
-            BloodAlcoholConcentrationRecord(
-                0L,
-                -1L,
-                1.1
-            )
-        )
-        Assert.fail()
     }
 }

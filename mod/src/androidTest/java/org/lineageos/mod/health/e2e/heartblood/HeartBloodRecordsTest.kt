@@ -30,6 +30,7 @@ import org.lineageos.mod.health.common.Metric
 import org.lineageos.mod.health.common.db.RecordColumns
 import org.lineageos.mod.health.sdk.model.records.heartblood.HeartRateRecord
 import org.lineageos.mod.health.sdk.repo.HeartBloodRecordsRepo
+import org.lineageos.mod.health.sdk.repo.OperationResult
 
 @RunWith(AndroidJUnit4::class)
 class HeartBloodRecordsTest {
@@ -50,14 +51,14 @@ class HeartBloodRecordsTest {
             System.currentTimeMillis(),
             77.0,
         )
-        val idA = repo.insert(a)
+        val idA = (repo.insert(a) as OperationResult.Success<*>).result as Long
         Assert.assertNull(repo.getGlucoseRecord(idA))
         val fromDb = repo.getHeartRateRecord(idA)
         if (fromDb == null) {
             Assert.fail("fromDb == null")
             return
         }
-        Assert.assertTrue(repo.delete(fromDb))
+        Assert.assertTrue(repo.delete(fromDb) is OperationResult.Success<*>)
     }
 
     @Test(expected = IllegalArgumentException::class)

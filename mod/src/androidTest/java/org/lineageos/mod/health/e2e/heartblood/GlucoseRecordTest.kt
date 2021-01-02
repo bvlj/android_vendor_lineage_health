@@ -16,137 +16,61 @@
 
 package org.lineageos.mod.health.e2e.heartblood
 
+import android.content.Context
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.platform.app.InstrumentationRegistry
-import org.junit.After
-import org.junit.Assert
-import org.junit.Before
-import org.junit.Test
 import org.junit.runner.RunWith
 import org.lineageos.mod.health.common.values.MealRelation
+import org.lineageos.mod.health.e2e.RecordTest
 import org.lineageos.mod.health.sdk.model.records.heartblood.GlucoseRecord
+import org.lineageos.mod.health.sdk.model.records.heartblood.HeartBloodRecord
 import org.lineageos.mod.health.sdk.repo.HeartBloodRecordsRepo
-import org.lineageos.mod.health.validators.Validator
 
 @RunWith(AndroidJUnit4::class)
-class GlucoseRecordTest {
-    private lateinit var repo: HeartBloodRecordsRepo
+class GlucoseRecordTest : RecordTest<HeartBloodRecord, GlucoseRecord, HeartBloodRecordsRepo>() {
 
-    @Before
-    fun setup() {
-        val context = InstrumentationRegistry.getInstrumentation().targetContext
-        repo = HeartBloodRecordsRepo.getInstance(context.contentResolver)
-
-        // Cleanup
-        repo.allGlucoseRecords.forEach { repo.delete(it) }
+    override fun getRepo(context: Context): HeartBloodRecordsRepo {
+        return HeartBloodRecordsRepo.getInstance(context.contentResolver)
     }
 
-    @After
-    fun tearDown() {
-        repo.allGlucoseRecords.forEach { repo.delete(it) }
-        Assert.assertEquals(0, repo.allGlucoseRecords.size)
+    override fun getById(id: Long): GlucoseRecord? {
+        return repo.getGlucoseRecord(id)
     }
 
-    @Test
-    fun testInsert() {
-        val a = GlucoseRecord(
+    override fun getAllInMetric(): List<GlucoseRecord> {
+        return repo.allGlucoseRecords
+    }
+
+    override fun testRecordA(): GlucoseRecord {
+        return GlucoseRecord(
             0L,
             System.currentTimeMillis(),
             MealRelation.BEFORE,
             123.0
         )
-        val idA = repo.insert(a)
-        Assert.assertNotEquals(-1L, idA)
-        Assert.assertEquals(a, repo.getGlucoseRecord(idA))
     }
 
-    @Test
-    fun testMultipleInsert() {
-        val a = GlucoseRecord(
-            0L,
-            System.currentTimeMillis(),
-            MealRelation.BEFORE,
-            123.0
-        )
-        val b = GlucoseRecord(
+    override fun testRecordB(): GlucoseRecord {
+        return GlucoseRecord(
             0L,
             System.currentTimeMillis() - 1000L,
             MealRelation.AFTER,
             224.0
         )
-        val idA = repo.insert(a)
-        val idB = repo.insert(b)
-
-        Assert.assertNotEquals(-1L, idA)
-        Assert.assertNotEquals(-1L, idB)
-        Assert.assertNotEquals(idA, idB)
-
-        Assert.assertEquals(a, repo.getGlucoseRecord(idA))
-        Assert.assertEquals(b, repo.getGlucoseRecord(idB))
     }
 
-    @Test
-    fun testUpdate() {
-        val a = GlucoseRecord(
+    override fun invalidRecord(): GlucoseRecord {
+        return GlucoseRecord(
             0L,
             System.currentTimeMillis(),
-            MealRelation.BEFORE,
-            123.0
+            1 shl 7,
+            -81.0
         )
-        val idA = repo.insert(a)
-        Assert.assertNotEquals(-1L, idA)
-        val fromDb = repo.getGlucoseRecord(idA)
-        if (fromDb == null) {
-            Assert.fail("fromDb == null")
-            return
-        }
+    }
 
-        Assert.assertEquals(a, fromDb)
-        fromDb.apply {
+    override fun updateTestRecord(record: GlucoseRecord) {
+        record.apply {
             time = System.currentTimeMillis()
             value += 50.0
         }
-        Assert.assertNotEquals(a, fromDb)
-        Assert.assertTrue(repo.update(fromDb))
-        Assert.assertEquals(fromDb, repo.getGlucoseRecord(idA))
-    }
-
-    @Test
-    fun testDelete() {
-        val a = GlucoseRecord(
-            0L,
-            System.currentTimeMillis(),
-            MealRelation.BEFORE,
-            123.0
-        )
-        val initialSize = repo.allGlucoseRecords.size
-        val idA = repo.insert(a)
-        val finalSize = repo.allGlucoseRecords.size
-
-        Assert.assertNotEquals(-1L, idA)
-        Assert.assertTrue(finalSize > initialSize)
-
-        val fromDb = repo.getGlucoseRecord(idA)
-        if (fromDb == null) {
-            Assert.fail("fromDb == null")
-        } else {
-            repo.delete(fromDb)
-        }
-
-        Assert.assertEquals(finalSize - 1, repo.allGlucoseRecords.size)
-        Assert.assertNull(repo.getGlucoseRecord(idA))
-    }
-
-    @Test(expected = Validator.ValidationException::class)
-    fun testValidator() {
-        repo.insert(
-            GlucoseRecord(
-                0L,
-                System.currentTimeMillis(),
-                1 shl 7,
-                -81.0
-            )
-        )
-        Assert.fail()
     }
 }

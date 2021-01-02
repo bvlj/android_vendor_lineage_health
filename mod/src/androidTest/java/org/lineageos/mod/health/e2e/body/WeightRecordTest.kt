@@ -16,130 +16,57 @@
 
 package org.lineageos.mod.health.e2e.body
 
+import android.content.Context
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.platform.app.InstrumentationRegistry
-import org.junit.After
-import org.junit.Assert
-import org.junit.Before
-import org.junit.Test
 import org.junit.runner.RunWith
+import org.lineageos.mod.health.e2e.RecordTest
+import org.lineageos.mod.health.sdk.model.records.body.BodyRecord
 import org.lineageos.mod.health.sdk.model.records.body.WeightRecord
 import org.lineageos.mod.health.sdk.repo.BodyRecordsRepo
-import org.lineageos.mod.health.validators.Validator
 
 @RunWith(AndroidJUnit4::class)
-class WeightRecordTest {
-    private lateinit var repo: BodyRecordsRepo
+class WeightRecordTest : RecordTest<BodyRecord, WeightRecord, BodyRecordsRepo>() {
 
-    @Before
-    fun setup() {
-        val context = InstrumentationRegistry.getInstrumentation().targetContext
-        repo = BodyRecordsRepo.getInstance(context.contentResolver)
-
-        // Cleanup
-        repo.allWeightRecords.forEach { repo.delete(it) }
+    override fun getRepo(context: Context): BodyRecordsRepo {
+        return BodyRecordsRepo.getInstance(context.contentResolver)
     }
 
-    @After
-    fun tearDown() {
-        repo.allWeightRecords.forEach { repo.delete(it) }
-        Assert.assertEquals(0, repo.allWeightRecords.size)
+    override fun getById(id: Long): WeightRecord? {
+        return repo.getWeightRecord(id)
     }
 
-    @Test
-    fun testInsert() {
-        val a = WeightRecord(
+    override fun getAllInMetric(): List<WeightRecord> {
+        return repo.allWeightRecords
+    }
+
+    override fun testRecordA(): WeightRecord {
+        return WeightRecord(
             0L,
             System.currentTimeMillis(),
             71.3,
         )
-        val idA = repo.insert(a)
-        Assert.assertNotEquals(-1L, idA)
-        Assert.assertEquals(a, repo.getWeightRecord(idA))
     }
 
-    @Test
-    fun testMultipleInsert() {
-        val a = WeightRecord(
-            0L,
-            System.currentTimeMillis(),
-            71.3,
-        )
-        val b = WeightRecord(
+    override fun testRecordB(): WeightRecord {
+        return WeightRecord(
             0L,
             System.currentTimeMillis() - 1000L,
             87.6,
         )
-        val idA = repo.insert(a)
-        val idB = repo.insert(b)
-
-        Assert.assertNotEquals(-1L, idA)
-        Assert.assertNotEquals(-1L, idB)
-        Assert.assertNotEquals(idA, idB)
-
-        Assert.assertEquals(a, repo.getWeightRecord(idA))
-        Assert.assertEquals(b, repo.getWeightRecord(idB))
     }
 
-    @Test
-    fun testUpdate() {
-        val a = WeightRecord(
+    override fun invalidRecord(): WeightRecord {
+        return WeightRecord(
             0L,
             System.currentTimeMillis(),
-            71.3,
+            -6.8,
         )
-        val idA = repo.insert(a)
-        Assert.assertNotEquals(-1L, idA)
-        val fromDb = repo.getWeightRecord(idA)
-        if (fromDb == null) {
-            Assert.fail("fromDb == null")
-            return
-        }
+    }
 
-        Assert.assertEquals(a, fromDb)
-        fromDb.apply {
+    override fun updateTestRecord(record: WeightRecord) {
+        record.apply {
             time = System.currentTimeMillis()
             value += 2.01
         }
-        Assert.assertNotEquals(a, fromDb)
-        Assert.assertTrue(repo.update(fromDb))
-        Assert.assertEquals(fromDb, repo.getWeightRecord(idA))
-    }
-
-    @Test
-    fun testDelete() {
-        val a = WeightRecord(
-            0L,
-            System.currentTimeMillis(),
-            71.3,
-        )
-        val initialSize = repo.allWeightRecords.size
-        val idA = repo.insert(a)
-        val finalSize = repo.allWeightRecords.size
-
-        Assert.assertNotEquals(-1L, idA)
-        Assert.assertTrue(finalSize > initialSize)
-
-        val fromDb = repo.getWeightRecord(idA)
-        if (fromDb == null) {
-            Assert.fail("fromDb == null")
-        } else {
-            repo.delete(fromDb)
-        }
-
-        Assert.assertEquals(finalSize - 1, repo.allWeightRecords.size)
-        Assert.assertNull(repo.getWeightRecord(idA))
-    }
-
-    @Test(expected = Validator.ValidationException::class)
-    fun testValidator() {
-        repo.insert(
-            WeightRecord(
-                0L,
-                System.currentTimeMillis(),
-                -6.8,
-            )
-        )
-        Assert.fail()
     }
 }

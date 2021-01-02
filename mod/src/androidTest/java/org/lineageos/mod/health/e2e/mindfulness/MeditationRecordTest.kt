@@ -16,130 +16,58 @@
 
 package org.lineageos.mod.health.e2e.mindfulness
 
+import android.content.Context
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.platform.app.InstrumentationRegistry
-import org.junit.After
-import org.junit.Assert
-import org.junit.Before
-import org.junit.Test
 import org.junit.runner.RunWith
+import org.lineageos.mod.health.e2e.RecordTest
 import org.lineageos.mod.health.sdk.model.records.mindfulness.MeditationRecord
+import org.lineageos.mod.health.sdk.model.records.mindfulness.MindfulnessRecord
 import org.lineageos.mod.health.sdk.repo.MindfulnessRecordsRepo
-import org.lineageos.mod.health.validators.Validator
 
 @RunWith(AndroidJUnit4::class)
-class MeditationRecordTest {
-    private lateinit var repo: MindfulnessRecordsRepo
+class MeditationRecordTest :
+    RecordTest<MindfulnessRecord, MeditationRecord, MindfulnessRecordsRepo>() {
 
-    @Before
-    fun setup() {
-        val context = InstrumentationRegistry.getInstrumentation().targetContext
-        repo = MindfulnessRecordsRepo.getInstance(context.contentResolver)
-
-        // Cleanup
-        repo.allMeditationRecords.forEach { repo.delete(it) }
+    override fun getRepo(context: Context): MindfulnessRecordsRepo {
+        return MindfulnessRecordsRepo.getInstance(context.contentResolver)
     }
 
-    @After
-    fun tearDown() {
-        repo.allMeditationRecords.forEach { repo.delete(it) }
-        Assert.assertEquals(0, repo.allMeditationRecords.size)
+    override fun getById(id: Long): MeditationRecord? {
+        return repo.getMeditationRecord(id)
     }
 
-    @Test
-    fun testInsert() {
-        val a = MeditationRecord(
+    override fun getAllInMetric(): List<MeditationRecord> {
+        return repo.allMeditationRecords
+    }
+
+    override fun testRecordA(): MeditationRecord {
+        return MeditationRecord(
             0L,
             System.currentTimeMillis(),
             1580000,
         )
-        val idA = repo.insert(a)
-        Assert.assertNotEquals(-1L, idA)
-        Assert.assertEquals(a, repo.getMeditationRecord(idA))
     }
 
-    @Test
-    fun testMultipleInsert() {
-        val a = MeditationRecord(
-            0L,
-            System.currentTimeMillis(),
-            1580000,
-        )
-        val b = MeditationRecord(
+    override fun testRecordB(): MeditationRecord {
+        return MeditationRecord(
             0L,
             System.currentTimeMillis() - 1000L,
             6503011,
         )
-        val idA = repo.insert(a)
-        val idB = repo.insert(b)
-
-        Assert.assertNotEquals(-1L, idA)
-        Assert.assertNotEquals(-1L, idB)
-        Assert.assertNotEquals(idA, idB)
-
-        Assert.assertEquals(a, repo.getMeditationRecord(idA))
-        Assert.assertEquals(b, repo.getMeditationRecord(idB))
     }
 
-    @Test
-    fun testUpdate() {
-        val a = MeditationRecord(
+    override fun invalidRecord(): MeditationRecord {
+        return MeditationRecord(
             0L,
             System.currentTimeMillis(),
-            1580000,
+            -8L
         )
-        val idA = repo.insert(a)
-        Assert.assertNotEquals(-1L, idA)
-        val fromDb = repo.getMeditationRecord(idA)
-        if (fromDb == null) {
-            Assert.fail("fromDb == null")
-            return
-        }
+    }
 
-        Assert.assertEquals(a, fromDb)
-        fromDb.apply {
+    override fun updateTestRecord(record: MeditationRecord) {
+        record.apply {
             time = System.currentTimeMillis()
             duration += 100000
         }
-        Assert.assertNotEquals(a, fromDb)
-        Assert.assertTrue(repo.update(fromDb))
-        Assert.assertEquals(fromDb, repo.getMeditationRecord(idA))
-    }
-
-    @Test
-    fun testDelete() {
-        val a = MeditationRecord(
-            0L,
-            System.currentTimeMillis(),
-            1580000,
-        )
-        val initialSize = repo.allMeditationRecords.size
-        val idA = repo.insert(a)
-        val finalSize = repo.allMeditationRecords.size
-
-        Assert.assertNotEquals(-1L, idA)
-        Assert.assertTrue(finalSize > initialSize)
-
-        val fromDb = repo.getMeditationRecord(idA)
-        if (fromDb == null) {
-            Assert.fail("fromDb == null")
-        } else {
-            repo.delete(fromDb)
-        }
-
-        Assert.assertEquals(finalSize - 1, repo.allMeditationRecords.size)
-        Assert.assertNull(repo.getMeditationRecord(idA))
-    }
-
-    @Test(expected = Validator.ValidationException::class)
-    fun testValidator() {
-        repo.insert(
-            MeditationRecord(
-                0L,
-                System.currentTimeMillis(),
-                -8L
-            )
-        )
-        Assert.fail()
     }
 }

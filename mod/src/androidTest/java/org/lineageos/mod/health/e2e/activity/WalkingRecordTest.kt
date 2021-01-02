@@ -16,142 +16,63 @@
 
 package org.lineageos.mod.health.e2e.activity
 
+import android.content.Context
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.platform.app.InstrumentationRegistry
-import org.junit.After
-import org.junit.Assert
-import org.junit.Before
-import org.junit.Test
 import org.junit.runner.RunWith
+import org.lineageos.mod.health.e2e.RecordTest
+import org.lineageos.mod.health.sdk.model.records.activity.ActivityRecord
 import org.lineageos.mod.health.sdk.model.records.activity.WalkingRecord
 import org.lineageos.mod.health.sdk.repo.ActivityRecordsRepo
-import org.lineageos.mod.health.validators.Validator
 
 @RunWith(AndroidJUnit4::class)
-class WalkingRecordTest {
-    private lateinit var repo: ActivityRecordsRepo
+class WalkingRecordTest : RecordTest<ActivityRecord, WalkingRecord, ActivityRecordsRepo>() {
 
-    @Before
-    fun setup() {
-        val context = InstrumentationRegistry.getInstrumentation().targetContext
-        repo = ActivityRecordsRepo.getInstance(context.contentResolver)
-
-        // Cleanup
-        repo.allWalkingRecords.forEach { repo.delete(it) }
+    override fun getRepo(context: Context): ActivityRecordsRepo {
+        return ActivityRecordsRepo.getInstance(context.contentResolver)
     }
 
-    @After
-    fun tearDown() {
-        repo.allWalkingRecords.forEach { repo.delete(it) }
-        Assert.assertEquals(0, repo.allWalkingRecords.size)
+    override fun getById(id: Long): WalkingRecord? {
+        return repo.getWalkingRecord(id)
     }
 
-    @Test
-    fun testInsert() {
-        val a = WalkingRecord(
+    override fun getAllInMetric(): List<WalkingRecord> {
+        return repo.allWalkingRecords
+    }
+
+    override fun testRecordA(): WalkingRecord {
+        return WalkingRecord(
             0L,
             System.currentTimeMillis(),
             1000L,
             6.5,
             500,
         )
-        val idA = repo.insert(a)
-        Assert.assertNotEquals(-1L, idA)
-        Assert.assertEquals(a, repo.getWalkingRecord(idA))
     }
 
-    @Test
-    fun testMultipleInsert() {
-        val a = WalkingRecord(
-            0L,
-            System.currentTimeMillis(),
-            1000L,
-            6.5,
-            500,
-        )
-        val b = WalkingRecord(
+    override fun testRecordB(): WalkingRecord {
+        return WalkingRecord(
             0L,
             System.currentTimeMillis() - 1000L,
             45L,
             1.47,
             891,
         )
-        val idA = repo.insert(a)
-        val idB = repo.insert(b)
-
-        Assert.assertNotEquals(-1L, idA)
-        Assert.assertNotEquals(-1L, idB)
-        Assert.assertNotEquals(idA, idB)
-
-        Assert.assertEquals(a, repo.getWalkingRecord(idA))
-        Assert.assertEquals(b, repo.getWalkingRecord(idB))
     }
 
-    @Test
-    fun testUpdate() {
-        val a = WalkingRecord(
+    override fun invalidRecord(): WalkingRecord {
+        return WalkingRecord(
             0L,
             System.currentTimeMillis(),
-            1000L,
-            6.5,
-            500,
+            4L,
+            88.2,
+            -44,
         )
-        val idA = repo.insert(a)
-        Assert.assertNotEquals(-1L, idA)
-        val fromDb = repo.getWalkingRecord(idA)
-        if (fromDb == null) {
-            Assert.fail("fromDb == null")
-            return
-        }
+    }
 
-        Assert.assertEquals(a, fromDb)
-        fromDb.apply {
+    override fun updateTestRecord(record: WalkingRecord) {
+        record.apply {
             time = System.currentTimeMillis() - 90L
             steps -= 89
         }
-        Assert.assertNotEquals(a, fromDb)
-        Assert.assertTrue(repo.update(fromDb))
-        Assert.assertEquals(fromDb, repo.getWalkingRecord(idA))
-    }
-
-    @Test
-    fun testDelete() {
-        val a = WalkingRecord(
-            0L,
-            System.currentTimeMillis(),
-            1000L,
-            6.5,
-            500,
-        )
-        val initialSize = repo.allWalkingRecords.size
-        val idA = repo.insert(a)
-        val finalSize = repo.allWalkingRecords.size
-
-        Assert.assertNotEquals(-1L, idA)
-        Assert.assertTrue(finalSize > initialSize)
-
-        val fromDb = repo.getWalkingRecord(idA)
-        if (fromDb == null) {
-            Assert.fail("fromDb == null")
-        } else {
-            repo.delete(fromDb)
-        }
-
-        Assert.assertEquals(finalSize - 1, repo.allWalkingRecords.size)
-        Assert.assertNull(repo.getWalkingRecord(idA))
-    }
-
-    @Test(expected = Validator.ValidationException::class)
-    fun testValidator() {
-        repo.insert(
-            WalkingRecord(
-                0L,
-                System.currentTimeMillis(),
-                4L,
-                88.2,
-                -44,
-            )
-        )
-        Assert.fail()
     }
 }

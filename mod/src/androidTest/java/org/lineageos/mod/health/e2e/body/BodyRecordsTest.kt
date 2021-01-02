@@ -30,6 +30,7 @@ import org.lineageos.mod.health.common.Metric
 import org.lineageos.mod.health.common.db.RecordColumns
 import org.lineageos.mod.health.sdk.model.records.body.BodyTemperatureRecord
 import org.lineageos.mod.health.sdk.repo.BodyRecordsRepo
+import org.lineageos.mod.health.sdk.repo.OperationResult
 
 @RunWith(AndroidJUnit4::class)
 class BodyRecordsTest {
@@ -50,14 +51,14 @@ class BodyRecordsTest {
             System.currentTimeMillis(),
             35.2,
         )
-        val idA = repo.insert(a)
+        val idA = (repo.insert(a) as OperationResult.Success<*>).result as Long
         Assert.assertNull(repo.getAbdominalCircumferenceRecord(idA))
         val fromDb = repo.getBodyTemperatureRecord(idA)
         if (fromDb == null) {
             Assert.fail("fromDb == null")
             return
         }
-        Assert.assertTrue(repo.delete(fromDb))
+        Assert.assertTrue(repo.delete(fromDb) is OperationResult.Success<*>)
     }
 
     @Test(expected = IllegalArgumentException::class)

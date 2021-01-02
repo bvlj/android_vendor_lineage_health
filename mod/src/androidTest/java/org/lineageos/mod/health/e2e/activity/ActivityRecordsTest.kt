@@ -30,6 +30,7 @@ import org.lineageos.mod.health.common.Metric
 import org.lineageos.mod.health.common.db.RecordColumns
 import org.lineageos.mod.health.sdk.model.records.activity.CyclingRecord
 import org.lineageos.mod.health.sdk.repo.ActivityRecordsRepo
+import org.lineageos.mod.health.sdk.repo.OperationResult
 import java.lang.IllegalArgumentException
 
 @RunWith(AndroidJUnit4::class)
@@ -54,14 +55,15 @@ class ActivityRecordsTest {
             50.0,
             5.0
         )
-        val idA = repo.insert(a)
+        val insertResult = repo.insert(a)
+        val idA = (insertResult as OperationResult.Success<*>).result as Long
         Assert.assertNull(repo.getRunningRecord(idA))
         val fromDb = repo.getCyclingRecord(idA)
         if (fromDb == null) {
             Assert.fail("fromDb == null")
             return
         }
-        Assert.assertTrue(repo.delete(fromDb))
+        Assert.assertTrue(repo.delete(fromDb) is OperationResult.Success<*>)
     }
 
     @Test(expected = IllegalArgumentException::class)

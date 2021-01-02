@@ -16,129 +16,57 @@
 
 package org.lineageos.mod.health.e2e.heartblood
 
+import android.content.Context
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.platform.app.InstrumentationRegistry
-import org.junit.After
-import org.junit.Assert
-import org.junit.Before
-import org.junit.Test
 import org.junit.runner.RunWith
+import org.lineageos.mod.health.e2e.RecordTest
+import org.lineageos.mod.health.sdk.model.records.heartblood.HeartBloodRecord
 import org.lineageos.mod.health.sdk.model.records.heartblood.HeartRateRecord
 import org.lineageos.mod.health.sdk.repo.HeartBloodRecordsRepo
-import org.lineageos.mod.health.validators.Validator
 
 @RunWith(AndroidJUnit4::class)
-class HeartRateRecordTest {
-    private lateinit var repo: HeartBloodRecordsRepo
+class HeartRateRecordTest : RecordTest<HeartBloodRecord, HeartRateRecord, HeartBloodRecordsRepo>() {
 
-    @Before
-    fun setup() {
-        val context = InstrumentationRegistry.getInstrumentation().targetContext
-        repo = HeartBloodRecordsRepo.getInstance(context.contentResolver)
-
-        // Cleanup
-        repo.allHeartRateRecords.forEach { repo.delete(it) }
+    override fun getRepo(context: Context): HeartBloodRecordsRepo {
+        return HeartBloodRecordsRepo.getInstance(context.contentResolver)
     }
 
-    @After
-    fun tearDown() {
-        repo.allHeartRateRecords.forEach { repo.delete(it) }
-        Assert.assertEquals(0, repo.allHeartRateRecords.size)
+    override fun getById(id: Long): HeartRateRecord? {
+        return repo.getHeartRateRecord(id)
     }
 
-    @Test
-    fun testInsert() {
-        val a = HeartRateRecord(
+    override fun getAllInMetric(): List<HeartRateRecord> {
+        return repo.allHeartRateRecords
+    }
+
+    override fun testRecordA(): HeartRateRecord {
+        return HeartRateRecord(
             0L,
             System.currentTimeMillis(),
             77.0,
         )
-        val idA = repo.insert(a)
-        Assert.assertNotEquals(-1L, idA)
-        Assert.assertEquals(a, repo.getHeartRateRecord(idA))
     }
 
-    @Test
-    fun testMultipleInsert() {
-        val a = HeartRateRecord(
-            0L,
-            System.currentTimeMillis(),
-            77.0,
-        )
-        val b = HeartRateRecord(
+    override fun testRecordB(): HeartRateRecord {
+        return HeartRateRecord(
             0L,
             System.currentTimeMillis() - 1000L,
             104.0,
         )
-        val idA = repo.insert(a)
-        val idB = repo.insert(b)
-
-        Assert.assertNotEquals(-1L, idA)
-        Assert.assertNotEquals(-1L, idB)
-        Assert.assertNotEquals(idA, idB)
-
-        Assert.assertEquals(a, repo.getHeartRateRecord(idA))
-        Assert.assertEquals(b, repo.getHeartRateRecord(idB))
     }
 
-    @Test
-    fun testUpdate() {
-        val a = HeartRateRecord(
+    override fun invalidRecord(): HeartRateRecord {
+        return HeartRateRecord(
             0L,
             System.currentTimeMillis(),
-            77.0,
+            -12.0,
         )
-        val idA = repo.insert(a)
-        Assert.assertNotEquals(-1L, idA)
-        val fromDb = repo.getHeartRateRecord(idA)
-        if (fromDb == null) {
-            Assert.fail("fromDb == null")
-            return
-        }
+    }
 
-        Assert.assertEquals(a, fromDb)
-        fromDb.apply {
+    override fun updateTestRecord(record: HeartRateRecord) {
+        record.apply {
             time = System.currentTimeMillis()
             value += 12.0
         }
-        Assert.assertNotEquals(a, fromDb)
-        Assert.assertTrue(repo.update(fromDb))
-        Assert.assertEquals(fromDb, repo.getHeartRateRecord(idA))
-    }
-
-    @Test
-    fun testDelete() {
-        val a = HeartRateRecord(
-            0L,
-            System.currentTimeMillis(),
-            77.0,
-        )
-        val initialSize = repo.allHeartRateRecords.size
-        val idA = repo.insert(a)
-        val finalSize = repo.allHeartRateRecords.size
-
-        Assert.assertNotEquals(-1L, idA)
-        Assert.assertTrue(finalSize > initialSize)
-
-        val fromDb = repo.getHeartRateRecord(idA)
-        if (fromDb == null) {
-            Assert.fail("fromDb == null")
-        } else {
-            repo.delete(fromDb)
-        }
-
-        Assert.assertEquals(finalSize - 1, repo.allHeartRateRecords.size)
-        Assert.assertNull(repo.getHeartRateRecord(idA))
-    }
-
-    @Test(expected = Validator.ValidationException::class)
-    fun testValidator() {
-        repo.insert(
-            HeartRateRecord(
-                0L, System.currentTimeMillis(),
-                -12.0,
-            )
-        )
-        Assert.fail()
     }
 }

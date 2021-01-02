@@ -16,130 +16,57 @@
 
 package org.lineageos.mod.health.e2e.body
 
+import android.content.Context
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import androidx.test.platform.app.InstrumentationRegistry
-import org.junit.After
-import org.junit.Assert
-import org.junit.Before
-import org.junit.Test
 import org.junit.runner.RunWith
+import org.lineageos.mod.health.e2e.RecordTest
+import org.lineageos.mod.health.sdk.model.records.body.BodyRecord
 import org.lineageos.mod.health.sdk.model.records.body.BodyTemperatureRecord
 import org.lineageos.mod.health.sdk.repo.BodyRecordsRepo
-import org.lineageos.mod.health.validators.Validator
 
 @RunWith(AndroidJUnit4::class)
-class BodyTemperatureRecordTest {
-    private lateinit var repo: BodyRecordsRepo
+class BodyTemperatureRecordTest : RecordTest<BodyRecord, BodyTemperatureRecord, BodyRecordsRepo>() {
 
-    @Before
-    fun setup() {
-        val context = InstrumentationRegistry.getInstrumentation().targetContext
-        repo = BodyRecordsRepo.getInstance(context.contentResolver)
-
-        // Cleanup
-        repo.allBodyTemperatureRecords.forEach { repo.delete(it) }
+    override fun getRepo(context: Context): BodyRecordsRepo {
+        return BodyRecordsRepo.getInstance(context.contentResolver)
     }
 
-    @After
-    fun tearDown() {
-        repo.allBodyTemperatureRecords.forEach { repo.delete(it) }
-        Assert.assertEquals(0, repo.allBodyTemperatureRecords.size)
+    override fun getById(id: Long): BodyTemperatureRecord? {
+        return repo.getBodyTemperatureRecord(id)
     }
 
-    @Test
-    fun testInsert() {
-        val a = BodyTemperatureRecord(
+    override fun getAllInMetric(): List<BodyTemperatureRecord> {
+        return repo.allBodyTemperatureRecords
+    }
+
+    override fun testRecordA(): BodyTemperatureRecord {
+        return BodyTemperatureRecord(
             0L,
             System.currentTimeMillis(),
             35.2,
         )
-        val idA = repo.insert(a)
-        Assert.assertNotEquals(-1L, idA)
-        Assert.assertEquals(a, repo.getBodyTemperatureRecord(idA))
     }
 
-    @Test
-    fun testMultipleInsert() {
-        val a = BodyTemperatureRecord(
-            0L,
-            System.currentTimeMillis(),
-            35.2,
-        )
-        val b = BodyTemperatureRecord(
+    override fun testRecordB(): BodyTemperatureRecord {
+        return BodyTemperatureRecord(
             0L,
             System.currentTimeMillis() - 1000L,
             37.4,
         )
-        val idA = repo.insert(a)
-        val idB = repo.insert(b)
-
-        Assert.assertNotEquals(-1L, idA)
-        Assert.assertNotEquals(-1L, idB)
-        Assert.assertNotEquals(idA, idB)
-
-        Assert.assertEquals(a, repo.getBodyTemperatureRecord(idA))
-        Assert.assertEquals(b, repo.getBodyTemperatureRecord(idB))
     }
 
-    @Test
-    fun testUpdate() {
-        val a = BodyTemperatureRecord(
+    override fun invalidRecord(): BodyTemperatureRecord {
+        return BodyTemperatureRecord(
             0L,
             System.currentTimeMillis(),
-            35.2,
+            -6.8,
         )
-        val idA = repo.insert(a)
-        Assert.assertNotEquals(-1L, idA)
-        val fromDb = repo.getBodyTemperatureRecord(idA)
-        if (fromDb == null) {
-            Assert.fail("fromDb == null")
-            return
-        }
+    }
 
-        Assert.assertEquals(a, fromDb)
-        fromDb.apply {
+    override fun updateTestRecord(record: BodyTemperatureRecord) {
+        record.apply {
             time = System.currentTimeMillis()
             value += 1.51
         }
-        Assert.assertNotEquals(a, fromDb)
-        Assert.assertTrue(repo.update(fromDb))
-        Assert.assertEquals(fromDb, repo.getBodyTemperatureRecord(idA))
-    }
-
-    @Test
-    fun testDelete() {
-        val a = BodyTemperatureRecord(
-            0L,
-            System.currentTimeMillis(),
-            35.2,
-        )
-        val initialSize = repo.allBodyTemperatureRecords.size
-        val idA = repo.insert(a)
-        val finalSize = repo.allBodyTemperatureRecords.size
-
-        Assert.assertNotEquals(-1L, idA)
-        Assert.assertTrue(finalSize > initialSize)
-
-        val fromDb = repo.getBodyTemperatureRecord(idA)
-        if (fromDb == null) {
-            Assert.fail("fromDb == null")
-        } else {
-            repo.delete(fromDb)
-        }
-
-        Assert.assertEquals(finalSize - 1, repo.allBodyTemperatureRecords.size)
-        Assert.assertNull(repo.getBodyTemperatureRecord(idA))
-    }
-
-    @Test(expected = Validator.ValidationException::class)
-    fun testValidator() {
-        repo.insert(
-            BodyTemperatureRecord(
-                0L,
-                System.currentTimeMillis(),
-                -6.8,
-            )
-        )
-        Assert.fail()
     }
 }
