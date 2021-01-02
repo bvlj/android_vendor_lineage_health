@@ -27,6 +27,7 @@ import org.lineageos.mod.health.access.AccessManager
 import org.lineageos.mod.health.access.EmptyCursor
 import org.lineageos.mod.health.access.canRead
 import org.lineageos.mod.health.access.canWrite
+import org.lineageos.mod.health.common.values.AccessPolicyValues
 import org.lineageos.mod.health.common.db.RecordColumns
 import org.lineageos.mod.health.db.HealthStoreDbHelper
 import org.lineageos.mod.health.security.KeyMaster
@@ -117,7 +118,7 @@ internal abstract class RecordContentProvider(
         }
 
         if (!canWrite(accessManager, metric)) {
-            return null
+            return AccessPolicyValues.DENIED_URI
         }
 
         RecordValidator.validate(values)
@@ -153,7 +154,7 @@ internal abstract class RecordContentProvider(
         val localSelection = "${RecordColumns._METRIC} = ? AND ${RecordColumns._ID} = ?"
 
         if (!canWrite(accessManager, metric)) {
-            return 0
+            return AccessPolicyValues.DENIED_RESULT
         }
 
         RecordValidator.validate(values)
@@ -193,7 +194,7 @@ internal abstract class RecordContentProvider(
         }
 
         if (!canWrite(accessManager, metric)) {
-            return 0
+            return AccessPolicyValues.DENIED_RESULT
         }
 
         return withMyId {

@@ -24,7 +24,7 @@ import org.lineageos.mod.health.common.Metric;
 import org.lineageos.mod.health.common.values.Permission;
 
 /**
- * Access control table columns.
+ * Access policy table columns.
  */
 public interface AccessColumns extends BaseColumns {
 
