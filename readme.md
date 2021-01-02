@@ -11,10 +11,12 @@ Lineage Health Mod (HealthStore)
     - [core](#core)
     - [mod](#mod)
     - [sdk](#sdk)
+- [Versioning](#versioning)
+- [License](#license)
 
 ## Info
 
-The Lineage Health Mod (also called "HealthStore") allows applications to
+The Lineage Health Mod (also called "HealthStore" or "Health Mod") allows applications to
 store and share health-related data in a secure environment that never leaves
 your device and gives the user strong control over the data flow.
 
@@ -33,21 +35,24 @@ HealthStore can store multiple data entities:
     - A medical profile consists of a set of "constant" basic medical information about the user
     - This data will not have the same level of protection like the Records in order to allow access from when the screen is locked in case of emergency
 
-While this is a LineageOS' project, it is designed to be easily portable to
-different Android distribution that provide the standard Android SDK APIs at level
-27 or higher (Android 8.1).
+While this is a LineageOS' project, it is designed to be used on
+any Android distribution that provides the standard Android SDK APIs at level
+27 or higher (Android 8.1) as well.
 
 HealthStore takes advantages of existing robust standard security mechanisms of
-Android (such as runtime permissions, FBE and SELinux) to safeguard user's data.
+Android (such as runtime permissions and FBE) to safeguard user's data.
 
-The Lineage Health Mod consists of a group of
+It can offer even more protection thanks to its custom set of [SEPolicies](#sepolicies)
+that can be enabled when building the Health Mod inside the system.
+
+At the low level, the Lineage Health Mod consists of a number of
 [ContentProviders](https://developer.android.com/guide/topics/providers/content-providers)
-that have their data stored in a secure system location. Each `ContentProvider` is guarded by its
+that have their data stored in a secure location. Each `ContentProvider` is guarded by its own
 [runtime permission](https://developer.android.com/distribute/best-practices/develop/runtime-permissions).
 
-OEMs have access to an additional `ContentProvider` that can deny read and/or write access
-for each particular metric to every single app. This should be used for "OEM health manager
-applications" in order to allow the user to have complete control over the data flow.
+OEMs have access to an additional `ContentProvider` that can deny read and/or write access policies
+for each particular metric to every single app. This should be used by OEMs to enforce custom policies
+or to allow the user to have complete control over the data flow (as in the Lineage Health app).
 
 ### Permissions
 
@@ -73,50 +78,70 @@ The following Android permissions are used by the Lineage Health platform
     - Usage: Access to mindfulness-related metrics. May be overridden by system policies
 - `lineageos.permission.HEALTH_MEDICAL_PROFILE`
     - Access: runtime (dangerous)
-    - Usage: Access to medical profile data.
+    - Usage: Access to medical profile data. Cannot be overridden by system policies
 
 ## Build
 
-In order to add support for the Lineage Health Mod and the apps that make use of
-this feature a couple of simple steps are required:
+It is possible to build the Health Mod app both from Android Studio / gradle and from
+an Android (AOSP) build environment (for Android 10 / API 29 and higher).
 
-### Android 10 and higher
+### Gradle
 
-If you happen to be working on a platform that targets Android 10 or higher (API 29)
-it is possible to just include this repo in your build environment and make sure the
-package `HealthStoreMod` is included in your build.
+You can compile with gradle by running `./gradlew :mod:assemble`
 
-### Android 9 (P) and lower
+### Android 10(+) build environment
 
-Due to the lack of proper kotlin support in the Android build environment it may not
-be possible to successfully compile the `HealthStoreMod` target. However, it's possible
-to generate a prebuilt apk using `./gradlew :mod:assemble`.
+It is possible to simply include this repo in your build environment at `vendor/lineage/health`
+and make sure the target package `HealthStoreMod` is included in your build.
 
 ### SEPolicies
 
 Additional SEPolicies are available. This repository provides example implementation
 of SEPolicies to increase the security of stored user data by restricting access to
-the Mod app data:
+the Mod app data. It is recommend to make use of the additional rules to make users' data
+safer when building the Health Mod inside the system.
 
-* [Example for api 29 (Android 10)](/selinux/api29/)
+* [Example implementation for API 29 (Android 10)](/selinux/api29/)
 
 ## Usage
 
-App developers may access the HealthStore through the standard Android's
-[ContentResolver](https://developer.android.com/guide/topics/providers/content-provider-basics)
-class without requiring the addition of any new external dependency.
+## Android ContentResolver
 
-However, it's also possible (and encouraged) the usage of the official [sdk](#sdk),
-a simple library that reduces the amount of boilerplate and provides the data using
-Java objects and repositories.
-The SDK works with both Java and Kotlin applications, and a [-ktx](#sdk-ktx) variant
-is available for those who make use of Kotlin coroutines.
+App developers might access the HealthStore through the standard Android's
+[ContentResolver](https://developer.android.com/guide/topics/providers/content-provider-basics)
+without requiring the addition of any new external dependency. Please take a look
+at the [sdk code](/sdk/src/main/java/org/lineageos/mod/health/sdk/) inside this repository to
+see how to properly use the raw ContentProvider.
+This is **not** recommended for most use cases, unless you have a reason not to, please use the
+[sdk library](#sdk-library).
+
+### SDK library
+
+The official [SDK](#sdk) library reduces the amount of boilerplate required for communicating
+with the underlying ContentProvider and provides easy-to-use interfaces.
+The SDK is written in Java but works with Kotlin projects as well.
+
+The JavaDoc is available on [GitHub](https://healthstore.github.io/android_vendor_lineage_health).
+
+You can find the SDK on bintray to easily import it in your maven / gradle project:
+
+```groovy
+repositories {
+    maven {
+        url "https://dl.bintray.com/lineageos/org.lineageos"
+    }
+}
+
+dependencies {
+     implementation "org.lineageos:mod.health-sdk:1.0.0-alpha00"
+}
+```
 
 ## Testing
 
 Tests are implemented in the [`:mod`](#mod) module. Both end-to-end (sdk-to-db) tests
 and unit tests should be put here in order to facilitate debugging of the [Mod component](#mod).
-Tests found here can be also used to verify whether the current implementation of the Health
+Tests found here could be also used to verify whether the current implementation of the Health
 Mod installed on the device adheres to the _official_ implementation details.
 
 You can execute the tests by running:
@@ -127,8 +152,8 @@ You can execute the tests by running:
 
 ## Components
 
-The Lineage Health Mod is written in Java and Kotlin. It supports
-Android platforms providing SDK API level 27 or higher.
+The Lineage Health Platform is written in Java and Kotlin. It supports
+Android devices providing SDK API level 27 or higher.
 
 The following architectures are supported by the Lineage Health Mod:
 `armeabi-v7a`, `arm64-v8a`, `x86`, `x86_64`. Other architectures are not
@@ -145,7 +170,8 @@ Code shared across the [`:mod`](#mod) and [`:sdk`](#sdk) modules.
 
 ### :mod
 
-The module to be installed in the system (or product) partition of the device.
+The module to be installed in the device. If included in a system build, it is recommend to
+put it in the system (or product) partition but not in vendor.
 Holds the ContentProviders that host the health data.
 
 - Language: Kotlin
@@ -153,14 +179,45 @@ Holds the ContentProviders that host the health data.
     - [`:core`](#core)
         - [androidX/annotation](https://developer.android.com/jetpack/androidx/releases/annotation)
     - [kotlin/stdlib/jvm](https://github.com/JetBrains/kotlin/releases)
-    - [androidX/sqlite](https://developer.android.com/jetpack/androidx/releases/sqlite)
     - [sqlcipher](https://github.com/sqlcipher/android-database-sqlcipher)
+        - [androidX/sqlite](https://developer.android.com/jetpack/androidx/releases/sqlite)
 
 ### :sdk
 
-Provides simple APIs for the usage of the `ContentProvider`s through data objects and repositories.
+Provides simple APIs for the usage of the Mod `ContentProvider`s through data objects and repositories.
 
 - Language: Java
 - Dependencies
     - [`:core`](#core)
         - [androidX/annotation](https://developer.android.com/jetpack/androidx/releases/annotation)
+
+## Versioning
+
+The Health Mod and SDK both follow a parallel [semantic versioning](https://semver.org/) model.
+This means that a Mod app (version _X.Y.Z_) installed on a device is guaranteed to support
+any app that makes use of the SDK version _X.*.*_).
+
+The Mod app might also support older SDKs by attempting to "convert" the given data internally, but
+it is not guaranteed to work.
+
+Adding making changes to the metrics (adding a new field or even a new metric) requires a major
+version bump because there are strict checks in place to avoid invalid data being inserted into the
+database.
+
+## License
+
+```
+Copyright (C) 2020-2021 The LineageOS Project
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+```
