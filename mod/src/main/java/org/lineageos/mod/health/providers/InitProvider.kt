@@ -26,7 +26,7 @@ import net.sqlcipher.database.SQLiteDatabase
  * The purpose of this class is to initialize
  * the sql cipher libraries
  */
-internal class InitProvider : ContentProvider() {
+class InitProvider : ContentProvider() {
 
     override fun onCreate(): Boolean {
         SQLiteDatabase.loadLibs(context?.applicationContext ?: context)

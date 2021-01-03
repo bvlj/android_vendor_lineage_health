@@ -118,7 +118,7 @@ public abstract class RecordsRepo<T extends Record> {
         final ContentValues cv = record.toContentValues();
         final int result = contentResolver.update(updateUri, cv, null, null);
         switch (result) {
-            case AccessPolicyValues.DENIED_RESULT:
+            case AccessPolicyValues.DENIED_COUNT:
                 return OperationResult.PolicyError.INSTANCE;
             case 1:
                 return new OperationResult.Success<>(1);
@@ -142,7 +142,7 @@ public abstract class RecordsRepo<T extends Record> {
         final Uri deleteUri = getUri(record);
         final int result = contentResolver.delete(deleteUri, null, null);
         switch (result) {
-            case AccessPolicyValues.DENIED_RESULT:
+            case AccessPolicyValues.DENIED_COUNT:
                 return OperationResult.PolicyError.INSTANCE;
             case 1:
                 return new OperationResult.Success<>(1);

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2020 The LineageOS Project
+ * Copyright (C) 2021 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package org.lineageos.mod.health.providers
+package org.lineageos.mod.health.providers.records
 
 import org.lineageos.mod.health.common.HealthStoreUri
-import org.lineageos.mod.health.db.tables.HeartBloodTable
+import org.lineageos.mod.health.db.tables.BodyTable
 
-internal class HeartBloodRecordContentProvider : RecordContentProvider(
-    HealthStoreUri.HEART_BLOOD,
-    HealthStoreUri.Authority.HEART_BLOOD,
-    HeartBloodTable.NAME
+class BodyRecordContentProvider : RecordContentProvider(
+    HealthStoreUri.BODY,
+    HealthStoreUri.Authority.BODY,
+    BodyTable.NAME
 )

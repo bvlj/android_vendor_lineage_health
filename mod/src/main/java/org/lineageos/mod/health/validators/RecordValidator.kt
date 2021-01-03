@@ -133,7 +133,7 @@ object RecordValidator : Validator() {
 
         fun validateMoodLevel(cv: ContentValues) {
             val value = cv.getAsInteger(RecordColumns.MOOD)
-            if (value < 0L || value >= 1 shl 11) {
+            if (value == null || value < 0L || value >= 1 shl 11) {
                 throw ValidationException("Invalid mood level (was $value)")
             }
         }

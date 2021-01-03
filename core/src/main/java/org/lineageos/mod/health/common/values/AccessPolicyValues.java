@@ -35,7 +35,7 @@ public final class AccessPolicyValues {
     /**
      * Count returned from denied update &amp; delete operations
      */
-    public static final int DENIED_RESULT = -2;
+    public static final int DENIED_COUNT = -2;
 
     /**
      * Uri returned from denied insert operations

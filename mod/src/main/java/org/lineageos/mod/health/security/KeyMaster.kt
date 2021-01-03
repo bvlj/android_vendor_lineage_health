@@ -42,6 +42,7 @@ internal class KeyMaster private constructor(
         private const val KEY_SECRET = "secret"
     }
 
+    // TODO: use byteArray to avoid redundant casting ByteArray -> String -> ByteArray
     private var pwd: String? = null
 
     fun initialize() {

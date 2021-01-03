@@ -21,7 +21,11 @@ import org.lineageos.mod.health.HealthStore
 
 abstract class Validator {
 
-    fun validate(cv: ContentValues) {
+    fun validate(cv: ContentValues?) {
+        if (cv == null) {
+            throw ValidationException("ContentValues cannot be null")
+        }
+
         val version = pullVersion(cv)
 
         // Sort by higher-than decreasing to maximize compatibility

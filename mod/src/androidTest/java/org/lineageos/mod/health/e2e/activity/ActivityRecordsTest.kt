@@ -71,6 +71,7 @@ class ActivityRecordsTest {
         val cv = ContentValues().apply {
             put(RecordColumns._METRIC, Metric.WORKOUT)
             put(RecordColumns.TIME, System.currentTimeMillis())
+            put(RecordColumns.STEPS, 1)
         }
 
         val invalidUri = Uri.withAppendedPath(HealthStoreUri.HEART_BLOOD, "${Metric.CYCLING}")

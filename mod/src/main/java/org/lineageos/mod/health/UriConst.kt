@@ -19,6 +19,6 @@ package org.lineageos.mod.health
 internal object UriConst {
     const val MATCH_ALL = 0
     const val MATCH_METRIC = 1
-    const val MATCH_ID = 2
+    const val MATCH_PKG = 2
     const val MATCH_ITEM = 3
 }

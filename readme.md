@@ -105,7 +105,7 @@ safer when building the Health Mod inside the system.
 
 ## Usage
 
-## Android ContentResolver
+### Android ContentResolver
 
 App developers might access the HealthStore through the standard Android's
 [ContentResolver](https://developer.android.com/guide/topics/providers/content-provider-basics)
@@ -194,8 +194,8 @@ Provides simple APIs for the usage of the Mod `ContentProvider`s through data ob
 ## Versioning
 
 The Health Mod and SDK both follow a parallel [semantic versioning](https://semver.org/) model.
-This means that a Mod app (version _X.Y.Z_) installed on a device is guaranteed to support
-any app that makes use of the SDK version _X.*.*_).
+This means that a Mod app (version `X.Y.Z`) installed on a device is guaranteed to support
+any app that makes use of the SDK version `X.*.*`).
 
 The Mod app might also support older SDKs by attempting to "convert" the given data internally, but
 it is not guaranteed to work.

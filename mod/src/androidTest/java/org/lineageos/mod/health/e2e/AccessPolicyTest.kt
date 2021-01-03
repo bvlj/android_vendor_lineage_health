@@ -48,27 +48,26 @@ class AccessPolicyTest {
         cr = context.contentResolver
         bodyRepo = BodyRecordsRepo.getInstance(cr)
         myPkgName = context.packageName
+        cr.delete(HealthStoreUri.ACCESS, null, null)
     }
 
     @After
     fun tearDown() {
-        cr.delete(
-            Uri.withAppendedPath(HealthStoreUri.ACCESS, "all"),
-            null,
-            null
-        )
+        cr.delete(HealthStoreUri.ACCESS, null, null)
     }
 
     @Test
     fun blockRead() {
         // Make weight write-only
-        cr.insert(
-            HealthStoreUri.ACCESS,
-            ContentValues().apply {
-                put(AccessColumns.PKG_NAME, myPkgName)
-                put(AccessColumns.METRIC, Metric.WEIGHT)
-                put(AccessColumns.PERMISSIONS, Permission.WRITE)
-            }
+        Assert.assertNotNull(
+            cr.insert(
+                HealthStoreUri.ACCESS,
+                ContentValues().apply {
+                    put(AccessColumns.PKG_NAME, myPkgName)
+                    put(AccessColumns.METRIC, Metric.WEIGHT)
+                    put(AccessColumns.PERMISSIONS, Permission.WRITE)
+                }
+            )
         )
 
         // Should be able to insert…
@@ -101,7 +100,8 @@ class AccessPolicyTest {
                 put(AccessColumns.METRIC, Metric.WEIGHT)
                 put(AccessColumns.PERMISSIONS, Permission.ALL)
             },
-            null, null
+            null,
+            null
         )
         Assert.assertTrue(updated > 0)
 
@@ -115,7 +115,7 @@ class AccessPolicyTest {
 
         bodyRepo.deleteAll()
         Assert.assertTrue(bodyRepo.all.isEmpty())
-        cr.delete(Uri.withAppendedPath(HealthStoreUri.ACCESS, "all"), null, null)
+        cr.delete(HealthStoreUri.ACCESS, null, null)
     }
 
     @Test
@@ -131,13 +131,15 @@ class AccessPolicyTest {
         Assert.assertNotEquals(-1L, idB)
 
         // Make weight read-only
-        cr.insert(
-            HealthStoreUri.ACCESS,
-            ContentValues().apply {
-                put(AccessColumns.PKG_NAME, myPkgName)
-                put(AccessColumns.METRIC, Metric.WEIGHT)
-                put(AccessColumns.PERMISSIONS, Permission.READ)
-            }
+        Assert.assertNotNull(
+            cr.insert(
+                HealthStoreUri.ACCESS,
+                ContentValues().apply {
+                    put(AccessColumns.PKG_NAME, myPkgName)
+                    put(AccessColumns.METRIC, Metric.WEIGHT)
+                    put(AccessColumns.PERMISSIONS, Permission.READ)
+                }
+            )
         )
 
         // Should be able to read…
@@ -170,7 +172,8 @@ class AccessPolicyTest {
                 put(AccessColumns.METRIC, Metric.WEIGHT)
                 put(AccessColumns.PERMISSIONS, Permission.ALL)
             },
-            null, null
+            null,
+            null
         )
         Assert.assertTrue(updated > 0)
 
@@ -190,7 +193,7 @@ class AccessPolicyTest {
 
         bodyRepo.deleteAll()
         Assert.assertTrue(bodyRepo.all.isEmpty())
-        cr.delete(Uri.withAppendedPath(HealthStoreUri.ACCESS, "all"), null, null)
+        cr.delete(HealthStoreUri.ACCESS, null, null)
     }
 
     @Test
@@ -216,13 +219,15 @@ class AccessPolicyTest {
         Assert.assertFalse(bodyRepo.allBodyTemperatureRecords.isEmpty())
 
         // Revoke weight access
-        cr.insert(
-            HealthStoreUri.ACCESS,
-            ContentValues().apply {
-                put(AccessColumns.PKG_NAME, myPkgName)
-                put(AccessColumns.METRIC, Metric.WEIGHT)
-                put(AccessColumns.PERMISSIONS, Permission.NONE)
-            }
+        Assert.assertNotNull(
+            cr.insert(
+                HealthStoreUri.ACCESS,
+                ContentValues().apply {
+                    put(AccessColumns.PKG_NAME, myPkgName)
+                    put(AccessColumns.METRIC, Metric.WEIGHT)
+                    put(AccessColumns.PERMISSIONS, Permission.NONE)
+                }
+            )
         )
 
         // Shouldn't be able to read weight records…
@@ -271,7 +276,7 @@ class AccessPolicyTest {
 
         bodyRepo.deleteAll()
         Assert.assertTrue(bodyRepo.all.isEmpty())
-        cr.delete(Uri.withAppendedPath(HealthStoreUri.ACCESS, "all"), null, null)
+        cr.delete(HealthStoreUri.ACCESS, null, null)
     }
 
     private fun insert(record: BodyRecord): Long {

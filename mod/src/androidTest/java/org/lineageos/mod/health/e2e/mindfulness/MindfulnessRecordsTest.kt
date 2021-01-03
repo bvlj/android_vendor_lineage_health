@@ -69,6 +69,7 @@ class MindfulnessRecordsTest {
         val cv = ContentValues().apply {
             put(RecordColumns._METRIC, Metric.MOOD)
             put(RecordColumns.TIME, System.currentTimeMillis())
+            put(RecordColumns.MOOD, MoodLevel.EXHAUSTED)
         }
 
         val invalidUri = Uri.withAppendedPath(

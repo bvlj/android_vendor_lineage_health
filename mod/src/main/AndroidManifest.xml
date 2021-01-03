@@ -82,43 +82,43 @@
             android:exported="false" />
 
         <provider
-            android:name=".providers.AccessContentProvider"
+            android:name=".providers.access.AccessContentProvider"
             android:authorities="org.lineageos.mod.health.access"
             android:exported="true"
             android:writePermission="lineageos.permission.HEALTH_ACCESS" />
 
         <provider
-            android:name=".providers.ActivityRecordContentProvider"
+            android:name=".providers.records.ActivityRecordContentProvider"
             android:authorities="org.lineageos.mod.health.activity"
             android:exported="true"
             android:permission="lineageos.permission.HEALTH_ACTIVITY" />
 
         <provider
-            android:name=".providers.BodyRecordContentProvider"
+            android:name=".providers.records.BodyRecordContentProvider"
             android:authorities="org.lineageos.mod.health.body"
             android:exported="true"
             android:permission="lineageos.permission.HEALTH_BODY" />
 
         <provider
-            android:name=".providers.BreathingRecordContentProvider"
+            android:name=".providers.records.BreathingRecordContentProvider"
             android:authorities="org.lineageos.mod.health.breathing"
             android:exported="true"
             android:permission="lineageos.permission.HEALTH_BREATHING" />
 
         <provider
-            android:name=".providers.HeartBloodRecordContentProvider"
+            android:name=".providers.records.HeartBloodRecordContentProvider"
             android:authorities="org.lineageos.mod.health.heart"
             android:exported="true"
             android:permission="lineageos.permission.HEALTH_HEART_BLOOD" />
 
         <provider
-            android:name=".providers.MindfulnessRecordContentProvider"
+            android:name=".providers.records.MindfulnessRecordContentProvider"
             android:authorities="org.lineageos.mod.health.mindfulness"
             android:exported="true"
             android:permission="lineageos.permission.HEALTH_MINDFULNESS" />
 
         <provider
-            android:name=".providers.MedicalProfileProvider"
+            android:name=".providers.profile.MedicalProfileProvider"
             android:authorities="org.lineageos.mod.health.profile"
             android:directBootAware="true"
             android:exported="true"
