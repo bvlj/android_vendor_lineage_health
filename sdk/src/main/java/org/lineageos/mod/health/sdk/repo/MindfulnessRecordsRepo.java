@@ -22,6 +22,7 @@ import android.database.Cursor;
 import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresPermission;
 
 import org.lineageos.mod.health.common.HealthStoreUri;
 import org.lineageos.mod.health.common.Metric;
@@ -30,6 +31,7 @@ import org.lineageos.mod.health.sdk.model.records.mindfulness.MeditationRecord;
 import org.lineageos.mod.health.sdk.model.records.mindfulness.MindfulnessRecord;
 import org.lineageos.mod.health.sdk.model.records.mindfulness.MoodRecord;
 import org.lineageos.mod.health.sdk.model.records.mindfulness.SleepRecord;
+import org.lineageos.mod.health.sdk.util.HsRuntimePermission;
 import org.lineageos.mod.health.sdk.util.RecordTimeComparator;
 
 import java.util.ArrayList;
@@ -90,6 +92,7 @@ public final class MindfulnessRecordsRepo extends RecordsRepo<MindfulnessRecord>
 
     @NonNull
     @Override
+    @RequiresPermission(HsRuntimePermission.MINDFULNESS)
     public List<MindfulnessRecord> getAll() {
         final List<MindfulnessRecord> list = new ArrayList<>();
         list.addAll(getAllMeditationRecords());
@@ -100,6 +103,7 @@ public final class MindfulnessRecordsRepo extends RecordsRepo<MindfulnessRecord>
     }
 
     @NonNull
+    @RequiresPermission(HsRuntimePermission.MINDFULNESS)
     public List<MeditationRecord> getAllMeditationRecords() {
         return getByMetric(Metric.MEDITATION).parallelStream()
                 .map(MeditationRecord.class::cast)
@@ -107,6 +111,7 @@ public final class MindfulnessRecordsRepo extends RecordsRepo<MindfulnessRecord>
     }
 
     @NonNull
+    @RequiresPermission(HsRuntimePermission.MINDFULNESS)
     public List<MoodRecord> getAllMoodRecords() {
         return getByMetric(Metric.MOOD).parallelStream()
                 .map(MoodRecord.class::cast)
@@ -114,6 +119,7 @@ public final class MindfulnessRecordsRepo extends RecordsRepo<MindfulnessRecord>
     }
 
     @NonNull
+    @RequiresPermission(HsRuntimePermission.MINDFULNESS)
     public List<SleepRecord> getAllSleepRecords() {
         return getByMetric(Metric.SLEEP).parallelStream()
                 .map(SleepRecord.class::cast)
@@ -122,18 +128,48 @@ public final class MindfulnessRecordsRepo extends RecordsRepo<MindfulnessRecord>
 
 
     @Nullable
+    @RequiresPermission(HsRuntimePermission.MINDFULNESS)
     public MeditationRecord getMeditationRecord(long id) {
         return (MeditationRecord) getById(Metric.MEDITATION, id);
     }
 
     @Nullable
+    @RequiresPermission(HsRuntimePermission.MINDFULNESS)
     public MoodRecord getMoodRecord(long id) {
         return (MoodRecord) getById(Metric.MOOD, id);
     }
 
     @Nullable
+    @RequiresPermission(HsRuntimePermission.MINDFULNESS)
     public SleepRecord getSleepRecord(long id) {
         return (SleepRecord) getById(Metric.SLEEP, id);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    @RequiresPermission(HsRuntimePermission.MINDFULNESS)
+    public OperationResult insert(@NonNull MindfulnessRecord record) {
+        return super.insert(record);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    @RequiresPermission(HsRuntimePermission.MINDFULNESS)
+    public OperationResult update(@NonNull MindfulnessRecord record) {
+        return super.update(record);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    @RequiresPermission(HsRuntimePermission.MINDFULNESS)
+    public OperationResult delete(@NonNull MindfulnessRecord record) {
+        return super.delete(record);
     }
 
     @NonNull

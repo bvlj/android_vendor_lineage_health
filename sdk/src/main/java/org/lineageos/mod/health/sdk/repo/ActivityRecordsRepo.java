@@ -22,15 +22,18 @@ import android.database.Cursor;
 import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresPermission;
 
 import org.lineageos.mod.health.common.HealthStoreUri;
 import org.lineageos.mod.health.common.Metric;
 import org.lineageos.mod.health.common.db.RecordColumns;
+import org.lineageos.mod.health.common.values.Permission;
 import org.lineageos.mod.health.sdk.model.records.activity.ActivityRecord;
 import org.lineageos.mod.health.sdk.model.records.activity.CyclingRecord;
 import org.lineageos.mod.health.sdk.model.records.activity.RunningRecord;
 import org.lineageos.mod.health.sdk.model.records.activity.WalkingRecord;
 import org.lineageos.mod.health.sdk.model.records.activity.WorkoutRecord;
+import org.lineageos.mod.health.sdk.util.HsRuntimePermission;
 import org.lineageos.mod.health.sdk.util.RecordTimeComparator;
 
 import java.util.ArrayList;
@@ -93,6 +96,7 @@ public final class ActivityRecordsRepo extends RecordsRepo<ActivityRecord> {
 
     @NonNull
     @Override
+    @RequiresPermission(HsRuntimePermission.ACTIVITY)
     public List<ActivityRecord> getAll() {
         final List<ActivityRecord> list = new ArrayList<>();
         list.addAll(getAllCyclingRecords());
@@ -104,6 +108,7 @@ public final class ActivityRecordsRepo extends RecordsRepo<ActivityRecord> {
     }
 
     @NonNull
+    @RequiresPermission(HsRuntimePermission.ACTIVITY)
     public List<CyclingRecord> getAllCyclingRecords() {
         return getByMetric(Metric.CYCLING).stream()
                 .map(CyclingRecord.class::cast)
@@ -111,6 +116,7 @@ public final class ActivityRecordsRepo extends RecordsRepo<ActivityRecord> {
     }
 
     @NonNull
+    @RequiresPermission(HsRuntimePermission.ACTIVITY)
     public List<RunningRecord> getAllRunningRecords() {
         return getByMetric(Metric.RUNNING).stream()
                 .map(RunningRecord.class::cast)
@@ -118,6 +124,7 @@ public final class ActivityRecordsRepo extends RecordsRepo<ActivityRecord> {
     }
 
     @NonNull
+    @RequiresPermission(HsRuntimePermission.ACTIVITY)
     public List<WalkingRecord> getAllWalkingRecords() {
         return getByMetric(Metric.WALKING).stream()
                 .map(WalkingRecord.class::cast)
@@ -125,6 +132,7 @@ public final class ActivityRecordsRepo extends RecordsRepo<ActivityRecord> {
     }
 
     @NonNull
+    @RequiresPermission(HsRuntimePermission.ACTIVITY)
     public List<WorkoutRecord> getAllWorkoutRecords() {
         return getByMetric(Metric.WORKOUT).stream()
                 .map(WorkoutRecord.class::cast)
@@ -132,23 +140,54 @@ public final class ActivityRecordsRepo extends RecordsRepo<ActivityRecord> {
     }
 
     @Nullable
+    @RequiresPermission(HsRuntimePermission.ACTIVITY)
     public CyclingRecord getCyclingRecord(long id) {
         return (CyclingRecord) getById(Metric.CYCLING, id);
     }
 
     @Nullable
+    @RequiresPermission(HsRuntimePermission.ACTIVITY)
     public RunningRecord getRunningRecord(long id) {
         return (RunningRecord) getById(Metric.RUNNING, id);
     }
 
     @Nullable
+    @RequiresPermission(HsRuntimePermission.ACTIVITY)
     public WalkingRecord getWalkingRecord(long id) {
         return (WalkingRecord) getById(Metric.WALKING, id);
     }
 
     @Nullable
+    @RequiresPermission(HsRuntimePermission.ACTIVITY)
     public WorkoutRecord getWorkoutRecord(long id) {
         return (WorkoutRecord) getById(Metric.WORKOUT, id);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    @RequiresPermission(HsRuntimePermission.ACTIVITY)
+    public OperationResult insert(@NonNull ActivityRecord record) {
+        return super.insert(record);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    @RequiresPermission(HsRuntimePermission.ACTIVITY)
+    public OperationResult update(@NonNull ActivityRecord record) {
+        return super.update(record);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    @RequiresPermission(HsRuntimePermission.ACTIVITY)
+    public OperationResult delete(@NonNull ActivityRecord record) {
+        return super.delete(record);
     }
 
     @NonNull
@@ -178,6 +217,5 @@ public final class ActivityRecordsRepo extends RecordsRepo<ActivityRecord> {
                 return new ActivityRecord(id, metric, time, duration, avgSpeed, calories,
                         distance, elevationGain, notes, steps);
         }
-
     }
 }

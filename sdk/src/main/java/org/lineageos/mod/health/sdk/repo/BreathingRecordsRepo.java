@@ -22,6 +22,7 @@ import android.database.Cursor;
 import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresPermission;
 
 import org.lineageos.mod.health.common.HealthStoreUri;
 import org.lineageos.mod.health.common.Metric;
@@ -32,6 +33,7 @@ import org.lineageos.mod.health.sdk.model.records.breathing.OxygenSaturationReco
 import org.lineageos.mod.health.sdk.model.records.breathing.PeakExpiratoryFlowRecord;
 import org.lineageos.mod.health.sdk.model.records.breathing.RespiratoryRateRecord;
 import org.lineageos.mod.health.sdk.model.records.breathing.VitalCapacityRecord;
+import org.lineageos.mod.health.sdk.util.HsRuntimePermission;
 import org.lineageos.mod.health.sdk.util.RecordTimeComparator;
 
 import java.util.ArrayList;
@@ -95,6 +97,7 @@ public final class BreathingRecordsRepo extends RecordsRepo<BreathingRecord> {
 
     @NonNull
     @Override
+    @RequiresPermission(HsRuntimePermission.BREATHING)
     public List<BreathingRecord> getAll() {
         final List<BreathingRecord> list = new ArrayList<>();
         list.addAll(getAllInhalerUsageRecords());
@@ -107,6 +110,7 @@ public final class BreathingRecordsRepo extends RecordsRepo<BreathingRecord> {
     }
 
     @NonNull
+    @RequiresPermission(HsRuntimePermission.BREATHING)
     public List<InhalerUsageRecord> getAllInhalerUsageRecords() {
         return getByMetric(Metric.INHALER_USAGE).parallelStream()
                 .map(InhalerUsageRecord.class::cast)
@@ -114,6 +118,7 @@ public final class BreathingRecordsRepo extends RecordsRepo<BreathingRecord> {
     }
 
     @NonNull
+    @RequiresPermission(HsRuntimePermission.BREATHING)
     public List<OxygenSaturationRecord> getAllOxygenSaturationRecords() {
         return getByMetric(Metric.OXYGEN_SATURATION).parallelStream()
                 .map(OxygenSaturationRecord.class::cast)
@@ -121,6 +126,7 @@ public final class BreathingRecordsRepo extends RecordsRepo<BreathingRecord> {
     }
 
     @NonNull
+    @RequiresPermission(HsRuntimePermission.BREATHING)
     public List<PeakExpiratoryFlowRecord> getAllPeakExpiratoryFlowRecords() {
         return getByMetric(Metric.PEAK_EXPIRATORY_FLOW).parallelStream()
                 .map(PeakExpiratoryFlowRecord.class::cast)
@@ -128,6 +134,7 @@ public final class BreathingRecordsRepo extends RecordsRepo<BreathingRecord> {
     }
 
     @NonNull
+    @RequiresPermission(HsRuntimePermission.BREATHING)
     public List<RespiratoryRateRecord> getAllRespiratoryRateRecords() {
         return getByMetric(Metric.RESPIRATORY_RATE).parallelStream()
                 .map(RespiratoryRateRecord.class::cast)
@@ -135,6 +142,7 @@ public final class BreathingRecordsRepo extends RecordsRepo<BreathingRecord> {
     }
 
     @NonNull
+    @RequiresPermission(HsRuntimePermission.BREATHING)
     public List<VitalCapacityRecord> getAllVitalCapacityRecords() {
         return getByMetric(Metric.VITAL_CAPACITY).parallelStream()
                 .map(VitalCapacityRecord.class::cast)
@@ -142,28 +150,60 @@ public final class BreathingRecordsRepo extends RecordsRepo<BreathingRecord> {
     }
 
     @Nullable
+    @RequiresPermission(HsRuntimePermission.BREATHING)
     public InhalerUsageRecord getInhalerUsageRecord(long id) {
         return (InhalerUsageRecord) getById(Metric.INHALER_USAGE, id);
     }
 
     @Nullable
+    @RequiresPermission(HsRuntimePermission.BREATHING)
     public OxygenSaturationRecord getOxygenSaturationRecord(long id) {
         return (OxygenSaturationRecord) getById(Metric.OXYGEN_SATURATION, id);
     }
 
     @Nullable
+    @RequiresPermission(HsRuntimePermission.BREATHING)
     public PeakExpiratoryFlowRecord getPeakExpiratoryFlowRecord(long id) {
         return (PeakExpiratoryFlowRecord) getById(Metric.PEAK_EXPIRATORY_FLOW, id);
     }
 
     @Nullable
+    @RequiresPermission(HsRuntimePermission.BREATHING)
     public RespiratoryRateRecord getRespiratoryRateRecord(long id) {
         return (RespiratoryRateRecord) getById(Metric.RESPIRATORY_RATE, id);
     }
 
     @Nullable
+    @RequiresPermission(HsRuntimePermission.BREATHING)
     public VitalCapacityRecord getVitalCapacityRecord(long id) {
         return (VitalCapacityRecord) getById(Metric.VITAL_CAPACITY, id);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    @RequiresPermission(HsRuntimePermission.BREATHING)
+    public OperationResult insert(@NonNull BreathingRecord record) {
+        return super.insert(record);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    @RequiresPermission(HsRuntimePermission.BREATHING)
+    public OperationResult update(@NonNull BreathingRecord record) {
+        return super.update(record);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    @RequiresPermission(HsRuntimePermission.BREATHING)
+    public OperationResult delete(@NonNull BreathingRecord record) {
+        return super.delete(record);
     }
 
     @NonNull

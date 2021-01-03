@@ -26,9 +26,11 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.RemoteException;
 
+import androidx.annotation.CallSuper;
 import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresPermission;
 import androidx.annotation.RestrictTo;
 import androidx.annotation.VisibleForTesting;
 
@@ -37,6 +39,7 @@ import org.lineageos.mod.health.common.values.AccessPolicyValues;
 import org.lineageos.mod.health.common.values.annotations.ActivityMetric;
 import org.lineageos.mod.health.common.values.annotations.MetricType;
 import org.lineageos.mod.health.sdk.model.records.Record;
+import org.lineageos.mod.health.sdk.util.HsRuntimePermission;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -84,7 +87,8 @@ public abstract class RecordsRepo<T extends Record> {
      *         policy. You may want to notify the user about this issue</li>
      * </ul>
      */
-    public final OperationResult insert(@NonNull T record) {
+    @CallSuper
+    public OperationResult insert(@NonNull T record) {
         final ContentValues contentValues = record.toContentValues();
         final Uri uri = contentResolver.insert(getUri(record.getMetric()), contentValues);
 
@@ -113,7 +117,8 @@ public abstract class RecordsRepo<T extends Record> {
      *         policy. You may want to notify the user about this issue</li>
      * </ul>
      */
-    public final OperationResult update(@NonNull T record) {
+    @CallSuper
+    public OperationResult update(@NonNull T record) {
         final Uri updateUri = getUri(record);
         final ContentValues cv = record.toContentValues();
         final int result = contentResolver.update(updateUri, cv, null, null);
@@ -138,7 +143,8 @@ public abstract class RecordsRepo<T extends Record> {
      *         policy. You may want to notify the user about this issue</li>
      * </ul>
      */
-    public final OperationResult delete(@NonNull T record) {
+    @CallSuper
+    public OperationResult delete(@NonNull T record) {
         final Uri deleteUri = getUri(record);
         final int result = contentResolver.delete(deleteUri, null, null);
         switch (result) {
@@ -233,7 +239,7 @@ public abstract class RecordsRepo<T extends Record> {
      */
     @RestrictTo(RestrictTo.Scope.TESTS)
     @VisibleForTesting
-    public boolean deleteAll()  {
+    public final boolean deleteAll()  {
         final List<T> records = getAll();
         try {
             executeBatch(composer -> records.forEach(composer::delete));

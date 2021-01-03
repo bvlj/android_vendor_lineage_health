@@ -24,10 +24,12 @@ import android.net.Uri;
 import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresPermission;
 
 import org.lineageos.mod.health.common.HealthStoreUri;
 import org.lineageos.mod.health.common.db.MedicalProfileColumns;
 import org.lineageos.mod.health.sdk.model.profile.MedicalProfile;
+import org.lineageos.mod.health.sdk.util.HsRuntimePermission;
 
 /**
  * Medical profile repository.
@@ -84,6 +86,7 @@ public final class MedicalProfileRepo {
     }
 
     @NonNull
+    @RequiresPermission(HsRuntimePermission.MEDICAL_PROFILE)
     public MedicalProfile get() {
         final Cursor cursor = contentResolver.query(HealthStoreUri.MEDICAL_PROFILE,
                 DEFAULT_PROJECTION, null, null, null);
@@ -110,12 +113,14 @@ public final class MedicalProfileRepo {
         }
     }
 
+    @RequiresPermission(HsRuntimePermission.MEDICAL_PROFILE)
     public boolean set(@NonNull MedicalProfile medicalProfile) {
         final ContentValues cv = medicalProfile.toContentValues();
         final Uri uri = contentResolver.insert(HealthStoreUri.MEDICAL_PROFILE, cv);
         return uri != null;
     }
 
+    @RequiresPermission(HsRuntimePermission.MEDICAL_PROFILE)
     public boolean reset() {
         return contentResolver.delete(HealthStoreUri.MEDICAL_PROFILE, null, null) == 1;
     }

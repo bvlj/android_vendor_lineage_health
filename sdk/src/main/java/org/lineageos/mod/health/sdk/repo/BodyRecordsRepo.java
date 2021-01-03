@@ -22,6 +22,7 @@ import android.database.Cursor;
 import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresPermission;
 
 import org.lineageos.mod.health.common.HealthStoreUri;
 import org.lineageos.mod.health.common.Metric;
@@ -35,6 +36,7 @@ import org.lineageos.mod.health.sdk.model.records.body.MenstrualCycleRecord;
 import org.lineageos.mod.health.sdk.model.records.body.UvIndexRecord;
 import org.lineageos.mod.health.sdk.model.records.body.WaterIntakeRecord;
 import org.lineageos.mod.health.sdk.model.records.body.WeightRecord;
+import org.lineageos.mod.health.sdk.util.HsRuntimePermission;
 import org.lineageos.mod.health.sdk.util.RecordTimeComparator;
 
 import java.util.ArrayList;
@@ -105,6 +107,7 @@ public final class BodyRecordsRepo extends RecordsRepo<BodyRecord> {
 
     @NonNull
     @Override
+    @RequiresPermission(HsRuntimePermission.BODY)
     public List<BodyRecord> getAll() {
         final List<BodyRecord> list = new ArrayList<>();
         list.addAll(getAllAbdominalCircumferenceRecords());
@@ -120,6 +123,7 @@ public final class BodyRecordsRepo extends RecordsRepo<BodyRecord> {
     }
 
     @NonNull
+    @RequiresPermission(HsRuntimePermission.BODY)
     public List<AbdominalCircumferenceRecord> getAllAbdominalCircumferenceRecords() {
         return getByMetric(Metric.ABDOMINAL_CIRCUMFERENCE).parallelStream()
                 .map(AbdominalCircumferenceRecord.class::cast)
@@ -127,6 +131,7 @@ public final class BodyRecordsRepo extends RecordsRepo<BodyRecord> {
     }
 
     @NonNull
+    @RequiresPermission(HsRuntimePermission.BODY)
     public List<BodyMassIndexRecord> getAllBodyMassIndexRecords() {
         return getByMetric(Metric.BODY_MASS_INDEX).parallelStream()
                 .map(BodyMassIndexRecord.class::cast)
@@ -134,6 +139,7 @@ public final class BodyRecordsRepo extends RecordsRepo<BodyRecord> {
     }
 
     @NonNull
+    @RequiresPermission(HsRuntimePermission.BODY)
     public List<BodyTemperatureRecord> getAllBodyTemperatureRecords() {
         return getByMetric(Metric.BODY_TEMPERATURE).parallelStream()
                 .map(BodyTemperatureRecord.class::cast)
@@ -141,6 +147,7 @@ public final class BodyRecordsRepo extends RecordsRepo<BodyRecord> {
     }
 
     @NonNull
+    @RequiresPermission(HsRuntimePermission.BODY)
     public List<LeanBodyMassRecord> getAllLeanBodyMassRecords() {
         return getByMetric(Metric.LEAN_BODY_MASS).parallelStream()
                 .map(LeanBodyMassRecord.class::cast)
@@ -148,6 +155,7 @@ public final class BodyRecordsRepo extends RecordsRepo<BodyRecord> {
     }
 
     @NonNull
+    @RequiresPermission(HsRuntimePermission.BODY)
     public List<MenstrualCycleRecord> getAllMenstrualCycleRecords() {
         return getByMetric(Metric.MENSTRUAL_CYCLE).parallelStream()
                 .map(MenstrualCycleRecord.class::cast)
@@ -155,6 +163,7 @@ public final class BodyRecordsRepo extends RecordsRepo<BodyRecord> {
     }
 
     @NonNull
+    @RequiresPermission(HsRuntimePermission.BODY)
     public List<UvIndexRecord> getAllUvIndexRecords() {
         return getByMetric(Metric.UV_INDEX).parallelStream()
                 .map(UvIndexRecord.class::cast)
@@ -162,6 +171,7 @@ public final class BodyRecordsRepo extends RecordsRepo<BodyRecord> {
     }
 
     @NonNull
+    @RequiresPermission(HsRuntimePermission.BODY)
     public List<WaterIntakeRecord> getAllWaterIntakeRecords() {
         return getByMetric(Metric.WATER_INTAKE).parallelStream()
                 .map(WaterIntakeRecord.class::cast)
@@ -169,6 +179,7 @@ public final class BodyRecordsRepo extends RecordsRepo<BodyRecord> {
     }
 
     @NonNull
+    @RequiresPermission(HsRuntimePermission.BODY)
     public List<WeightRecord> getAllWeightRecords() {
         return getByMetric(Metric.WEIGHT).parallelStream()
                 .map(WeightRecord.class::cast)
@@ -176,43 +187,78 @@ public final class BodyRecordsRepo extends RecordsRepo<BodyRecord> {
     }
 
     @Nullable
+    @RequiresPermission(HsRuntimePermission.BODY)
     public AbdominalCircumferenceRecord getAbdominalCircumferenceRecord(long id) {
         return (AbdominalCircumferenceRecord) getById(Metric.ABDOMINAL_CIRCUMFERENCE, id);
     }
 
     @Nullable
+    @RequiresPermission(HsRuntimePermission.BODY)
     public BodyMassIndexRecord getBodyMassIndexRecord(long id) {
         return (BodyMassIndexRecord) getById(Metric.BODY_MASS_INDEX, id);
     }
 
     @Nullable
+    @RequiresPermission(HsRuntimePermission.BODY)
     public BodyTemperatureRecord getBodyTemperatureRecord(long id) {
         return (BodyTemperatureRecord) getById(Metric.BODY_TEMPERATURE, id);
     }
 
     @Nullable
+    @RequiresPermission(HsRuntimePermission.BODY)
     public LeanBodyMassRecord getLeanBodyMassRecord(long id) {
         return (LeanBodyMassRecord) getById(Metric.LEAN_BODY_MASS, id);
     }
 
     @Nullable
+    @RequiresPermission(HsRuntimePermission.BODY)
     public MenstrualCycleRecord getMenstrualCycleRecord(long id) {
         return (MenstrualCycleRecord) getById(Metric.MENSTRUAL_CYCLE, id);
     }
 
     @Nullable
+    @RequiresPermission(HsRuntimePermission.BODY)
     public UvIndexRecord getUvIndexRecord(long id) {
         return (UvIndexRecord) getById(Metric.UV_INDEX, id);
     }
 
     @Nullable
+    @RequiresPermission(HsRuntimePermission.BODY)
     public WaterIntakeRecord getWaterIntakeRecord(long id) {
         return (WaterIntakeRecord) getById(Metric.WATER_INTAKE, id);
     }
 
     @Nullable
+    @RequiresPermission(HsRuntimePermission.BODY)
     public WeightRecord getWeightRecord(long id) {
         return (WeightRecord) getById(Metric.WEIGHT, id);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    @RequiresPermission(HsRuntimePermission.BODY)
+    public OperationResult insert(@NonNull BodyRecord record) {
+        return super.insert(record);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    @RequiresPermission(HsRuntimePermission.BODY)
+    public OperationResult update(@NonNull BodyRecord record) {
+        return super.update(record);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    @RequiresPermission(HsRuntimePermission.BODY)
+    public OperationResult delete(@NonNull BodyRecord record) {
+        return super.delete(record);
     }
 
     @NonNull
