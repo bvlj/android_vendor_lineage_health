@@ -41,6 +41,10 @@ internal class AccessContentProvider : ContentProvider() {
         return true
     }
 
+    override fun shutdown() {
+        accessDbHelper.close()
+    }
+
     override fun query(
         uri: Uri,
         projection: Array<String>?,

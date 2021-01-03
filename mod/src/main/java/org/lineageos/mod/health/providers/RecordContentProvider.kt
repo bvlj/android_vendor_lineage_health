@@ -54,6 +54,10 @@ internal abstract class RecordContentProvider(
         return true
     }
 
+    override fun shutdown() {
+        dbHelper.close()
+    }
+
     override fun query(
         uri: Uri,
         projection: Array<String>?,
