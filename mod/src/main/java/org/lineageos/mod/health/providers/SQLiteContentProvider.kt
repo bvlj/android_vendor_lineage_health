@@ -29,7 +29,9 @@ import androidx.annotation.CallSuper
 import net.sqlcipher.database.SQLiteDatabase
 import net.sqlcipher.database.SQLiteOpenHelper
 import net.sqlcipher.database.SQLiteTransactionListener
+import org.lineageos.mod.health.db.SqlChecker
 import java.util.ArrayList
+import java.util.Locale
 
 /**
  * General purpose [ContentProvider] base class that uses SQLiteDatabase for storage.
@@ -39,11 +41,16 @@ abstract class SQLiteContentProvider : ContentProvider(), SQLiteTransactionListe
     companion object {
         private const val TAG = "SQLiteContentProvider"
         private const val SLEEP_AFTER_YIELD_DELAY = 4000L
+        private const val DISALLOW_SUB_QUERIES = true
+
+        private const val QUERY_TABLES_VIEWS =
+            "SELECT name FROM sqlite_master WHERE type in (\"table\", \"view\")"
     }
 
     protected var openHelper: SQLiteOpenHelper? = null
         private set
     private var db: SQLiteDatabase? = null
+    private lateinit var cachedSqlChecker: SqlChecker
 
     @Volatile
     private var notifyChange = false
@@ -57,7 +64,7 @@ abstract class SQLiteContentProvider : ContentProvider(), SQLiteTransactionListe
      * The package to most recently query(), not including further internally recursive calls
      */
     private val _cachedCallingPackage = ThreadLocal<String>()
-    private var cachedCallingPackage: String?
+    protected var cachedCallingPackage: String?
         get() = _cachedCallingPackage.get()
         set(value) = _cachedCallingPackage.set(value)
 
@@ -120,6 +127,8 @@ abstract class SQLiteContentProvider : ContentProvider(), SQLiteTransactionListe
 
     @CallSuper
     override fun insert(uri: Uri, values: ContentValues?): Uri? {
+        validateContentValues(cachedCallingPackage, values)
+
         if (isApplyingBatch) {
             val result = insertInTransaction(uri, values)
             if (result != null) {
@@ -178,6 +187,9 @@ abstract class SQLiteContentProvider : ContentProvider(), SQLiteTransactionListe
         selection: String?,
         selectionArgs: Array<String>?
     ): Int {
+        validateContentValues(cachedCallingPackage, values)
+        validateSql(cachedCallingPackage, selection)
+
         if (isApplyingBatch) {
             val count = updateInTransaction(uri, values, selection, selectionArgs)
             if (count > 0) {
@@ -207,6 +219,8 @@ abstract class SQLiteContentProvider : ContentProvider(), SQLiteTransactionListe
 
     @CallSuper
     override fun delete(uri: Uri, selection: String?, selectionArgs: Array<String>?): Int {
+        validateSql(cachedCallingPackage, selection)
+
         if (isApplyingBatch) {
             val count = deleteInTransaction(uri, selection, selectionArgs)
             if (count > 0) {
@@ -323,5 +337,113 @@ abstract class SQLiteContentProvider : ContentProvider(), SQLiteTransactionListe
             cachedCallingPackage = null
             this.callingUid = null
         }
+    }
+
+    /**
+     * Ensure a piece of SQL is valid and doesn't contain disallowed tokens
+     */
+    protected fun validateSql(callerPackage: String?, sqlPiece: String?) {
+        if (sqlPiece == null) {
+            return
+        }
+        runSqlValidation(callerPackage) {
+            getSqlChecker().ensureNoInvalidTokens(sqlPiece)
+        }
+    }
+
+    /**
+     * Ensure all column names in [projection] are valid (i.e. they're all single token)
+     */
+    protected fun validateProjection(callerPackage: String?, projection: Array<out String>?) {
+        if (projection == null) {
+            return
+        }
+
+        runSqlValidation(callerPackage) {
+            val checker = getSqlChecker()
+            projection.forEach(checker::ensureSingleTokenOnly)
+        }
+    }
+
+    /**
+     * Ensure all keys in [values] are valid (i.e. they're all single token)
+     */
+    private fun validateContentValues(callerPackage: String?, values: ContentValues?) {
+        if (values == null) {
+            return
+        }
+        runSqlValidation(callerPackage) {
+            val checker = getSqlChecker()
+            values.keySet().forEach(checker::ensureSingleTokenOnly)
+        }
+    }
+
+    private fun runSqlValidation(callerPackage: String?, validation: () -> Unit) {
+        try {
+            validation()
+        } catch (e: SqlChecker.InvalidSqlException) {
+            Log.e(TAG, "${e.message} caller=$callerPackage")
+            throw e
+        }
+    }
+
+    private fun getSqlChecker(): SqlChecker {
+        // No need for synchronization on mCachedSqlChecker, because worst-case we'll just
+        // initialize it twice.
+        if (::cachedSqlChecker.isInitialized) {
+            return cachedSqlChecker
+        }
+
+        val invalidTokens = mutableListOf<String>()
+        if (DISALLOW_SUB_QUERIES) {
+            // Disallow referring to tables and views. However, we exempt tables whose names are
+            // also used as column names of any tables.
+            invalidTokens.addAll(findTableAndViews(getReadableDatabase()))
+            // Disallow toke "select" to disallow sub-queries
+            invalidTokens.add("select")
+        }
+
+        return SqlChecker(invalidTokens).also { cachedSqlChecker = it }
+    }
+
+    /**
+     * Return all table / view names that clients shouldn't use in their queries -- basically the
+     * result contains all table / view names, except for the names that are column names of any
+     * tables.
+     */
+    private fun findTableAndViewsAllowingColumns(db: SQLiteDatabase): List<String> {
+        val tables = findTableAndViews(db)
+        val ret = mutableListOf<String>()
+        ret.addAll(tables)
+        tables.forEach { name -> findColumns(db, name).forEach(ret::remove) }
+        return ret
+    }
+
+    /**
+     * Find and return all table / view names in a db.
+     */
+    private fun findTableAndViews(db: SQLiteDatabase): List<String> {
+        val ret = mutableListOf<String>()
+        db.rawQuery(QUERY_TABLES_VIEWS, null)?.use {
+            while (it.moveToNext()) {
+                ret.add(it.getString(0).toLowerCase(Locale.ROOT))
+            }
+        }
+        return ret
+    }
+
+    /**
+     * Find all columns in a table / view.
+     */
+    private fun findColumns(db: SQLiteDatabase, table: String): List<String> {
+        val ret = mutableListOf<String>()
+        db.rawQuery("SELECT * FROM $table WHERE 0 LIMIT 0", null)?.use {
+            var i = 0
+            val n = it.columnCount
+            while (i < n) {
+                ret.add(it.getColumnName(i++).toLowerCase(Locale.ROOT))
+            }
+        }
+        return ret
     }
 }

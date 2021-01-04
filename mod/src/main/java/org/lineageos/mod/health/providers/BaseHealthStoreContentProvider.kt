@@ -152,6 +152,10 @@ abstract class BaseHealthStoreContentProvider : SQLiteContentProvider() {
         selectionArgs: Array<String>?,
         sortOrder: String?
     ): Cursor? {
+        validateProjection(cachedCallingPackage, projection)
+        validateSql(cachedCallingPackage, selection)
+        validateSql(cachedCallingPackage, sortOrder)
+
         // Note: don't use this.callingUid here. That's only used by mutation functions
         val callingUid = Binder.getCallingUid()
 
