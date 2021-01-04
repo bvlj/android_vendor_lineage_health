@@ -18,9 +18,13 @@ package org.lineageos.mod.health.providers
 
 import android.content.ContentProvider
 import android.content.ContentValues
+import android.content.Context
 import android.database.Cursor
 import android.net.Uri
 import net.sqlcipher.database.SQLiteDatabase
+import org.lineageos.mod.health.common.HealthStoreUri
+import org.lineageos.mod.health.common.db.AccessColumns
+import org.lineageos.mod.health.partner.PartnerProvider
 
 /**
  * The purpose of this class is to initialize
@@ -28,8 +32,14 @@ import net.sqlcipher.database.SQLiteDatabase
  */
 class InitProvider : ContentProvider() {
 
+    companion object {
+        private const val PREFS_NAME = "partner_prefs"
+        private const val PREFS_KEY_PARTNER_LOADED = "key_partner_loaded"
+    }
+
     override fun onCreate(): Boolean {
         SQLiteDatabase.loadLibs(context?.applicationContext ?: context)
+        loadPartnerConfig(context!!)
         return true
     }
 
@@ -62,5 +72,28 @@ class InitProvider : ContentProvider() {
         selectionArgs: Array<out String>?
     ): Int {
         throw UnsupportedOperationException()
+    }
+
+    private fun loadPartnerConfig(context: Context) {
+        val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        if (prefs.getBoolean(PREFS_KEY_PARTNER_LOADED, false)) {
+            return
+        }
+        val partner = PartnerProvider.get(context.packageManager) ?: return
+        val defaultPolicies = partner.getDefaultAccessPolicy()
+        val values = Array(defaultPolicies.size) { i ->
+            val it = defaultPolicies[i]
+            ContentValues().apply {
+                put(AccessColumns.PKG_NAME, it.pkgName)
+                put(AccessColumns.METRIC, it.metric)
+                put(AccessColumns.PERMISSIONS, it.permissions)
+            }
+        }
+        val inserted = context.contentResolver.bulkInsert(HealthStoreUri.ACCESS, values)
+        if (inserted == defaultPolicies.size) {
+            prefs.edit()
+                .putBoolean(PREFS_KEY_PARTNER_LOADED, true)
+                .apply()
+        }
     }
 }
