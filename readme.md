@@ -7,10 +7,7 @@ Lineage Health Mod (HealthStore)
 - [Build](#build)
 - [Usage](#usage)
 - [Testing](#testing)
-- [Components](#components)
-    - [core](#core)
-    - [mod](#mod)
-    - [sdk](#sdk)
+- [Documentation](#documentation)
 - [Versioning](#versioning)
 - [License](#license)
 
@@ -53,6 +50,8 @@ that have their data stored in a secure location. Each `ContentProvider` is guar
 OEMs have access to an additional `ContentProvider` that can deny read and/or write access policies
 for each particular metric to every single app. This should be used by OEMs to enforce custom policies
 or to allow the user to have complete control over the data flow (as in the Lineage Health app).
+Moreover OEMs may provide a "partner customization" app in their system builds to customize some
+parts of the Health Mod. See [the documentation for more information](/docs/partner.md).
 
 ### Permissions
 
@@ -150,46 +149,16 @@ You can execute the tests by running:
 ./gradlew :mod:connectedCheck
 ```
 
-## Components
+## Documentation
 
-The Lineage Health Platform is written in Java and Kotlin. It supports
-Android devices providing SDK API level 27 or higher.
+Additional documentation is provided within this repository
 
-The following architectures are supported by the Lineage Health Mod:
-`armeabi-v7a`, `arm64-v8a`, `x86`, `x86_64`. Other architectures are not
-supported due to the usage of the
-[sqlcipher library](https://github.com/sqlcipher/android-database-sqlcipher).
-
-### :core
-
-Code shared across the [`:mod`](#mod) and [`:sdk`](#sdk) modules.
-
-- Language: Java
-- Dependencies
-    - [androidX/annotation](https://developer.android.com/jetpack/androidx/releases/annotation)
-
-### :mod
-
-The module to be installed in the device. If included in a system build, it is recommend to
-put it in the system (or product) partition but not in vendor.
-Holds the ContentProviders that host the health data.
-
-- Language: Kotlin
-- Dependencies
-    - [`:core`](#core)
-        - [androidX/annotation](https://developer.android.com/jetpack/androidx/releases/annotation)
-    - [kotlin/stdlib/jvm](https://github.com/JetBrains/kotlin/releases)
-    - [sqlcipher](https://github.com/sqlcipher/android-database-sqlcipher)
-        - [androidX/sqlite](https://developer.android.com/jetpack/androidx/releases/sqlite)
-
-### :sdk
-
-Provides simple APIs for the usage of the Mod `ContentProvider`s through data objects and repositories.
-
-- Language: Java
-- Dependencies
-    - [`:core`](#core)
-        - [androidX/annotation](https://developer.android.com/jetpack/androidx/releases/annotation)
+- [Copy of the original product document](/docs/product_document.md)
+- [Access control information](/docs/access_control.md)
+- [Components](/docs/components.md)
+- [Custom data types reference values](/docs/custom_data_types.md)
+- [Record metric specifications](/docs/metrics.md)
+- [Partner customizations](/docs/partner.md)
 
 ## Versioning
 
