@@ -28,7 +28,7 @@ import org.lineageos.mod.health.db.tables.MindfulnessTable
 import org.lineageos.mod.health.security.KeyMaster
 import org.lineageos.mod.util.SingletonHolder
 
-internal class HealthStoreDbHelper private constructor(
+class HealthStoreDbHelper private constructor(
     private val context: Context?
 ) : SQLiteOpenHelper(
     context,

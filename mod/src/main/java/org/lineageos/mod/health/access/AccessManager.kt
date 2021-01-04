@@ -25,7 +25,7 @@ import org.lineageos.mod.health.common.values.Permission
 import org.lineageos.mod.health.common.HealthStoreUri
 import org.lineageos.mod.health.common.db.AccessColumns
 
-internal class AccessManager(
+class AccessManager(
     private val contentResolver: ContentResolver
 ) {
 

@@ -20,7 +20,7 @@ import net.sqlcipher.database.SQLiteDatabase
 import org.lineageos.mod.health.common.values.Permission
 import org.lineageos.mod.health.common.db.AccessColumns
 
-internal object AccessTable : Table {
+object AccessTable : Table {
     const val NAME = "access"
 
     private const val CREATE_CMD = "CREATE TABLE IF NOT EXISTS $NAME (" +

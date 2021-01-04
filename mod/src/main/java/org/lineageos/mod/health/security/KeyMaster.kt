@@ -28,7 +28,7 @@ import javax.crypto.Cipher
 import javax.crypto.KeyGenerator
 import javax.crypto.spec.GCMParameterSpec
 
-internal class KeyMaster private constructor(
+class KeyMaster private constructor(
     private val prefs: SharedPreferences
 ) {
     companion object : SingletonHolder<KeyMaster, Context>({

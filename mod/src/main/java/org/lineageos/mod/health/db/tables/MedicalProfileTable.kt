@@ -19,7 +19,7 @@ package org.lineageos.mod.health.db.tables
 import net.sqlcipher.database.SQLiteDatabase
 import org.lineageos.mod.health.common.db.MedicalProfileColumns
 
-internal object MedicalProfileTable : Table {
+object MedicalProfileTable : Table {
     const val NAME = "profile"
 
     private const val CREATE_CMD = "CREATE TABLE IF NOT EXISTS $NAME (" +

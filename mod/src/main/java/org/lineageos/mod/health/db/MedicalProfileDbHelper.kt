@@ -22,7 +22,7 @@ import net.sqlcipher.database.SQLiteOpenHelper
 import org.lineageos.mod.health.db.tables.MedicalProfileTable
 import org.lineageos.mod.util.SingletonHolder
 
-internal class MedicalProfileDbHelper private constructor(
+class MedicalProfileDbHelper private constructor(
     context: Context?
 ) : SQLiteOpenHelper(
     context?.applicationContext?.createDeviceProtectedStorageContext(),

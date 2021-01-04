@@ -18,7 +18,7 @@ package org.lineageos.mod.health.access
 
 import android.content.ContentProvider
 
-internal fun ContentProvider.canRead(
+fun ContentProvider.canRead(
     accessManager: AccessManager,
     metric: String
 ): Boolean {
@@ -27,7 +27,7 @@ internal fun ContentProvider.canRead(
     return metricInt != null && accessManager.canRead(callingPkg, metricInt)
 }
 
-internal fun ContentProvider.canWrite(
+fun ContentProvider.canWrite(
     accessManager: AccessManager,
     metric: String
 ): Boolean {

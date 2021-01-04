@@ -23,7 +23,7 @@ import android.database.AbstractCursor
  * performed from apps that have been blocked from one
  * or more metrics by the user
  */
-internal object EmptyCursor : AbstractCursor() {
+object EmptyCursor : AbstractCursor() {
 
     override fun getLong(column: Int): Long {
         return 0

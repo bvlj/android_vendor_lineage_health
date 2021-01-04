@@ -16,7 +16,7 @@
 
 package org.lineageos.mod.util
 
-internal abstract class SingletonHolder<out T, in A> constructor(creator: (A) -> T) {
+abstract class SingletonHolder<out T, in A> constructor(creator: (A) -> T) {
     private var creator: ((A) -> T)? = creator
 
     @Volatile

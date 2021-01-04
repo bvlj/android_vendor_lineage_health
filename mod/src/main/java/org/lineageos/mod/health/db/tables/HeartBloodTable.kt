@@ -19,7 +19,7 @@ package org.lineageos.mod.health.db.tables
 import net.sqlcipher.database.SQLiteDatabase
 import org.lineageos.mod.health.common.db.RecordColumns
 
-internal object HeartBloodTable : Table {
+object HeartBloodTable : Table {
     const val NAME = "hearth_blood"
 
     private const val CREATE_CMD = "CREATE TABLE IF NOT EXISTS $NAME (" +

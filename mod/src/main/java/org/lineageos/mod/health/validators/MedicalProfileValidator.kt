@@ -20,7 +20,7 @@ import android.content.ContentValues
 import org.lineageos.mod.health.HealthStore
 import org.lineageos.mod.health.common.db.MedicalProfileColumns
 
-internal object MedicalProfileValidator : Validator() {
+object MedicalProfileValidator : Validator() {
 
     override fun pullVersion(cv: ContentValues): Int {
         val version = cv.getAsInteger(MedicalProfileColumns._VERSION)

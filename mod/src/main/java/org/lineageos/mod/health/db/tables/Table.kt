@@ -18,7 +18,7 @@ package org.lineageos.mod.health.db.tables
 
 import net.sqlcipher.database.SQLiteDatabase
 
-internal interface Table {
+interface Table {
 
     fun onCreate(db: SQLiteDatabase)
 
