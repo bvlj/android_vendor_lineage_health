@@ -42,8 +42,7 @@ internal class KeyMaster private constructor(
         private const val KEY_SECRET = "secret"
     }
 
-    // TODO: use byteArray to avoid redundant casting ByteArray -> String -> ByteArray
-    private var pwd: String? = null
+    private var cachedPwd = ByteArray(0)
 
     fun initialize() {
         var entry = retrieveKey()
@@ -67,8 +66,10 @@ internal class KeyMaster private constructor(
         prefs[KEY_SECRET] = cipher.doFinal(secret)
     }
 
-    fun getDbKey(): String {
-        pwd?.let { return it }
+    fun getDbKey(): ByteArray {
+        if (cachedPwd.isNotEmpty()) {
+            return cachedPwd
+        }
 
         val iv = prefs[KEY_IV]
         val encrypted = prefs[KEY_SECRET]
@@ -84,7 +85,7 @@ internal class KeyMaster private constructor(
             init(Cipher.DECRYPT_MODE, entry.secretKey, GCMParameterSpec(128, iv))
         }
         // Return and cache the value
-        return String(cipher.doFinal(encrypted), Charsets.UTF_8).also { pwd = it }
+        return cipher.doFinal(encrypted).also { cachedPwd = it }
     }
 
     private fun deleteOldKey() {
@@ -128,7 +129,7 @@ internal class KeyMaster private constructor(
     }
 
     private operator fun SharedPreferences.get(key: String): ByteArray {
-        val str = getString(key, null) ?: return byteArrayOf()
+        val str = getString(key, null) ?: return ByteArray(0)
         return Base64.getDecoder().decode(str)
     }
 }
