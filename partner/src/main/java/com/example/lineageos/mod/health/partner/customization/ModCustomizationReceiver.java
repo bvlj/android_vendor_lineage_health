@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2020 The LineageOS Project
+ * Copyright (C) 2021 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,9 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-include ':core'
-include ':mod'
-include ':partner'
-include ':sdk'
+package com.example.lineageos.mod.health.partner.customization;
 
-rootProject.name = "HealthStore"
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+
+public class ModCustomizationReceiver extends BroadcastReceiver {
+
+    public ModCustomizationReceiver() {
+    }
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+    }
+}
