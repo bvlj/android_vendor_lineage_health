@@ -415,7 +415,11 @@ abstract class SQLiteContentProvider : ContentProvider(), SQLiteTransactionListe
         val tables = findTableAndViews(db)
         val ret = mutableListOf<String>()
         ret.addAll(tables)
-        tables.forEach { name -> findColumns(db, name).forEach(ret::remove) }
+        tables.forEach { name ->
+            findColumns(db, name).forEach { column ->
+                ret.remove(column)
+            }
+        }
         return ret
     }
 
