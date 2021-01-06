@@ -22,8 +22,6 @@ import android.content.ContentValues
 import android.database.Cursor
 import android.net.Uri
 import android.os.Binder
-import androidx.annotation.CallSuper
-import org.lineageos.mod.health.security.KeyMaster
 import java.io.FileDescriptor
 import java.io.PrintWriter
 import java.util.ArrayList
@@ -36,8 +34,6 @@ import java.util.ArrayList
  * `adb shell dumpsys activity providers`
  */
 abstract class BaseHealthStoreContentProvider : SQLiteContentProvider() {
-
-    private lateinit var keyMaster: KeyMaster
 
     private val stats = ProviderAccessStats()
     private val _callingUid = ThreadLocal<Int>()
@@ -107,13 +103,6 @@ abstract class BaseHealthStoreContentProvider : SQLiteContentProvider() {
         selection: String?,
         selectionArgs: Array<out String>?
     )
-
-    @CallSuper
-    override fun onCreate(): Boolean {
-        val context = context ?: return false
-        keyMaster = KeyMaster.getInstance(context)
-        return super.onCreate()
-    }
 
     override fun insert(uri: Uri, values: ContentValues?): Uri? {
         if (!isApplyingBatch) {

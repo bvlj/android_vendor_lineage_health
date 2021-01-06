@@ -40,6 +40,15 @@ class KeyMaster private constructor(
         private const val KEY_ALIAS = "healthy_axolotl"
         private const val KEY_IV = "iv"
         private const val KEY_SECRET = "secret"
+
+        /**
+         * To access sql database with SQLite for debugging:
+         * - Set to true
+         * - Wipe app data
+         *
+         * TODO: Make sure it's set to false before pushing
+         */
+        private const val DB_DEBUG = false
     }
 
     private var cachedPwd = ByteArray(0)
@@ -67,6 +76,10 @@ class KeyMaster private constructor(
     }
 
     fun getDbKey(): ByteArray {
+        if (DB_DEBUG) {
+            return ByteArray(0)
+        }
+
         if (cachedPwd.isNotEmpty()) {
             return cachedPwd
         }

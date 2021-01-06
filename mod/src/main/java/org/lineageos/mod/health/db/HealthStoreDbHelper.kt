@@ -68,6 +68,9 @@ class HealthStoreDbHelper private constructor(
         // DB not encrypted if in-memory
         val context = context ?: return
         val keyMaster = KeyMaster.getInstance(context)
-        db?.rawExecSQL("PRAGMA KEY = '${keyMaster.getDbKey()}';")
+        val key = keyMaster.getDbKey()
+        if (key.isNotEmpty() && db != null) {
+            db.rawExecSQL("PRAGMA KEY = '$key';")
+        }
     }
 }

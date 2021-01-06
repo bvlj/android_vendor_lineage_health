@@ -64,7 +64,6 @@ class AccessContentProvider : BaseHealthStoreContentProvider() {
     }
 
     override fun getWritableDatabase(): SQLiteDatabase {
-        android.util.Log.e("OHAI", String(keyMaster.getDbKey()))
         return openHelper!!.getWritableDatabase(keyMaster.getDbKey())
     }
 
