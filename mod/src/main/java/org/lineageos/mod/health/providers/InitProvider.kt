@@ -21,9 +21,9 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.net.Uri
-import net.sqlcipher.database.SQLiteDatabase
 import org.lineageos.mod.health.common.HealthStoreUri
 import org.lineageos.mod.health.common.db.AccessColumns
+import org.lineageos.mod.health.db.SqlCipherLoader
 import org.lineageos.mod.health.partner.PartnerProvider
 
 /**
@@ -38,7 +38,7 @@ class InitProvider : ContentProvider() {
     }
 
     override fun onCreate(): Boolean {
-        SQLiteDatabase.loadLibs(context?.applicationContext ?: context)
+        SqlCipherLoader.loadLibs(context!!)
         loadPartnerConfig(context!!)
         return true
     }

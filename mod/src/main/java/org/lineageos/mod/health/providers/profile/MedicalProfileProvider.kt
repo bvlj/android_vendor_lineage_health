@@ -26,6 +26,7 @@ import net.sqlcipher.database.SQLiteOpenHelper
 import net.sqlcipher.database.SQLiteQueryBuilder
 import org.lineageos.mod.health.common.HealthStoreUri
 import org.lineageos.mod.health.db.MedicalProfileDbHelper
+import org.lineageos.mod.health.db.SqlCipherLoader
 import org.lineageos.mod.health.db.tables.MedicalProfileTable
 import org.lineageos.mod.health.providers.BaseHealthStoreContentProvider
 import org.lineageos.mod.health.validators.MedicalProfileValidator
@@ -34,6 +35,11 @@ class MedicalProfileProvider : BaseHealthStoreContentProvider() {
 
     companion object {
         private val PASSWORD = null as ByteArray?
+    }
+
+    override fun onCreate(): Boolean {
+        SqlCipherLoader.loadLibs(context!!)
+        return super.onCreate()
     }
 
     override fun getDatabaseHelper(context: Context): SQLiteOpenHelper {
