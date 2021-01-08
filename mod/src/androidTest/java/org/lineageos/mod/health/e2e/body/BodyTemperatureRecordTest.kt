@@ -22,10 +22,12 @@ import org.junit.runner.RunWith
 import org.lineageos.mod.health.e2e.RecordTest
 import org.lineageos.mod.health.sdk.model.records.body.BodyRecord
 import org.lineageos.mod.health.sdk.model.records.body.BodyTemperatureRecord
+import org.lineageos.mod.health.sdk.model.values.TemperatureValue
 import org.lineageos.mod.health.sdk.repo.BodyRecordsRepo
 
 @RunWith(AndroidJUnit4::class)
-class BodyTemperatureRecordTest : RecordTest<BodyRecord, BodyTemperatureRecord, BodyRecordsRepo>() {
+class BodyTemperatureRecordTest :
+    RecordTest<BodyRecord<*>, BodyTemperatureRecord, BodyRecordsRepo>() {
 
     override fun getRepo(context: Context): BodyRecordsRepo {
         return BodyRecordsRepo.getInstance(context.contentResolver)
@@ -43,7 +45,7 @@ class BodyTemperatureRecordTest : RecordTest<BodyRecord, BodyTemperatureRecord, 
         return BodyTemperatureRecord(
             0L,
             System.currentTimeMillis(),
-            35.2,
+            TemperatureValue.celsius(35.2)
         )
     }
 
@@ -51,7 +53,7 @@ class BodyTemperatureRecordTest : RecordTest<BodyRecord, BodyTemperatureRecord, 
         return BodyTemperatureRecord(
             0L,
             System.currentTimeMillis() - 1000L,
-            37.4,
+            TemperatureValue.celsius(37.4)
         )
     }
 
@@ -59,14 +61,14 @@ class BodyTemperatureRecordTest : RecordTest<BodyRecord, BodyTemperatureRecord, 
         return BodyTemperatureRecord(
             0L,
             System.currentTimeMillis(),
-            -6.8,
+            TemperatureValue.celsius(-6.8)
         )
     }
 
     override fun updateTestRecord(record: BodyTemperatureRecord) {
         record.apply {
             time = System.currentTimeMillis()
-            value += 1.51
+            value += TemperatureValue.celsius(1.51)
         }
     }
 }

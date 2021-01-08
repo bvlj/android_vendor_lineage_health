@@ -17,11 +17,13 @@
 package org.lineageos.mod.health.sdk.model.records.body;
 
 import androidx.annotation.Keep;
+import androidx.annotation.NonNull;
 
+import org.lineageos.mod.health.common.Metric;
 import org.lineageos.mod.health.common.values.MenstrualCycleOtherSymptoms;
 import org.lineageos.mod.health.common.values.MenstrualCyclePhysicalSymptoms;
 import org.lineageos.mod.health.common.values.SexualActivity;
-import org.lineageos.mod.health.common.Metric;
+import org.lineageos.mod.health.sdk.model.values.MassValue;
 
 /**
  * Mass record.
@@ -29,7 +31,7 @@ import org.lineageos.mod.health.common.Metric;
  * <ul>
  *     <li>{@link Long} id: db identifier (default to <code>0L</code>)</li>
  *     <li>{@link Long} time: timestamp ({@link System#currentTimeMillis()})</li>
- *     <li>{@link Double} value: mass in kilograms (kg)</li>
+ *     <li>{@link Double} value: mass (default to kg)</li>
  * </ul>
  *
  * <a href="https://en.wikipedia.org/wiki/Human_body_weight">More info</a>
@@ -37,27 +39,16 @@ import org.lineageos.mod.health.common.Metric;
  * @see Metric#WEIGHT
  */
 @Keep
-public final class WeightRecord extends BodyRecord {
+public final class WeightRecord extends BodyRecord<MassValue> {
 
-    public WeightRecord(long id, long time, double value) {
+    public WeightRecord(long id, long time, @NonNull MassValue value) {
         super(id, Metric.WEIGHT, time, "",
                 MenstrualCycleOtherSymptoms.NONE, MenstrualCyclePhysicalSymptoms.NONE,
                 SexualActivity.NONE, value);
     }
 
-    /**
-     * @return Mass in kilograms (kg)
-     */
     @Override
-    public double getValue() {
-        return super.getValue();
-    }
-
-    /**
-     * @param value Mass in kilograms (kg)
-     */
-    @Override
-    public void setValue(double value) {
-        super.setValue(value);
+    protected double valueAsDouble() {
+        return value.kilograms();
     }
 }

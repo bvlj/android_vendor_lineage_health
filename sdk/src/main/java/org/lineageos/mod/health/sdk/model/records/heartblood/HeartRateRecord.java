@@ -17,9 +17,11 @@
 package org.lineageos.mod.health.sdk.model.records.heartblood;
 
 import androidx.annotation.Keep;
+import androidx.annotation.NonNull;
 
 import org.lineageos.mod.health.common.Metric;
 import org.lineageos.mod.health.common.values.MealRelation;
+import org.lineageos.mod.health.sdk.model.values.PressureValue;
 
 /**
  * Heart rate record.
@@ -35,18 +37,19 @@ import org.lineageos.mod.health.common.values.MealRelation;
  * @see Metric#HEART_RATE
  */
 @Keep
-public final class HeartRateRecord extends HeartBloodRecord {
+public final class HeartRateRecord extends BaseHeartBloodRecord {
 
     public HeartRateRecord(long id, long time, double value) {
         super(id, Metric.HEART_RATE, time,
-                MealRelation.UNKNOWN, 0, 0, value);
+                MealRelation.UNKNOWN, PressureValue.ZERO, PressureValue.ZERO, value);
     }
 
     /**
      * @return Beats per minute (BPM)
      */
+    @NonNull
     @Override
-    public double getValue() {
+    public Double getValue() {
         return super.getValue();
     }
 
@@ -54,7 +57,7 @@ public final class HeartRateRecord extends HeartBloodRecord {
      * @param value Beats per minute (BPM)
      */
     @Override
-    public void setValue(double value) {
+    public void setValue(@NonNull Double value) {
         super.setValue(value);
     }
 }

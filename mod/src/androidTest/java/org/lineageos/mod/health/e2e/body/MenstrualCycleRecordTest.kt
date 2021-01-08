@@ -28,7 +28,8 @@ import org.lineageos.mod.health.sdk.model.records.body.MenstrualCycleRecord
 import org.lineageos.mod.health.sdk.repo.BodyRecordsRepo
 
 @RunWith(AndroidJUnit4::class)
-class MenstrualCycleRecordTest : RecordTest<BodyRecord, MenstrualCycleRecord, BodyRecordsRepo>() {
+class MenstrualCycleRecordTest :
+    RecordTest<BodyRecord<*>, MenstrualCycleRecord, BodyRecordsRepo>() {
 
     override fun getRepo(context: Context): BodyRecordsRepo {
         return BodyRecordsRepo.getInstance(context.contentResolver)

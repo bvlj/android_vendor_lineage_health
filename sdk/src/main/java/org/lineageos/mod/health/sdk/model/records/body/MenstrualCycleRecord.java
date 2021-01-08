@@ -17,6 +17,7 @@
 package org.lineageos.mod.health.sdk.model.records.body;
 
 import androidx.annotation.Keep;
+import androidx.annotation.NonNull;
 
 import org.lineageos.mod.health.common.Metric;
 import org.lineageos.mod.health.common.values.MenstrualCycleOtherSymptoms;
@@ -40,7 +41,7 @@ import org.lineageos.mod.health.common.values.SexualActivity;
  * @see Metric#MENSTRUAL_CYCLE
  */
 @Keep
-public final class MenstrualCycleRecord extends BodyRecord {
+public final class MenstrualCycleRecord extends BaseBodyRecord {
 
     public MenstrualCycleRecord(long id, long time,
                                 @MenstrualCycleOtherSymptoms.Value int otherSymptoms,
@@ -105,8 +106,9 @@ public final class MenstrualCycleRecord extends BodyRecord {
     /**
      * @return Menstrual flow
      */
+    @NonNull
     @Override
-    public double getValue() {
+    public Double getValue() {
         return super.getValue();
     }
 
@@ -114,7 +116,7 @@ public final class MenstrualCycleRecord extends BodyRecord {
      * @param value Menstrual flow
      */
     @Override
-    public void setValue(double value) {
+    public void setValue(@NonNull Double value) {
         super.setValue(value);
     }
 }

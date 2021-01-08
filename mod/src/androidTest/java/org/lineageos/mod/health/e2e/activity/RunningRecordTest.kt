@@ -22,6 +22,8 @@ import org.junit.runner.RunWith
 import org.lineageos.mod.health.e2e.RecordTest
 import org.lineageos.mod.health.sdk.model.records.activity.ActivityRecord
 import org.lineageos.mod.health.sdk.model.records.activity.RunningRecord
+import org.lineageos.mod.health.sdk.model.values.LengthValue
+import org.lineageos.mod.health.sdk.model.values.SpeedValue
 import org.lineageos.mod.health.sdk.repo.ActivityRecordsRepo
 
 @RunWith(AndroidJUnit4::class)
@@ -44,8 +46,8 @@ class RunningRecordTest : RecordTest<ActivityRecord, RunningRecord, ActivityReco
             0L,
             System.currentTimeMillis(),
             1000L,
-            6.5,
-            50.0,
+            SpeedValue.kilometersPerHour(6.5),
+            LengthValue.kilometers(50.0)
         )
     }
 
@@ -54,8 +56,8 @@ class RunningRecordTest : RecordTest<ActivityRecord, RunningRecord, ActivityReco
             0L,
             System.currentTimeMillis() - 1000L,
             45L,
-            1.47,
-            0.08
+            SpeedValue.kilometersPerHour(1.47),
+            LengthValue.kilometers(0.08)
         )
     }
 
@@ -64,15 +66,15 @@ class RunningRecordTest : RecordTest<ActivityRecord, RunningRecord, ActivityReco
             0L,
             System.currentTimeMillis(),
             4L,
-            -88.2,
-            -33.3,
+            SpeedValue.kilometersPerHour(-88.2),
+            LengthValue.kilometers(-33.3),
         )
     }
 
     override fun updateTestRecord(record: RunningRecord) {
         record.apply {
             time = System.currentTimeMillis() - 90L
-            avgSpeed -= 0.4
+            avgSpeed -= SpeedValue.kilometersPerHour(0.4)
         }
     }
 }

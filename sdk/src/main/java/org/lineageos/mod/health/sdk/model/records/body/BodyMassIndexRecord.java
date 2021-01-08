@@ -17,6 +17,7 @@
 package org.lineageos.mod.health.sdk.model.records.body;
 
 import androidx.annotation.Keep;
+import androidx.annotation.NonNull;
 
 import org.lineageos.mod.health.common.Metric;
 import org.lineageos.mod.health.common.values.MenstrualCycleOtherSymptoms;
@@ -37,7 +38,7 @@ import org.lineageos.mod.health.common.values.SexualActivity;
  * @see Metric#BODY_MASS_INDEX
  */
 @Keep
-public final class BodyMassIndexRecord extends BodyRecord {
+public final class BodyMassIndexRecord extends BaseBodyRecord {
 
     public BodyMassIndexRecord(long id, long time, double value) {
         super(id, Metric.BODY_MASS_INDEX, time, "",
@@ -48,8 +49,9 @@ public final class BodyMassIndexRecord extends BodyRecord {
     /**
      * @return BMI in kilogram over meters squared (kg/(m^2))
      */
+    @NonNull
     @Override
-    public double getValue() {
+    public Double getValue() {
         return super.getValue();
     }
 
@@ -57,7 +59,7 @@ public final class BodyMassIndexRecord extends BodyRecord {
      * @param value BMI in kilogram over meters squared (kg/(m^2))
      */
     @Override
-    public void setValue(double value) {
+    public void setValue(@NonNull Double value) {
         super.setValue(value);
     }
 }

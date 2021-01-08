@@ -25,7 +25,7 @@ import org.lineageos.mod.health.sdk.model.records.body.WaterIntakeRecord
 import org.lineageos.mod.health.sdk.repo.BodyRecordsRepo
 
 @RunWith(AndroidJUnit4::class)
-class WaterIntakeRecordTest : RecordTest<BodyRecord, WaterIntakeRecord, BodyRecordsRepo>() {
+class WaterIntakeRecordTest : RecordTest<BodyRecord<*>, WaterIntakeRecord, BodyRecordsRepo>() {
 
     override fun getRepo(context: Context): BodyRecordsRepo {
         return BodyRecordsRepo.getInstance(context.contentResolver)

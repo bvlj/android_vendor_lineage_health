@@ -20,6 +20,8 @@ import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 
 import org.lineageos.mod.health.common.Metric;
+import org.lineageos.mod.health.sdk.model.values.LengthValue;
+import org.lineageos.mod.health.sdk.model.values.SpeedValue;
 
 /**
  * Cycling activity.
@@ -41,8 +43,8 @@ public final class WorkoutRecord extends ActivityRecord {
 
     public WorkoutRecord(long id, long time, long duration,
                          int calories, @NonNull String notes) {
-        super(id, Metric.WORKOUT, time, duration, 0.0, calories,
-                0.0, 0.0, notes, 0);
+        super(id, Metric.WORKOUT, time, duration, SpeedValue.ZERO, calories,
+                LengthValue.ZERO, LengthValue.ZERO, notes, 0);
     }
 
     /**

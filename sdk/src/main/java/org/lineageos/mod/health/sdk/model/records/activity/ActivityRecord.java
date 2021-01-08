@@ -26,6 +26,8 @@ import org.lineageos.mod.health.HealthStore;
 import org.lineageos.mod.health.common.db.RecordColumns;
 import org.lineageos.mod.health.common.values.annotations.ActivityMetric;
 import org.lineageos.mod.health.sdk.model.records.Record;
+import org.lineageos.mod.health.sdk.model.values.LengthValue;
+import org.lineageos.mod.health.sdk.model.values.SpeedValue;
 
 import java.util.Objects;
 
@@ -38,10 +40,13 @@ import java.util.Objects;
 public class ActivityRecord extends Record {
 
     private long duration;
-    private double avgSpeed;
+    @NonNull
+    private SpeedValue avgSpeed;
     private int calories;
-    private double distance;
-    private double elevationGain;
+    @NonNull
+    private LengthValue distance;
+    @NonNull
+    private LengthValue elevationGain;
     @NonNull
     private String notes;
     private long steps;
@@ -51,10 +56,12 @@ public class ActivityRecord extends Record {
      */
     @RestrictTo(RestrictTo.Scope.LIBRARY)
     public ActivityRecord(long id, @ActivityMetric int metric,
-                   long time, long duration,
-                   double avgSpeed, int calories,
-                   double distance, double elevationGain,
-                   @NonNull String notes, long steps) {
+                          long time, long duration,
+                          @NonNull SpeedValue avgSpeed,
+                          int calories,
+                          @NonNull LengthValue distance,
+                          @NonNull LengthValue elevationGain,
+                          @NonNull String notes, long steps) {
         super(id, metric, time);
         this.duration = duration;
         this.avgSpeed = avgSpeed;
@@ -73,11 +80,12 @@ public class ActivityRecord extends Record {
         this.duration = duration;
     }
 
-    protected double getAvgSpeed() {
+    @NonNull
+    protected SpeedValue getAvgSpeed() {
         return avgSpeed;
     }
 
-    protected void setAvgSpeed(double avgSpeed) {
+    protected void setAvgSpeed(@NonNull SpeedValue avgSpeed) {
         this.avgSpeed = avgSpeed;
     }
 
@@ -89,19 +97,21 @@ public class ActivityRecord extends Record {
         this.calories = calories;
     }
 
-    protected double getDistance() {
+    @NonNull
+    protected LengthValue getDistance() {
         return distance;
     }
 
-    protected void setDistance(double distance) {
+    protected void setDistance(@NonNull LengthValue distance) {
         this.distance = distance;
     }
 
-    protected double getElevationGain() {
+    @NonNull
+    protected LengthValue getElevationGain() {
         return elevationGain;
     }
 
-    protected void setElevationGain(double elevationGain) {
+    protected void setElevationGain(@NonNull LengthValue elevationGain) {
         this.elevationGain = elevationGain;
     }
 
@@ -131,10 +141,10 @@ public class ActivityRecord extends Record {
         cv.put(RecordColumns._METRIC, metric);
         cv.put(RecordColumns.TIME, time);
         cv.put(RecordColumns.DURATION, duration);
-        cv.put(RecordColumns.AVG_SPEED, avgSpeed);
+        cv.put(RecordColumns.AVG_SPEED, avgSpeed.kilometersPerHour());
         cv.put(RecordColumns.CALORIES, calories);
-        cv.put(RecordColumns.DISTANCE, distance);
-        cv.put(RecordColumns.ELEVATION_GAIN, elevationGain);
+        cv.put(RecordColumns.DISTANCE, distance.kilometers());
+        cv.put(RecordColumns.ELEVATION_GAIN, elevationGain.meters());
         cv.put(RecordColumns.NOTES, notes);
         cv.put(RecordColumns.STEPS, steps);
         return cv;
@@ -145,12 +155,12 @@ public class ActivityRecord extends Record {
         if (this == o) return true;
         if (!(o instanceof ActivityRecord)) return false;
         if (!super.equals(o)) return false;
-        ActivityRecord that = (ActivityRecord) o;
+        final ActivityRecord that = (ActivityRecord) o;
         return duration == that.duration &&
-                Double.compare(that.avgSpeed, avgSpeed) == 0 &&
+                avgSpeed.equals(that.avgSpeed) &&
                 calories == that.calories &&
-                Double.compare(that.distance, distance) == 0 &&
-                Double.compare(that.elevationGain, elevationGain) == 0 &&
+                distance.equals(that.distance) &&
+                elevationGain.equals(that.elevationGain) &&
                 steps == that.steps &&
                 notes.equals(that.notes);
     }

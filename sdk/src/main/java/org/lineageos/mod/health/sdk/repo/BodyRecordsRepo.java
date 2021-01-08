@@ -28,6 +28,7 @@ import org.lineageos.mod.health.common.HealthStoreUri;
 import org.lineageos.mod.health.common.Metric;
 import org.lineageos.mod.health.common.db.RecordColumns;
 import org.lineageos.mod.health.sdk.model.records.body.AbdominalCircumferenceRecord;
+import org.lineageos.mod.health.sdk.model.records.body.BaseBodyRecord;
 import org.lineageos.mod.health.sdk.model.records.body.BodyMassIndexRecord;
 import org.lineageos.mod.health.sdk.model.records.body.BodyRecord;
 import org.lineageos.mod.health.sdk.model.records.body.BodyTemperatureRecord;
@@ -36,6 +37,9 @@ import org.lineageos.mod.health.sdk.model.records.body.MenstrualCycleRecord;
 import org.lineageos.mod.health.sdk.model.records.body.UvIndexRecord;
 import org.lineageos.mod.health.sdk.model.records.body.WaterIntakeRecord;
 import org.lineageos.mod.health.sdk.model.records.body.WeightRecord;
+import org.lineageos.mod.health.sdk.model.values.LengthValue;
+import org.lineageos.mod.health.sdk.model.values.MassValue;
+import org.lineageos.mod.health.sdk.model.values.TemperatureValue;
 import org.lineageos.mod.health.sdk.util.HsRuntimePermission;
 import org.lineageos.mod.health.sdk.util.RecordTimeComparator;
 
@@ -75,7 +79,7 @@ import java.util.stream.Collectors;
  * @see WeightRecord
  */
 @Keep
-public final class BodyRecordsRepo extends RecordsRepo<BodyRecord> {
+public final class BodyRecordsRepo extends RecordsRepo<BodyRecord<?>> {
 
     @Nullable
     private static volatile BodyRecordsRepo instance;
@@ -108,8 +112,8 @@ public final class BodyRecordsRepo extends RecordsRepo<BodyRecord> {
     @NonNull
     @Override
     @RequiresPermission(HsRuntimePermission.BODY)
-    public List<BodyRecord> getAll() {
-        final List<BodyRecord> list = new ArrayList<>();
+    public List<BodyRecord<?>> getAll() {
+        final List<BodyRecord<?>> list = new ArrayList<>();
         list.addAll(getAllAbdominalCircumferenceRecords());
         list.addAll(getAllBodyMassIndexRecords());
         list.addAll(getAllBodyTemperatureRecords());
@@ -239,7 +243,7 @@ public final class BodyRecordsRepo extends RecordsRepo<BodyRecord> {
      */
     @Override
     @RequiresPermission(HsRuntimePermission.BODY)
-    public OperationResult insert(@NonNull BodyRecord record) {
+    public OperationResult insert(@NonNull BodyRecord<?> record) {
         return super.insert(record);
     }
 
@@ -248,7 +252,7 @@ public final class BodyRecordsRepo extends RecordsRepo<BodyRecord> {
      */
     @Override
     @RequiresPermission(HsRuntimePermission.BODY)
-    public OperationResult update(@NonNull BodyRecord record) {
+    public OperationResult update(@NonNull BodyRecord<?> record) {
         return super.update(record);
     }
 
@@ -257,13 +261,13 @@ public final class BodyRecordsRepo extends RecordsRepo<BodyRecord> {
      */
     @Override
     @RequiresPermission(HsRuntimePermission.BODY)
-    public OperationResult delete(@NonNull BodyRecord record) {
+    public OperationResult delete(@NonNull BodyRecord<?> record) {
         return super.delete(record);
     }
 
     @NonNull
     @Override
-    protected BodyRecord parseRow(@NonNull Cursor cursor) {
+    protected BodyRecord<?> parseRow(@NonNull Cursor cursor) {
         final long id = cursor.getLong(cursor.getColumnIndex(RecordColumns._ID));
         final int metric = cursor.getInt(cursor.getColumnIndex(RecordColumns._METRIC));
         final long time = cursor.getLong(cursor.getColumnIndex(RecordColumns.TIME));
@@ -278,11 +282,11 @@ public final class BodyRecordsRepo extends RecordsRepo<BodyRecord> {
 
         switch (metric) {
             case Metric.ABDOMINAL_CIRCUMFERENCE:
-                return new AbdominalCircumferenceRecord(id, time, value);
+                return new AbdominalCircumferenceRecord(id, time, LengthValue.centimeters(value));
             case Metric.BODY_MASS_INDEX:
                 return new BodyMassIndexRecord(id, time, value);
             case Metric.BODY_TEMPERATURE:
-                return new BodyTemperatureRecord(id, time, value);
+                return new BodyTemperatureRecord(id, time, TemperatureValue.celsius(value));
             case Metric.LEAN_BODY_MASS:
                 return new LeanBodyMassRecord(id, time, value);
             case Metric.MENSTRUAL_CYCLE:
@@ -293,9 +297,9 @@ public final class BodyRecordsRepo extends RecordsRepo<BodyRecord> {
             case Metric.WATER_INTAKE:
                 return new WaterIntakeRecord(id, time, notes, value);
             case Metric.WEIGHT:
-                return new WeightRecord(id, time, value);
+                return new WeightRecord(id, time, MassValue.kilograms(value));
             default:
-                return new BodyRecord(id, metric, time, notes, otherSymptoms,
+                return new BaseBodyRecord(id, metric, time, notes, otherSymptoms,
                         physicalSymptoms, sexualActivity, value);
         }
     }

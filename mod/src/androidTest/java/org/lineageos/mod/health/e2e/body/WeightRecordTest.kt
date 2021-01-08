@@ -22,10 +22,11 @@ import org.junit.runner.RunWith
 import org.lineageos.mod.health.e2e.RecordTest
 import org.lineageos.mod.health.sdk.model.records.body.BodyRecord
 import org.lineageos.mod.health.sdk.model.records.body.WeightRecord
+import org.lineageos.mod.health.sdk.model.values.MassValue
 import org.lineageos.mod.health.sdk.repo.BodyRecordsRepo
 
 @RunWith(AndroidJUnit4::class)
-class WeightRecordTest : RecordTest<BodyRecord, WeightRecord, BodyRecordsRepo>() {
+class WeightRecordTest : RecordTest<BodyRecord<*>, WeightRecord, BodyRecordsRepo>() {
 
     override fun getRepo(context: Context): BodyRecordsRepo {
         return BodyRecordsRepo.getInstance(context.contentResolver)
@@ -43,7 +44,7 @@ class WeightRecordTest : RecordTest<BodyRecord, WeightRecord, BodyRecordsRepo>()
         return WeightRecord(
             0L,
             System.currentTimeMillis(),
-            71.3,
+            MassValue.kilograms(71.3)
         )
     }
 
@@ -51,7 +52,7 @@ class WeightRecordTest : RecordTest<BodyRecord, WeightRecord, BodyRecordsRepo>()
         return WeightRecord(
             0L,
             System.currentTimeMillis() - 1000L,
-            87.6,
+            MassValue.kilograms(87.6)
         )
     }
 
@@ -59,14 +60,14 @@ class WeightRecordTest : RecordTest<BodyRecord, WeightRecord, BodyRecordsRepo>()
         return WeightRecord(
             0L,
             System.currentTimeMillis(),
-            -6.8,
+            MassValue.kilograms(-6.8)
         )
     }
 
     override fun updateTestRecord(record: WeightRecord) {
         record.apply {
             time = System.currentTimeMillis()
-            value += 2.01
+            value += MassValue.kilograms(2.01)
         }
     }
 }

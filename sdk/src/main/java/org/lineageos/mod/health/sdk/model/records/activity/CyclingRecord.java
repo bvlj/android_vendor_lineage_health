@@ -17,8 +17,11 @@
 package org.lineageos.mod.health.sdk.model.records.activity;
 
 import androidx.annotation.Keep;
+import androidx.annotation.NonNull;
 
 import org.lineageos.mod.health.common.Metric;
+import org.lineageos.mod.health.sdk.model.values.LengthValue;
+import org.lineageos.mod.health.sdk.model.values.SpeedValue;
 
 /**
  * Cycling activity.
@@ -27,9 +30,9 @@ import org.lineageos.mod.health.common.Metric;
  *     <li>{@link Long} id: db identifier (default to <code>0L</code>)</li>
  *     <li>{@link Long} time: timestamp ({@link System#currentTimeMillis()})</li>
  *     <li>{@link Long} duration: duration in milliseconds (ms)</li>
- *     <li>{@link Double} distance: distance in kilometers (km)</li>
- *     <li>{@link Double} avgSpeed: average speed in kilometers per hour (km/h)</li>
- *     <li>{@link Double} elevationGain: elevation gain in meters (m)</li>
+ *     <li>{@link Double} distance: distance (default to km)</li>
+ *     <li>{@link Double} avgSpeed: average speed (default to kilometers per hour - km/h)</li>
+ *     <li>{@link Double} elevationGain: elevation gain (default to m)</li>
  * </ul>
  *
  * <a href="https://en.wikipedia.org/wiki/Cycling">More info</a>
@@ -40,49 +43,42 @@ import org.lineageos.mod.health.common.Metric;
 public final class CyclingRecord extends ActivityRecord {
 
     public CyclingRecord(long id, long time,
-                         long duration, double avgSpeed,
-                         double distance, double elevationGain) {
+                         long duration,
+                         @NonNull SpeedValue avgSpeed,
+                         @NonNull LengthValue distance,
+                         @NonNull LengthValue elevationGain) {
         super(id, Metric.CYCLING, time, duration, avgSpeed, 0,
                 distance, elevationGain, "", 0);
     }
 
-    /**
-     * @return Average speed in kilometers per hour (km/h)
-     */
+    @NonNull
     @Override
-    public double getAvgSpeed() {
+    public SpeedValue getAvgSpeed() {
         return super.getAvgSpeed();
     }
 
-    /**
-     * @param avgSpeed Average speed in kilometers per hour (km/h)
-     */
     @Override
-    public void setAvgSpeed(double avgSpeed) {
+    public void setAvgSpeed(@NonNull SpeedValue avgSpeed) {
         super.setAvgSpeed(avgSpeed);
     }
 
-    /**
-     * @return Distance in kilometers (km)
-     */
+    @NonNull
     @Override
-    public double getDistance() {
+    public LengthValue getDistance() {
         return super.getDistance();
     }
 
-    /**
-     * @param distance Distance in kilometers (km)
-     */
     @Override
-    public void setDistance(double distance) {
+    public void setDistance(@NonNull LengthValue distance) {
         super.setDistance(distance);
     }
 
     /**
-     * @return Elevation gain in meters (m)
+     * @return Elevation gain
      */
+    @NonNull
     @Override
-    public double getElevationGain() {
+    public LengthValue getElevationGain() {
         return super.getElevationGain();
     }
 
@@ -90,7 +86,7 @@ public final class CyclingRecord extends ActivityRecord {
      * @param elevationGain Elevation gain in meters (m)
      */
     @Override
-    public void setElevationGain(double elevationGain) {
+    public void setElevationGain(@NonNull LengthValue elevationGain) {
         super.setElevationGain(elevationGain);
     }
 }

@@ -17,8 +17,11 @@
 package org.lineageos.mod.health.sdk.model.records.activity;
 
 import androidx.annotation.Keep;
+import androidx.annotation.NonNull;
 
 import org.lineageos.mod.health.common.Metric;
+import org.lineageos.mod.health.sdk.model.values.LengthValue;
+import org.lineageos.mod.health.sdk.model.values.SpeedValue;
 
 /**
  * Running activity.
@@ -39,40 +42,31 @@ import org.lineageos.mod.health.common.Metric;
 public final class RunningRecord extends ActivityRecord {
 
     public RunningRecord(long id, long time, long duration,
-                         double avgSpeed, double distance) {
+                         @NonNull SpeedValue avgSpeed,
+                         @NonNull LengthValue distance) {
         super(id, Metric.RUNNING, time, duration, avgSpeed, 0,
-                distance, 0, "", 0);
+                distance, LengthValue.ZERO, "", 0);
     }
 
-    /**
-     * @return Average speed in kilometers per hour (km/h)
-     */
+    @NonNull
     @Override
-    public double getAvgSpeed() {
+    public SpeedValue getAvgSpeed() {
         return super.getAvgSpeed();
     }
 
-    /**
-     * @param avgSpeed Average speed in kilometers per hour (km/h)
-     */
     @Override
-    public void setAvgSpeed(double avgSpeed) {
+    public void setAvgSpeed(@NonNull SpeedValue avgSpeed) {
         super.setAvgSpeed(avgSpeed);
     }
 
-    /**
-     * @return Distance in kilometers (km)
-     */
+    @NonNull
     @Override
-    public double getDistance() {
+    public LengthValue getDistance() {
         return super.getDistance();
     }
 
-    /**
-     * @param distance Distance in kilometers (km)
-     */
     @Override
-    public void setDistance(double distance) {
+    public void setDistance(@NonNull LengthValue distance) {
         super.setDistance(distance);
     }
 }

@@ -17,9 +17,11 @@
 package org.lineageos.mod.health.sdk.model.records.heartblood;
 
 import androidx.annotation.Keep;
+import androidx.annotation.NonNull;
 
 import org.lineageos.mod.health.common.Metric;
 import org.lineageos.mod.health.common.values.MealRelation;
+import org.lineageos.mod.health.sdk.model.values.PressureValue;
 
 /**
  * Blood pressure record.
@@ -27,8 +29,8 @@ import org.lineageos.mod.health.common.values.MealRelation;
  * <ul>
  *     <li>{@link Long} id: db identifier (default to <code>0L</code>)</li>
  *     <li>{@link Long} time: timestamp ({@link System#currentTimeMillis()})</li>
- *     <li>{@link Integer} systolic: systolic pressure in millimeters of mercury (mmHg)</li>
- *     <li>{@link Integer} diastolic: diastolic pressure in millimeters of mercury (mmHg)</li>
+ *     <li>{@link Integer} systolic: systolic pressure</li>
+ *     <li>{@link Integer} diastolic: diastolic pressure</li>
  * </ul>
  *
  * <a href="https://en.wikipedia.org/wiki/Blood_pressure">More info</a>
@@ -36,41 +38,39 @@ import org.lineageos.mod.health.common.values.MealRelation;
  * @see Metric#BLOOD_PRESSURE
  */
 @Keep
-public final class BloodPressureRecord extends HeartBloodRecord {
+public final class BloodPressureRecord extends HeartBloodRecord<Object> {
 
-    public BloodPressureRecord(long id, long time, long systolic, long diastolic) {
-        super(id, Metric.BLOOD_PRESSURE, time, MealRelation.UNKNOWN, systolic, diastolic, 0.0);
+    public BloodPressureRecord(long id, long time,
+                               @NonNull PressureValue systolic,
+                               @NonNull PressureValue diastolic) {
+        super(id, Metric.BLOOD_PRESSURE, time, MealRelation.UNKNOWN,
+                systolic, diastolic, new Object());
     }
 
-    /**
-     * @return Systolic pressure in millimeters of mercury (mmHg)
-     */
+    @NonNull
     @Override
-    public long getSystolic() {
+    public PressureValue getSystolic() {
         return super.getSystolic();
     }
 
-    /**
-     * @param systolic Systolic pressure in millimeters of mercury (mmHg)
-     */
     @Override
-    public void setSystolic(long systolic) {
+    public void setSystolic(@NonNull PressureValue systolic) {
         super.setSystolic(systolic);
     }
 
-    /**
-     * @return Diastolic pressure in millimeters of mercury (mmHg)
-     */
+    @NonNull
     @Override
-    public long getDiastolic() {
+    public PressureValue getDiastolic() {
         return super.getDiastolic();
     }
 
-    /**
-     * @param diastolic Diastolic pressure in millimeters of mercury (mmHg)
-     */
     @Override
-    public void setDiastolic(long diastolic) {
+    public void setDiastolic(@NonNull PressureValue diastolic) {
         super.setDiastolic(diastolic);
+    }
+
+    @Override
+    protected double valueAsDouble() {
+        return 0.0;
     }
 }

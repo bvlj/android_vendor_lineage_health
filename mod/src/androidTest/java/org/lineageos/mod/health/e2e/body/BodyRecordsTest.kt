@@ -29,6 +29,7 @@ import org.lineageos.mod.health.common.HealthStoreUri
 import org.lineageos.mod.health.common.Metric
 import org.lineageos.mod.health.common.db.RecordColumns
 import org.lineageos.mod.health.sdk.model.records.body.BodyTemperatureRecord
+import org.lineageos.mod.health.sdk.model.values.TemperatureValue
 import org.lineageos.mod.health.sdk.repo.BodyRecordsRepo
 import org.lineageos.mod.health.sdk.repo.OperationResult
 
@@ -49,7 +50,7 @@ class BodyRecordsTest {
         val a = BodyTemperatureRecord(
             0L,
             System.currentTimeMillis(),
-            35.2,
+            TemperatureValue.celsius(35.2)
         )
         val idA = (repo.insert(a) as OperationResult.Success<*>).result as Long
         Assert.assertNull(repo.getAbdominalCircumferenceRecord(idA))

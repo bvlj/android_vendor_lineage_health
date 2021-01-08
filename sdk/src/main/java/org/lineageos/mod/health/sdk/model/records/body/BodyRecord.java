@@ -38,7 +38,7 @@ import java.util.Objects;
  * @see BodyMetric
  */
 @Keep
-public class BodyRecord extends Record {
+public abstract class BodyRecord<T> extends Record {
 
     @NonNull
     private String notes;
@@ -48,7 +48,8 @@ public class BodyRecord extends Record {
     private int physicalSymptoms;
     @SexualActivity.Value
     private int sexualActivity;
-    private double value;
+    @NonNull
+    protected T value;
 
     /**
      * @hide
@@ -58,7 +59,7 @@ public class BodyRecord extends Record {
                       @MenstrualCycleOtherSymptoms.Value int otherSymptoms,
                       @MenstrualCyclePhysicalSymptoms.Value int physicalSymptoms,
                       @SexualActivity.Value int sexualActivity,
-                      double value) {
+                      @NonNull T value) {
         super(id, metric, time);
         this.notes = notes;
         this.otherSymptoms = otherSymptoms;
@@ -103,13 +104,16 @@ public class BodyRecord extends Record {
         this.sexualActivity = sexualActivity;
     }
 
-    protected double getValue() {
+    @NonNull
+    public T getValue() {
         return value;
     }
 
-    protected void setValue(double value) {
+    public void setValue(@NonNull T value) {
         this.value = value;
     }
+
+    protected abstract double valueAsDouble();
 
     @NonNull
     @Override
@@ -123,7 +127,7 @@ public class BodyRecord extends Record {
         cv.put(RecordColumns.SYMPTOMS_OTHER, otherSymptoms);
         cv.put(RecordColumns.SYMPTOMS_PHYSICAL, physicalSymptoms);
         cv.put(RecordColumns.SEXUAL_ACTIVITY, sexualActivity);
-        cv.put(RecordColumns.VALUE, value);
+        cv.put(RecordColumns.VALUE, valueAsDouble());
         return cv;
     }
 
@@ -132,17 +136,17 @@ public class BodyRecord extends Record {
         if (this == o) return true;
         if (!(o instanceof BodyRecord)) return false;
         if (!super.equals(o)) return false;
-        final BodyRecord that = (BodyRecord) o;
+        final BodyRecord<?> that = (BodyRecord<?>) o;
         return otherSymptoms == that.otherSymptoms &&
                 physicalSymptoms == that.physicalSymptoms &&
                 sexualActivity == that.sexualActivity &&
-                Double.compare(that.value, value) == 0 &&
+                Double.compare(that.valueAsDouble(), valueAsDouble()) == 0 &&
                 notes.equals(that.notes);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), notes, otherSymptoms,
-                physicalSymptoms, sexualActivity, value);
+                physicalSymptoms, sexualActivity, valueAsDouble());
     }
 }

@@ -27,6 +27,7 @@ import org.lineageos.mod.health.common.db.RecordColumns;
 import org.lineageos.mod.health.common.values.MealRelation;
 import org.lineageos.mod.health.common.values.annotations.HeartBloodMetric;
 import org.lineageos.mod.health.sdk.model.records.Record;
+import org.lineageos.mod.health.sdk.model.values.PressureValue;
 
 import java.util.Objects;
 
@@ -41,13 +42,16 @@ import java.util.Objects;
  * @see PerfusionIndexRecord
  */
 @Keep
-public class HeartBloodRecord extends Record {
+public abstract class HeartBloodRecord<T> extends Record {
 
     @MealRelation.Value
     private int mealRelation;
-    private long systolic;
-    private long diastolic;
-    private double value;
+    @NonNull
+    private PressureValue systolic;
+    @NonNull
+    private PressureValue diastolic;
+    @NonNull
+    protected T value;
 
     /**
      * @hide
@@ -55,8 +59,9 @@ public class HeartBloodRecord extends Record {
     @RestrictTo(RestrictTo.Scope.LIBRARY)
     public HeartBloodRecord(long id, @HeartBloodMetric int metric, long time,
                             @MealRelation.Value int mealRelation,
-                            long systolic, long diastolic,
-                            double value) {
+                            @NonNull PressureValue systolic,
+                            @NonNull PressureValue diastolic,
+                            @NonNull T value) {
         super(id, metric, time);
         this.mealRelation = mealRelation;
         this.systolic = systolic;
@@ -73,29 +78,34 @@ public class HeartBloodRecord extends Record {
         this.mealRelation = mealRelation;
     }
 
-    protected long getSystolic() {
+    @NonNull
+    protected PressureValue getSystolic() {
         return systolic;
     }
 
-    protected void setSystolic(long systolic) {
+    protected void setSystolic(@NonNull PressureValue systolic) {
         this.systolic = systolic;
     }
 
-    protected long getDiastolic() {
+    @NonNull
+    protected PressureValue getDiastolic() {
         return diastolic;
     }
 
-    protected void setDiastolic(long diastolic) {
+    protected void setDiastolic(@NonNull PressureValue diastolic) {
         this.diastolic = diastolic;
     }
 
-    protected double getValue() {
+    @NonNull
+    protected T getValue() {
         return value;
     }
 
-    protected void setValue(double value) {
+    protected void setValue(@NonNull T value) {
         this.value = value;
     }
+
+    protected abstract double valueAsDouble();
 
     @NonNull
     @Override
@@ -106,9 +116,9 @@ public class HeartBloodRecord extends Record {
         cv.put(RecordColumns._METRIC, metric);
         cv.put(RecordColumns.TIME, time);
         cv.put(RecordColumns.MEAL_RELATION, mealRelation);
-        cv.put(RecordColumns.PRESSURE_SYSTOLIC, systolic);
-        cv.put(RecordColumns.PRESSURE_DIASTOLIC, diastolic);
-        cv.put(RecordColumns.VALUE, value);
+        cv.put(RecordColumns.PRESSURE_SYSTOLIC, systolic.mmHg());
+        cv.put(RecordColumns.PRESSURE_DIASTOLIC, diastolic.mmHg());
+        cv.put(RecordColumns.VALUE, valueAsDouble());
         return cv;
     }
 
@@ -117,15 +127,15 @@ public class HeartBloodRecord extends Record {
         if (this == o) return true;
         if (!(o instanceof HeartBloodRecord)) return false;
         if (!super.equals(o)) return false;
-        final HeartBloodRecord that = (HeartBloodRecord) o;
+        final HeartBloodRecord<?> that = (HeartBloodRecord<?>) o;
         return mealRelation == that.mealRelation &&
-                systolic == that.systolic &&
-                diastolic == that.diastolic &&
-                Double.compare(that.value, value) == 0;
+                systolic.equals(that.systolic) &&
+                diastolic.equals(that.diastolic) &&
+                Double.compare(that.valueAsDouble(), valueAsDouble()) == 0;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), mealRelation, systolic, diastolic, value);
+        return Objects.hash(super.hashCode(), mealRelation, systolic, diastolic, valueAsDouble());
     }
 }

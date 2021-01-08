@@ -22,11 +22,12 @@ import org.junit.runner.RunWith
 import org.lineageos.mod.health.e2e.RecordTest
 import org.lineageos.mod.health.sdk.model.records.body.AbdominalCircumferenceRecord
 import org.lineageos.mod.health.sdk.model.records.body.BodyRecord
+import org.lineageos.mod.health.sdk.model.values.LengthValue
 import org.lineageos.mod.health.sdk.repo.BodyRecordsRepo
 
 @RunWith(AndroidJUnit4::class)
 class AbdominalCircumferenceRecordTest :
-    RecordTest<BodyRecord, AbdominalCircumferenceRecord, BodyRecordsRepo>() {
+    RecordTest<BodyRecord<*>, AbdominalCircumferenceRecord, BodyRecordsRepo>() {
 
     override fun getRepo(context: Context): BodyRecordsRepo {
         return BodyRecordsRepo.getInstance(context.contentResolver)
@@ -44,7 +45,7 @@ class AbdominalCircumferenceRecordTest :
         return AbdominalCircumferenceRecord(
             0L,
             System.currentTimeMillis(),
-            56.8,
+            LengthValue.centimeters(56.8),
         )
     }
 
@@ -52,7 +53,7 @@ class AbdominalCircumferenceRecordTest :
         return AbdominalCircumferenceRecord(
             0L,
             System.currentTimeMillis() - 1000L,
-            44.24,
+            LengthValue.centimeters(44.24),
         )
     }
 
@@ -60,14 +61,14 @@ class AbdominalCircumferenceRecordTest :
         return AbdominalCircumferenceRecord(
             0L,
             System.currentTimeMillis(),
-            -6.8,
+            LengthValue.centimeters(-6.8),
         )
     }
 
     override fun updateTestRecord(record: AbdominalCircumferenceRecord) {
         record.apply {
             time = System.currentTimeMillis()
-            value += 5.0
+            value += LengthValue.millimeters(5.0)
         }
     }
 }

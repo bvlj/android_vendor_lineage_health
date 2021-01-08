@@ -23,10 +23,12 @@ import org.lineageos.mod.health.common.values.MealRelation
 import org.lineageos.mod.health.e2e.RecordTest
 import org.lineageos.mod.health.sdk.model.records.heartblood.GlucoseRecord
 import org.lineageos.mod.health.sdk.model.records.heartblood.HeartBloodRecord
+import org.lineageos.mod.health.sdk.model.values.BloodGlucoseValue
 import org.lineageos.mod.health.sdk.repo.HeartBloodRecordsRepo
 
 @RunWith(AndroidJUnit4::class)
-class GlucoseRecordTest : RecordTest<HeartBloodRecord, GlucoseRecord, HeartBloodRecordsRepo>() {
+class GlucoseRecordTest :
+    RecordTest<HeartBloodRecord<*>, GlucoseRecord, HeartBloodRecordsRepo>() {
 
     override fun getRepo(context: Context): HeartBloodRecordsRepo {
         return HeartBloodRecordsRepo.getInstance(context.contentResolver)
@@ -45,7 +47,7 @@ class GlucoseRecordTest : RecordTest<HeartBloodRecord, GlucoseRecord, HeartBlood
             0L,
             System.currentTimeMillis(),
             MealRelation.BEFORE,
-            123.0
+            BloodGlucoseValue.mgdL(123)
         )
     }
 
@@ -54,7 +56,7 @@ class GlucoseRecordTest : RecordTest<HeartBloodRecord, GlucoseRecord, HeartBlood
             0L,
             System.currentTimeMillis() - 1000L,
             MealRelation.AFTER,
-            224.0
+            BloodGlucoseValue.mgdL(224)
         )
     }
 
@@ -63,14 +65,14 @@ class GlucoseRecordTest : RecordTest<HeartBloodRecord, GlucoseRecord, HeartBlood
             0L,
             System.currentTimeMillis(),
             1 shl 7,
-            -81.0
+            BloodGlucoseValue.mgdL(-81)
         )
     }
 
     override fun updateTestRecord(record: GlucoseRecord) {
         record.apply {
             time = System.currentTimeMillis()
-            value += 50.0
+            value += BloodGlucoseValue.mgdL(50)
         }
     }
 }

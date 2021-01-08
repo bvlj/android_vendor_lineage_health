@@ -25,7 +25,8 @@ import org.lineageos.mod.health.sdk.model.records.body.BodyRecord
 import org.lineageos.mod.health.sdk.repo.BodyRecordsRepo
 
 @RunWith(AndroidJUnit4::class)
-class BodyMassIndexRecordTest : RecordTest<BodyRecord, BodyMassIndexRecord, BodyRecordsRepo>() {
+class BodyMassIndexRecordTest :
+    RecordTest<BodyRecord<*>, BodyMassIndexRecord, BodyRecordsRepo>() {
 
     override fun getRepo(context: Context): BodyRecordsRepo {
         return BodyRecordsRepo.getInstance(context.contentResolver)

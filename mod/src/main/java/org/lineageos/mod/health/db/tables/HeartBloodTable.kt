@@ -27,8 +27,8 @@ object HeartBloodTable : Table {
         "${RecordColumns._METRIC} INTEGER NOT NULL, " +
         "${RecordColumns.TIME} INTEGER NOT NULL DEFAULT 0, " +
         "${RecordColumns.MEAL_RELATION} INTEGER NOT NULL DEFAULT 0, " +
-        "${RecordColumns.PRESSURE_SYSTOLIC} INTEGER NOT NULL DEFAULT 0, " +
-        "${RecordColumns.PRESSURE_DIASTOLIC} INTEGER NOT NULL DEFAULT 0, " +
+        "${RecordColumns.PRESSURE_SYSTOLIC} REAL NOT NULL DEFAULT 0, " +
+        "${RecordColumns.PRESSURE_DIASTOLIC} REAL NOT NULL DEFAULT 0, " +
         "${RecordColumns.VALUE} REAL NOT NULL DEFAULT 0 " +
         ")"
 

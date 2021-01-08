@@ -17,6 +17,7 @@
 package org.lineageos.mod.health.sdk.model.records.body;
 
 import androidx.annotation.Keep;
+import androidx.annotation.NonNull;
 
 import org.lineageos.mod.health.common.Metric;
 import org.lineageos.mod.health.common.values.MenstrualCycleOtherSymptoms;
@@ -37,7 +38,7 @@ import org.lineageos.mod.health.common.values.SexualActivity;
  * @see Metric#UV_INDEX
  */
 @Keep
-public final class UvIndexRecord extends BodyRecord {
+public final class UvIndexRecord extends BaseBodyRecord {
 
     public UvIndexRecord(long id, long time, double value) {
         super(id, Metric.UV_INDEX, time, "",
@@ -48,8 +49,9 @@ public final class UvIndexRecord extends BodyRecord {
     /**
      * @return UV index value (range 0.0 .. 11.0+)
      */
+    @NonNull
     @Override
-    public double getValue() {
+    public Double getValue() {
         return super.getValue();
     }
 
@@ -57,7 +59,7 @@ public final class UvIndexRecord extends BodyRecord {
      * @param value UV index value (range 0.0 .. 11.0+)
      */
     @Override
-    public void setValue(double value) {
+    public void setValue(@NonNull Double value) {
         super.setValue(value);
     }
 }

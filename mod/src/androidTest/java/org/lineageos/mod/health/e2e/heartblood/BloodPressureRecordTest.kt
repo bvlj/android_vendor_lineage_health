@@ -22,11 +22,12 @@ import org.junit.runner.RunWith
 import org.lineageos.mod.health.e2e.RecordTest
 import org.lineageos.mod.health.sdk.model.records.heartblood.BloodPressureRecord
 import org.lineageos.mod.health.sdk.model.records.heartblood.HeartBloodRecord
+import org.lineageos.mod.health.sdk.model.values.PressureValue
 import org.lineageos.mod.health.sdk.repo.HeartBloodRecordsRepo
 
 @RunWith(AndroidJUnit4::class)
 class BloodPressureRecordTest :
-    RecordTest<HeartBloodRecord, BloodPressureRecord, HeartBloodRecordsRepo>() {
+    RecordTest<HeartBloodRecord<*>, BloodPressureRecord, HeartBloodRecordsRepo>() {
 
     override fun getRepo(context: Context): HeartBloodRecordsRepo {
         return HeartBloodRecordsRepo.getInstance(context.contentResolver)
@@ -44,8 +45,8 @@ class BloodPressureRecordTest :
         return BloodPressureRecord(
             0L,
             System.currentTimeMillis(),
-            110,
-            82
+            PressureValue.mmHg(110.0),
+            PressureValue.mmHg(82.0)
         )
     }
 
@@ -53,8 +54,8 @@ class BloodPressureRecordTest :
         return BloodPressureRecord(
             0L,
             System.currentTimeMillis() - 1000L,
-            131,
-            91
+            PressureValue.mmHg(131.0),
+            PressureValue.mmHg(91.0)
         )
     }
 
@@ -62,16 +63,16 @@ class BloodPressureRecordTest :
         return BloodPressureRecord(
             0L,
             System.currentTimeMillis(),
-            -12,
-            10
+            PressureValue.mmHg(-12.1),
+            PressureValue.mmHg(10.0)
         )
     }
 
     override fun updateTestRecord(record: BloodPressureRecord) {
         record.apply {
             time = System.currentTimeMillis()
-            systolic += 3
-            diastolic += 4
+            systolic += PressureValue.mmHg(3.0)
+            diastolic += PressureValue.mmHg(4.0)
         }
     }
 }

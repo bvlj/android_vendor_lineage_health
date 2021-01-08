@@ -29,6 +29,8 @@ import org.lineageos.mod.health.common.HealthStoreUri
 import org.lineageos.mod.health.common.Metric
 import org.lineageos.mod.health.common.db.RecordColumns
 import org.lineageos.mod.health.sdk.model.records.activity.CyclingRecord
+import org.lineageos.mod.health.sdk.model.values.LengthValue
+import org.lineageos.mod.health.sdk.model.values.SpeedValue
 import org.lineageos.mod.health.sdk.repo.ActivityRecordsRepo
 import org.lineageos.mod.health.sdk.repo.OperationResult
 import java.lang.IllegalArgumentException
@@ -51,9 +53,9 @@ class ActivityRecordsTest {
             0L,
             System.currentTimeMillis(),
             1000L,
-            12.0,
-            50.0,
-            5.0
+            SpeedValue.kilometersPerHour(12.0),
+            LengthValue.kilometers(50.0),
+            LengthValue.meters(5.0)
         )
         val insertResult = repo.insert(a)
         val idA = (insertResult as OperationResult.Success<*>).result as Long

@@ -33,6 +33,8 @@ import org.lineageos.mod.health.sdk.model.records.activity.CyclingRecord;
 import org.lineageos.mod.health.sdk.model.records.activity.RunningRecord;
 import org.lineageos.mod.health.sdk.model.records.activity.WalkingRecord;
 import org.lineageos.mod.health.sdk.model.records.activity.WorkoutRecord;
+import org.lineageos.mod.health.sdk.model.values.LengthValue;
+import org.lineageos.mod.health.sdk.model.values.SpeedValue;
 import org.lineageos.mod.health.sdk.util.HsRuntimePermission;
 import org.lineageos.mod.health.sdk.util.RecordTimeComparator;
 
@@ -196,11 +198,13 @@ public final class ActivityRecordsRepo extends RecordsRepo<ActivityRecord> {
         final int metric = cursor.getInt(cursor.getColumnIndex(RecordColumns._METRIC));
         final long time = cursor.getLong(cursor.getColumnIndex(RecordColumns.TIME));
         final long duration = cursor.getLong(cursor.getColumnIndex(RecordColumns.DURATION));
-        final double avgSpeed = cursor.getDouble(cursor.getColumnIndex(RecordColumns.AVG_SPEED));
+        final SpeedValue avgSpeed = SpeedValue.kilometersPerHour(
+                cursor.getDouble(cursor.getColumnIndex(RecordColumns.AVG_SPEED)));
         final int calories = cursor.getInt(cursor.getColumnIndex(RecordColumns.CALORIES));
-        final double distance = cursor.getDouble(cursor.getColumnIndex(RecordColumns.DISTANCE));
-        final double elevationGain = cursor.getDouble(cursor.getColumnIndex(
-                RecordColumns.ELEVATION_GAIN));
+        final LengthValue distance = LengthValue.kilometers(
+                cursor.getDouble(cursor.getColumnIndex(RecordColumns.DISTANCE)));
+        final LengthValue elevationGain = LengthValue.meters(
+                cursor.getDouble(cursor.getColumnIndex(RecordColumns.ELEVATION_GAIN)));
         final String notes = cursor.getString(cursor.getColumnIndex(RecordColumns.NOTES));
         final long steps = cursor.getLong(cursor.getColumnIndex(RecordColumns.STEPS));
 

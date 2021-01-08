@@ -25,7 +25,8 @@ import org.lineageos.mod.health.sdk.model.records.body.UvIndexRecord
 import org.lineageos.mod.health.sdk.repo.BodyRecordsRepo
 
 @RunWith(AndroidJUnit4::class)
-class UvIndexRecordTest : RecordTest<BodyRecord, UvIndexRecord, BodyRecordsRepo>() {
+class UvIndexRecordTest :
+    RecordTest<BodyRecord<*>, UvIndexRecord, BodyRecordsRepo>() {
 
     override fun getRepo(context: Context): BodyRecordsRepo {
         return BodyRecordsRepo.getInstance(context.contentResolver)

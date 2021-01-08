@@ -37,27 +37,11 @@ import org.lineageos.mod.health.common.values.SexualActivity;
  * @see Metric#LEAN_BODY_MASS
  */
 @Keep
-public final class LeanBodyMassRecord extends BodyRecord {
+public final class LeanBodyMassRecord extends BaseBodyRecord {
 
     public LeanBodyMassRecord(long id, long time, double value) {
         super(id, Metric.LEAN_BODY_MASS, time, "",
                 MenstrualCycleOtherSymptoms.NONE, MenstrualCyclePhysicalSymptoms.NONE,
                 SexualActivity.NONE, value);
-    }
-
-    /**
-     * @return LBM value
-     */
-    @Override
-    public double getValue() {
-        return super.getValue();
-    }
-
-    /**
-     * @param value LBM value
-     */
-    @Override
-    public void setValue(double value) {
-        super.setValue(value);
     }
 }

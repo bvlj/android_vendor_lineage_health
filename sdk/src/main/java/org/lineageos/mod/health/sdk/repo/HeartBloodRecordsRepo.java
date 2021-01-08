@@ -27,12 +27,15 @@ import androidx.annotation.RequiresPermission;
 import org.lineageos.mod.health.common.HealthStoreUri;
 import org.lineageos.mod.health.common.Metric;
 import org.lineageos.mod.health.common.db.RecordColumns;
+import org.lineageos.mod.health.sdk.model.records.heartblood.BaseHeartBloodRecord;
 import org.lineageos.mod.health.sdk.model.records.heartblood.BloodAlcoholConcentrationRecord;
 import org.lineageos.mod.health.sdk.model.records.heartblood.BloodPressureRecord;
 import org.lineageos.mod.health.sdk.model.records.heartblood.GlucoseRecord;
 import org.lineageos.mod.health.sdk.model.records.heartblood.HeartBloodRecord;
 import org.lineageos.mod.health.sdk.model.records.heartblood.HeartRateRecord;
 import org.lineageos.mod.health.sdk.model.records.heartblood.PerfusionIndexRecord;
+import org.lineageos.mod.health.sdk.model.values.BloodGlucoseValue;
+import org.lineageos.mod.health.sdk.model.values.PressureValue;
 import org.lineageos.mod.health.sdk.util.HsRuntimePermission;
 import org.lineageos.mod.health.sdk.util.RecordTimeComparator;
 
@@ -66,7 +69,7 @@ import java.util.stream.Collectors;
  * @see PerfusionIndexRecord
  */
 @Keep
-public final class HeartBloodRecordsRepo extends RecordsRepo<HeartBloodRecord> {
+public final class HeartBloodRecordsRepo extends RecordsRepo<HeartBloodRecord<?>> {
 
     @Nullable
     private static volatile HeartBloodRecordsRepo instance;
@@ -99,8 +102,8 @@ public final class HeartBloodRecordsRepo extends RecordsRepo<HeartBloodRecord> {
     @NonNull
     @Override
     @RequiresPermission(HsRuntimePermission.HEART_BLOOD)
-    public List<HeartBloodRecord> getAll() {
-        final List<HeartBloodRecord> list = new ArrayList<>();
+    public List<HeartBloodRecord<?>> getAll() {
+        final List<HeartBloodRecord<?>> list = new ArrayList<>();
         list.addAll(getAllBloodAlcoholConcentrationRecords());
         list.addAll(getAllBloodPressureRecords());
         list.addAll(getAllGlucoseRecords());
@@ -185,7 +188,7 @@ public final class HeartBloodRecordsRepo extends RecordsRepo<HeartBloodRecord> {
      */
     @Override
     @RequiresPermission(HsRuntimePermission.HEART_BLOOD)
-    public OperationResult insert(@NonNull HeartBloodRecord record) {
+    public OperationResult insert(@NonNull HeartBloodRecord<?> record) {
         return super.insert(record);
     }
 
@@ -194,7 +197,7 @@ public final class HeartBloodRecordsRepo extends RecordsRepo<HeartBloodRecord> {
      */
     @Override
     @RequiresPermission(HsRuntimePermission.HEART_BLOOD)
-    public OperationResult update(@NonNull HeartBloodRecord record) {
+    public OperationResult update(@NonNull HeartBloodRecord<?> record) {
         return super.update(record);
     }
 
@@ -203,21 +206,21 @@ public final class HeartBloodRecordsRepo extends RecordsRepo<HeartBloodRecord> {
      */
     @Override
     @RequiresPermission(HsRuntimePermission.HEART_BLOOD)
-    public OperationResult delete(@NonNull HeartBloodRecord record) {
+    public OperationResult delete(@NonNull HeartBloodRecord<?> record) {
         return super.delete(record);
     }
 
     @NonNull
     @Override
-    protected HeartBloodRecord parseRow(@NonNull Cursor cursor) {
+    protected HeartBloodRecord<?> parseRow(@NonNull Cursor cursor) {
         final long id = cursor.getLong(cursor.getColumnIndex(RecordColumns._ID));
         final int metric = cursor.getInt(cursor.getColumnIndex(RecordColumns._METRIC));
         final long time = cursor.getLong(cursor.getColumnIndex(RecordColumns.TIME));
         final int beforeMeal = cursor.getInt(cursor.getColumnIndex(RecordColumns.MEAL_RELATION));
-        final int pressureSystolic = cursor.getInt(cursor.getColumnIndex(
-                RecordColumns.PRESSURE_SYSTOLIC));
-        final int pressureDiastolic = cursor.getInt(cursor.getColumnIndex(
-                RecordColumns.PRESSURE_DIASTOLIC));
+        final PressureValue pressureSystolic = PressureValue.mmHg(cursor.getInt(cursor.getColumnIndex(
+                RecordColumns.PRESSURE_SYSTOLIC)));
+        final PressureValue pressureDiastolic = PressureValue.mmHg(cursor.getInt(cursor.getColumnIndex(
+                RecordColumns.PRESSURE_DIASTOLIC)));
         final double value = cursor.getDouble(cursor.getColumnIndex(RecordColumns.VALUE));
 
         switch (metric) {
@@ -226,13 +229,13 @@ public final class HeartBloodRecordsRepo extends RecordsRepo<HeartBloodRecord> {
             case Metric.BLOOD_PRESSURE:
                 return new BloodPressureRecord(id, time, pressureSystolic, pressureDiastolic);
             case Metric.GLUCOSE:
-                return new GlucoseRecord(id, time, beforeMeal, value);
+                return new GlucoseRecord(id, time, beforeMeal, BloodGlucoseValue.mmolL(value));
             case Metric.HEART_RATE:
                 return new HeartRateRecord(id, time, value);
             case Metric.PERFUSION_INDEX:
                 return new PerfusionIndexRecord(id, time, value);
             default:
-                return new HeartBloodRecord(id, metric, time, beforeMeal, pressureSystolic,
+                return new BaseHeartBloodRecord(id, metric, time, beforeMeal, pressureSystolic,
                         pressureDiastolic, value);
         }
     }

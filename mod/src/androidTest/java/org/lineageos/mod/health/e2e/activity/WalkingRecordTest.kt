@@ -22,6 +22,7 @@ import org.junit.runner.RunWith
 import org.lineageos.mod.health.e2e.RecordTest
 import org.lineageos.mod.health.sdk.model.records.activity.ActivityRecord
 import org.lineageos.mod.health.sdk.model.records.activity.WalkingRecord
+import org.lineageos.mod.health.sdk.model.values.LengthValue
 import org.lineageos.mod.health.sdk.repo.ActivityRecordsRepo
 
 @RunWith(AndroidJUnit4::class)
@@ -44,7 +45,7 @@ class WalkingRecordTest : RecordTest<ActivityRecord, WalkingRecord, ActivityReco
             0L,
             System.currentTimeMillis(),
             1000L,
-            6.5,
+            LengthValue.meters(6.5),
             500,
         )
     }
@@ -54,7 +55,7 @@ class WalkingRecordTest : RecordTest<ActivityRecord, WalkingRecord, ActivityReco
             0L,
             System.currentTimeMillis() - 1000L,
             45L,
-            1.47,
+            LengthValue.meters(1.47),
             891,
         )
     }
@@ -64,7 +65,7 @@ class WalkingRecordTest : RecordTest<ActivityRecord, WalkingRecord, ActivityReco
             0L,
             System.currentTimeMillis(),
             4L,
-            88.2,
+            LengthValue.meters(88.2),
             -44,
         )
     }

@@ -33,6 +33,8 @@ import org.lineageos.mod.health.common.values.Permission
 import org.lineageos.mod.health.sdk.model.records.body.BodyRecord
 import org.lineageos.mod.health.sdk.model.records.body.BodyTemperatureRecord
 import org.lineageos.mod.health.sdk.model.records.body.WeightRecord
+import org.lineageos.mod.health.sdk.model.values.MassValue
+import org.lineageos.mod.health.sdk.model.values.TemperatureValue
 import org.lineageos.mod.health.sdk.repo.BodyRecordsRepo
 import org.lineageos.mod.health.sdk.repo.OperationResult
 
@@ -72,17 +74,17 @@ class AccessPolicyTest {
 
         // Should be able to insert…
         val idA = insert(
-            WeightRecord(0L, System.currentTimeMillis(), 60.0)
+            WeightRecord(0L, System.currentTimeMillis(), MassValue.kilograms(60.0))
         )
         val idB = insert(
-            BodyTemperatureRecord(0L, System.currentTimeMillis(), 36.2)
+            BodyTemperatureRecord(0L, System.currentTimeMillis(), TemperatureValue.celsius(36.2))
         )
 
         Assert.assertNotEquals(-1L, idA)
         Assert.assertNotEquals(-1L, idB)
 
         // …and update…
-        val updatedRecord = WeightRecord(idA, System.currentTimeMillis(), 67.0)
+        val updatedRecord = WeightRecord(idA, System.currentTimeMillis(), MassValue.kilograms(67.0))
         Assert.assertTrue(bodyRepo.update(updatedRecord) is OperationResult.Success<*>)
 
         // …but not to read weight records (only)
@@ -108,7 +110,7 @@ class AccessPolicyTest {
         Assert.assertFalse(bodyRepo.allWeightRecords.isEmpty())
         Assert.assertFalse(bodyRepo.allBodyTemperatureRecords.isEmpty())
 
-        updatedRecord.value -= 2.1
+        updatedRecord.value -= MassValue.kilograms(2.1)
         Assert.assertTrue(bodyRepo.update(updatedRecord) is OperationResult.Success<*>)
 
         Assert.assertEquals(updatedRecord, bodyRepo.getWeightRecord(idA))
@@ -122,10 +124,10 @@ class AccessPolicyTest {
     fun blockWrite() {
         // Should be able to insert…
         val idA = insert(
-            WeightRecord(0L, System.currentTimeMillis(), 60.0)
+            WeightRecord(0L, System.currentTimeMillis(), MassValue.kilograms(60.0))
         )
         val idB = insert(
-            BodyTemperatureRecord(0L, System.currentTimeMillis(), 36.2)
+            BodyTemperatureRecord(0L, System.currentTimeMillis(), TemperatureValue.celsius(36.2))
         )
         Assert.assertNotEquals(-1L, idA)
         Assert.assertNotEquals(-1L, idB)
@@ -153,14 +155,14 @@ class AccessPolicyTest {
         Assert.assertFalse(bodyRepo.allBodyTemperatureRecords.isEmpty())
 
         // …but not to insert or update weight records…
-        a.value += 3.1
+        a.value += MassValue.kilograms(3.1)
 
-        val c = WeightRecord(0L, System.currentTimeMillis(), 88.2)
+        val c = WeightRecord(0L, System.currentTimeMillis(), MassValue.kilograms(88.2))
         Assert.assertTrue(bodyRepo.insert(c) is OperationResult.PolicyError)
         Assert.assertTrue(bodyRepo.update(a) is OperationResult.PolicyError)
 
         // …but it should be possible to update temperature records
-        b.value -= 0.2
+        b.value -= TemperatureValue.celsius(0.2)
         Assert.assertTrue(bodyRepo.update(b) is OperationResult.Success<*>)
 
         // Grant permission again
@@ -180,7 +182,7 @@ class AccessPolicyTest {
         // It should be possible to write again
         val idC = insert(c)
 
-        b.value -= 1.0
+        b.value -= TemperatureValue.celsius(1.0)
 
         Assert.assertNotEquals(-1L, idC)
         Assert.assertTrue(bodyRepo.update(a) is OperationResult.Success<*>)
@@ -200,10 +202,10 @@ class AccessPolicyTest {
     fun blockAll() {
         // Should be able to insert…
         val idA = insert(
-            WeightRecord(0L, System.currentTimeMillis(), 60.0)
+            WeightRecord(0L, System.currentTimeMillis(), MassValue.kilograms(60.0))
         )
         val idB = insert(
-            BodyTemperatureRecord(0L, System.currentTimeMillis(), 36.2)
+            BodyTemperatureRecord(0L, System.currentTimeMillis(), TemperatureValue.celsius(36.2))
         )
         Assert.assertNotEquals(-1L, idA)
         Assert.assertNotEquals(-1L, idB)
@@ -237,14 +239,14 @@ class AccessPolicyTest {
         Assert.assertFalse(bodyRepo.allBodyTemperatureRecords.isEmpty())
 
         // …to insert or update weight records…
-        a.value += 3.1
+        a.value += MassValue.kilograms(3.1)
 
-        val c = WeightRecord(0L, System.currentTimeMillis(), 88.2)
+        val c = WeightRecord(0L, System.currentTimeMillis(), MassValue.kilograms(88.2))
         Assert.assertTrue(bodyRepo.insert(c) is OperationResult.PolicyError)
         Assert.assertTrue(bodyRepo.update(a) is OperationResult.PolicyError)
 
         // …but it should be possible to update temperature records…
-        b.value -= 0.2
+        b.value -= TemperatureValue.celsius(0.2)
         Assert.assertTrue(bodyRepo.update(b) is OperationResult.Success<*>)
 
         // Grant permission again
@@ -263,7 +265,7 @@ class AccessPolicyTest {
         // It should be possible to write…
         val idC = insert(c)
 
-        b.value -= 1.0
+        b.value -= TemperatureValue.celsius(1.0)
 
         Assert.assertNotEquals(-1L, idC)
         Assert.assertTrue(bodyRepo.update(a) is OperationResult.Success<*>)
@@ -279,7 +281,7 @@ class AccessPolicyTest {
         cr.delete(HealthStoreUri.ACCESS, null, null)
     }
 
-    private fun insert(record: BodyRecord): Long {
+    private fun insert(record: BodyRecord<*>): Long {
         return (bodyRepo.insert(record) as OperationResult.Success<*>).result as Long
     }
 }

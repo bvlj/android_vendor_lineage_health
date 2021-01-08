@@ -26,7 +26,7 @@ import org.lineageos.mod.health.sdk.repo.HeartBloodRecordsRepo
 
 @RunWith(AndroidJUnit4::class)
 class BloodAlcoholConcentrationRecordTest :
-    RecordTest<HeartBloodRecord, BloodAlcoholConcentrationRecord, HeartBloodRecordsRepo>() {
+    RecordTest<HeartBloodRecord<*>, BloodAlcoholConcentrationRecord, HeartBloodRecordsRepo>() {
 
     override fun getRepo(context: Context): HeartBloodRecordsRepo {
         return HeartBloodRecordsRepo.getInstance(context.contentResolver)

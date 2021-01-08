@@ -38,7 +38,7 @@ import org.lineageos.mod.health.common.Metric;
  * @see Metric#WATER_INTAKE
  */
 @Keep
-public final class WaterIntakeRecord extends BodyRecord {
+public final class WaterIntakeRecord extends BaseBodyRecord {
 
     public WaterIntakeRecord(long id, long time, @NonNull String notes, double value) {
         super(id, Metric.WATER_INTAKE, time, notes,
@@ -60,8 +60,9 @@ public final class WaterIntakeRecord extends BodyRecord {
     /**
      * @return Number of drank glasses of water
      */
+    @NonNull
     @Override
-    public double getValue() {
+    public Double getValue() {
         return super.getValue();
     }
 
@@ -69,7 +70,7 @@ public final class WaterIntakeRecord extends BodyRecord {
      * @param value Number of drank glasses of water
      */
     @Override
-    public void setValue(double value) {
+    public void setValue(@NonNull Double value) {
         super.setValue(value);
     }
 }

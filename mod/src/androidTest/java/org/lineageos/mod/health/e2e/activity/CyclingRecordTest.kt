@@ -22,6 +22,8 @@ import org.junit.runner.RunWith
 import org.lineageos.mod.health.e2e.RecordTest
 import org.lineageos.mod.health.sdk.model.records.activity.ActivityRecord
 import org.lineageos.mod.health.sdk.model.records.activity.CyclingRecord
+import org.lineageos.mod.health.sdk.model.values.LengthValue
+import org.lineageos.mod.health.sdk.model.values.SpeedValue
 import org.lineageos.mod.health.sdk.repo.ActivityRecordsRepo
 
 @RunWith(AndroidJUnit4::class)
@@ -44,9 +46,9 @@ class CyclingRecordTest : RecordTest<ActivityRecord, CyclingRecord, ActivityReco
             0L,
             System.currentTimeMillis(),
             1000L,
-            12.0,
-            50.0,
-            5.0
+            SpeedValue.kilometersPerHour(12.0),
+            LengthValue.kilometers(50.0),
+            LengthValue.meters(5.0)
         )
     }
 
@@ -55,9 +57,9 @@ class CyclingRecordTest : RecordTest<ActivityRecord, CyclingRecord, ActivityReco
             0L,
             System.currentTimeMillis() - 1000L,
             60L,
-            1.0,
-            9.1,
-            88.4
+            SpeedValue.kilometersPerHour(1.0),
+            LengthValue.kilometers(9.1),
+            LengthValue.meters(88.4)
         )
     }
 
@@ -66,17 +68,17 @@ class CyclingRecordTest : RecordTest<ActivityRecord, CyclingRecord, ActivityReco
             0L,
             System.currentTimeMillis(),
             -4L,
-            -88.2,
-            -33.3,
-            -9.9
+            SpeedValue.kilometersPerHour(-88.2),
+            LengthValue.kilometers(-33.3),
+            LengthValue.meters(-9.9)
         )
     }
 
     override fun updateTestRecord(record: CyclingRecord) {
         record.apply {
             duration += 5
-            avgSpeed *= 0.4
-            elevationGain = 2.0
+            avgSpeed -= SpeedValue.milesPerHour(0.4)
+            elevationGain += LengthValue.meters(2.0)
         }
     }
 }

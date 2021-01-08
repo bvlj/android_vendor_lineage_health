@@ -17,9 +17,12 @@
 package org.lineageos.mod.health.sdk.model.records.heartblood;
 
 import androidx.annotation.Keep;
+import androidx.annotation.NonNull;
 
 import org.lineageos.mod.health.common.Metric;
 import org.lineageos.mod.health.common.values.MealRelation;
+import org.lineageos.mod.health.sdk.model.values.BloodGlucoseValue;
+import org.lineageos.mod.health.sdk.model.values.PressureValue;
 
 /**
  * Blood glucose record.
@@ -36,26 +39,21 @@ import org.lineageos.mod.health.common.values.MealRelation;
  * @see Metric#GLUCOSE
  */
 @Keep
-public final class GlucoseRecord extends HeartBloodRecord {
+public final class GlucoseRecord extends HeartBloodRecord<BloodGlucoseValue> {
 
     public GlucoseRecord(long id, long time,
-                         @MealRelation.Value int mealRelation, double value) {
-        super(id, Metric.GLUCOSE, time, mealRelation, 0, 0, value);
+                         @MealRelation.Value int mealRelation,
+                         @NonNull BloodGlucoseValue value) {
+        super(id, Metric.GLUCOSE, time, mealRelation,
+                PressureValue.ZERO, PressureValue.ZERO, value);
     }
 
-    /**
-     * @return Blood glucose level in milligrams per deciliter (mg/dL)
-     */
-    @Override
-    public double getValue() {
+    @NonNull
+    public BloodGlucoseValue getValue() {
         return super.getValue();
     }
 
-    /**
-     * @param value Blood glucose level in milligrams per deciliter (mg/dL)
-     */
-    @Override
-    public void setValue(double value) {
+    public void setValue(@NonNull BloodGlucoseValue value) {
         super.setValue(value);
     }
 
@@ -74,5 +72,10 @@ public final class GlucoseRecord extends HeartBloodRecord {
     @Override
     public void setMealRelation(@MealRelation.Value int mealRelation) {
         super.setMealRelation(mealRelation);
+    }
+
+    @Override
+    protected double valueAsDouble() {
+        return value.mmolL();
     }
 }

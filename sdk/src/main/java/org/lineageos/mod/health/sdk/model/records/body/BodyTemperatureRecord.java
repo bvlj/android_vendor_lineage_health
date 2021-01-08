@@ -17,11 +17,13 @@
 package org.lineageos.mod.health.sdk.model.records.body;
 
 import androidx.annotation.Keep;
+import androidx.annotation.NonNull;
 
 import org.lineageos.mod.health.common.Metric;
 import org.lineageos.mod.health.common.values.MenstrualCycleOtherSymptoms;
 import org.lineageos.mod.health.common.values.MenstrualCyclePhysicalSymptoms;
 import org.lineageos.mod.health.common.values.SexualActivity;
+import org.lineageos.mod.health.sdk.model.values.TemperatureValue;
 
 /**
  * Body Temperature record.
@@ -29,7 +31,7 @@ import org.lineageos.mod.health.common.values.SexualActivity;
  * <ul>
  *     <li>{@link Long} id: db identifier (default to <code>0L</code>)</li>
  *     <li>{@link Long} time: timestamp ({@link System#currentTimeMillis()})</li>
- *     <li>{@link Double} value: temperature in Celsius degrees (ºC)</li>
+ *     <li>{@link Double} value: temperature value (default to ºC)</li>
  * </ul>
  *
  * <a href="https://en.wikipedia.org/wiki/Human_body_temperature">More info</a>
@@ -37,27 +39,16 @@ import org.lineageos.mod.health.common.values.SexualActivity;
  * @see Metric#BODY_TEMPERATURE
  */
 @Keep
-public final class BodyTemperatureRecord extends BodyRecord {
+public final class BodyTemperatureRecord extends BodyRecord<TemperatureValue> {
 
-    public BodyTemperatureRecord(long id, long time, double value) {
+    public BodyTemperatureRecord(long id, long time, @NonNull TemperatureValue value) {
         super(id, Metric.BODY_TEMPERATURE, time, "",
                 MenstrualCycleOtherSymptoms.NONE, MenstrualCyclePhysicalSymptoms.NONE,
                 SexualActivity.NONE, value);
     }
 
-    /**
-     * @return Temperature in Celsius degrees (ºC)
-     */
     @Override
-    public double getValue() {
-        return super.getValue();
-    }
-
-    /**
-     * @param value Temperature in Celsius degrees (ºC)
-     */
-    @Override
-    public void setValue(double value) {
-        super.setValue(value);
+    protected double valueAsDouble() {
+        return value.celsius();
     }
 }

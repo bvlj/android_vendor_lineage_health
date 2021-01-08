@@ -17,8 +17,11 @@
 package org.lineageos.mod.health.sdk.model.records.activity;
 
 import androidx.annotation.Keep;
+import androidx.annotation.NonNull;
 
 import org.lineageos.mod.health.common.Metric;
+import org.lineageos.mod.health.sdk.model.values.LengthValue;
+import org.lineageos.mod.health.sdk.model.values.SpeedValue;
 
 /**
  * Walking activity / Step counter.
@@ -38,24 +41,20 @@ import org.lineageos.mod.health.common.Metric;
 @Keep
 public final class WalkingRecord extends ActivityRecord {
 
-    public WalkingRecord(long id, long time, long duration, double distance, long steps) {
-        super(id, Metric.WALKING, time, duration, 0.0, 0,
-                distance, 0.0, "", steps);
+    public WalkingRecord(long id, long time, long duration,
+                         @NonNull LengthValue distance, long steps) {
+        super(id, Metric.WALKING, time, duration, SpeedValue.ZERO, 0,
+                distance, LengthValue.ZERO, "", steps);
     }
 
-    /**
-     * @return Distance in kilometers (km)
-     */
+    @NonNull
     @Override
-    public double getDistance() {
+    public LengthValue getDistance() {
         return super.getDistance();
     }
 
-    /**
-     * @param distance Distance in kilometers (km)
-     */
     @Override
-    public void setDistance(double distance) {
+    public void setDistance(@NonNull LengthValue distance) {
         super.setDistance(distance);
     }
 
