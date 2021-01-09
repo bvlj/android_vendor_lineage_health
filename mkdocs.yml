@@ -37,8 +37,12 @@ markdown_extensions:
 
 nav:
   - 'Overview': index.md
+  - 'Build': build.md
   - 'Components': components.md
-  - 'Metrics': metrics.md
+  - 'Data entities': entities.md
   - 'Partner': partner.md
+  - 'Privacy & Security': privacy_security.md
+  - 'Usage': usage.md
+  - 'Versioning': versioning.md
   - 'Info': product_document.md
   - 'JavaDoc': javadocs/index.html
