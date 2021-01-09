@@ -25,11 +25,10 @@ import org.lineageos.mod.health.db.tables.BodyTable
 import org.lineageos.mod.health.db.tables.BreathingTable
 import org.lineageos.mod.health.db.tables.HeartBloodTable
 import org.lineageos.mod.health.db.tables.MindfulnessTable
-import org.lineageos.mod.health.security.KeyMaster
 import org.lineageos.mod.util.SingletonHolder
 
 class HealthStoreDbHelper private constructor(
-    private val context: Context?
+    context: Context?
 ) : SQLiteOpenHelper(
     context,
     NAME,
@@ -59,18 +58,6 @@ class HealthStoreDbHelper private constructor(
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
         if (db != null) {
             tables.forEach { it.onUpgrade(db, oldVersion, newVersion) }
-        }
-    }
-
-    override fun onConfigure(db: SQLiteDatabase?) {
-        super.onConfigure(db)
-
-        // DB not encrypted if in-memory
-        val context = context ?: return
-        val keyMaster = KeyMaster.getInstance(context)
-        val key = keyMaster.getDbKey()
-        if (key.isNotEmpty() && db != null) {
-            db.rawExecSQL("PRAGMA KEY = '$key';")
         }
     }
 }
