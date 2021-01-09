@@ -1,0 +1,32 @@
+name: Website
+
+on:
+  push:
+    branches:
+    # TODO: change to master
+      - staging
+
+jobs:
+  deploy-website:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Project checkout
+        uses: actions/checkout@v2
+      - name: Setup python 3.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - name: Prepare documentation
+        run: .github/scripts/prepare_docs.sh
+      - name: Build mk-docs
+        run: |
+          pip3 install mkdocs-macros-plugin
+          mkdocs build
+      - name: Deploy website
+        if: success()
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages # The branch the action should deploy to.
+          FOLDER: site # The folder the action should deploy.
+          SINGLE_COMMIT: true
