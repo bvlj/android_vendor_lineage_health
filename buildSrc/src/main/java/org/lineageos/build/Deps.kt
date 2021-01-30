@@ -19,7 +19,7 @@ package org.lineageos.build
 
 // AndroidX - https://developer.android.com/jetpack/androidx/versions
 object AndroidX {
-    const val gradlePlugin = "com.android.tools.build:gradle:4.1.1"
+    const val gradlePlugin = "com.android.tools.build:gradle:4.1.2"
 
     // Core - KTX - https://developer.android.com/jetpack/androidx/releases/annotation
     const val annotationX = "androidx.annotation:annotation:1.1.0"
@@ -36,7 +36,7 @@ object AndroidX {
         const val espressoCore = "androidx.test.espresso:espresso-core:3.2.0"
 
         object Ext {
-            private const val VERSION = "1.1.2-rc01"
+            private const val VERSION = "1.1.2"
             const val junit = "androidx.test.ext:junit-ktx:$VERSION"
         }
     }
@@ -70,7 +70,7 @@ object Kotlin {
 
     // Coroutines - https://github.com/Kotlin/kotlinx.coroutines/releases
     object Coroutines {
-        private const val VERSION = "1.4.1"
+        private const val VERSION = "1.4.2"
 
         const val jvm = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$VERSION"
         const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$VERSION"
