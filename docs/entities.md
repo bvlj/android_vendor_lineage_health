@@ -76,6 +76,7 @@ This data will not have the same level of protection like the Records in order
 to allow access from when the screen is locked in case of emergency.
 
 | Name                | Description                                             |
+| ------------------- | ------------------------------------------------------- |
 | Allergies           | A note about user's allergies                           |
 | Biological sex      | User's biological sex                                   |
 | Blood type          | User's blood type                                       |
