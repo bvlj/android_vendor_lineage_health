@@ -125,20 +125,16 @@ objects and inserts them in batch:
 
 ```java
 HeartBloodRecordsRepo repo = HeartBloodRecordsRepo.getInstance(getContentResolver());
-try {
-    ContentProviderResult[] results = repo.executeBatch(composer -> {
-        otherDataSource.getNewGlucoseReadings().forEach(item -> {
-            // convertToRecord implementation made by the developer
-            GlucoseRecord record = convertToRecord(item);
-            // Compose batch operations with many .insert() for each item from the
-            // the other data source
-            composer.insert(record);
-        });
+OperationResult[] results = repo.executeBatch(composer -> {
+    otherDataSource.getNewGlucoseReadings().forEach(item -> {
+        // convertToRecord implementation made by the developer
+        GlucoseRecord record = convertToRecord(item);
+        // Compose batch operations with many .insert() for each item from the
+        // the other data source
+        composer.insert(record);
     });
-    // Check the results now...
-} catch (OperationApplicationException | RemoteException e) {
-    // ...
-}
+});
+// Check the results now...
 ```
 
 ### JavaDoc

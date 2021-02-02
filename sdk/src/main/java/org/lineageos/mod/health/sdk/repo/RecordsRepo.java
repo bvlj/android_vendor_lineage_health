@@ -25,6 +25,7 @@ import android.content.OperationApplicationException;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.RemoteException;
+import android.util.Log;
 
 import androidx.annotation.CallSuper;
 import androidx.annotation.Keep;
@@ -42,6 +43,7 @@ import org.lineageos.mod.health.sdk.model.records.Record;
 import org.lineageos.mod.health.sdk.util.HsRuntimePermission;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
@@ -50,6 +52,8 @@ import java.util.Locale;
  */
 @Keep
 public abstract class RecordsRepo<T extends Record> {
+    private static final String TAG = "RecordsRepo";
+
     /**
      * @hide
      */
@@ -158,13 +162,49 @@ public abstract class RecordsRepo<T extends Record> {
     }
 
     @NonNull
-    public final ContentProviderResult[] executeBatch(
-            @NonNull BatchOperations.Builder<T> builder) throws
-            OperationApplicationException, RemoteException {
+    public final OperationResult[] executeBatch(
+            @NonNull BatchOperations.Builder<T> builder) {
         final BatchOperations<T> batchOperations = new BatchOperations<>(baseUri);
         builder.build(batchOperations);
         final ArrayList<ContentProviderOperation> operations = batchOperations.build();
-        return contentResolver.applyBatch(baseUri.getAuthority(), operations);
+
+        final OperationResult[] results = new OperationResult[operations.size()];
+        // Default to failure
+        Arrays.fill(results, OperationResult.Failure.INSTANCE);
+        try {
+            // Perform operations
+            ContentProviderResult[] cpResults = contentResolver.applyBatch(
+                    baseUri.getAuthority(), operations);
+
+            // Convert results to "our" format
+            for (int i = 0; i < cpResults.length; i++) {
+                ContentProviderOperation op = operations.get(i);
+                if (op.isInsert()) {
+                    final Uri uri = cpResults[i].uri;
+                    if (uri == null) {
+                        results[i] = OperationResult.Failure.INSTANCE;
+                    } else if (AccessPolicyValues.DENIED_URI.equals(uri)) {
+                        results[i] = OperationResult.PolicyError.INSTANCE;
+                    } else {
+                        long id = Long.parseLong(uri.getLastPathSegment());
+                        results[i] = new OperationResult.Success<>(id);
+                    }
+                } else {
+                    final int count = cpResults[i].count;
+                    if (count == AccessPolicyValues.DENIED_COUNT) {
+                        results[i] = OperationResult.PolicyError.INSTANCE;
+                    } else if (count == 1) {
+                        results[i] = new OperationResult.Success<>(1);
+                    } else {
+                        results[i] = OperationResult.Failure.INSTANCE;
+                    }
+                }
+            }
+        } catch (OperationApplicationException | RemoteException e) {
+            Log.e(TAG, "Error while performing batch operations", e);
+        }
+
+        return results;
     }
 
     @NonNull
@@ -241,11 +281,12 @@ public abstract class RecordsRepo<T extends Record> {
     @VisibleForTesting
     public final boolean deleteAll()  {
         final List<T> records = getAll();
-        try {
-            executeBatch(composer -> records.forEach(composer::delete));
-        } catch (OperationApplicationException | RemoteException e) {
-            e.printStackTrace();
-            return false;
+        final OperationResult[] results = executeBatch(composer ->
+                records.forEach(composer::delete));
+        for (OperationResult result : results) {
+            if (!(result instanceof OperationResult.Success)) {
+                return false;
+            }
         }
         return true;
     }
