@@ -101,7 +101,7 @@ public abstract class RecordsRepo<T extends Record> {
             return OperationResult.PolicyError.INSTANCE;
         }
         try {
-            long id = Long.parseLong(uri.getLastPathSegment());
+            final Long id = Long.valueOf(uri.getLastPathSegment());
             return new OperationResult.Success<>(id);
         } catch (NumberFormatException e) {
             return OperationResult.Failure.INSTANCE;
@@ -184,7 +184,7 @@ public abstract class RecordsRepo<T extends Record> {
                     } else if (AccessPolicyValues.DENIED_URI.equals(uri)) {
                         results[i] = OperationResult.PolicyError.INSTANCE;
                     } else {
-                        long id = Long.parseLong(uri.getLastPathSegment());
+                        final Long id = Long.valueOf(uri.getLastPathSegment());
                         results[i] = new OperationResult.Success<>(id);
                     }
                 } else {
