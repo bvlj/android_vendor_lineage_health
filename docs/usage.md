@@ -2,7 +2,7 @@
 
 ## Android ContentResolver
 
-App developers may access the HealthStore through the standard Android's
+App developers may access CareCache through the standard Android's
 [ContentResolver](https://developer.android.com/guide/topics/providers/content-provider-basics)
 without requiring the addition of any new external dependency. Please take a look
 at the [sdk code](/sdk/src/main/java/org/lineageos/mod/health/sdk/) to see how to properly use
@@ -26,6 +26,8 @@ dependencies {
      implementation "org.lineageos:mod.health-sdk:1.0.0-alpha01"
 }
 ```
+
+> Note: jCenter is shutting down, we'll be migrating to another provider soon
 
 ### Requesting access to a category
 
@@ -87,8 +89,8 @@ dispatcher should be used to wrap all the queries.
 Each of these operations will return an `OperationResult` object. This object is an instance
 of exactly one of the following:
 
-- `OperationResult.Success<T>` where `<T>` is 
-    - `Long` for the `insert` method. The `.result` field will hold the newly inserted record id 
+- `OperationResult.Success<T>` where `<T>` is
+    - `Long` for the `insert` method. The `.result` field will hold the newly inserted record id
     - `Integer` for the `update` method. The `.result` field will hold the number of updated records
     - `Integer` for the `delete` method. The `.result` field will hold the number of delete records
 - `OperationResult.PolicyError` if a(n user-defined) policy prevented this app from performing
@@ -101,7 +103,7 @@ Simple example for inserting a new running activity record with the following va
 
 ```java
 RunningRecord record = new RunningRecord(0L,
-        System.currentTimeMillis(), 
+        System.currentTimeMillis(),
         1800000L,
         SpeedValue.kilometersPerHour(6.42),
         LengthValue.kilometers(3.21));
@@ -140,5 +142,5 @@ OperationResult[] results = repo.executeBatch(composer -> {
 ### JavaDoc
 
 The JavaDoc is available
-[here](https://healthstore.github.io/android_vendor_lineage_health/javadocs/index.html).
+[here](https://careCache.github.io/android_vendor_lineage_health/javadocs/index.html).
 

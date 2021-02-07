@@ -1,7 +1,7 @@
 # Versioning
 
-The Health Mod and SDK both follow a parallel [semantic versioning](https://semver.org/) model.
-This means that a Mod app (version `X.Y.Z`) installed on a device is guaranteed to support
+The CareCache Mod and SDK both follow a parallel [semantic versioning](https://semver.org/) model.
+This means that a CareCache Mod (version `X.Y.Z`) installed on a device is guaranteed to support
 any app that makes use of the SDK version `X.*.*`).
 
 The Mod app might also support older SDKs by attempting to "convert" the given data internally, but

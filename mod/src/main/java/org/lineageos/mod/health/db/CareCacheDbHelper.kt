@@ -27,7 +27,7 @@ import org.lineageos.mod.health.db.tables.HeartBloodTable
 import org.lineageos.mod.health.db.tables.MindfulnessTable
 import org.lineageos.mod.util.SingletonHolder
 
-class HealthStoreDbHelper private constructor(
+class CareCacheDbHelper private constructor(
     context: Context?
 ) : SQLiteOpenHelper(
     context,
@@ -35,7 +35,7 @@ class HealthStoreDbHelper private constructor(
     null,
     DB_VERSION
 ) {
-    companion object : SingletonHolder<HealthStoreDbHelper, Context?>({ HealthStoreDbHelper(it) }) {
+    companion object : SingletonHolder<CareCacheDbHelper, Context?>({ CareCacheDbHelper(it) }) {
         private const val DB_VERSION = 1
         private const val NAME = "healthStore"
     }

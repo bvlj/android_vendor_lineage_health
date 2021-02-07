@@ -1,13 +1,13 @@
 # Privacy & Security
 
-The Health Mod never shares your data to any remote server directly, so your data
+CareCache never shares your data to any remote server directly, so your data
 never leaves your device unless it's being pulled by a 3rd party system that will
 host it on an external platform.
 
 Users have great controls over how their health data flows across different services,
-while the Health Mod takes steps to ensure that local data remains protected.
+while the CareCache takes steps to ensure that local data remains protected.
 
-HealthStore takes advantages of existing robust standard security mechanisms of
+CareCache takes advantages of existing robust standard security mechanisms of
 Android (such as runtime permissions and FBE) to safeguard user's data.
 
 It can offer even more protection thanks to its custom set of [SEPolicies](#sepolicies)
@@ -56,7 +56,7 @@ The following runtime permissions are used:
 
 ## SEPolicies
 
-Additional SEPolicies are available for OEMs who whish to implement. HealthStore in their
+Additional SEPolicies are available for OEMs who whish to implement CareCache in their
 builds. The source code repository provides example implementation of SEPolicies to
 increase the security of stored user data by restricting access to the Mod app data.
 It is recommend to make use of the additional rules to make users' data safer when building

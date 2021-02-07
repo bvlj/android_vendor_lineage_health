@@ -21,7 +21,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.net.Uri
-import org.lineageos.mod.health.common.HealthStoreUri
+import org.lineageos.mod.health.common.CareCacheUri
 import org.lineageos.mod.health.common.db.AccessColumns
 import org.lineageos.mod.health.db.SqlCipherLoader
 import org.lineageos.mod.health.partner.PartnerProvider
@@ -89,7 +89,7 @@ class InitProvider : ContentProvider() {
                 put(AccessColumns.PERMISSIONS, it.permissions)
             }
         }
-        val inserted = context.contentResolver.bulkInsert(HealthStoreUri.ACCESS, values)
+        val inserted = context.contentResolver.bulkInsert(CareCacheUri.ACCESS, values)
         if (inserted == defaultPolicies.size) {
             prefs.edit()
                 .putBoolean(PREFS_KEY_PARTNER_LOADED, true)

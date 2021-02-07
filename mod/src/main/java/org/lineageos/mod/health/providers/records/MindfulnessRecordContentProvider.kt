@@ -16,11 +16,11 @@
 
 package org.lineageos.mod.health.providers.records
 
-import org.lineageos.mod.health.common.HealthStoreUri
+import org.lineageos.mod.health.common.CareCacheUri
 import org.lineageos.mod.health.db.tables.MindfulnessTable
 
 class MindfulnessRecordContentProvider : RecordContentProvider(
-    HealthStoreUri.MINDFULNESS,
-    HealthStoreUri.Authority.MINDFULNESS,
+    CareCacheUri.MINDFULNESS,
+    CareCacheUri.Authority.MINDFULNESS,
     MindfulnessTable.NAME
 )

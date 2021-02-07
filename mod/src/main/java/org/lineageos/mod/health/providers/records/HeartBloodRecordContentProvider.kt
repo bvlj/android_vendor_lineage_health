@@ -16,11 +16,11 @@
 
 package org.lineageos.mod.health.providers.records
 
-import org.lineageos.mod.health.common.HealthStoreUri
+import org.lineageos.mod.health.common.CareCacheUri
 import org.lineageos.mod.health.db.tables.HeartBloodTable
 
 class HeartBloodRecordContentProvider : RecordContentProvider(
-    HealthStoreUri.HEART_BLOOD,
-    HealthStoreUri.Authority.HEART_BLOOD,
+    CareCacheUri.HEART_BLOOD,
+    CareCacheUri.Authority.HEART_BLOOD,
     HeartBloodTable.NAME
 )

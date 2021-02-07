@@ -41,5 +41,5 @@ import java.lang.annotation.RetentionPolicy;
         Permission.ALL
 })
 @Retention(RetentionPolicy.SOURCE)
-public @interface HealthStorePermission {
+public @interface PolicyPermission {
 }

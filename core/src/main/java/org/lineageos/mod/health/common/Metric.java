@@ -30,7 +30,7 @@ import org.lineageos.mod.health.common.values.SexualActivity;
  * Please always refer to each metric documentation, especially if you're
  * not using the official SDK library.
  * <br>
- * The HealthStore Mod is built with data protection mechanisms that might
+ * The CareCache Mod is built with data protection mechanisms that might
  * restrict the data your app may be able to push, in particular:
  *
  * <ol>

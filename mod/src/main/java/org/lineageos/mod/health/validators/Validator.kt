@@ -17,7 +17,7 @@
 package org.lineageos.mod.health.validators
 
 import android.content.ContentValues
-import org.lineageos.mod.health.HealthStore
+import org.lineageos.mod.health.CareCache
 
 abstract class Validator {
 
@@ -30,8 +30,8 @@ abstract class Validator {
 
         // Sort by higher-than decreasing to maximize compatibility
         when {
-            // version >= HealthStore.Version.BISMUTH -> validateBismuth(cv)
-            version >= HealthStore.Version.ACTINIUM -> validateActinium(cv)
+            // version >= CareCache.Version.BISMUTH -> validateBismuth(cv)
+            version >= CareCache.Version.ACTINIUM -> validateActinium(cv)
             else -> throw ValidationException("Unsupported SDK version $version")
         }
     }

@@ -24,7 +24,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresPermission;
 
-import org.lineageos.mod.health.common.HealthStoreUri;
+import org.lineageos.mod.health.common.CareCacheUri;
 import org.lineageos.mod.health.common.Metric;
 import org.lineageos.mod.health.common.db.RecordColumns;
 import org.lineageos.mod.health.sdk.model.records.heartblood.BaseHeartBloodRecord;
@@ -36,7 +36,7 @@ import org.lineageos.mod.health.sdk.model.records.heartblood.HeartRateRecord;
 import org.lineageos.mod.health.sdk.model.records.heartblood.PerfusionIndexRecord;
 import org.lineageos.mod.health.sdk.model.values.BloodGlucoseValue;
 import org.lineageos.mod.health.sdk.model.values.PressureValue;
-import org.lineageos.mod.health.sdk.util.HsRuntimePermission;
+import org.lineageos.mod.health.sdk.util.CcRuntimePermission;
 import org.lineageos.mod.health.sdk.util.RecordTimeComparator;
 
 import java.util.ArrayList;
@@ -77,7 +77,7 @@ public final class HeartBloodRecordsRepo extends RecordsRepo<HeartBloodRecord<?>
     private static final Object instanceLock = new Object();
 
     private HeartBloodRecordsRepo(@NonNull ContentResolver contentResolver) {
-        super(contentResolver, HealthStoreUri.HEART_BLOOD);
+        super(contentResolver, CareCacheUri.HEART_BLOOD);
     }
 
     @NonNull
@@ -101,7 +101,7 @@ public final class HeartBloodRecordsRepo extends RecordsRepo<HeartBloodRecord<?>
 
     @NonNull
     @Override
-    @RequiresPermission(HsRuntimePermission.HEART_BLOOD)
+    @RequiresPermission(CcRuntimePermission.HEART_BLOOD)
     public List<HeartBloodRecord<?>> getAll() {
         final List<HeartBloodRecord<?>> list = new ArrayList<>();
         list.addAll(getAllBloodAlcoholConcentrationRecords());
@@ -114,7 +114,7 @@ public final class HeartBloodRecordsRepo extends RecordsRepo<HeartBloodRecord<?>
     }
 
     @NonNull
-    @RequiresPermission(HsRuntimePermission.HEART_BLOOD)
+    @RequiresPermission(CcRuntimePermission.HEART_BLOOD)
     public List<BloodAlcoholConcentrationRecord> getAllBloodAlcoholConcentrationRecords() {
         return getByMetric(Metric.BLOOD_ALCOHOL_CONCENTRATION).parallelStream()
                 .map(BloodAlcoholConcentrationRecord.class::cast)
@@ -122,7 +122,7 @@ public final class HeartBloodRecordsRepo extends RecordsRepo<HeartBloodRecord<?>
     }
 
     @NonNull
-    @RequiresPermission(HsRuntimePermission.HEART_BLOOD)
+    @RequiresPermission(CcRuntimePermission.HEART_BLOOD)
     public List<BloodPressureRecord> getAllBloodPressureRecords() {
         return getByMetric(Metric.BLOOD_PRESSURE).parallelStream()
                 .map(BloodPressureRecord.class::cast)
@@ -130,7 +130,7 @@ public final class HeartBloodRecordsRepo extends RecordsRepo<HeartBloodRecord<?>
     }
 
     @NonNull
-    @RequiresPermission(HsRuntimePermission.HEART_BLOOD)
+    @RequiresPermission(CcRuntimePermission.HEART_BLOOD)
     public List<GlucoseRecord> getAllGlucoseRecords() {
         return getByMetric(Metric.GLUCOSE).parallelStream()
                 .map(GlucoseRecord.class::cast)
@@ -138,7 +138,7 @@ public final class HeartBloodRecordsRepo extends RecordsRepo<HeartBloodRecord<?>
     }
 
     @NonNull
-    @RequiresPermission(HsRuntimePermission.HEART_BLOOD)
+    @RequiresPermission(CcRuntimePermission.HEART_BLOOD)
     public List<HeartRateRecord> getAllHeartRateRecords() {
         return getByMetric(Metric.HEART_RATE).parallelStream()
                 .map(HeartRateRecord.class::cast)
@@ -146,7 +146,7 @@ public final class HeartBloodRecordsRepo extends RecordsRepo<HeartBloodRecord<?>
     }
 
     @NonNull
-    @RequiresPermission(HsRuntimePermission.HEART_BLOOD)
+    @RequiresPermission(CcRuntimePermission.HEART_BLOOD)
     public List<PerfusionIndexRecord> getAllPerfusionIndexRecords() {
         return getByMetric(Metric.PERFUSION_INDEX).parallelStream()
                 .map(PerfusionIndexRecord.class::cast)
@@ -154,31 +154,31 @@ public final class HeartBloodRecordsRepo extends RecordsRepo<HeartBloodRecord<?>
     }
 
     @Nullable
-    @RequiresPermission(HsRuntimePermission.HEART_BLOOD)
+    @RequiresPermission(CcRuntimePermission.HEART_BLOOD)
     public BloodAlcoholConcentrationRecord getBloodAlcoholConcentrationRecord(long id) {
         return (BloodAlcoholConcentrationRecord) getById(Metric.BLOOD_ALCOHOL_CONCENTRATION, id);
     }
 
     @Nullable
-    @RequiresPermission(HsRuntimePermission.HEART_BLOOD)
+    @RequiresPermission(CcRuntimePermission.HEART_BLOOD)
     public BloodPressureRecord getBloodPressureRecord(long id) {
         return (BloodPressureRecord) getById(Metric.BLOOD_PRESSURE, id);
     }
 
     @Nullable
-    @RequiresPermission(HsRuntimePermission.HEART_BLOOD)
+    @RequiresPermission(CcRuntimePermission.HEART_BLOOD)
     public GlucoseRecord getGlucoseRecord(long id) {
         return (GlucoseRecord) getById(Metric.GLUCOSE, id);
     }
 
     @Nullable
-    @RequiresPermission(HsRuntimePermission.HEART_BLOOD)
+    @RequiresPermission(CcRuntimePermission.HEART_BLOOD)
     public HeartRateRecord getHeartRateRecord(long id) {
         return (HeartRateRecord) getById(Metric.HEART_RATE, id);
     }
 
     @Nullable
-    @RequiresPermission(HsRuntimePermission.HEART_BLOOD)
+    @RequiresPermission(CcRuntimePermission.HEART_BLOOD)
     public PerfusionIndexRecord getPerfusionIndexRecord(long id) {
         return (PerfusionIndexRecord) getById(Metric.PERFUSION_INDEX, id);
     }
@@ -187,7 +187,7 @@ public final class HeartBloodRecordsRepo extends RecordsRepo<HeartBloodRecord<?>
      * {@inheritDoc}
      */
     @Override
-    @RequiresPermission(HsRuntimePermission.HEART_BLOOD)
+    @RequiresPermission(CcRuntimePermission.HEART_BLOOD)
     public OperationResult insert(@NonNull HeartBloodRecord<?> record) {
         return super.insert(record);
     }
@@ -196,7 +196,7 @@ public final class HeartBloodRecordsRepo extends RecordsRepo<HeartBloodRecord<?>
      * {@inheritDoc}
      */
     @Override
-    @RequiresPermission(HsRuntimePermission.HEART_BLOOD)
+    @RequiresPermission(CcRuntimePermission.HEART_BLOOD)
     public OperationResult update(@NonNull HeartBloodRecord<?> record) {
         return super.update(record);
     }
@@ -205,7 +205,7 @@ public final class HeartBloodRecordsRepo extends RecordsRepo<HeartBloodRecord<?>
      * {@inheritDoc}
      */
     @Override
-    @RequiresPermission(HsRuntimePermission.HEART_BLOOD)
+    @RequiresPermission(CcRuntimePermission.HEART_BLOOD)
     public OperationResult delete(@NonNull HeartBloodRecord<?> record) {
         return super.delete(record);
     }

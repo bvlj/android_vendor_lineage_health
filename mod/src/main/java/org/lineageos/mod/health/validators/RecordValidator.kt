@@ -17,7 +17,7 @@
 package org.lineageos.mod.health.validators
 
 import android.content.ContentValues
-import org.lineageos.mod.health.HealthStore
+import org.lineageos.mod.health.CareCache
 import org.lineageos.mod.health.common.Metric
 import org.lineageos.mod.health.common.db.MedicalProfileColumns
 import org.lineageos.mod.health.common.db.RecordColumns
@@ -26,14 +26,14 @@ object RecordValidator : Validator() {
 
     override fun pullVersion(cv: ContentValues): Int {
         val version = cv.getAsInteger(RecordColumns._VERSION)
-            ?: HealthStore.Version.MIN
+            ?: CareCache.Version.MIN
 
         // Now that we've read it, remove it
         cv.remove(MedicalProfileColumns._VERSION)
 
-        if (version < HealthStore.Version.MIN) {
+        if (version < CareCache.Version.MIN) {
             // Unknown version, assume minimum supported
-            return HealthStore.Version.MIN
+            return CareCache.Version.MIN
         }
         return version
     }

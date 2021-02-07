@@ -26,7 +26,7 @@ import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.lineageos.mod.health.common.HealthStoreUri
+import org.lineageos.mod.health.common.CareCacheUri
 import org.lineageos.mod.health.common.Metric
 import org.lineageos.mod.health.common.db.AccessColumns
 import org.lineageos.mod.health.common.values.Permission
@@ -50,12 +50,12 @@ class AccessPolicyTest {
         cr = context.contentResolver
         bodyRepo = BodyRecordsRepo.getInstance(cr)
         myPkgName = context.packageName
-        cr.delete(HealthStoreUri.ACCESS, null, null)
+        cr.delete(CareCacheUri.ACCESS, null, null)
     }
 
     @After
     fun tearDown() {
-        cr.delete(HealthStoreUri.ACCESS, null, null)
+        cr.delete(CareCacheUri.ACCESS, null, null)
     }
 
     @Test
@@ -63,7 +63,7 @@ class AccessPolicyTest {
         // Make weight write-only
         Assert.assertNotNull(
             cr.insert(
-                HealthStoreUri.ACCESS,
+                CareCacheUri.ACCESS,
                 ContentValues().apply {
                     put(AccessColumns.PKG_NAME, myPkgName)
                     put(AccessColumns.METRIC, Metric.WEIGHT)
@@ -94,7 +94,7 @@ class AccessPolicyTest {
         Assert.assertFalse(bodyRepo.allBodyTemperatureRecords.isEmpty())
 
         // Grant permission again
-        val path = Uri.withAppendedPath(HealthStoreUri.ACCESS, "$myPkgName/${Metric.WEIGHT}")
+        val path = Uri.withAppendedPath(CareCacheUri.ACCESS, "$myPkgName/${Metric.WEIGHT}")
         val updated = cr.update(
             path,
             ContentValues().apply {
@@ -117,7 +117,7 @@ class AccessPolicyTest {
 
         bodyRepo.deleteAll()
         Assert.assertTrue(bodyRepo.all.isEmpty())
-        cr.delete(HealthStoreUri.ACCESS, null, null)
+        cr.delete(CareCacheUri.ACCESS, null, null)
     }
 
     @Test
@@ -135,7 +135,7 @@ class AccessPolicyTest {
         // Make weight read-only
         Assert.assertNotNull(
             cr.insert(
-                HealthStoreUri.ACCESS,
+                CareCacheUri.ACCESS,
                 ContentValues().apply {
                     put(AccessColumns.PKG_NAME, myPkgName)
                     put(AccessColumns.METRIC, Metric.WEIGHT)
@@ -166,7 +166,7 @@ class AccessPolicyTest {
         Assert.assertTrue(bodyRepo.update(b) is OperationResult.Success<*>)
 
         // Grant permission again
-        val path = Uri.withAppendedPath(HealthStoreUri.ACCESS, "$myPkgName/${Metric.WEIGHT}")
+        val path = Uri.withAppendedPath(CareCacheUri.ACCESS, "$myPkgName/${Metric.WEIGHT}")
         val updated = cr.update(
             path,
             ContentValues().apply {
@@ -195,7 +195,7 @@ class AccessPolicyTest {
 
         bodyRepo.deleteAll()
         Assert.assertTrue(bodyRepo.all.isEmpty())
-        cr.delete(HealthStoreUri.ACCESS, null, null)
+        cr.delete(CareCacheUri.ACCESS, null, null)
     }
 
     @Test
@@ -223,7 +223,7 @@ class AccessPolicyTest {
         // Revoke weight access
         Assert.assertNotNull(
             cr.insert(
-                HealthStoreUri.ACCESS,
+                CareCacheUri.ACCESS,
                 ContentValues().apply {
                     put(AccessColumns.PKG_NAME, myPkgName)
                     put(AccessColumns.METRIC, Metric.WEIGHT)
@@ -250,7 +250,7 @@ class AccessPolicyTest {
         Assert.assertTrue(bodyRepo.update(b) is OperationResult.Success<*>)
 
         // Grant permission again
-        val path = Uri.withAppendedPath(HealthStoreUri.ACCESS, "$myPkgName/${Metric.WEIGHT}")
+        val path = Uri.withAppendedPath(CareCacheUri.ACCESS, "$myPkgName/${Metric.WEIGHT}")
         val updated = cr.update(
             path,
             ContentValues().apply {
@@ -278,7 +278,7 @@ class AccessPolicyTest {
 
         bodyRepo.deleteAll()
         Assert.assertTrue(bodyRepo.all.isEmpty())
-        cr.delete(HealthStoreUri.ACCESS, null, null)
+        cr.delete(CareCacheUri.ACCESS, null, null)
     }
 
     private fun insert(record: BodyRecord<*>): Long {

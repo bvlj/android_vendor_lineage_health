@@ -31,8 +31,8 @@ import org.lineageos.mod.health.access.canRead
 import org.lineageos.mod.health.access.canWrite
 import org.lineageos.mod.health.common.db.RecordColumns
 import org.lineageos.mod.health.common.values.AccessPolicyValues
-import org.lineageos.mod.health.db.HealthStoreDbHelper
-import org.lineageos.mod.health.providers.BaseHealthStoreContentProvider
+import org.lineageos.mod.health.db.CareCacheDbHelper
+import org.lineageos.mod.health.providers.BaseCareCacheContentProvider
 import org.lineageos.mod.health.security.KeyMaster
 import org.lineageos.mod.health.validators.RecordValidator
 
@@ -40,7 +40,7 @@ abstract class RecordContentProvider(
     private val contentUri: Uri,
     authority: String,
     private val tableName: String
-) : BaseHealthStoreContentProvider() {
+) : BaseCareCacheContentProvider() {
 
     companion object {
         private const val WHERE_BY_METRIC =
@@ -66,7 +66,7 @@ abstract class RecordContentProvider(
     }
 
     override fun getDatabaseHelper(context: Context): SQLiteOpenHelper {
-        return HealthStoreDbHelper.getInstance(context)
+        return CareCacheDbHelper.getInstance(context)
     }
 
     override fun getReadableDatabase(): SQLiteDatabase {

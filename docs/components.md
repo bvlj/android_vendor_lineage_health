@@ -18,7 +18,7 @@ Code shared across the [`:mod`](#mod) and [`:sdk`](#sdk) modules.
 
 ### :mod
 
-The module to be installed in the device. If included in a system build, it is recommend to
+The module to be installed in the device. If included in a system build, it is recommended to
 put it in the system (or product) partition but not in vendor.
 Holds the ContentProviders that host the health data.
 

@@ -27,13 +27,13 @@ import java.io.PrintWriter
 import java.util.ArrayList
 
 /**
- * Base class for all the HealthStore ContentProviders
+ * Base class for all the CareCache ContentProviders
  * that store user data in a SQLite database.
  *
  * Supports printing usage stats when using:
  * `adb shell dumpsys activity providers`
  */
-abstract class BaseHealthStoreContentProvider : SQLiteContentProvider() {
+abstract class BaseCareCacheContentProvider : SQLiteContentProvider() {
 
     private val stats = ProviderAccessStats()
     private val _callingUid = ThreadLocal<Int>()

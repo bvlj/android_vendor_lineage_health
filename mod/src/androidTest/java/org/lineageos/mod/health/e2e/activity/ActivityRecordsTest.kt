@@ -25,7 +25,7 @@ import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.lineageos.mod.health.common.HealthStoreUri
+import org.lineageos.mod.health.common.CareCacheUri
 import org.lineageos.mod.health.common.Metric
 import org.lineageos.mod.health.common.db.RecordColumns
 import org.lineageos.mod.health.sdk.model.records.activity.CyclingRecord
@@ -76,7 +76,7 @@ class ActivityRecordsTest {
             put(RecordColumns.STEPS, 1)
         }
 
-        val invalidUri = Uri.withAppendedPath(HealthStoreUri.HEART_BLOOD, "${Metric.CYCLING}")
+        val invalidUri = Uri.withAppendedPath(CareCacheUri.HEART_BLOOD, "${Metric.CYCLING}")
         cr.insert(invalidUri, cv)
         Assert.fail("Did not throw IllegalArgumentException")
     }

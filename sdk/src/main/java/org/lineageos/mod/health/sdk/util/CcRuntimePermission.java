@@ -17,9 +17,9 @@
 package org.lineageos.mod.health.sdk.util;
 
 /**
- * HealthStore runtime permissions constants
+ * CareCache runtime permissions constants
  */
-public final class HsRuntimePermission {
+public final class CcRuntimePermission {
 
     /**
      * Activity records permission.
@@ -63,6 +63,6 @@ public final class HsRuntimePermission {
      */
     public static final String MEDICAL_PROFILE = "lineageos.permission.HEALTH_MEDICAL_PROFILE";
 
-    private HsRuntimePermission() {
+    private CcRuntimePermission() {
     }
 }

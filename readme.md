@@ -1,7 +1,7 @@
-Lineage Health Mod (HealthStore)
+CareCache
 ================================
 
-The Lineage Health Mod (also called "HealthStore" or "Health Mod") allows applications to
+CareCache (also called "Lineage Health Mod") allows applications to
 store and share health-related data in a secure environment that never leaves
 your device and gives the user strong control over the data flow.
 
@@ -9,7 +9,7 @@ While this is a LineageOS' project, it is designed to be used on
 any Android distribution that provides the standard Android SDK APIs at level
 27 or higher (Android 8.1) as well.
 
-See the [project website](https://healthstore.github.io/android_vendor_lineage_health) for documentation and APIs.
+See the [project website](https://carecache.github.io/android_vendor_lineage_health) for documentation and APIs.
 
 ## License
 

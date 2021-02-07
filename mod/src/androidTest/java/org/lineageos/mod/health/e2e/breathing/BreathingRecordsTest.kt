@@ -25,7 +25,7 @@ import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.lineageos.mod.health.common.HealthStoreUri
+import org.lineageos.mod.health.common.CareCacheUri
 import org.lineageos.mod.health.common.Metric
 import org.lineageos.mod.health.common.db.RecordColumns
 import org.lineageos.mod.health.sdk.model.records.breathing.InhalerUsageRecord
@@ -69,7 +69,7 @@ class BreathingRecordsTest {
         }
 
         val invalidUri = Uri.withAppendedPath(
-            HealthStoreUri.BREATHING,
+            CareCacheUri.BREATHING,
             "${Metric.OXYGEN_SATURATION}"
         )
         cr.insert(invalidUri, cv)

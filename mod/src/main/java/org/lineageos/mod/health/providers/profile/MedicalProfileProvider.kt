@@ -24,14 +24,14 @@ import android.net.Uri
 import net.sqlcipher.database.SQLiteDatabase
 import net.sqlcipher.database.SQLiteOpenHelper
 import net.sqlcipher.database.SQLiteQueryBuilder
-import org.lineageos.mod.health.common.HealthStoreUri
+import org.lineageos.mod.health.common.CareCacheUri
 import org.lineageos.mod.health.db.MedicalProfileDbHelper
 import org.lineageos.mod.health.db.SqlCipherLoader
 import org.lineageos.mod.health.db.tables.MedicalProfileTable
-import org.lineageos.mod.health.providers.BaseHealthStoreContentProvider
+import org.lineageos.mod.health.providers.BaseCareCacheContentProvider
 import org.lineageos.mod.health.validators.MedicalProfileValidator
 
-class MedicalProfileProvider : BaseHealthStoreContentProvider() {
+class MedicalProfileProvider : BaseCareCacheContentProvider() {
 
     companion object {
         private val PASSWORD = null as ByteArray?
@@ -58,7 +58,7 @@ class MedicalProfileProvider : BaseHealthStoreContentProvider() {
         val db = getWritableDatabase()
         db.delete(MedicalProfileTable.NAME, null, null)
         val id = db.insert(MedicalProfileTable.NAME, null, values)
-        return if (id < 0) null else ContentUris.withAppendedId(HealthStoreUri.MEDICAL_PROFILE, id)
+        return if (id < 0) null else ContentUris.withAppendedId(CareCacheUri.MEDICAL_PROFILE, id)
     }
 
     override fun updateInTransactionImpl(uri: Uri, values: ContentValues): Int {
@@ -89,7 +89,7 @@ class MedicalProfileProvider : BaseHealthStoreContentProvider() {
     }
 
     override fun notifyChange() {
-        context!!.contentResolver.notifyChange(HealthStoreUri.MEDICAL_PROFILE, null)
+        context!!.contentResolver.notifyChange(CareCacheUri.MEDICAL_PROFILE, null)
     }
 
     override fun getType(uri: Uri) = "vnd.android.cursor.item"

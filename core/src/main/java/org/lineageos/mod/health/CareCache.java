@@ -26,17 +26,17 @@ import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 
 /**
- * General information about the HealthStore
+ * General information about the CareCache
  */
 @Keep
-public final class HealthStore {
+public final class CareCache {
     private static final String FEATURE_NAME = "org.lineageos.mod.health";
 
-    private HealthStore() {
+    private CareCache() {
     }
 
     /**
-     * Determine whether HealthStore is supported on this device
+     * Determine whether CareCache is supported on this device
      */
     public static boolean isSupported(@NonNull Context context) {
         final PackageManager pm = context.getPackageManager();
@@ -44,9 +44,9 @@ public final class HealthStore {
     }
 
     /**
-     * Get the HealthStore version supported on this device.
+     * Get the CareCache version supported on this device.
      *
-     * @return -1 if unsupported or the version declared on the healthstore
+     * @return -1 if unsupported or the version declared on the CareCache
      * feature xml
      * @see Version
      */
@@ -88,7 +88,7 @@ public final class HealthStore {
          * Actinium (Ac)
          * <br>
          * Released: November 2020.
-         * Notes: Initial release. HealthStore Mod version
+         * Notes: Initial release. CareCache Mod version
          * are defined by elements of the periodic table in
          * alphabetic order.
          * <br>
@@ -98,7 +98,7 @@ public final class HealthStore {
         public static final int ACTINIUM = 1;
 
         /**
-         * The version of the Health mod against which
+         * The version of the CareCache module against which
          * this sdk was compiled.
          */
         public static final int CURRENT = ACTINIUM;

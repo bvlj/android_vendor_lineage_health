@@ -21,7 +21,7 @@ import android.content.ContentValues;
 import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 
-import org.lineageos.mod.health.HealthStore;
+import org.lineageos.mod.health.CareCache;
 import org.lineageos.mod.health.common.db.MedicalProfileColumns;
 import org.lineageos.mod.health.common.values.BiologicalSex;
 import org.lineageos.mod.health.common.values.BloodType;
@@ -180,7 +180,7 @@ public final class MedicalProfile {
     @NonNull
     public ContentValues toContentValues() {
         final ContentValues cv = new ContentValues();
-        cv.put(MedicalProfileColumns._VERSION, HealthStore.Version.CURRENT);
+        cv.put(MedicalProfileColumns._VERSION, CareCache.Version.CURRENT);
         cv.put(MedicalProfileColumns.ALLERGIES, allergies);
         cv.put(MedicalProfileColumns.BLOOD_TYPE, bloodType);
         cv.put(MedicalProfileColumns.HEIGHT, height);

@@ -14,7 +14,7 @@
   limitations under the License.
   -->
 <resources>
-    <string name="app_name">LineageHealth Mod</string>
+    <string name="app_name">CareCache</string>
 
     <string name="permission_access_label">Manage health data access</string>
     <string name="permission_access_desc">manage health data access</string>

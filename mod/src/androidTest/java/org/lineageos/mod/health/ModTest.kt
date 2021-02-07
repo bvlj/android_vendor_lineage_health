@@ -50,6 +50,6 @@ class ModTest {
     @Ignore("Ignore for emulator testing")
     @Test
     fun featureXml() {
-        Assert.assertTrue(HealthStore.isSupported(context))
+        Assert.assertTrue(CareCache.isSupported(context))
     }
 }

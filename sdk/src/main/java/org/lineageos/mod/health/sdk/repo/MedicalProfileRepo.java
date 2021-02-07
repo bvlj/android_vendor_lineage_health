@@ -26,10 +26,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresPermission;
 
-import org.lineageos.mod.health.common.HealthStoreUri;
+import org.lineageos.mod.health.common.CareCacheUri;
 import org.lineageos.mod.health.common.db.MedicalProfileColumns;
 import org.lineageos.mod.health.sdk.model.profile.MedicalProfile;
-import org.lineageos.mod.health.sdk.util.HsRuntimePermission;
+import org.lineageos.mod.health.sdk.util.CcRuntimePermission;
 
 /**
  * Medical profile repository.
@@ -86,9 +86,9 @@ public final class MedicalProfileRepo {
     }
 
     @NonNull
-    @RequiresPermission(HsRuntimePermission.MEDICAL_PROFILE)
+    @RequiresPermission(CcRuntimePermission.MEDICAL_PROFILE)
     public MedicalProfile get() {
-        final Cursor cursor = contentResolver.query(HealthStoreUri.MEDICAL_PROFILE,
+        final Cursor cursor = contentResolver.query(CareCacheUri.MEDICAL_PROFILE,
                 DEFAULT_PROJECTION, null, null, null);
         if (cursor == null) {
             return new MedicalProfile();
@@ -113,15 +113,15 @@ public final class MedicalProfileRepo {
         }
     }
 
-    @RequiresPermission(HsRuntimePermission.MEDICAL_PROFILE)
+    @RequiresPermission(CcRuntimePermission.MEDICAL_PROFILE)
     public boolean set(@NonNull MedicalProfile medicalProfile) {
         final ContentValues cv = medicalProfile.toContentValues();
-        final Uri uri = contentResolver.insert(HealthStoreUri.MEDICAL_PROFILE, cv);
+        final Uri uri = contentResolver.insert(CareCacheUri.MEDICAL_PROFILE, cv);
         return uri != null;
     }
 
-    @RequiresPermission(HsRuntimePermission.MEDICAL_PROFILE)
+    @RequiresPermission(CcRuntimePermission.MEDICAL_PROFILE)
     public boolean reset() {
-        return contentResolver.delete(HealthStoreUri.MEDICAL_PROFILE, null, null) == 1;
+        return contentResolver.delete(CareCacheUri.MEDICAL_PROFILE, null, null) == 1;
     }
 }

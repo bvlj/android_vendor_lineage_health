@@ -16,13 +16,13 @@
 
 package org.lineageos.mod.health.partner
 
-import org.lineageos.mod.health.common.values.annotations.HealthStorePermission
+import org.lineageos.mod.health.common.values.annotations.PolicyPermission
 import org.lineageos.mod.health.common.values.annotations.MetricType
 
 data class AccessPolicy(
     val pkgName: String,
     @MetricType
     val metric: Int,
-    @HealthStorePermission
+    @PolicyPermission
     val permissions: Int
 )

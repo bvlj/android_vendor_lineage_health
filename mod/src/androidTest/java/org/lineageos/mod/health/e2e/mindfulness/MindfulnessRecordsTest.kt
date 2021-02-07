@@ -25,7 +25,7 @@ import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.lineageos.mod.health.common.HealthStoreUri
+import org.lineageos.mod.health.common.CareCacheUri
 import org.lineageos.mod.health.common.Metric
 import org.lineageos.mod.health.common.db.RecordColumns
 import org.lineageos.mod.health.common.values.MoodLevel
@@ -73,7 +73,7 @@ class MindfulnessRecordsTest {
         }
 
         val invalidUri = Uri.withAppendedPath(
-            HealthStoreUri.MINDFULNESS,
+            CareCacheUri.MINDFULNESS,
             "${Metric.SLEEP}"
         )
         cr.insert(invalidUri, cv)

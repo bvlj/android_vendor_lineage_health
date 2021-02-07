@@ -25,15 +25,15 @@ import net.sqlcipher.database.SQLiteDatabase
 import net.sqlcipher.database.SQLiteOpenHelper
 import net.sqlcipher.database.SQLiteQueryBuilder
 import org.lineageos.mod.health.UriConst
-import org.lineageos.mod.health.common.HealthStoreUri
+import org.lineageos.mod.health.common.CareCacheUri
 import org.lineageos.mod.health.common.db.AccessColumns
-import org.lineageos.mod.health.db.HealthStoreDbHelper
+import org.lineageos.mod.health.db.CareCacheDbHelper
 import org.lineageos.mod.health.db.tables.AccessTable
-import org.lineageos.mod.health.providers.BaseHealthStoreContentProvider
+import org.lineageos.mod.health.providers.BaseCareCacheContentProvider
 import org.lineageos.mod.health.security.KeyMaster
 import org.lineageos.mod.health.validators.AccessValidator
 
-class AccessContentProvider : BaseHealthStoreContentProvider() {
+class AccessContentProvider : BaseCareCacheContentProvider() {
 
     companion object {
         private const val WHERE_BY_PKG_METRIC =
@@ -42,9 +42,9 @@ class AccessContentProvider : BaseHealthStoreContentProvider() {
             "${AccessColumns.PKG_NAME} ASC ${AccessColumns.METRIC} ASC"
 
         private val uriMatcher = UriMatcher(UriMatcher.NO_MATCH).apply {
-            addURI(HealthStoreUri.Authority.ACCESS, "/", UriConst.MATCH_ALL)
-            addURI(HealthStoreUri.Authority.ACCESS, "/*", UriConst.MATCH_PKG)
-            addURI(HealthStoreUri.Authority.ACCESS, "/*/#", UriConst.MATCH_ITEM)
+            addURI(CareCacheUri.Authority.ACCESS, "/", UriConst.MATCH_ALL)
+            addURI(CareCacheUri.Authority.ACCESS, "/*", UriConst.MATCH_PKG)
+            addURI(CareCacheUri.Authority.ACCESS, "/*/#", UriConst.MATCH_ITEM)
         }
     }
 
@@ -56,7 +56,7 @@ class AccessContentProvider : BaseHealthStoreContentProvider() {
     }
 
     override fun getDatabaseHelper(context: Context): SQLiteOpenHelper {
-        return HealthStoreDbHelper.getInstance(context)
+        return CareCacheDbHelper.getInstance(context)
     }
 
     override fun getReadableDatabase(): SQLiteDatabase {
@@ -167,7 +167,7 @@ class AccessContentProvider : BaseHealthStoreContentProvider() {
     }
 
     override fun notifyChange() {
-        context!!.contentResolver.notifyChange(HealthStoreUri.ACCESS, null)
+        context!!.contentResolver.notifyChange(CareCacheUri.ACCESS, null)
     }
 
     override fun getType(uri: Uri) = when (uriMatcher.match(uri)) {

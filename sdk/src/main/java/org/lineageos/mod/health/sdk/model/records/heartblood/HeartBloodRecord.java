@@ -22,7 +22,7 @@ import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 import androidx.annotation.RestrictTo;
 
-import org.lineageos.mod.health.HealthStore;
+import org.lineageos.mod.health.CareCache;
 import org.lineageos.mod.health.common.db.RecordColumns;
 import org.lineageos.mod.health.common.values.MealRelation;
 import org.lineageos.mod.health.common.values.annotations.HeartBloodMetric;
@@ -111,7 +111,7 @@ public abstract class HeartBloodRecord<T> extends Record {
     @Override
     public final ContentValues toContentValues() {
         final ContentValues cv = new ContentValues();
-        cv.put(RecordColumns._VERSION, HealthStore.Version.CURRENT);
+        cv.put(RecordColumns._VERSION, CareCache.Version.CURRENT);
         cv.put(RecordColumns._ID, id);
         cv.put(RecordColumns._METRIC, metric);
         cv.put(RecordColumns.TIME, time);

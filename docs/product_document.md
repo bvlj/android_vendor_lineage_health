@@ -1,17 +1,18 @@
-HealthStore
+CareCache
 ===========
 
 > Copy of the original development product document written by @bvlj and @vazguard
 
 # Intro & goal
 
-Our goal is to make HealthStore the best option for tracking and safeguarding your personal medical
-information. While other apps in this space focus on fitness analysis and highlights, Lineage
-will offer a wider view of stored data while keeping it protected under a strong API that gives
-users ultimate power over its access.
+Our goal is to make the Lineage Health platform the best option for tracking and
+safeguarding your personal medical information. While other apps in this space
+focus on fitness analysis and highlights, Lineage will offer a wider view of stored
+data while keeping it protected under a strong API that gives users ultimate power
+over its access.
 
-- The current release plan is to launch HealthStore in both the current active branches
-- Unless the project has verified medical backing, a warning should be presented that HealthStore
+- The current release plan is to launch CareCache in both the current active branches
+- Unless the project has verified medical backing, a warning should be presented that CareCache
   is meant to help track data as a recreational tool and should not be used as a primary source
   during medical emergencies
 
@@ -31,7 +32,7 @@ users ultimate power over its access.
 2. Android's health data API's are not adequate - there are no standard or open source options
 3. Google Fit is focused on displaying and processing high-level fitness data only
 4. Advanced users care about control, and others in this space don't offer it directly
-5. As an open source project, HealthStore will be built transparently and thus gains a unique element of trust and verification
+5. As an open source project, CareCache will be built transparently and thus gains a unique element of trust and verification
 
 # Survey
 
@@ -43,7 +44,7 @@ available options:
 
 # What is it?
 
-HealthStore is composed of two elements - the _HealthStore API_, and the
+The Lineage Health platform is composed of two elements - the _CareCache API_, and the
 _Health app_ to manage it.
 
 ## API
@@ -81,7 +82,7 @@ metrics of related data.
 
 Metrics organize record data under a hierarchy.
 
-HealthStore API updates can add new metrics as needed. Developers are encouraged to submit new
+CareCache API updates can add new metrics as needed. Developers are encouraged to submit new
 categories.
 
 #### Activity
@@ -136,14 +137,14 @@ categories.
 
 ## Compatibility
 
-HealthMod uses standard Android features that are supposed to work across all GMS-certified devices
+CareCache uses standard Android features that are supposed to work across all GMS-certified devices
 and all devices running official LineageOS builds (with the exception of custom SELinux context for
 non-LineageOS devices except those that include such rules at build time).
-HealthMod is also ensured to not break any compatibility with the Android CDD as it's tested on
+CareCache is also ensured to not break any compatibility with the Android CDD as it's tested on
 GMS-certified production builds as well by an external trusted 3rd-party.
-HealthMod is currently built with minSdk 27 (Android 8.1) and targetSdk 29 (Android 10, soon to
+CareCache is currently built with minSdk 27 (Android 8.1) and targetSdk 29 (Android 10, soon to
 be upgraded to 30 / Android 11).
-Theoretically it's possible to install the HealthMod on any device running Android 8.1+.
+Theoretically it's possible to install the  CareCache Mod on any device running Android 8.1+.
 
 # Persona
 
@@ -193,7 +194,7 @@ Theoretically it's possible to install the HealthMod on any device running Andro
 
 # Privacy
 
-HealthStore takes cues from the Trust interface and Privacy Guard. Access to different categories
+CareCache takes cues from the Trust interface and Privacy Guard. Access to different categories
 of data have their own separate Android [runtime permissions](https://developer.android.com/training/permissions/requesting).
 Even if an app is granted access through standard permissions, apps can still be blacklisted
 from selected metrics by users.
@@ -232,12 +233,12 @@ For storing data we took an approach similar to how other sensitive data such as
 logs and messages are stored, and applied extra protection to ensure data is safe.
 All the security measures used here are built using existing battle-tested solutions such as
 Android ContentProviders, Android Keystore, SELinux and SQLite encryption.
-All the low level data access operations are performed by the HealthStore Mod, an app which hosts
+All the low level data access operations are performed by the CareCache Mod, an app which hosts
 content providers in which records and other data are saved. The content providers are a standard
 way for android apps to expose their data to other processes in a safe way thanks to the support of
 Android Runtime permissions.
 
-The HealthStore Mod app can also be put in a special SELinux context with tight rules that prevent
+The CareCache Mod app can also be put in a special SELinux context with tight rules that prevent
 other apps from accessing its data folder when SELinux is being enforced.
 There exists multiple separate databases: the records database, the access-control database and
 the medical profile database.

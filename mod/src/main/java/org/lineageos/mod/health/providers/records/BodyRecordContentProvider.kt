@@ -16,11 +16,11 @@
 
 package org.lineageos.mod.health.providers.records
 
-import org.lineageos.mod.health.common.HealthStoreUri
+import org.lineageos.mod.health.common.CareCacheUri
 import org.lineageos.mod.health.db.tables.BodyTable
 
 class BodyRecordContentProvider : RecordContentProvider(
-    HealthStoreUri.BODY,
-    HealthStoreUri.Authority.BODY,
+    CareCacheUri.BODY,
+    CareCacheUri.Authority.BODY,
     BodyTable.NAME
 )

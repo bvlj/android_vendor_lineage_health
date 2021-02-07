@@ -20,10 +20,10 @@ import android.net.Uri;
 
 import androidx.annotation.NonNull;
 
-public final class HealthStoreUri {
+public final class CareCacheUri {
     private static final String PROTOCOL = "content://";
 
-    private HealthStoreUri() {
+    private CareCacheUri() {
     }
 
     /**

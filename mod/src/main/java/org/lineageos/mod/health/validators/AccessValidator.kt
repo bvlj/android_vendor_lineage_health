@@ -17,7 +17,7 @@
 package org.lineageos.mod.health.validators
 
 import android.content.ContentValues
-import org.lineageos.mod.health.HealthStore
+import org.lineageos.mod.health.CareCache
 import org.lineageos.mod.health.common.Metric
 import org.lineageos.mod.health.common.db.AccessColumns
 import org.lineageos.mod.health.common.values.Permission
@@ -26,7 +26,7 @@ object AccessValidator : Validator() {
     private val ALLOWED_PERMISSION_RANGE = Permission.NONE..Permission.ALL
 
     override fun pullVersion(cv: ContentValues): Int {
-        return HealthStore.Version.CURRENT
+        return CareCache.Version.CURRENT
     }
 
     override fun validateActinium(cv: ContentValues) {

@@ -25,6 +25,6 @@ net_domain(lineage_health_app)
 neverallow { domain -lineage_health_app -init -vendor_init } lineage_health_data:dir { rw_dir_perms };
 neverallow { domain -lineage_health_app -init -vendor_init } lineage_health_data:file { rw_file_perms };
 
-# Allow the Health Mod app to create / modify HealthStore directories and files
+# Allow the CareCache Mod app to create / modify its directories and files
 allow lineage_health_app lineage_health_data:dir { create_dir_perms };
 allow lineage_health_app lineage_health_data:file { create_file_perms };

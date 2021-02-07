@@ -31,7 +31,6 @@ import androidx.annotation.CallSuper;
 import androidx.annotation.Keep;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresPermission;
 import androidx.annotation.RestrictTo;
 import androidx.annotation.VisibleForTesting;
 
@@ -40,7 +39,6 @@ import org.lineageos.mod.health.common.values.AccessPolicyValues;
 import org.lineageos.mod.health.common.values.annotations.ActivityMetric;
 import org.lineageos.mod.health.common.values.annotations.MetricType;
 import org.lineageos.mod.health.sdk.model.records.Record;
-import org.lineageos.mod.health.sdk.util.HsRuntimePermission;
 
 import java.util.ArrayList;
 import java.util.Arrays;

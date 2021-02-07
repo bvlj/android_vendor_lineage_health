@@ -20,7 +20,7 @@ import android.provider.BaseColumns;
 
 import androidx.annotation.NonNull;
 
-import org.lineageos.mod.health.HealthStore.Version;
+import org.lineageos.mod.health.CareCache.Version;
 import org.lineageos.mod.health.common.Metric;
 import org.lineageos.mod.health.common.values.*;
 
