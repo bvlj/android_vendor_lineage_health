@@ -14,25 +14,44 @@
  * limitations under the License.
  */
 apply plugin: "maven-publish"
-apply plugin: "com.jfrog.bintray"
+apply plugin: "signing"
 
 import org.lineageos.build.Config
 
 def LIB_GROUP_ID = "org.lineageos"
 def LIB_ARTIFACT_ID = "mod.health-sdk"
 def LIB_VERSION = Config.versionName
+def POM_LICENSE_NAME = "The Apache Software License, Version 2.0"
+def POM_LICENSE_URL = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+def POM_DEV_ID = "lineageos"
+def POM_DEV_NAME = "The LineageOS Project"
+
+
+// Publish
 
 task sourceJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
     classifier "sources"
 }
 
+artifacts {
+    archives sourceJar
+}
+
 publishing {
     repositories {
-        maven {
-            def localProps = new Properties()
-            localProps.load(project.rootProject.file("local.properties").newDataInputStream())
+        def localProps = new Properties()
+        localProps.load(project.rootProject.file("local.properties").newDataInputStream())
 
+        maven {
+            name = "Sonatype"
+            url = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+            credentials {
+                username = localProps.getProperty("maven_central.username", "")
+                password = localProps.getProperty("maven_central.password", "")
+            }
+        }
+        maven {
             name = "GithubPackages"
             url = localProps.getProperty("github.url", "")
             credentials {
@@ -53,6 +72,22 @@ publishing {
             artifact("${buildDir}/outputs/aar/sdk-release.aar")
             artifact(sourceJar)
 
+            pom.name = LIB_ARTIFACT_ID
+
+            pom.licenses {
+                license {
+                    name = POM_LICENSE_NAME
+                    url = POM_LICENSE_URL
+                }
+            }
+
+            pom.developers {
+                developer {
+                    id = POM_DEV_ID
+                    name = POM_DEV_NAME
+                }
+            }
+
             pom.withXml {
                 def dependenciesNode = asNode().appendNode("dependencies")
                 configurations.api.allDependencies.each {
@@ -66,25 +101,6 @@ publishing {
     }
 }
 
-bintray {
-    def localProps = new Properties()
-    localProps.load(project.rootProject.file("local.properties").newDataInputStream())
-
-    user = localProps.getProperty("bintray.username", "")
-    key = localProps.getProperty("bintray.key", "")
-    publications = ["droidlib"]
-
-    pkg {
-        repo = "${LIB_GROUP_ID}"
-        name = "${LIB_ARTIFACT_ID}"
-        userOrg = localProps.getProperty("bintray.org", "")
-        licenses = ["Apache-2.0"]
-        vcsUrl = localProps.getProperty("github.url", "")
-
-        version {
-            name = "${LIB_VERSION}"
-            desc = "SDK version ${LIB_VERSION}"
-            released = new Date()
-        }
-    }
+signing {
+    sign publishing.publications
 }
