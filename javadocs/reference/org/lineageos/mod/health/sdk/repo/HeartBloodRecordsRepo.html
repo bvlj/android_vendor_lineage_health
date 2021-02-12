@@ -1,0 +1,1708 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+  <meta name="description" content="Javadoc API documentation." />
+
+<link rel="shortcut icon" type="image/x-icon" href="../../../../../../favicon.ico" />
+<title>
+
+  HeartBloodRecordsRepo
+
+
+</title>
+<link href="../../../../../../../assets/doclava-developer-docs.css" rel="stylesheet" type="text/css" />
+<link href="../../../../../../../assets/customizations.css" rel="stylesheet" type="text/css" />
+<script src="../../../../../../../assets/search_autocomplete.js" type="text/javascript"></script>
+<script src="../../../../../../../assets/jquery-resizable.min.js" type="text/javascript"></script>
+<script src="../../../../../../../assets/doclava-developer-docs.js" type="text/javascript"></script>
+<script src="../../../../../../../assets/prettify.js" type="text/javascript"></script>
+<script type="text/javascript">
+  setToRoot("../../../../../../", "../../../../../../../assets/");
+</script>
+<script src="../../../../../../../assets/doclava-developer-reference.js" type="text/javascript"></script>
+<script src="../../../../../../../assets/navtree_data.js" type="text/javascript"></script>
+<script src="../../../../../../../assets/customizations.js" type="text/javascript"></script>
+<noscript>
+  <style type="text/css">
+    html,body{overflow:auto;}
+    #body-content{position:relative; top:0;}
+    #doc-content{overflow:visible;border-left:3px solid #666;}
+    #side-nav{padding:0;}
+    #side-nav .toggle-list ul {display:block;}
+    #resize-packages-nav{border-bottom:3px solid #666;}
+  </style>
+</noscript>
+</head>
+
+<body class="">
+
+<div id="header">
+    <div id="headerLeft">
+    
+    </div>
+    <div id="headerRight">
+      
+  <div id="search" >
+      <div id="searchForm">
+          <form accept-charset="utf-8" class="gsc-search-box" 
+                onsubmit="return submit_search()">
+            <table class="gsc-search-box" cellpadding="0" cellspacing="0"><tbody>
+                <tr>
+                  <td class="gsc-input">
+                    <input id="search_autocomplete" class="gsc-input" type="text" size="33" autocomplete="off"
+                      title="search developer docs" name="q"
+                      value="search developer docs"
+                      onFocus="search_focus_changed(this, true)"
+                      onBlur="search_focus_changed(this, false)"
+                      onkeydown="return search_changed(event, true, '../../../../../../')"
+                      onkeyup="return search_changed(event, false, '../../../../../../')" />
+                  <div id="search_filtered_div" class="no-display">
+                      <table id="search_filtered" cellspacing=0>
+                      </table>
+                  </div>
+                  </td>
+                  <td class="gsc-search-button">
+                    <input type="submit" value="Search" title="search" id="search-button" class="gsc-search-button" />
+                  </td>
+                  <td class="gsc-clear-button">
+                    <div title="clear results" class="gsc-clear-button">&nbsp;</div>
+                  </td>
+                </tr></tbody>
+              </table>
+          </form>
+      </div><!-- searchForm -->
+  </div><!-- search -->
+      
+    </div>
+</div><!-- header -->
+
+
+  <div class="g-section g-tpl-240" id="body-content">
+    <div class="g-unit g-first side-nav-resizable" id="side-nav">
+      <div id="swapper">
+        <div id="nav-panels">
+          <div id="resize-packages-nav">
+            <div id="packages-nav">
+              <div id="index-links">
+                <a href="../../../../../../packages.html"  >Package Index</a> | 
+                <a href="../../../../../../classes.html" >Class Index</a>
+              </div>
+              <ul>
+                
+    <li class="api apilevel-">
+  <a href="../../../../../../org/lineageos/mod/health/package-summary.html">org.lineageos.mod.health</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../org/lineageos/mod/health/common/package-summary.html">org.lineageos.mod.health.common</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../org/lineageos/mod/health/common/db/package-summary.html">org.lineageos.mod.health.common.db</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../org/lineageos/mod/health/common/values/package-summary.html">org.lineageos.mod.health.common.values</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../org/lineageos/mod/health/sdk/model/profile/package-summary.html">org.lineageos.mod.health.sdk.model.profile</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../org/lineageos/mod/health/sdk/model/records/package-summary.html">org.lineageos.mod.health.sdk.model.records</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../org/lineageos/mod/health/sdk/model/records/activity/package-summary.html">org.lineageos.mod.health.sdk.model.records.activity</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../org/lineageos/mod/health/sdk/model/records/body/package-summary.html">org.lineageos.mod.health.sdk.model.records.body</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../org/lineageos/mod/health/sdk/model/records/breathing/package-summary.html">org.lineageos.mod.health.sdk.model.records.breathing</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../org/lineageos/mod/health/sdk/model/records/heartblood/package-summary.html">org.lineageos.mod.health.sdk.model.records.heartblood</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../org/lineageos/mod/health/sdk/model/records/mindfulness/package-summary.html">org.lineageos.mod.health.sdk.model.records.mindfulness</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../org/lineageos/mod/health/sdk/model/values/package-summary.html">org.lineageos.mod.health.sdk.model.values</a></li>
+    <li class="selected api apilevel-">
+  <a href="../../../../../../org/lineageos/mod/health/sdk/repo/package-summary.html">org.lineageos.mod.health.sdk.repo</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../org/lineageos/mod/health/sdk/util/package-summary.html">org.lineageos.mod.health.sdk.util</a></li>
+              </ul><br/>
+            </div> <!-- end packages -->
+          </div> <!-- end resize-packages -->
+          <div id="classes-nav">
+            <ul>
+              
+    <li><h2>Interfaces</h2>
+      <ul>
+          <li class="api apilevel-"><a href="../../../../../../org/lineageos/mod/health/sdk/repo/BatchOperations.Builder.html">BatchOperations.Builder</a>&lt;T&nbsp;extends&nbsp;<a href="../../../../../../org/lineageos/mod/health/sdk/model/records/Record.html">Record</a>&gt;</li>
+      </ul>
+    </li>
+              
+    <li><h2>Classes</h2>
+      <ul>
+          <li class="api apilevel-"><a href="../../../../../../org/lineageos/mod/health/sdk/repo/ActivityRecordsRepo.html">ActivityRecordsRepo</a></li>
+          <li class="api apilevel-"><a href="../../../../../../org/lineageos/mod/health/sdk/repo/BatchOperations.html">BatchOperations</a>&lt;T&nbsp;extends&nbsp;<a href="../../../../../../org/lineageos/mod/health/sdk/model/records/Record.html">Record</a>&gt;</li>
+          <li class="api apilevel-"><a href="../../../../../../org/lineageos/mod/health/sdk/repo/BodyRecordsRepo.html">BodyRecordsRepo</a></li>
+          <li class="api apilevel-"><a href="../../../../../../org/lineageos/mod/health/sdk/repo/BreathingRecordsRepo.html">BreathingRecordsRepo</a></li>
+          <li class="selected api apilevel-"><a href="../../../../../../org/lineageos/mod/health/sdk/repo/HeartBloodRecordsRepo.html">HeartBloodRecordsRepo</a></li>
+          <li class="api apilevel-"><a href="../../../../../../org/lineageos/mod/health/sdk/repo/MedicalProfileRepo.html">MedicalProfileRepo</a></li>
+          <li class="api apilevel-"><a href="../../../../../../org/lineageos/mod/health/sdk/repo/MindfulnessRecordsRepo.html">MindfulnessRecordsRepo</a></li>
+          <li class="api apilevel-"><a href="../../../../../../org/lineageos/mod/health/sdk/repo/OperationResult.html">OperationResult</a></li>
+          <li class="api apilevel-"><a href="../../../../../../org/lineageos/mod/health/sdk/repo/OperationResult.Failure.html">OperationResult.Failure</a></li>
+          <li class="api apilevel-"><a href="../../../../../../org/lineageos/mod/health/sdk/repo/OperationResult.PolicyError.html">OperationResult.PolicyError</a></li>
+          <li class="api apilevel-"><a href="../../../../../../org/lineageos/mod/health/sdk/repo/OperationResult.Success.html">OperationResult.Success</a>&lt;T&gt;</li>
+          <li class="api apilevel-"><a href="../../../../../../org/lineageos/mod/health/sdk/repo/RecordsRepo.html">RecordsRepo</a>&lt;T&nbsp;extends&nbsp;<a href="../../../../../../org/lineageos/mod/health/sdk/model/records/Record.html">Record</a>&gt;</li>
+      </ul>
+    </li>
+              
+              
+              
+              
+            </ul><br/>
+          </div><!-- end classes -->
+        </div><!-- end nav-panels -->
+        <div id="nav-tree" style="display:none">
+          <div id="index-links">
+            <a href="../../../../../../packages.html"  >Package Index</a> | 
+            <a href="../../../../../../classes.html" >Class Index</a>
+          </div>
+        </div><!-- end nav-tree -->
+      </div><!-- end swapper -->
+    </div> <!-- end side-nav -->
+    <script>
+      if (!isMobile) {
+        $("<a href='#' id='nav-swap' onclick='swapNav();return false;' style='font-size:10px;line-height:9px;margin-left:1em;text-decoration:none;'><span id='tree-link'>Use Tree Navigation</span><span id='panel-link' style='display:none'>Use Panel Navigation</span></a>").appendTo("#side-nav");
+        chooseDefaultNav();
+        if ($("#nav-tree").is(':visible')) {
+          init_default_navtree("../../../../../../");
+        } else {
+          addLoadEvent(function() {
+            scrollIntoView("packages-nav");
+            scrollIntoView("classes-nav");
+          });
+        }
+        $("#swapper").css({borderBottom:"2px solid #aaa"});
+      } else {
+        swapNav(); // tree view should be used on mobile
+      }
+    </script>
+
+
+
+<div class="g-unit" id="doc-content">
+
+<div id="api-info-block">
+
+
+
+  
+   
+  
+  
+  
+  
+
+  
+   
+  
+  
+  
+  
+
+
+<div class="sum-details-links">
+
+
+Summary:
+
+
+
+
+
+
+
+
+
+
+
+  <a href="#pubmethods">Methods</a>
+  
+
+
+  &#124; <a href="#promethods">Protected Methods</a>
+  
+
+
+  &#124; <a href="#inhmethods">Inherited Methods</a>
+
+&#124; <a href="#" onclick="return toggleAllClassInherited()" id="toggleAllClassInherited">[Expand All]</a>
+
+</div><!-- end sum-details-links -->
+<div class="api-level">
+  
+
+
+  
+  
+
+</div>
+</div><!-- end api-info-block -->
+
+
+<!-- ======== START OF CLASS DATA ======== -->
+
+<div id="jd-header">
+    public
+     
+    final 
+    
+    class
+<h1>HeartBloodRecordsRepo</h1>
+
+
+
+  
+  
+  
+
+  
+    extends <a href="../../../../../../org/lineageos/mod/health/sdk/repo/RecordsRepo.html">RecordsRepo</a>&lt;T&nbsp;extends&nbsp;<a href="../../../../../../org/lineageos/mod/health/sdk/model/records/Record.html">Record</a>&gt;<br/>
+  
+  
+  
+
+  
+  
+  
+
+
+</div><!-- end header -->
+
+<div id="naMessage"></div>
+
+<div id="jd-content" class="api apilevel-">
+<table class="jd-inheritance-table">
+
+
+    <tr>
+         	
+        <td colspan="3" class="jd-inheritance-class-cell">java.lang.Object</td>
+    </tr>
+    
+
+    <tr>
+        
+            <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
+         	
+        <td colspan="2" class="jd-inheritance-class-cell"><a href="../../../../../../org/lineageos/mod/health/sdk/repo/RecordsRepo.html">org.lineageos.mod.health.sdk.repo.RecordsRepo</a>&lt;T&nbsp;extends&nbsp;<a href="../../../../../../org/lineageos/mod/health/sdk/model/records/Record.html">org.lineageos.mod.health.sdk.model.records.Record</a>&gt;</td>
+    </tr>
+    
+
+    <tr>
+        
+            <td class="jd-inheritance-space">&nbsp;</td>
+        
+            <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
+         	
+        <td colspan="1" class="jd-inheritance-class-cell">org.lineageos.mod.health.sdk.repo.HeartBloodRecordsRepo</td>
+    </tr>
+    
+
+</table>
+
+
+
+
+
+
+
+<div class="jd-descr">
+
+
+<h2>Class Overview</h2>
+<p>HEART_BLOOD records repository.
+ <p>
+ This class allows you to retrieve, insert, update and delete
+ hearth and blood records.
+ <p>
+ Supported records types:
+ <ul>
+     <li><code><a href="../../../../../../org/lineageos/mod/health/sdk/model/records/heartblood/BloodAlcoholConcentrationRecord.html">BloodAlcoholConcentrationRecord</a></code></li>
+     <li><code><a href="../../../../../../org/lineageos/mod/health/sdk/model/records/heartblood/BloodPressureRecord.html">BloodPressureRecord</a></code></li>
+     <li><code><a href="../../../../../../org/lineageos/mod/health/sdk/model/records/heartblood/GlucoseRecord.html">GlucoseRecord</a></code></li>
+     <li><code><a href="../../../../../../org/lineageos/mod/health/sdk/model/records/heartblood/HeartRateRecord.html">HeartRateRecord</a></code></li>
+     <li><code><a href="../../../../../../org/lineageos/mod/health/sdk/model/records/heartblood/PerfusionIndexRecord.html">PerfusionIndexRecord</a></code></li>
+ </ul>
+ <p>
+ Operations performed in this class should be executed outside of the
+ main / UI thread.</p>
+
+
+
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">See Also</h5>
+      <ul class="nolist"><li><code><a href="../../../../../../org/lineageos/mod/health/sdk/model/records/heartblood/HeartBloodRecord.html">HeartBloodRecord</a></code></li><li><code><a href="../../../../../../org/lineageos/mod/health/sdk/model/records/heartblood/BloodAlcoholConcentrationRecord.html">BloodAlcoholConcentrationRecord</a></code></li><li><code><a href="../../../../../../org/lineageos/mod/health/sdk/model/records/heartblood/BloodPressureRecord.html">BloodPressureRecord</a></code></li><li><code><a href="../../../../../../org/lineageos/mod/health/sdk/model/records/heartblood/GlucoseRecord.html">GlucoseRecord</a></code></li><li><code><a href="../../../../../../org/lineageos/mod/health/sdk/model/records/heartblood/HeartRateRecord.html">HeartRateRecord</a></code></li><li><code><a href="../../../../../../org/lineageos/mod/health/sdk/model/records/heartblood/PerfusionIndexRecord.html">PerfusionIndexRecord</a></code></li>
+      </ul>
+  </div>
+
+
+</div><!-- jd-descr -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="jd-descr">
+
+
+<h2>Summary</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ========== METHOD SUMMARY =========== -->
+<table id="pubmethods" class="jd-sumtable"><tr><th colspan="12">Public Methods</th></tr>
+
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            <a href="../../../../../../org/lineageos/mod/health/sdk/repo/OperationResult.html">OperationResult</a>
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../org/lineageos/mod/health/sdk/repo/HeartBloodRecordsRepo.html#delete(org.lineageos.mod.health.sdk.model.records.heartblood.HeartBloodRecord<?>)">delete</a></span>(<a href="../../../../../../org/lineageos/mod/health/sdk/model/records/heartblood/HeartBloodRecord.html">HeartBloodRecord</a>&lt;?&gt; record)
+        
+        <div class="jd-descrdiv">Remove a record from the ContentProvider
+</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            List&lt;<a href="../../../../../../org/lineageos/mod/health/sdk/model/records/heartblood/HeartBloodRecord.html">HeartBloodRecord</a>&lt;?&gt;&gt;
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../org/lineageos/mod/health/sdk/repo/HeartBloodRecordsRepo.html#getAll()">getAll</a></span>()
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            List&lt;<a href="../../../../../../org/lineageos/mod/health/sdk/model/records/heartblood/BloodAlcoholConcentrationRecord.html">BloodAlcoholConcentrationRecord</a>&gt;
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../org/lineageos/mod/health/sdk/repo/HeartBloodRecordsRepo.html#getAllBloodAlcoholConcentrationRecords()">getAllBloodAlcoholConcentrationRecords</a></span>()
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            List&lt;<a href="../../../../../../org/lineageos/mod/health/sdk/model/records/heartblood/BloodPressureRecord.html">BloodPressureRecord</a>&gt;
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../org/lineageos/mod/health/sdk/repo/HeartBloodRecordsRepo.html#getAllBloodPressureRecords()">getAllBloodPressureRecords</a></span>()
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            List&lt;<a href="../../../../../../org/lineageos/mod/health/sdk/model/records/heartblood/GlucoseRecord.html">GlucoseRecord</a>&gt;
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../org/lineageos/mod/health/sdk/repo/HeartBloodRecordsRepo.html#getAllGlucoseRecords()">getAllGlucoseRecords</a></span>()
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            List&lt;<a href="../../../../../../org/lineageos/mod/health/sdk/model/records/heartblood/HeartRateRecord.html">HeartRateRecord</a>&gt;
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../org/lineageos/mod/health/sdk/repo/HeartBloodRecordsRepo.html#getAllHeartRateRecords()">getAllHeartRateRecords</a></span>()
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            List&lt;<a href="../../../../../../org/lineageos/mod/health/sdk/model/records/heartblood/PerfusionIndexRecord.html">PerfusionIndexRecord</a>&gt;
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../org/lineageos/mod/health/sdk/repo/HeartBloodRecordsRepo.html#getAllPerfusionIndexRecords()">getAllPerfusionIndexRecords</a></span>()
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            <a href="../../../../../../org/lineageos/mod/health/sdk/model/records/heartblood/BloodAlcoholConcentrationRecord.html">BloodAlcoholConcentrationRecord</a>
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../org/lineageos/mod/health/sdk/repo/HeartBloodRecordsRepo.html#getBloodAlcoholConcentrationRecord(long)">getBloodAlcoholConcentrationRecord</a></span>(long id)
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            <a href="../../../../../../org/lineageos/mod/health/sdk/model/records/heartblood/BloodPressureRecord.html">BloodPressureRecord</a>
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../org/lineageos/mod/health/sdk/repo/HeartBloodRecordsRepo.html#getBloodPressureRecord(long)">getBloodPressureRecord</a></span>(long id)
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            <a href="../../../../../../org/lineageos/mod/health/sdk/model/records/heartblood/GlucoseRecord.html">GlucoseRecord</a>
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../org/lineageos/mod/health/sdk/repo/HeartBloodRecordsRepo.html#getGlucoseRecord(long)">getGlucoseRecord</a></span>(long id)
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            <a href="../../../../../../org/lineageos/mod/health/sdk/model/records/heartblood/HeartRateRecord.html">HeartRateRecord</a>
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../org/lineageos/mod/health/sdk/repo/HeartBloodRecordsRepo.html#getHeartRateRecord(long)">getHeartRateRecord</a></span>(long id)
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            static
+            
+            <a href="../../../../../../org/lineageos/mod/health/sdk/repo/HeartBloodRecordsRepo.html">HeartBloodRecordsRepo</a>
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../org/lineageos/mod/health/sdk/repo/HeartBloodRecordsRepo.html#getInstance(android.content.ContentResolver)">getInstance</a></span>(ContentResolver contentResolver)
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            <a href="../../../../../../org/lineageos/mod/health/sdk/model/records/heartblood/PerfusionIndexRecord.html">PerfusionIndexRecord</a>
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../org/lineageos/mod/health/sdk/repo/HeartBloodRecordsRepo.html#getPerfusionIndexRecord(long)">getPerfusionIndexRecord</a></span>(long id)
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            <a href="../../../../../../org/lineageos/mod/health/sdk/repo/OperationResult.html">OperationResult</a>
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../org/lineageos/mod/health/sdk/repo/HeartBloodRecordsRepo.html#insert(org.lineageos.mod.health.sdk.model.records.heartblood.HeartBloodRecord<?>)">insert</a></span>(<a href="../../../../../../org/lineageos/mod/health/sdk/model/records/heartblood/HeartBloodRecord.html">HeartBloodRecord</a>&lt;?&gt; record)
+        
+        <div class="jd-descrdiv">Insert a record into the ContentProvider.
+</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            <a href="../../../../../../org/lineageos/mod/health/sdk/repo/OperationResult.html">OperationResult</a>
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../org/lineageos/mod/health/sdk/repo/HeartBloodRecordsRepo.html#update(org.lineageos.mod.health.sdk.model.records.heartblood.HeartBloodRecord<?>)">update</a></span>(<a href="../../../../../../org/lineageos/mod/health/sdk/model/records/heartblood/HeartBloodRecord.html">HeartBloodRecord</a>&lt;?&gt; record)
+        
+        <div class="jd-descrdiv">Update a record inside the ContentProvider.
+</div>
+  
+  </td></tr>
+
+
+
+</table>
+
+
+
+
+<!-- ========== METHOD SUMMARY =========== -->
+<table id="promethods" class="jd-sumtable"><tr><th colspan="12">Protected Methods</th></tr>
+
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            <a href="../../../../../../org/lineageos/mod/health/sdk/model/records/heartblood/HeartBloodRecord.html">HeartBloodRecord</a>&lt;?&gt;
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../org/lineageos/mod/health/sdk/repo/HeartBloodRecordsRepo.html#parseRow(android.database.Cursor)">parseRow</a></span>(Cursor cursor)
+        
+  </td></tr>
+
+
+
+</table>
+
+
+
+
+
+<!-- ========== METHOD SUMMARY =========== -->
+<table id="inhmethods" class="jd-sumtable"><tr><th>
+  <a href="#" class="toggle-all" onclick="return toggleAllInherited(this, null)">[Expand]</a>
+  <div style="clear:left;">Inherited Methods</div></th></tr>
+
+
+<tr class="api apilevel-" >
+<td colspan="12">
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-org.lineageos.mod.health.sdk.repo.RecordsRepo" class="jd-expando-trigger closed"
+          ><img id="inherited-methods-org.lineageos.mod.health.sdk.repo.RecordsRepo-trigger"
+          src="../../../../../../../assets/images/triangle-closed.png"
+          class="jd-expando-trigger-img" /></a>
+From class
+
+  <a href="../../../../../../org/lineageos/mod/health/sdk/repo/RecordsRepo.html">org.lineageos.mod.health.sdk.repo.RecordsRepo</a>
+
+<div id="inherited-methods-org.lineageos.mod.health.sdk.repo.RecordsRepo">
+  <div id="inherited-methods-org.lineageos.mod.health.sdk.repo.RecordsRepo-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-methods-org.lineageos.mod.health.sdk.repo.RecordsRepo-summary" style="display: none;">
+    <table class="jd-sumtable-expando">
+    
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            <a href="../../../../../../org/lineageos/mod/health/sdk/repo/OperationResult.html">OperationResult</a>
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../org/lineageos/mod/health/sdk/repo/RecordsRepo.html#delete(T)">delete</a></span>(T record)
+        
+        <div class="jd-descrdiv">Remove a record from the ContentProvider</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            final
+            
+            
+            <a href="../../../../../../org/lineageos/mod/health/sdk/repo/OperationResult.html">OperationResult[]</a>
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../org/lineageos/mod/health/sdk/repo/RecordsRepo.html#executeBatch(org.lineageos.mod.health.sdk.repo.BatchOperations.Builder<T>)">executeBatch</a></span>(<a href="../../../../../../org/lineageos/mod/health/sdk/repo/BatchOperations.Builder.html">Builder</a>&lt;T&gt; builder)
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            abstract
+            
+            
+            
+            
+            List&lt;T&gt;
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../org/lineageos/mod/health/sdk/repo/RecordsRepo.html#getAll()">getAll</a></span>()
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            final
+            
+            
+            T
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../org/lineageos/mod/health/sdk/repo/RecordsRepo.html#getById(int, long)">getById</a></span>(int metric, long id)
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            final
+            
+            
+            List&lt;T&gt;
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../org/lineageos/mod/health/sdk/repo/RecordsRepo.html#getByMetric(int)">getByMetric</a></span>(int metric)
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            <a href="../../../../../../org/lineageos/mod/health/sdk/repo/OperationResult.html">OperationResult</a>
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../org/lineageos/mod/health/sdk/repo/RecordsRepo.html#insert(T)">insert</a></span>(T record)
+        
+        <div class="jd-descrdiv">Insert a record into the ContentProvider.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            abstract
+            
+            
+            
+            
+            T
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../org/lineageos/mod/health/sdk/repo/RecordsRepo.html#parseRow(android.database.Cursor)">parseRow</a></span>(Cursor cursor)
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            <a href="../../../../../../org/lineageos/mod/health/sdk/repo/OperationResult.html">OperationResult</a>
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../org/lineageos/mod/health/sdk/repo/RecordsRepo.html#update(T)">update</a></span>(T record)
+        
+        <div class="jd-descrdiv">Update a record inside the ContentProvider.</div>
+  
+  </td></tr>
+
+
+</table>
+  </div>
+</div>
+</td></tr>
+
+
+
+<tr class="api apilevel-" >
+<td colspan="12">
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-java.lang.Object" class="jd-expando-trigger closed"
+          ><img id="inherited-methods-java.lang.Object-trigger"
+          src="../../../../../../../assets/images/triangle-closed.png"
+          class="jd-expando-trigger-img" /></a>
+From class
+
+  java.lang.Object
+
+<div id="inherited-methods-java.lang.Object">
+  <div id="inherited-methods-java.lang.Object-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-methods-java.lang.Object-summary" style="display: none;">
+    <table class="jd-sumtable-expando">
+    
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            Object
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad">clone</span>()
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            boolean
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad">equals</span>(Object arg0)
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad">finalize</span>()
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            final
+            
+            
+            Class&lt;?&gt;
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad">getClass</span>()
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            int
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad">hashCode</span>()
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            final
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad">notify</span>()
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            final
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad">notifyAll</span>()
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            String
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad">toString</span>()
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            final
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad">wait</span>(long arg0, int arg1)
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            final
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad">wait</span>(long arg0)
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            final
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad">wait</span>()
+        
+  </td></tr>
+
+
+</table>
+  </div>
+</div>
+</td></tr>
+
+
+</table>
+
+
+</div><!-- jd-descr (summary) -->
+
+<!-- Details -->
+
+
+
+
+
+
+
+
+<!-- XML Attributes -->
+
+
+<!-- Enum Values -->
+
+
+<!-- Constants -->
+
+
+<!-- Fields -->
+
+
+<!-- Public ctors -->
+
+
+
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+<!-- Protected ctors -->
+
+
+
+<!-- ========= METHOD DETAIL ======== -->
+<!-- Public methdos -->
+
+<h2>Public Methods</h2>
+
+
+
+<a id="delete(org.lineageos.mod.health.sdk.model.records.heartblood.HeartBloodRecord<?>)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="../../../../../../org/lineageos/mod/health/sdk/repo/OperationResult.html">OperationResult</a>
+      </span>
+      <span class="sympad">delete</span>
+      <span class="normal">(<a href="../../../../../../org/lineageos/mod/health/sdk/model/records/heartblood/HeartBloodRecord.html">HeartBloodRecord</a>&lt;?&gt; record)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Remove a record from the ContentProvider
+</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>one of: <ul>
+     <li><code><a href="../../../../../../org/lineageos/mod/health/sdk/repo/OperationResult.Success.html">OperationResult.Success</a></code> if the operation completed successfully</li>
+     <li><code><a href="../../../../../../org/lineageos/mod/health/sdk/repo/OperationResult.Failure.html">OperationResult.Failure</a></code> if it was not possible to remove the record.
+         Please check the data you're trying to delete</li>
+     <li><code><a href="../../../../../../org/lineageos/mod/health/sdk/repo/OperationResult.PolicyError.html">OperationResult.PolicyError</a></code> if the record deletion was blocked by a
+         policy. You may want to notify the user about this issue</li>
+ </ul>
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<a id="getAll()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        List&lt;<a href="../../../../../../org/lineageos/mod/health/sdk/model/records/heartblood/HeartBloodRecord.html">HeartBloodRecord</a>&lt;?&gt;&gt;
+      </span>
+      <span class="sympad">getAll</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="getAllBloodAlcoholConcentrationRecords()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        List&lt;<a href="../../../../../../org/lineageos/mod/health/sdk/model/records/heartblood/BloodAlcoholConcentrationRecord.html">BloodAlcoholConcentrationRecord</a>&gt;
+      </span>
+      <span class="sympad">getAllBloodAlcoholConcentrationRecords</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="getAllBloodPressureRecords()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        List&lt;<a href="../../../../../../org/lineageos/mod/health/sdk/model/records/heartblood/BloodPressureRecord.html">BloodPressureRecord</a>&gt;
+      </span>
+      <span class="sympad">getAllBloodPressureRecords</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="getAllGlucoseRecords()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        List&lt;<a href="../../../../../../org/lineageos/mod/health/sdk/model/records/heartblood/GlucoseRecord.html">GlucoseRecord</a>&gt;
+      </span>
+      <span class="sympad">getAllGlucoseRecords</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="getAllHeartRateRecords()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        List&lt;<a href="../../../../../../org/lineageos/mod/health/sdk/model/records/heartblood/HeartRateRecord.html">HeartRateRecord</a>&gt;
+      </span>
+      <span class="sympad">getAllHeartRateRecords</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="getAllPerfusionIndexRecords()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        List&lt;<a href="../../../../../../org/lineageos/mod/health/sdk/model/records/heartblood/PerfusionIndexRecord.html">PerfusionIndexRecord</a>&gt;
+      </span>
+      <span class="sympad">getAllPerfusionIndexRecords</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="getBloodAlcoholConcentrationRecord(long)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="../../../../../../org/lineageos/mod/health/sdk/model/records/heartblood/BloodAlcoholConcentrationRecord.html">BloodAlcoholConcentrationRecord</a>
+      </span>
+      <span class="sympad">getBloodAlcoholConcentrationRecord</span>
+      <span class="normal">(long id)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="getBloodPressureRecord(long)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="../../../../../../org/lineageos/mod/health/sdk/model/records/heartblood/BloodPressureRecord.html">BloodPressureRecord</a>
+      </span>
+      <span class="sympad">getBloodPressureRecord</span>
+      <span class="normal">(long id)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="getGlucoseRecord(long)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="../../../../../../org/lineageos/mod/health/sdk/model/records/heartblood/GlucoseRecord.html">GlucoseRecord</a>
+      </span>
+      <span class="sympad">getGlucoseRecord</span>
+      <span class="normal">(long id)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="getHeartRateRecord(long)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="../../../../../../org/lineageos/mod/health/sdk/model/records/heartblood/HeartRateRecord.html">HeartRateRecord</a>
+      </span>
+      <span class="sympad">getHeartRateRecord</span>
+      <span class="normal">(long id)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="getInstance(android.content.ContentResolver)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+         
+         
+         
+        <a href="../../../../../../org/lineageos/mod/health/sdk/repo/HeartBloodRecordsRepo.html">HeartBloodRecordsRepo</a>
+      </span>
+      <span class="sympad">getInstance</span>
+      <span class="normal">(ContentResolver contentResolver)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="getPerfusionIndexRecord(long)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="../../../../../../org/lineageos/mod/health/sdk/model/records/heartblood/PerfusionIndexRecord.html">PerfusionIndexRecord</a>
+      </span>
+      <span class="sympad">getPerfusionIndexRecord</span>
+      <span class="normal">(long id)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="insert(org.lineageos.mod.health.sdk.model.records.heartblood.HeartBloodRecord<?>)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="../../../../../../org/lineageos/mod/health/sdk/repo/OperationResult.html">OperationResult</a>
+      </span>
+      <span class="sympad">insert</span>
+      <span class="normal">(<a href="../../../../../../org/lineageos/mod/health/sdk/model/records/heartblood/HeartBloodRecord.html">HeartBloodRecord</a>&lt;?&gt; record)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Insert a record into the ContentProvider.
+</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>record</th>
+          <td>the record to insert. Must not be null</td>
+        </tr>
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>one of: <ul>
+     <li><code><a href="../../../../../../org/lineageos/mod/health/sdk/repo/OperationResult.Success.html">OperationResult.Success</a></code> with the new record id as value if the operation
+         completed successfully</li>
+     <li><code><a href="../../../../../../org/lineageos/mod/health/sdk/repo/OperationResult.Failure.html">OperationResult.Failure</a></code> if it was not possible to insert the record.
+         Please check the data you're trying to insert</li>
+     <li><code><a href="../../../../../../org/lineageos/mod/health/sdk/repo/OperationResult.PolicyError.html">OperationResult.PolicyError</a></code> if the record insertion was blocked by a
+         policy. You may want to notify the user about this issue</li>
+ </ul>
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<a id="update(org.lineageos.mod.health.sdk.model.records.heartblood.HeartBloodRecord<?>)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="../../../../../../org/lineageos/mod/health/sdk/repo/OperationResult.html">OperationResult</a>
+      </span>
+      <span class="sympad">update</span>
+      <span class="normal">(<a href="../../../../../../org/lineageos/mod/health/sdk/model/records/heartblood/HeartBloodRecord.html">HeartBloodRecord</a>&lt;?&gt; record)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Update a record inside the ContentProvider.
+</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>one of: <ul>
+     <li><code><a href="../../../../../../org/lineageos/mod/health/sdk/repo/OperationResult.Success.html">OperationResult.Success</a></code> if the operation completed successfully</li>
+     <li><code><a href="../../../../../../org/lineageos/mod/health/sdk/repo/OperationResult.Failure.html">OperationResult.Failure</a></code> if it was not possible to update the record.
+         Please check the data you're trying to update</li>
+     <li><code><a href="../../../../../../org/lineageos/mod/health/sdk/repo/OperationResult.PolicyError.html">OperationResult.PolicyError</a></code> if the record update was blocked by a
+         policy. You may want to notify the user about this issue</li>
+ </ul>
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+
+
+
+<!-- ========= METHOD DETAIL ======== -->
+
+<h2>Protected Methods</h2>
+
+
+
+<a id="parseRow(android.database.Cursor)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+         
+         
+        <a href="../../../../../../org/lineageos/mod/health/sdk/model/records/heartblood/HeartBloodRecord.html">HeartBloodRecord</a>&lt;?&gt;
+      </span>
+      <span class="sympad">parseRow</span>
+      <span class="normal">(Cursor cursor)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+
+
+
+<!-- ========= END OF CLASS DATA ========= -->
+<a id="navbar_top"></a>
+
+<div id="footer">
+Generated by <a href="http://code.google.com/p/doclava/">Doclava</a>.
+</div> <!-- end footer -->
+
+</div> <!-- jd-content -->
+
+</div><!-- end doc-content -->
+
+</div> <!-- end body-content --> 
+
+<script type="text/javascript">
+init(); /* initialize doclava-developer-docs.js */
+</script>
+
+</body>
+</html>

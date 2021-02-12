@@ -1,0 +1,1486 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+  <meta name="description" content="Javadoc API documentation." />
+
+<link rel="shortcut icon" type="image/x-icon" href="../../../../../../favicon.ico" />
+<title>
+
+  RecordColumns
+
+
+</title>
+<link href="../../../../../../../assets/doclava-developer-docs.css" rel="stylesheet" type="text/css" />
+<link href="../../../../../../../assets/customizations.css" rel="stylesheet" type="text/css" />
+<script src="../../../../../../../assets/search_autocomplete.js" type="text/javascript"></script>
+<script src="../../../../../../../assets/jquery-resizable.min.js" type="text/javascript"></script>
+<script src="../../../../../../../assets/doclava-developer-docs.js" type="text/javascript"></script>
+<script src="../../../../../../../assets/prettify.js" type="text/javascript"></script>
+<script type="text/javascript">
+  setToRoot("../../../../../../", "../../../../../../../assets/");
+</script>
+<script src="../../../../../../../assets/doclava-developer-reference.js" type="text/javascript"></script>
+<script src="../../../../../../../assets/navtree_data.js" type="text/javascript"></script>
+<script src="../../../../../../../assets/customizations.js" type="text/javascript"></script>
+<noscript>
+  <style type="text/css">
+    html,body{overflow:auto;}
+    #body-content{position:relative; top:0;}
+    #doc-content{overflow:visible;border-left:3px solid #666;}
+    #side-nav{padding:0;}
+    #side-nav .toggle-list ul {display:block;}
+    #resize-packages-nav{border-bottom:3px solid #666;}
+  </style>
+</noscript>
+</head>
+
+<body class="">
+
+<div id="header">
+    <div id="headerLeft">
+    
+    </div>
+    <div id="headerRight">
+      
+  <div id="search" >
+      <div id="searchForm">
+          <form accept-charset="utf-8" class="gsc-search-box" 
+                onsubmit="return submit_search()">
+            <table class="gsc-search-box" cellpadding="0" cellspacing="0"><tbody>
+                <tr>
+                  <td class="gsc-input">
+                    <input id="search_autocomplete" class="gsc-input" type="text" size="33" autocomplete="off"
+                      title="search developer docs" name="q"
+                      value="search developer docs"
+                      onFocus="search_focus_changed(this, true)"
+                      onBlur="search_focus_changed(this, false)"
+                      onkeydown="return search_changed(event, true, '../../../../../../')"
+                      onkeyup="return search_changed(event, false, '../../../../../../')" />
+                  <div id="search_filtered_div" class="no-display">
+                      <table id="search_filtered" cellspacing=0>
+                      </table>
+                  </div>
+                  </td>
+                  <td class="gsc-search-button">
+                    <input type="submit" value="Search" title="search" id="search-button" class="gsc-search-button" />
+                  </td>
+                  <td class="gsc-clear-button">
+                    <div title="clear results" class="gsc-clear-button">&nbsp;</div>
+                  </td>
+                </tr></tbody>
+              </table>
+          </form>
+      </div><!-- searchForm -->
+  </div><!-- search -->
+      
+    </div>
+</div><!-- header -->
+
+
+  <div class="g-section g-tpl-240" id="body-content">
+    <div class="g-unit g-first side-nav-resizable" id="side-nav">
+      <div id="swapper">
+        <div id="nav-panels">
+          <div id="resize-packages-nav">
+            <div id="packages-nav">
+              <div id="index-links">
+                <a href="../../../../../../packages.html"  >Package Index</a> | 
+                <a href="../../../../../../classes.html" >Class Index</a>
+              </div>
+              <ul>
+                
+    <li class="api apilevel-">
+  <a href="../../../../../../org/lineageos/mod/health/package-summary.html">org.lineageos.mod.health</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../org/lineageos/mod/health/common/package-summary.html">org.lineageos.mod.health.common</a></li>
+    <li class="selected api apilevel-">
+  <a href="../../../../../../org/lineageos/mod/health/common/db/package-summary.html">org.lineageos.mod.health.common.db</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../org/lineageos/mod/health/common/values/package-summary.html">org.lineageos.mod.health.common.values</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../org/lineageos/mod/health/sdk/model/profile/package-summary.html">org.lineageos.mod.health.sdk.model.profile</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../org/lineageos/mod/health/sdk/model/records/package-summary.html">org.lineageos.mod.health.sdk.model.records</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../org/lineageos/mod/health/sdk/model/records/activity/package-summary.html">org.lineageos.mod.health.sdk.model.records.activity</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../org/lineageos/mod/health/sdk/model/records/body/package-summary.html">org.lineageos.mod.health.sdk.model.records.body</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../org/lineageos/mod/health/sdk/model/records/breathing/package-summary.html">org.lineageos.mod.health.sdk.model.records.breathing</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../org/lineageos/mod/health/sdk/model/records/heartblood/package-summary.html">org.lineageos.mod.health.sdk.model.records.heartblood</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../org/lineageos/mod/health/sdk/model/records/mindfulness/package-summary.html">org.lineageos.mod.health.sdk.model.records.mindfulness</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../org/lineageos/mod/health/sdk/model/values/package-summary.html">org.lineageos.mod.health.sdk.model.values</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../org/lineageos/mod/health/sdk/repo/package-summary.html">org.lineageos.mod.health.sdk.repo</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../org/lineageos/mod/health/sdk/util/package-summary.html">org.lineageos.mod.health.sdk.util</a></li>
+              </ul><br/>
+            </div> <!-- end packages -->
+          </div> <!-- end resize-packages -->
+          <div id="classes-nav">
+            <ul>
+              
+    <li><h2>Interfaces</h2>
+      <ul>
+          <li class="api apilevel-"><a href="../../../../../../org/lineageos/mod/health/common/db/AccessColumns.html">AccessColumns</a></li>
+          <li class="api apilevel-"><a href="../../../../../../org/lineageos/mod/health/common/db/MedicalProfileColumns.html">MedicalProfileColumns</a></li>
+          <li class="selected api apilevel-"><a href="../../../../../../org/lineageos/mod/health/common/db/RecordColumns.html">RecordColumns</a></li>
+      </ul>
+    </li>
+              
+              
+              
+              
+              
+            </ul><br/>
+          </div><!-- end classes -->
+        </div><!-- end nav-panels -->
+        <div id="nav-tree" style="display:none">
+          <div id="index-links">
+            <a href="../../../../../../packages.html"  >Package Index</a> | 
+            <a href="../../../../../../classes.html" >Class Index</a>
+          </div>
+        </div><!-- end nav-tree -->
+      </div><!-- end swapper -->
+    </div> <!-- end side-nav -->
+    <script>
+      if (!isMobile) {
+        $("<a href='#' id='nav-swap' onclick='swapNav();return false;' style='font-size:10px;line-height:9px;margin-left:1em;text-decoration:none;'><span id='tree-link'>Use Tree Navigation</span><span id='panel-link' style='display:none'>Use Panel Navigation</span></a>").appendTo("#side-nav");
+        chooseDefaultNav();
+        if ($("#nav-tree").is(':visible')) {
+          init_default_navtree("../../../../../../");
+        } else {
+          addLoadEvent(function() {
+            scrollIntoView("packages-nav");
+            scrollIntoView("classes-nav");
+          });
+        }
+        $("#swapper").css({borderBottom:"2px solid #aaa"});
+      } else {
+        swapNav(); // tree view should be used on mobile
+      }
+    </script>
+
+
+
+<div class="g-unit" id="doc-content">
+
+<div id="api-info-block">
+
+
+
+  
+  
+   
+  
+  
+  
+
+
+<div class="sum-details-links">
+
+
+Summary:
+
+
+
+
+
+  <a href="#constants">Constants</a>
+  
+
+
+  &#124; <a href="#inhconstants">Inherited Constants</a>
+  
+
+
+
+
+
+
+
+
+&#124; <a href="#" onclick="return toggleAllClassInherited()" id="toggleAllClassInherited">[Expand All]</a>
+
+</div><!-- end sum-details-links -->
+<div class="api-level">
+  
+
+
+  
+  
+
+</div>
+</div><!-- end api-info-block -->
+
+
+<!-- ======== START OF CLASS DATA ======== -->
+
+<div id="jd-header">
+    public
+     
+     
+    
+    interface
+<h1>RecordColumns</h1>
+
+
+
+  
+  
+      implements 
+      
+        BaseColumns 
+      
+  
+  
+
+
+</div><!-- end header -->
+
+<div id="naMessage"></div>
+
+<div id="jd-content" class="api apilevel-">
+<table class="jd-inheritance-table">
+
+
+    <tr>
+         	
+        <td colspan="1" class="jd-inheritance-class-cell">org.lineageos.mod.health.common.db.RecordColumns</td>
+    </tr>
+    
+
+</table>
+
+
+
+
+
+
+
+<div class="jd-descr">
+
+
+<h2>Class Overview</h2>
+<p>Record table columns.
+ <br>
+ Please always refer to the <code><a href="../../../../../../org/lineageos/mod/health/common/Metric.html">Metric</a></code> documentation.</p>
+
+
+
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">See Also</h5>
+      <ul class="nolist"><li><code><a href="../../../../../../org/lineageos/mod/health/common/Metric.html">Metric</a></code></li>
+      </ul>
+  </div>
+
+
+</div><!-- jd-descr -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="jd-descr">
+
+
+<h2>Summary</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- =========== ENUM CONSTANT SUMMARY =========== -->
+<table id="constants" class="jd-sumtable"><tr><th colspan="12">Constants</th></tr>
+
+
+    
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">String</td>
+        <td class="jd-linkcol"><a href="../../../../../../org/lineageos/mod/health/common/db/RecordColumns.html#AVG_SPEED">AVG_SPEED</a></td>
+        <td class="jd-descrcol" width="100%">Average speed in kilometers per hour (Km/h).</td>
+    </tr>
+    
+    
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">String</td>
+        <td class="jd-linkcol"><a href="../../../../../../org/lineageos/mod/health/common/db/RecordColumns.html#CALORIES">CALORIES</a></td>
+        <td class="jd-descrcol" width="100%">Calories count in calories (cal).</td>
+    </tr>
+    
+    
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">String</td>
+        <td class="jd-linkcol"><a href="../../../../../../org/lineageos/mod/health/common/db/RecordColumns.html#DISTANCE">DISTANCE</a></td>
+        <td class="jd-descrcol" width="100%">Distance in kilometers (km).</td>
+    </tr>
+    
+    
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">String</td>
+        <td class="jd-linkcol"><a href="../../../../../../org/lineageos/mod/health/common/db/RecordColumns.html#DURATION">DURATION</a></td>
+        <td class="jd-descrcol" width="100%">Duration in milliseconds (ms).</td>
+    </tr>
+    
+    
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">String</td>
+        <td class="jd-linkcol"><a href="../../../../../../org/lineageos/mod/health/common/db/RecordColumns.html#ELEVATION_GAIN">ELEVATION_GAIN</a></td>
+        <td class="jd-descrcol" width="100%">Elevation gain in meters (m).</td>
+    </tr>
+    
+    
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">String</td>
+        <td class="jd-linkcol"><a href="../../../../../../org/lineageos/mod/health/common/db/RecordColumns.html#MEAL_RELATION">MEAL_RELATION</a></td>
+        <td class="jd-descrcol" width="100%">Meal relation.</td>
+    </tr>
+    
+    
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">String</td>
+        <td class="jd-linkcol"><a href="../../../../../../org/lineageos/mod/health/common/db/RecordColumns.html#MOOD">MOOD</a></td>
+        <td class="jd-descrcol" width="100%">Mood.</td>
+    </tr>
+    
+    
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">String</td>
+        <td class="jd-linkcol"><a href="../../../../../../org/lineageos/mod/health/common/db/RecordColumns.html#NOTES">NOTES</a></td>
+        <td class="jd-descrcol" width="100%">Notes about the record.</td>
+    </tr>
+    
+    
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">String</td>
+        <td class="jd-linkcol"><a href="../../../../../../org/lineageos/mod/health/common/db/RecordColumns.html#PRESSURE_DIASTOLIC">PRESSURE_DIASTOLIC</a></td>
+        <td class="jd-descrcol" width="100%">Diastolic pressure in millimeters of mercury (mmHg).</td>
+    </tr>
+    
+    
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">String</td>
+        <td class="jd-linkcol"><a href="../../../../../../org/lineageos/mod/health/common/db/RecordColumns.html#PRESSURE_SYSTOLIC">PRESSURE_SYSTOLIC</a></td>
+        <td class="jd-descrcol" width="100%">Systolic pressure in millimeters of mercury (mmHg).</td>
+    </tr>
+    
+    
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">String</td>
+        <td class="jd-linkcol"><a href="../../../../../../org/lineageos/mod/health/common/db/RecordColumns.html#SEXUAL_ACTIVITY">SEXUAL_ACTIVITY</a></td>
+        <td class="jd-descrcol" width="100%">Sexual activity.</td>
+    </tr>
+    
+    
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">String</td>
+        <td class="jd-linkcol"><a href="../../../../../../org/lineageos/mod/health/common/db/RecordColumns.html#STEPS">STEPS</a></td>
+        <td class="jd-descrcol" width="100%">Number of steps.</td>
+    </tr>
+    
+    
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">String</td>
+        <td class="jd-linkcol"><a href="../../../../../../org/lineageos/mod/health/common/db/RecordColumns.html#SYMPTOMS_OTHER">SYMPTOMS_OTHER</a></td>
+        <td class="jd-descrcol" width="100%">Other menstrual cycle symptoms.</td>
+    </tr>
+    
+    
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">String</td>
+        <td class="jd-linkcol"><a href="../../../../../../org/lineageos/mod/health/common/db/RecordColumns.html#SYMPTOMS_PHYSICAL">SYMPTOMS_PHYSICAL</a></td>
+        <td class="jd-descrcol" width="100%">Physical menstrual cycle symptoms.</td>
+    </tr>
+    
+    
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">String</td>
+        <td class="jd-linkcol"><a href="../../../../../../org/lineageos/mod/health/common/db/RecordColumns.html#TIME">TIME</a></td>
+        <td class="jd-descrcol" width="100%">Time in milliseconds since epoch.</td>
+    </tr>
+    
+    
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">String</td>
+        <td class="jd-linkcol"><a href="../../../../../../org/lineageos/mod/health/common/db/RecordColumns.html#VALUE">VALUE</a></td>
+        <td class="jd-descrcol" width="100%">Numerical value.</td>
+    </tr>
+    
+    
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">String</td>
+        <td class="jd-linkcol"><a href="../../../../../../org/lineageos/mod/health/common/db/RecordColumns.html#_METRIC">_METRIC</a></td>
+        <td class="jd-descrcol" width="100%">The metric id of this record.</td>
+    </tr>
+    
+    
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">String</td>
+        <td class="jd-linkcol"><a href="../../../../../../org/lineageos/mod/health/common/db/RecordColumns.html#_VERSION">_VERSION</a></td>
+        <td class="jd-descrcol" width="100%"></td>
+    </tr>
+    
+    
+
+</table>
+
+
+
+
+
+<!-- =========== ENUM CONSTANT SUMMARY =========== -->
+<table id="inhconstants" class="jd-sumtable"><tr><th>
+  <a href="#" class="toggle-all" onclick="return toggleAllInherited(this, null)">[Expand]</a>
+  <div style="clear:left;">Inherited Constants</div></th></tr>
+
+
+<tr class="api apilevel-" >
+<td colspan="12">
+
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-constants-android.provider.BaseColumns" class="jd-expando-trigger closed"
+          ><img id="inherited-constants-android.provider.BaseColumns-trigger"
+          src="../../../../../../../assets/images/triangle-closed.png"
+          class="jd-expando-trigger-img" /></a>From interface
+android.provider.BaseColumns
+<div id="inherited-constants-android.provider.BaseColumns">
+  <div id="inherited-constants-android.provider.BaseColumns-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-constants-android.provider.BaseColumns-summary" style="display: none;">
+    <table class="jd-sumtable-expando">
+    
+
+    
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">String</td>
+        <td class="jd-linkcol">_COUNT</td>
+        <td class="jd-descrcol" width="100%"></td>
+    </tr>
+    
+    
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">String</td>
+        <td class="jd-linkcol">_ID</td>
+        <td class="jd-descrcol" width="100%"></td>
+    </tr>
+    
+    
+</table>
+  </div>
+</div>
+</td></tr>
+
+
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div><!-- jd-descr (summary) -->
+
+<!-- Details -->
+
+
+
+
+
+
+
+
+<!-- XML Attributes -->
+
+
+<!-- Enum Values -->
+
+
+<!-- Constants -->
+
+
+<!-- ========= ENUM CONSTANTS DETAIL ======== -->
+<h2>Constants</h2>
+
+
+
+
+<a id="AVG_SPEED"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+        final 
+        String
+      </span>
+        AVG_SPEED
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Average speed in kilometers per hour (Km/h).</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">See Also</h5>
+      <ul class="nolist"><li><code><a href="../../../../../../org/lineageos/mod/health/common/Metric.html#CYCLING">CYCLING</a></code></li><li><code><a href="../../../../../../org/lineageos/mod/health/common/Metric.html#RUNNING">RUNNING</a></code></li>
+      </ul>
+  </div>
+
+    
+        <div class="jd-tagdata">
+        <span class="jd-tagtitle">Constant Value: </span>
+        <span>
+            
+                "avg_speed"
+            
+        </span>
+        </div>
+    
+    </div>
+</div>
+
+
+
+<a id="CALORIES"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+        final 
+        String
+      </span>
+        CALORIES
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Calories count in calories (cal).</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">See Also</h5>
+      <ul class="nolist"><li><code><a href="../../../../../../org/lineageos/mod/health/common/Metric.html#WORKOUT">WORKOUT</a></code></li>
+      </ul>
+  </div>
+
+    
+        <div class="jd-tagdata">
+        <span class="jd-tagtitle">Constant Value: </span>
+        <span>
+            
+                "calories"
+            
+        </span>
+        </div>
+    
+    </div>
+</div>
+
+
+
+<a id="DISTANCE"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+        final 
+        String
+      </span>
+        DISTANCE
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Distance in kilometers (km).</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">See Also</h5>
+      <ul class="nolist"><li><code><a href="../../../../../../org/lineageos/mod/health/common/Metric.html#CYCLING">CYCLING</a></code></li><li><code><a href="../../../../../../org/lineageos/mod/health/common/Metric.html#RUNNING">RUNNING</a></code></li>
+      </ul>
+  </div>
+
+    
+        <div class="jd-tagdata">
+        <span class="jd-tagtitle">Constant Value: </span>
+        <span>
+            
+                "distance"
+            
+        </span>
+        </div>
+    
+    </div>
+</div>
+
+
+
+<a id="DURATION"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+        final 
+        String
+      </span>
+        DURATION
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Duration in milliseconds (ms).</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">See Also</h5>
+      <ul class="nolist"><li><code><a href="../../../../../../org/lineageos/mod/health/common/Metric.html#CYCLING">CYCLING</a></code></li><li><code><a href="../../../../../../org/lineageos/mod/health/common/Metric.html#RUNNING">RUNNING</a></code></li><li><code><a href="../../../../../../org/lineageos/mod/health/common/Metric.html#WALKING">WALKING</a></code></li><li><code><a href="../../../../../../org/lineageos/mod/health/common/Metric.html#WORKOUT">WORKOUT</a></code></li><li><code><a href="../../../../../../org/lineageos/mod/health/common/Metric.html#MEDITATION">MEDITATION</a></code></li><li><code><a href="../../../../../../org/lineageos/mod/health/common/Metric.html#SLEEP">SLEEP</a></code></li>
+      </ul>
+  </div>
+
+    
+        <div class="jd-tagdata">
+        <span class="jd-tagtitle">Constant Value: </span>
+        <span>
+            
+                "duration"
+            
+        </span>
+        </div>
+    
+    </div>
+</div>
+
+
+
+<a id="ELEVATION_GAIN"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+        final 
+        String
+      </span>
+        ELEVATION_GAIN
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Elevation gain in meters (m).</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">See Also</h5>
+      <ul class="nolist"><li><code><a href="../../../../../../org/lineageos/mod/health/common/Metric.html#CYCLING">CYCLING</a></code></li>
+      </ul>
+  </div>
+
+    
+        <div class="jd-tagdata">
+        <span class="jd-tagtitle">Constant Value: </span>
+        <span>
+            
+                "elevation_gain"
+            
+        </span>
+        </div>
+    
+    </div>
+</div>
+
+
+
+<a id="MEAL_RELATION"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+        final 
+        String
+      </span>
+        MEAL_RELATION
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Meal relation.
+
+ One of:
+ <ul>
+     <li><code><a href="../../../../../../org/lineageos/mod/health/common/values/MealRelation.html#UNKNOWN">UNKNOWN</a></code></li>
+     <li><code><a href="../../../../../../org/lineageos/mod/health/common/values/MealRelation.html#BEFORE">BEFORE</a></code></li>
+     <li><code><a href="../../../../../../org/lineageos/mod/health/common/values/MealRelation.html#AFTER">AFTER</a></code></li>
+ </ul></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">See Also</h5>
+      <ul class="nolist"><li><code><a href="../../../../../../org/lineageos/mod/health/common/values/MealRelation.html">MealRelation</a></code></li><li><code><a href="../../../../../../org/lineageos/mod/health/common/Metric.html#GLUCOSE">GLUCOSE</a></code></li>
+      </ul>
+  </div>
+
+    
+        <div class="jd-tagdata">
+        <span class="jd-tagtitle">Constant Value: </span>
+        <span>
+            
+                "meal_relation"
+            
+        </span>
+        </div>
+    
+    </div>
+</div>
+
+
+
+<a id="MOOD"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+        final 
+        String
+      </span>
+        MOOD
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Mood.
+
+ Flag value of:
+ <ul>
+     <li><code><a href="../../../../../../org/lineageos/mod/health/common/values/MoodLevel.html#UNKNOWN">UNKNOWN</a></code></li>
+     <li><code><a href="../../../../../../org/lineageos/mod/health/common/values/MoodLevel.html#AMAZING">AMAZING</a></code></li>
+     <li><code><a href="../../../../../../org/lineageos/mod/health/common/values/MoodLevel.html#HAPPY">HAPPY</a></code></li>
+     <li><code><a href="../../../../../../org/lineageos/mod/health/common/values/MoodLevel.html#EXCITED">EXCITED</a></code></li>
+     <li><code><a href="../../../../../../org/lineageos/mod/health/common/values/MoodLevel.html#STRESSED">STRESSED</a></code></li>
+     <li><code><a href="../../../../../../org/lineageos/mod/health/common/values/MoodLevel.html#TIRED">TIRED</a></code></li>
+     <li><code><a href="../../../../../../org/lineageos/mod/health/common/values/MoodLevel.html#SAD">SAD</a></code></li>
+     <li><code><a href="../../../../../../org/lineageos/mod/health/common/values/MoodLevel.html#SICK">SICK</a></code></li>
+     <li><code><a href="../../../../../../org/lineageos/mod/health/common/values/MoodLevel.html#EXHAUSTED">EXHAUSTED</a></code></li>
+     <li><code><a href="../../../../../../org/lineageos/mod/health/common/values/MoodLevel.html#NERVOUS">NERVOUS</a></code></li>
+     <li><code><a href="../../../../../../org/lineageos/mod/health/common/values/MoodLevel.html#ANGRY">ANGRY</a></code></li>
+ </ul></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">See Also</h5>
+      <ul class="nolist"><li><code><a href="../../../../../../org/lineageos/mod/health/common/values/MoodLevel.html">MoodLevel</a></code></li><li><code><a href="../../../../../../org/lineageos/mod/health/common/Metric.html#MOOD">MOOD</a></code></li>
+      </ul>
+  </div>
+
+    
+        <div class="jd-tagdata">
+        <span class="jd-tagtitle">Constant Value: </span>
+        <span>
+            
+                "mood"
+            
+        </span>
+        </div>
+    
+    </div>
+</div>
+
+
+
+<a id="NOTES"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+        final 
+        String
+      </span>
+        NOTES
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Notes about the record.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">See Also</h5>
+      <ul class="nolist"><li><code><a href="../../../../../../org/lineageos/mod/health/common/Metric.html#WORKOUT">WORKOUT</a></code></li><li><code><a href="../../../../../../org/lineageos/mod/health/common/Metric.html#WATER_INTAKE">WATER_INTAKE</a></code></li><li><code><a href="../../../../../../org/lineageos/mod/health/common/Metric.html#INHALER_USAGE">INHALER_USAGE</a></code></li><li><code><a href="../../../../../../org/lineageos/mod/health/common/Metric.html#MOOD">MOOD</a></code></li>
+      </ul>
+  </div>
+
+    
+        <div class="jd-tagdata">
+        <span class="jd-tagtitle">Constant Value: </span>
+        <span>
+            
+                "notes"
+            
+        </span>
+        </div>
+    
+    </div>
+</div>
+
+
+
+<a id="PRESSURE_DIASTOLIC"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+        final 
+        String
+      </span>
+        PRESSURE_DIASTOLIC
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Diastolic pressure in millimeters of mercury (mmHg).</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">See Also</h5>
+      <ul class="nolist"><li><code><a href="../../../../../../org/lineageos/mod/health/common/Metric.html#BLOOD_PRESSURE">BLOOD_PRESSURE</a></code></li>
+      </ul>
+  </div>
+
+    
+        <div class="jd-tagdata">
+        <span class="jd-tagtitle">Constant Value: </span>
+        <span>
+            
+                "pressure_diastolic"
+            
+        </span>
+        </div>
+    
+    </div>
+</div>
+
+
+
+<a id="PRESSURE_SYSTOLIC"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+        final 
+        String
+      </span>
+        PRESSURE_SYSTOLIC
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Systolic pressure in millimeters of mercury (mmHg).</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">See Also</h5>
+      <ul class="nolist"><li><code><a href="../../../../../../org/lineageos/mod/health/common/Metric.html#BLOOD_PRESSURE">BLOOD_PRESSURE</a></code></li>
+      </ul>
+  </div>
+
+    
+        <div class="jd-tagdata">
+        <span class="jd-tagtitle">Constant Value: </span>
+        <span>
+            
+                "pressure_systolic"
+            
+        </span>
+        </div>
+    
+    </div>
+</div>
+
+
+
+<a id="SEXUAL_ACTIVITY"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+        final 
+        String
+      </span>
+        SEXUAL_ACTIVITY
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Sexual activity.
+
+ Flag value of:
+ <ul>
+     <li><code><a href="../../../../../../org/lineageos/mod/health/common/values/SexualActivity.html#NONE">NONE</a></code></li>
+     <li><code><a href="../../../../../../org/lineageos/mod/health/common/values/SexualActivity.html#MASTURBATION">MASTURBATION</a></code></li>
+     <li><code><a href="../../../../../../org/lineageos/mod/health/common/values/SexualActivity.html#NO_SEX">NO_SEX</a></code></li>
+     <li><code><a href="../../../../../../org/lineageos/mod/health/common/values/SexualActivity.html#PROTECTED_SEX">PROTECTED_SEX</a></code></li>
+     <li><code><a href="../../../../../../org/lineageos/mod/health/common/values/SexualActivity.html#SEX">SEX</a></code></li>
+ </ul></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">See Also</h5>
+      <ul class="nolist"><li><code><a href="../../../../../../org/lineageos/mod/health/common/values/SexualActivity.html">SexualActivity</a></code></li><li><code><a href="../../../../../../org/lineageos/mod/health/common/Metric.html#MENSTRUAL_CYCLE">MENSTRUAL_CYCLE</a></code></li>
+      </ul>
+  </div>
+
+    
+        <div class="jd-tagdata">
+        <span class="jd-tagtitle">Constant Value: </span>
+        <span>
+            
+                "sexual_activity"
+            
+        </span>
+        </div>
+    
+    </div>
+</div>
+
+
+
+<a id="STEPS"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+        final 
+        String
+      </span>
+        STEPS
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Number of steps.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">See Also</h5>
+      <ul class="nolist"><li><code><a href="../../../../../../org/lineageos/mod/health/common/Metric.html#WALKING">WALKING</a></code></li>
+      </ul>
+  </div>
+
+    
+        <div class="jd-tagdata">
+        <span class="jd-tagtitle">Constant Value: </span>
+        <span>
+            
+                "steps"
+            
+        </span>
+        </div>
+    
+    </div>
+</div>
+
+
+
+<a id="SYMPTOMS_OTHER"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+        final 
+        String
+      </span>
+        SYMPTOMS_OTHER
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Other menstrual cycle symptoms.
+
+ Flag value of:
+ <ul>
+     <li><code><a href="../../../../../../org/lineageos/mod/health/common/values/MenstrualCycleOtherSymptoms.html#NONE">NONE</a></code></li>
+     <li><code><a href="../../../../../../org/lineageos/mod/health/common/values/MenstrualCycleOtherSymptoms.html#ANXIETY">ANXIETY</a></code></li>
+     <li><code><a href="../../../../../../org/lineageos/mod/health/common/values/MenstrualCycleOtherSymptoms.html#CRYING_SPELLS">CRYING_SPELLS</a></code></li>
+     <li><code><a href="../../../../../../org/lineageos/mod/health/common/values/MenstrualCycleOtherSymptoms.html#DEPRESSION">DEPRESSION</a></code></li>
+     <li><code><a href="../../../../../../org/lineageos/mod/health/common/values/MenstrualCycleOtherSymptoms.html#HIGH_SEX_DRIVE">HIGH_SEX_DRIVE</a></code></li>
+     <li><code><a href="../../../../../../org/lineageos/mod/health/common/values/MenstrualCycleOtherSymptoms.html#INSOMNIA">INSOMNIA</a></code></li>
+     <li><code><a href="../../../../../../org/lineageos/mod/health/common/values/MenstrualCycleOtherSymptoms.html#MOOD_SWINGS">MOOD_SWINGS</a></code></li>
+     <li><code><a href="../../../../../../org/lineageos/mod/health/common/values/MenstrualCycleOtherSymptoms.html#POOR_CONCENTRATION">POOR_CONCENTRATION</a></code></li>
+     <li><code><a href="../../../../../../org/lineageos/mod/health/common/values/MenstrualCycleOtherSymptoms.html#SOCIAL_WITHDRAWAL">SOCIAL_WITHDRAWAL</a></code></li>
+ </ul></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">See Also</h5>
+      <ul class="nolist"><li><code><a href="../../../../../../org/lineageos/mod/health/common/values/MenstrualCycleOtherSymptoms.html">MenstrualCycleOtherSymptoms</a></code></li><li><code><a href="../../../../../../org/lineageos/mod/health/common/Metric.html#MENSTRUAL_CYCLE">MENSTRUAL_CYCLE</a></code></li>
+      </ul>
+  </div>
+
+    
+        <div class="jd-tagdata">
+        <span class="jd-tagtitle">Constant Value: </span>
+        <span>
+            
+                "symptoms_other"
+            
+        </span>
+        </div>
+    
+    </div>
+</div>
+
+
+
+<a id="SYMPTOMS_PHYSICAL"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+        final 
+        String
+      </span>
+        SYMPTOMS_PHYSICAL
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Physical menstrual cycle symptoms.
+
+ Flag value of:
+ <ul>
+     <li><code><a href="../../../../../../org/lineageos/mod/health/common/values/MenstrualCyclePhysicalSymptoms.html#NONE">NONE</a></code></li>
+     <li><code><a href="../../../../../../org/lineageos/mod/health/common/values/MenstrualCyclePhysicalSymptoms.html#ACNE">ACNE</a></code></li>
+     <li><code><a href="../../../../../../org/lineageos/mod/health/common/values/MenstrualCyclePhysicalSymptoms.html#BLOATING">BLOATING</a></code></li>
+     <li><code><a href="../../../../../../org/lineageos/mod/health/common/values/MenstrualCyclePhysicalSymptoms.html#CRAMPS">CRAMPS</a></code></li>
+     <li><code><a href="../../../../../../org/lineageos/mod/health/common/values/MenstrualCyclePhysicalSymptoms.html#CONSTIPATION">CONSTIPATION</a></code></li>
+     <li><code><a href="../../../../../../org/lineageos/mod/health/common/values/MenstrualCyclePhysicalSymptoms.html#FATIGUE">FATIGUE</a></code></li>
+     <li><code><a href="../../../../../../org/lineageos/mod/health/common/values/MenstrualCyclePhysicalSymptoms.html#HEADACHE">HEADACHE</a></code></li>
+     <li><code><a href="../../../../../../org/lineageos/mod/health/common/values/MenstrualCyclePhysicalSymptoms.html#JOINT_MUSCLE_PAIN">JOINT_MUSCLE_PAIN</a></code></li>
+     <li><code><a href="../../../../../../org/lineageos/mod/health/common/values/MenstrualCyclePhysicalSymptoms.html#SPOTTING">SPOTTING</a></code></li>
+     <li><code><a href="../../../../../../org/lineageos/mod/health/common/values/MenstrualCyclePhysicalSymptoms.html#TENDER_BREASTS">TENDER_BREASTS</a></code></li>
+ </ul></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">See Also</h5>
+      <ul class="nolist"><li><code><a href="../../../../../../org/lineageos/mod/health/common/values/MenstrualCyclePhysicalSymptoms.html">MenstrualCyclePhysicalSymptoms</a></code></li><li><code><a href="../../../../../../org/lineageos/mod/health/common/Metric.html#MENSTRUAL_CYCLE">MENSTRUAL_CYCLE</a></code></li>
+      </ul>
+  </div>
+
+    
+        <div class="jd-tagdata">
+        <span class="jd-tagtitle">Constant Value: </span>
+        <span>
+            
+                "symptoms_physical"
+            
+        </span>
+        </div>
+    
+    </div>
+</div>
+
+
+
+<a id="TIME"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+        final 
+        String
+      </span>
+        TIME
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Time in milliseconds since epoch.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">See Also</h5>
+      <ul class="nolist"><li><code><a href="../../../../../../null#currentTimeMillis()">currentTimeMillis()</a></code></li><li>android.os.SystemClock</li>
+      </ul>
+  </div>
+
+    
+        <div class="jd-tagdata">
+        <span class="jd-tagtitle">Constant Value: </span>
+        <span>
+            
+                "time"
+            
+        </span>
+        </div>
+    
+    </div>
+</div>
+
+
+
+<a id="VALUE"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+        final 
+        String
+      </span>
+        VALUE
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Numerical value.
+
+ Please refer to each metric documentation
+ for specific information about the format
+ of the value.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">See Also</h5>
+      <ul class="nolist"><li><code><a href="../../../../../../org/lineageos/mod/health/common/Metric.html#ABDOMINAL_CIRCUMFERENCE">ABDOMINAL_CIRCUMFERENCE</a></code></li><li><code><a href="../../../../../../org/lineageos/mod/health/common/Metric.html#BODY_MASS_INDEX">BODY_MASS_INDEX</a></code></li><li><code><a href="../../../../../../org/lineageos/mod/health/common/Metric.html#BODY_TEMPERATURE">BODY_TEMPERATURE</a></code></li><li><code><a href="../../../../../../org/lineageos/mod/health/common/Metric.html#LEAN_BODY_MASS">LEAN_BODY_MASS</a></code></li><li><code><a href="../../../../../../org/lineageos/mod/health/common/Metric.html#MENSTRUAL_CYCLE">MENSTRUAL_CYCLE</a></code></li><li><code><a href="../../../../../../org/lineageos/mod/health/common/Metric.html#UV_INDEX">UV_INDEX</a></code></li><li><code><a href="../../../../../../org/lineageos/mod/health/common/Metric.html#WATER_INTAKE">WATER_INTAKE</a></code></li><li><code><a href="../../../../../../org/lineageos/mod/health/common/Metric.html#WEIGHT">WEIGHT</a></code></li><li><code><a href="../../../../../../org/lineageos/mod/health/common/Metric.html#OXYGEN_SATURATION">OXYGEN_SATURATION</a></code></li><li><code><a href="../../../../../../org/lineageos/mod/health/common/Metric.html#PEAK_EXPIRATORY_FLOW">PEAK_EXPIRATORY_FLOW</a></code></li><li><code><a href="../../../../../../org/lineageos/mod/health/common/Metric.html#RESPIRATORY_RATE">RESPIRATORY_RATE</a></code></li><li><code><a href="../../../../../../org/lineageos/mod/health/common/Metric.html#VITAL_CAPACITY">VITAL_CAPACITY</a></code></li><li><code><a href="../../../../../../org/lineageos/mod/health/common/Metric.html#BLOOD_ALCOHOL_CONCENTRATION">BLOOD_ALCOHOL_CONCENTRATION</a></code></li><li><code><a href="../../../../../../org/lineageos/mod/health/common/Metric.html#GLUCOSE">GLUCOSE</a></code></li><li><code><a href="../../../../../../org/lineageos/mod/health/common/Metric.html#HEART_RATE">HEART_RATE</a></code></li><li><code><a href="../../../../../../org/lineageos/mod/health/common/Metric.html#PERFUSION_INDEX">PERFUSION_INDEX</a></code></li>
+      </ul>
+  </div>
+
+    
+        <div class="jd-tagdata">
+        <span class="jd-tagtitle">Constant Value: </span>
+        <span>
+            
+                "value"
+            
+        </span>
+        </div>
+    
+    </div>
+</div>
+
+
+
+<a id="_METRIC"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+        final 
+        String
+      </span>
+        _METRIC
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>The metric id of this record.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">See Also</h5>
+      <ul class="nolist"><li><code><a href="../../../../../../org/lineageos/mod/health/common/Metric.html">Metric</a></code></li>
+      </ul>
+  </div>
+
+    
+        <div class="jd-tagdata">
+        <span class="jd-tagtitle">Constant Value: </span>
+        <span>
+            
+                "_metric"
+            
+        </span>
+        </div>
+    
+    </div>
+</div>
+
+
+
+<a id="_VERSION"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+        final 
+        String
+      </span>
+        _VERSION
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">See Also</h5>
+      <ul class="nolist"><li><code><a href="../../../../../../org/lineageos/mod/health/CareCache.Version.html">CareCache.Version</a></code></li>
+      </ul>
+  </div>
+
+    
+        <div class="jd-tagdata">
+        <span class="jd-tagtitle">Constant Value: </span>
+        <span>
+            
+                "_version"
+            
+        </span>
+        </div>
+    
+    </div>
+</div>
+
+
+
+
+<!-- Fields -->
+
+
+<!-- Public ctors -->
+
+
+
+<!-- ========= CONSTRUCTOR DETAIL ======== -->
+<!-- Protected ctors -->
+
+
+
+<!-- ========= METHOD DETAIL ======== -->
+<!-- Public methdos -->
+
+
+
+<!-- ========= METHOD DETAIL ======== -->
+
+
+
+<!-- ========= END OF CLASS DATA ========= -->
+<a id="navbar_top"></a>
+
+<div id="footer">
+Generated by <a href="http://code.google.com/p/doclava/">Doclava</a>.
+</div> <!-- end footer -->
+
+</div> <!-- jd-content -->
+
+</div><!-- end doc-content -->
+
+</div> <!-- end body-content --> 
+
+<script type="text/javascript">
+init(); /* initialize doclava-developer-docs.js */
+</script>
+
+</body>
+</html>

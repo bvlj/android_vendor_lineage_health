@@ -1,0 +1,15 @@
+org.lineageos.mod.health
+org.lineageos.mod.health.common
+org.lineageos.mod.health.common.db
+org.lineageos.mod.health.common.values
+org.lineageos.mod.health.sdk.model.profile
+org.lineageos.mod.health.sdk.model.records
+org.lineageos.mod.health.sdk.model.records.activity
+org.lineageos.mod.health.sdk.model.records.body
+org.lineageos.mod.health.sdk.model.records.breathing
+org.lineageos.mod.health.sdk.model.records.heartblood
+org.lineageos.mod.health.sdk.model.records.mindfulness
+org.lineageos.mod.health.sdk.model.values
+org.lineageos.mod.health.sdk.repo
+org.lineageos.mod.health.sdk.util
+

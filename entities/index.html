@@ -1,0 +1,1373 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Health Mod">
+      
+      
+      
+        <meta name="author" content="The LineageOS Project">
+      
+      
+        <link rel="canonical" href="https://healthstore.github.io/android_vendor_lineage_health/entities/">
+      
+      <link rel="shortcut icon" href="../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.8">
+    
+    
+      
+        <title>Data entities - Health Mod</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.cb6bc1d0.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.39b8e14a.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#ffffff">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../css/app.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="white" data-md-color-accent="deep-orange">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#data-entities" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://healthstore.github.io/android_vendor_lineage_health" title="Health Mod" class="md-header-nav__button md-logo" aria-label="Health Mod">
+      
+  <img src="../img/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      <div class="md-header-nav__ellipsis">
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            Health Mod
+          </span>
+        </div>
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            
+              Data entities
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://healthstore.github.io/android_vendor_lineage_health" title="Health Mod" class="md-nav__button md-logo" aria-label="Health Mod">
+      
+  <img src="../img/logo.png" alt="logo">
+
+    </a>
+    Health Mod
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../build/" class="md-nav__link">
+        Build
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../components/" class="md-nav__link">
+        Components
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Data entities
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Data entities
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#records" class="md-nav__link">
+    Records
+  </a>
+  
+    <nav class="md-nav" aria-label="Records">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#activity" class="md-nav__link">
+    Activity
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#body" class="md-nav__link">
+    Body
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#breathing" class="md-nav__link">
+    Breathing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#heart-blood" class="md-nav__link">
+    Heart &amp; blood
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mindfulness" class="md-nav__link">
+    Mindfulness
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#medical-profile" class="md-nav__link">
+    Medical profile
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference-values" class="md-nav__link">
+    Reference values
+  </a>
+  
+    <nav class="md-nav" aria-label="Reference values">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#biological-sex" class="md-nav__link">
+    Biological sex
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bloodtype" class="md-nav__link">
+    BloodType
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#meal-relation" class="md-nav__link">
+    Meal relation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#menstrual-cycle" class="md-nav__link">
+    Menstrual Cycle
+  </a>
+  
+    <nav class="md-nav" aria-label="Menstrual Cycle">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#physical-symptoms" class="md-nav__link">
+    Physical symptoms
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-symptoms" class="md-nav__link">
+    Other symptoms
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sexual-activity" class="md-nav__link">
+    Sexual activity
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mood-level" class="md-nav__link">
+    Mood level
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#organ-donor" class="md-nav__link">
+    Organ donor
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#access-policies-permissions" class="md-nav__link">
+    Access policies permissions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../partner/" class="md-nav__link">
+        Partner
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../privacy_security/" class="md-nav__link">
+        Privacy & Security
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../usage/" class="md-nav__link">
+        Usage
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../versioning/" class="md-nav__link">
+        Versioning
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../product_document/" class="md-nav__link">
+        Info
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../javadocs/" class="md-nav__link">
+        JavaDoc
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#records" class="md-nav__link">
+    Records
+  </a>
+  
+    <nav class="md-nav" aria-label="Records">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#activity" class="md-nav__link">
+    Activity
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#body" class="md-nav__link">
+    Body
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#breathing" class="md-nav__link">
+    Breathing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#heart-blood" class="md-nav__link">
+    Heart &amp; blood
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mindfulness" class="md-nav__link">
+    Mindfulness
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#medical-profile" class="md-nav__link">
+    Medical profile
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference-values" class="md-nav__link">
+    Reference values
+  </a>
+  
+    <nav class="md-nav" aria-label="Reference values">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#biological-sex" class="md-nav__link">
+    Biological sex
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bloodtype" class="md-nav__link">
+    BloodType
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#meal-relation" class="md-nav__link">
+    Meal relation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#menstrual-cycle" class="md-nav__link">
+    Menstrual Cycle
+  </a>
+  
+    <nav class="md-nav" aria-label="Menstrual Cycle">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#physical-symptoms" class="md-nav__link">
+    Physical symptoms
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-symptoms" class="md-nav__link">
+    Other symptoms
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sexual-activity" class="md-nav__link">
+    Sexual activity
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mood-level" class="md-nav__link">
+    Mood level
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#organ-donor" class="md-nav__link">
+    Organ donor
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#access-policies-permissions" class="md-nav__link">
+    Access policies permissions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="data-entities">Data entities<a class="headerlink" href="#data-entities" title="Permanent link">&para;</a></h1>
+<h2 id="records">Records<a class="headerlink" href="#records" title="Permanent link">&para;</a></h2>
+<p>A Record is a data entity that represents an health-related information.
+Records are divided in metrics in order to be grouped with similar data entities.</p>
+<p>Metrics are grouped in four macro-groups:</p>
+<h3 id="activity">Activity<a class="headerlink" href="#activity" title="Permanent link">&para;</a></h3>
+<p>Fitness-related metrics</p>
+<table>
+<thead>
+<tr>
+<th>Metric id</th>
+<th>Type</th>
+<th>Description</th>
+<th>Values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0001</code></td>
+<td>CyclingRecord</td>
+<td>Cycling</td>
+<td>distance [<code>km</code>], elevationGain [<code>m</code>], avgSpeed [<code>km/h</code>], time, duration</td>
+</tr>
+<tr>
+<td><code>0002</code></td>
+<td>RunningRecord</td>
+<td>Running</td>
+<td>distance [<code>km</code>], avgSpeed [<code>km/h</code>], time, duration</td>
+</tr>
+<tr>
+<td><code>0003</code></td>
+<td>WalkingRecord</td>
+<td>Steps counter</td>
+<td>distance [<code>km</code>], steps, time, duration</td>
+</tr>
+<tr>
+<td><code>0004</code></td>
+<td>WorkoutRecord</td>
+<td>Workout activity</td>
+<td>calories [<code>cal</code>], notes, time range</td>
+</tr>
+</tbody>
+</table>
+<h3 id="body">Body<a class="headerlink" href="#body" title="Permanent link">&para;</a></h3>
+<p>Body-related metrics</p>
+<table>
+<thead>
+<tr>
+<th>Metric id</th>
+<th>Type</th>
+<th>Description</th>
+<th>Values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>1001</code></td>
+<td>AbdominalCircumferenceRecord</td>
+<td>Abdominal circumference</td>
+<td>value [<code>cm</code>], time</td>
+</tr>
+<tr>
+<td><code>1002</code></td>
+<td>BodyMassIndexRecord</td>
+<td>BMI</td>
+<td>value [<code>kg/(m^2)</code>], time</td>
+</tr>
+<tr>
+<td><code>1003</code></td>
+<td>BodyTemperatureRecord</td>
+<td>Body temperature</td>
+<td>value [<code>ºC</code>], time</td>
+</tr>
+<tr>
+<td><code>1004</code></td>
+<td>LeanBodyMassRecord</td>
+<td>Lean body mass</td>
+<td>value, time</td>
+</tr>
+<tr>
+<td><code>1005</code></td>
+<td>MenstrualCycleRecord</td>
+<td>Menstrual cycle flow</td>
+<td>sexualActivity, physicalSymptoms, otherSymptoms, value (flow), time</td>
+</tr>
+<tr>
+<td><code>1006</code></td>
+<td>UvIndexRecord</td>
+<td>Uv index</td>
+<td>value, time</td>
+</tr>
+<tr>
+<td><code>1007</code></td>
+<td>WaterIntakeRecord</td>
+<td>Intake of a glass of water</td>
+<td>value (glasses), time</td>
+</tr>
+<tr>
+<td><code>1008</code></td>
+<td>WeightRecord</td>
+<td>Mass (aka Weight)</td>
+<td>value [<code>kg</code>], time</td>
+</tr>
+</tbody>
+</table>
+<h3 id="breathing">Breathing<a class="headerlink" href="#breathing" title="Permanent link">&para;</a></h3>
+<p>Breathing-related metrics</p>
+<table>
+<thead>
+<tr>
+<th>Metric id</th>
+<th>Type</th>
+<th>Description</th>
+<th>Values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>2001</code></td>
+<td>InhalerUsageRecord</td>
+<td>Inhaler usage</td>
+<td>notes, time</td>
+</tr>
+<tr>
+<td><code>2002</code></td>
+<td>OxygenSaturationRecord</td>
+<td>Inhaler usage</td>
+<td>value [<code>%</code>], time</td>
+</tr>
+<tr>
+<td><code>2003</code></td>
+<td>PeakExpiratoryFlowRecord</td>
+<td>Inhaler usage</td>
+<td>value [<code>PEF</code>], time</td>
+</tr>
+<tr>
+<td><code>2004</code></td>
+<td>RespiratoryRateRecord</td>
+<td>Respiratory rate</td>
+<td>value [<code>bpm</code>], time</td>
+</tr>
+<tr>
+<td><code>2005</code></td>
+<td>VitalCapacityRecord</td>
+<td>Vital capacity</td>
+<td>value [<code>cm^3</code>], time</td>
+</tr>
+</tbody>
+</table>
+<h3 id="heart-blood">Heart &amp; blood<a class="headerlink" href="#heart-blood" title="Permanent link">&para;</a></h3>
+<p>Heart and blood metrics</p>
+<table>
+<thead>
+<tr>
+<th>Metric id</th>
+<th>Type</th>
+<th>Description</th>
+<th>Values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>3001</code></td>
+<td>BloodAlcoholConcentrationRecord</td>
+<td>Blood / Alcohol content</td>
+<td>value [<code>%</code>], time</td>
+</tr>
+<tr>
+<td><code>3002</code></td>
+<td>BloodPressureRecord</td>
+<td>Blood pressure</td>
+<td>systolic [<code>mmHg</code>], diastolic [<code>mmHg</code>], time</td>
+</tr>
+<tr>
+<td><code>3003</code></td>
+<td>GlucoseRecord</td>
+<td>Blood glucose</td>
+<td>value [<code>mg/dL</code>], is before meal, time</td>
+</tr>
+<tr>
+<td><code>3004</code></td>
+<td>HeartRateRecord</td>
+<td>Heart rate</td>
+<td>value [<code>bpm</code>], time</td>
+</tr>
+<tr>
+<td><code>3005</code></td>
+<td>PerfusionIndexRecord</td>
+<td>Perfusion index</td>
+<td>value [<code>%</code>], time</td>
+</tr>
+</tbody>
+</table>
+<h3 id="mindfulness">Mindfulness<a class="headerlink" href="#mindfulness" title="Permanent link">&para;</a></h3>
+<p>Mindfulness and well-being metrics</p>
+<table>
+<thead>
+<tr>
+<th>Metric id</th>
+<th>Type</th>
+<th>Description</th>
+<th>Values</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>4001</code></td>
+<td>MeditationRecord</td>
+<td>Meditation</td>
+<td>time, duration</td>
+</tr>
+<tr>
+<td><code>4002</code></td>
+<td>MoodRecord</td>
+<td>Mood journal</td>
+<td>moodLevel, notes, time, duration</td>
+</tr>
+<tr>
+<td><code>4003</code></td>
+<td>SleepRecord</td>
+<td>Sleep</td>
+<td>time, duration</td>
+</tr>
+</tbody>
+</table>
+<h2 id="medical-profile">Medical profile<a class="headerlink" href="#medical-profile" title="Permanent link">&para;</a></h2>
+<p>A medical profile consists of a set of fixed basic medical information
+about the user.</p>
+<p>This data will not have the same level of protection like the Records in order
+to allow access from when the screen is locked in case of emergency.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Allergies</td>
+<td>A note about user&rsquo;s allergies</td>
+</tr>
+<tr>
+<td>Biological sex</td>
+<td>User&rsquo;s biological sex</td>
+</tr>
+<tr>
+<td>Blood type</td>
+<td>User&rsquo;s blood type</td>
+</tr>
+<tr>
+<td>Height</td>
+<td>Height of the user [<code>cm</code>]</td>
+</tr>
+<tr>
+<td>(Is an) organ donor</td>
+<td>Whether the user is an organ donor</td>
+</tr>
+<tr>
+<td>Medications</td>
+<td>A note about user&rsquo;s medications</td>
+</tr>
+<tr>
+<td>Notes</td>
+<td>Any additional information the user may want to provide</td>
+</tr>
+</tbody>
+</table>
+<h2 id="reference-values">Reference values<a class="headerlink" href="#reference-values" title="Permanent link">&para;</a></h2>
+<p>Records and Medical profiles have some fields that accept only a fixed set of
+possible values.</p>
+<h3 id="biological-sex">Biological sex<a class="headerlink" href="#biological-sex" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Unknown</td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td>Female</td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td>Male</td>
+<td><code>2</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="bloodtype">BloodType<a class="headerlink" href="#bloodtype" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Unknown</td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td>0-</td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td>0+</td>
+<td><code>2</code></td>
+</tr>
+<tr>
+<td>A-</td>
+<td><code>3</code></td>
+</tr>
+<tr>
+<td>A+</td>
+<td><code>4</code></td>
+</tr>
+<tr>
+<td>B-</td>
+<td><code>5</code></td>
+</tr>
+<tr>
+<td>B+</td>
+<td><code>6</code></td>
+</tr>
+<tr>
+<td>AB-</td>
+<td><code>7</code></td>
+</tr>
+<tr>
+<td>AB+</td>
+<td><code>8</code></td>
+</tr>
+<tr>
+<td>HH</td>
+<td><code>9</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="meal-relation">Meal relation<a class="headerlink" href="#meal-relation" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Unknown</td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td>Before</td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td>After</td>
+<td><code>2</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="menstrual-cycle">Menstrual Cycle<a class="headerlink" href="#menstrual-cycle" title="Permanent link">&para;</a></h3>
+<h4 id="physical-symptoms">Physical symptoms<a class="headerlink" href="#physical-symptoms" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>None</td>
+<td><code>0b000000000</code></td>
+</tr>
+<tr>
+<td>Acne</td>
+<td><code>0b000000001</code></td>
+</tr>
+<tr>
+<td>Bloating</td>
+<td><code>0b000000010</code></td>
+</tr>
+<tr>
+<td>Cramps</td>
+<td><code>0b000000100</code></td>
+</tr>
+<tr>
+<td>Constipation</td>
+<td><code>0b000001000</code></td>
+</tr>
+<tr>
+<td>Fatigue</td>
+<td><code>0b000010000</code></td>
+</tr>
+<tr>
+<td>Headache</td>
+<td><code>0b000100000</code></td>
+</tr>
+<tr>
+<td>Joint muscle pain</td>
+<td><code>0b001000000</code></td>
+</tr>
+<tr>
+<td>Spotting</td>
+<td><code>0b010000000</code></td>
+</tr>
+<tr>
+<td>Tender breasts</td>
+<td><code>0b100000000</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="other-symptoms">Other symptoms<a class="headerlink" href="#other-symptoms" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>None</td>
+<td><code>0b00000000</code></td>
+</tr>
+<tr>
+<td>Anxiety</td>
+<td><code>0b00000001</code></td>
+</tr>
+<tr>
+<td>Crying spells</td>
+<td><code>0b00000010</code></td>
+</tr>
+<tr>
+<td>Depression</td>
+<td><code>0b00000100</code></td>
+</tr>
+<tr>
+<td>High sex drive</td>
+<td><code>0b00001000</code></td>
+</tr>
+<tr>
+<td>Insomnia</td>
+<td><code>0b00010000</code></td>
+</tr>
+<tr>
+<td>Mood swings</td>
+<td><code>0b00100000</code></td>
+</tr>
+<tr>
+<td>Poor concentration</td>
+<td><code>0b01000000</code></td>
+</tr>
+<tr>
+<td>Social withdrawal</td>
+<td><code>0b10000000</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="sexual-activity">Sexual activity<a class="headerlink" href="#sexual-activity" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>None</td>
+<td><code>0b0000</code></td>
+</tr>
+<tr>
+<td>Masturbation</td>
+<td><code>0b0001</code></td>
+</tr>
+<tr>
+<td>No sex</td>
+<td><code>0b0010</code></td>
+</tr>
+<tr>
+<td>Protected sex</td>
+<td><code>0b0100</code></td>
+</tr>
+<tr>
+<td>Sex</td>
+<td><code>0b1000</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="mood-level">Mood level<a class="headerlink" href="#mood-level" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Unknown</td>
+<td><code>0b00000000000</code></td>
+</tr>
+<tr>
+<td>Amazing</td>
+<td><code>0b00000000001</code></td>
+</tr>
+<tr>
+<td>Happy</td>
+<td><code>0b00000000010</code></td>
+</tr>
+<tr>
+<td>Excited</td>
+<td><code>0b00000000100</code></td>
+</tr>
+<tr>
+<td>Stressed</td>
+<td><code>0b00000001000</code></td>
+</tr>
+<tr>
+<td>Focused</td>
+<td><code>0b00000010000</code></td>
+</tr>
+<tr>
+<td>Tired</td>
+<td><code>0b00000100000</code></td>
+</tr>
+<tr>
+<td>Sad</td>
+<td><code>0b00001000000</code></td>
+</tr>
+<tr>
+<td>Sick</td>
+<td><code>0b00010000000</code></td>
+</tr>
+<tr>
+<td>Exhausted</td>
+<td><code>0b00100000000</code></td>
+</tr>
+<tr>
+<td>Nervous</td>
+<td><code>0b01000000000</code></td>
+</tr>
+<tr>
+<td>Angry</td>
+<td><code>0b10000000000</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="organ-donor">Organ donor<a class="headerlink" href="#organ-donor" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Unknown</td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td>Yes</td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td>No</td>
+<td><code>2</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="access-policies-permissions">Access policies permissions<a class="headerlink" href="#access-policies-permissions" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>None</td>
+<td><code>0b00</code></td>
+</tr>
+<tr>
+<td>Read</td>
+<td><code>0b01</code></td>
+</tr>
+<tr>
+<td>Write</td>
+<td><code>0b10</code></td>
+</tr>
+<tr>
+<td>All</td>
+<td><code>0b11</code></td>
+</tr>
+</tbody>
+</table>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../components/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Components
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../partner/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Partner
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2020-2021 The LineageOS Project
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.18f0862e.min.js"></script>
+      <script src="../assets/javascripts/bundle.994580cf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.9c0e82ba.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

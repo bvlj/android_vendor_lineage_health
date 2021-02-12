@@ -1,0 +1,6511 @@
+<api>
+<package name="org.lineageos.mod.health"
+>
+<class name="CareCache"
+ extends="java.lang.Object"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="getSupportedVersion"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="context" type="android.content.Context">
+</parameter>
+</method>
+<method name="isSupported"
+ return="boolean"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="context" type="android.content.Context">
+</parameter>
+</method>
+</class>
+<class name="CareCache.Version"
+ extends="java.lang.Object"
+ abstract="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<field name="ACTINIUM"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="1"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="CURRENT"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="1"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="MIN"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="1"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+</class>
+</package>
+<package name="org.lineageos.mod.health.common"
+>
+<class name="CareCacheUri"
+ extends="java.lang.Object"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<field name="ACCESS"
+ type="android.net.Uri"
+ transient="false"
+ volatile="false"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="ACTIVITY"
+ type="android.net.Uri"
+ transient="false"
+ volatile="false"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="BODY"
+ type="android.net.Uri"
+ transient="false"
+ volatile="false"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="BREATHING"
+ type="android.net.Uri"
+ transient="false"
+ volatile="false"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="HEART_BLOOD"
+ type="android.net.Uri"
+ transient="false"
+ volatile="false"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="MEDICAL_PROFILE"
+ type="android.net.Uri"
+ transient="false"
+ volatile="false"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="MINDFULNESS"
+ type="android.net.Uri"
+ transient="false"
+ volatile="false"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+</class>
+<class name="CareCacheUri.Authority"
+ extends="java.lang.Object"
+ abstract="false"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<field name="ACCESS"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;org.lineageos.mod.health.access&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="ACTIVITY"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;org.lineageos.mod.health.activity&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="BODY"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;org.lineageos.mod.health.body&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="BREATHING"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;org.lineageos.mod.health.breathing&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="HEART_BLOOD"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;org.lineageos.mod.health.heart&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="MEDICAL_PROFILE"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;org.lineageos.mod.health.profile&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="MINDFULNESS"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;org.lineageos.mod.health.mindfulness&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+</class>
+<class name="Metric"
+ extends="java.lang.Object"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<field name="ABDOMINAL_CIRCUMFERENCE"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="1001"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="BLOOD_ALCOHOL_CONCENTRATION"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="3001"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="BLOOD_PRESSURE"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="3002"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="BODY_MASS_INDEX"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="1002"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="BODY_TEMPERATURE"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="1003"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="CYCLING"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="1"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="GLUCOSE"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="3003"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="HEART_RATE"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="3004"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="INHALER_USAGE"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="2001"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="LEAN_BODY_MASS"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="1004"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="MEDITATION"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="4001"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="MENSTRUAL_CYCLE"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="1005"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="MOOD"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="4002"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="OXYGEN_SATURATION"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="2002"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="PEAK_EXPIRATORY_FLOW"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="2003"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="PERFUSION_INDEX"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="3005"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="RESPIRATORY_RATE"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="2004"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="RUNNING"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="2"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="SLEEP"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="4003"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="UNKNOWN"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="-1"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="UV_INDEX"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="1006"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="VITAL_CAPACITY"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="2005"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="WALKING"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="3"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="WATER_INTAKE"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="1007"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="WEIGHT"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="1008"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="WORKOUT"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="4"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+</class>
+</package>
+<package name="org.lineageos.mod.health.common.db"
+>
+<interface name="AccessColumns"
+ abstract="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<field name="METRIC"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;metric&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="PERMISSIONS"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;permissions&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="PKG_NAME"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;pkg_name&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+</interface>
+<interface name="MedicalProfileColumns"
+ abstract="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<field name="ALLERGIES"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;allergies&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="BIOLOGICAL_SEX"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;sex&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="BLOOD_TYPE"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;blood_type&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="HEIGHT"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;height&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="MEDICATIONS"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;medications&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="NOTES"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;notes&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="ORGAN_DONOR"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;organ_donor&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="_VERSION"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;_version&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+</interface>
+<interface name="RecordColumns"
+ abstract="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<field name="AVG_SPEED"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;avg_speed&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="CALORIES"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;calories&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="DISTANCE"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;distance&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="DURATION"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;duration&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="ELEVATION_GAIN"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;elevation_gain&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="MEAL_RELATION"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;meal_relation&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="MOOD"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;mood&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="NOTES"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;notes&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="PRESSURE_DIASTOLIC"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;pressure_diastolic&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="PRESSURE_SYSTOLIC"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;pressure_systolic&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="SEXUAL_ACTIVITY"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;sexual_activity&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="STEPS"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;steps&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="SYMPTOMS_OTHER"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;symptoms_other&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="SYMPTOMS_PHYSICAL"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;symptoms_physical&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="TIME"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;time&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="VALUE"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;value&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="_METRIC"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;_metric&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="_VERSION"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;_version&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+</interface>
+</package>
+<package name="org.lineageos.mod.health.common.values"
+>
+<class name="AccessPolicyValues"
+ extends="java.lang.Object"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<field name="DENIED_COUNT"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="-2"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="DENIED_URI"
+ type="android.net.Uri"
+ transient="false"
+ volatile="false"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+</class>
+<class name="BiologicalSex"
+ extends="java.lang.Object"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<field name="FEMALE"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="1"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="MALE"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="2"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="UNKNOWN"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="0"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+</class>
+<class name="BiologicalSex.Value"
+ extends="java.lang.Object"
+ abstract="true"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<implements name="java.lang.annotation.Annotation">
+</implements>
+</class>
+<class name="BloodType"
+ extends="java.lang.Object"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<field name="AB_NEG"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="7"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="AB_POS"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="8"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="A_NEG"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="3"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="A_POS"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="4"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="B_NEG"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="5"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="B_POS"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="6"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="HH"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="9"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="O_NEG"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="1"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="O_POS"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="2"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="UNKNOWN"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="0"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+</class>
+<class name="BloodType.Value"
+ extends="java.lang.Object"
+ abstract="true"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<implements name="java.lang.annotation.Annotation">
+</implements>
+</class>
+<class name="MealRelation"
+ extends="java.lang.Object"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<field name="AFTER"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="2"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="BEFORE"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="1"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="UNKNOWN"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="0"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+</class>
+<class name="MealRelation.Value"
+ extends="java.lang.Object"
+ abstract="true"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<implements name="java.lang.annotation.Annotation">
+</implements>
+</class>
+<class name="MenstrualCycleOtherSymptoms"
+ extends="java.lang.Object"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<field name="ANXIETY"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="1"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="CRYING_SPELLS"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="2"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="DEPRESSION"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="4"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="HIGH_SEX_DRIVE"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="8"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="INSOMNIA"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="16"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="MOOD_SWINGS"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="32"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="NONE"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="0"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="POOR_CONCENTRATION"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="64"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="SOCIAL_WITHDRAWAL"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="128"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+</class>
+<class name="MenstrualCycleOtherSymptoms.Value"
+ extends="java.lang.Object"
+ abstract="true"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<implements name="java.lang.annotation.Annotation">
+</implements>
+</class>
+<class name="MenstrualCyclePhysicalSymptoms"
+ extends="java.lang.Object"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<field name="ACNE"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="1"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="BLOATING"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="2"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="CONSTIPATION"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="8"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="CRAMPS"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="4"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="FATIGUE"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="16"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="HEADACHE"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="32"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="JOINT_MUSCLE_PAIN"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="64"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="NONE"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="0"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="SPOTTING"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="128"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="TENDER_BREASTS"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="256"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+</class>
+<class name="MenstrualCyclePhysicalSymptoms.Value"
+ extends="java.lang.Object"
+ abstract="true"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<implements name="java.lang.annotation.Annotation">
+</implements>
+</class>
+<class name="MoodLevel"
+ extends="java.lang.Object"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<field name="AMAZING"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="1"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="ANGRY"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="1024"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="EXCITED"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="4"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="EXHAUSTED"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="256"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="FOCUSED"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="16"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="HAPPY"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="2"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="NERVOUS"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="512"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="SAD"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="64"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="SICK"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="128"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="STRESSED"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="8"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="TIRED"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="32"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="UNKNOWN"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="0"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+</class>
+<class name="MoodLevel.Value"
+ extends="java.lang.Object"
+ abstract="true"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<implements name="java.lang.annotation.Annotation">
+</implements>
+</class>
+<class name="OrganDonor"
+ extends="java.lang.Object"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<field name="NO"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="2"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="UNKNOWN"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="0"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="YES"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="1"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+</class>
+<class name="OrganDonor.Value"
+ extends="java.lang.Object"
+ abstract="true"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<implements name="java.lang.annotation.Annotation">
+</implements>
+</class>
+<class name="Permission"
+ extends="java.lang.Object"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<field name="ALL"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="3"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="NONE"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="0"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="READ"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="1"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="WRITE"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="2"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+</class>
+<class name="SexualActivity"
+ extends="java.lang.Object"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<field name="MASTURBATION"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="1"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="NONE"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="0"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="NO_SEX"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="2"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="PROTECTED_SEX"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="4"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="SEX"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="8"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+</class>
+<class name="SexualActivity.Value"
+ extends="java.lang.Object"
+ abstract="true"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<implements name="java.lang.annotation.Annotation">
+</implements>
+</class>
+</package>
+<package name="org.lineageos.mod.health.common.values.annotations"
+>
+<class name="ActivityMetric"
+ extends="java.lang.Object"
+ abstract="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<implements name="java.lang.annotation.Annotation">
+</implements>
+</class>
+<class name="BodyMetric"
+ extends="java.lang.Object"
+ abstract="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<implements name="java.lang.annotation.Annotation">
+</implements>
+</class>
+<class name="BreathingMetric"
+ extends="java.lang.Object"
+ abstract="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<implements name="java.lang.annotation.Annotation">
+</implements>
+</class>
+<class name="HeartBloodMetric"
+ extends="java.lang.Object"
+ abstract="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<implements name="java.lang.annotation.Annotation">
+</implements>
+</class>
+<class name="MetricType"
+ extends="java.lang.Object"
+ abstract="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<implements name="java.lang.annotation.Annotation">
+</implements>
+</class>
+<class name="MindfulnessMetric"
+ extends="java.lang.Object"
+ abstract="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<implements name="java.lang.annotation.Annotation">
+</implements>
+</class>
+<class name="PolicyPermission"
+ extends="java.lang.Object"
+ abstract="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<implements name="java.lang.annotation.Annotation">
+</implements>
+</class>
+</package>
+<package name="org.lineageos.mod.health.sdk.model.profile"
+>
+<class name="MedicalProfile"
+ extends="java.lang.Object"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="MedicalProfile"
+ type="org.lineageos.mod.health.sdk.model.profile.MedicalProfile"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</constructor>
+<constructor name="MedicalProfile"
+ type="org.lineageos.mod.health.sdk.model.profile.MedicalProfile"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="allergies" type="java.lang.String">
+</parameter>
+<parameter name="bloodType" type="int">
+</parameter>
+<parameter name="height" type="float">
+</parameter>
+<parameter name="medications" type="java.lang.String">
+</parameter>
+<parameter name="notes" type="java.lang.String">
+</parameter>
+<parameter name="organDonor" type="int">
+</parameter>
+<parameter name="biologicalSex" type="int">
+</parameter>
+</constructor>
+<method name="getAllergies"
+ return="java.lang.String"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getBiologicalSex"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getBloodType"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getHeight"
+ return="float"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getMedications"
+ return="java.lang.String"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getNotes"
+ return="java.lang.String"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getOrganDonor"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="setAllergies"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="allergies" type="java.lang.String">
+</parameter>
+</method>
+<method name="setBiologicalSex"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="biologicalSex" type="int">
+</parameter>
+</method>
+<method name="setBloodType"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="bloodType" type="int">
+</parameter>
+</method>
+<method name="setHeight"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="height" type="float">
+</parameter>
+</method>
+<method name="setMedications"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="medications" type="java.lang.String">
+</parameter>
+</method>
+<method name="setNotes"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="notes" type="java.lang.String">
+</parameter>
+</method>
+<method name="setOrganDonor"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="organDonor" type="int">
+</parameter>
+</method>
+<method name="toContentValues"
+ return="android.content.ContentValues"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+</class>
+</package>
+<package name="org.lineageos.mod.health.sdk.model.records"
+>
+<class name="Record"
+ extends="java.lang.Object"
+ abstract="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="Record"
+ type="org.lineageos.mod.health.sdk.model.records.Record"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="id" type="long">
+</parameter>
+<parameter name="metric" type="int">
+</parameter>
+<parameter name="time" type="long">
+</parameter>
+</constructor>
+<method name="getId"
+ return="long"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getMetric"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getTime"
+ return="long"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="setTime"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="time" type="long">
+</parameter>
+</method>
+<method name="toContentValues"
+ return="android.content.ContentValues"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<field name="id"
+ type="long"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+<field name="metric"
+ type="int"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+<field name="time"
+ type="long"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+</class>
+</package>
+<package name="org.lineageos.mod.health.sdk.model.records.activity"
+>
+<class name="ActivityRecord"
+ extends="org.lineageos.mod.health.sdk.model.records.Record"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="getAvgSpeed"
+ return="org.lineageos.mod.health.sdk.model.values.SpeedValue"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</method>
+<method name="getCalories"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</method>
+<method name="getDistance"
+ return="org.lineageos.mod.health.sdk.model.values.LengthValue"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</method>
+<method name="getDuration"
+ return="long"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getElevationGain"
+ return="org.lineageos.mod.health.sdk.model.values.LengthValue"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</method>
+<method name="getNotes"
+ return="java.lang.String"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</method>
+<method name="getSteps"
+ return="long"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</method>
+<method name="setAvgSpeed"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="avgSpeed" type="org.lineageos.mod.health.sdk.model.values.SpeedValue">
+</parameter>
+</method>
+<method name="setCalories"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="calories" type="int">
+</parameter>
+</method>
+<method name="setDistance"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="distance" type="org.lineageos.mod.health.sdk.model.values.LengthValue">
+</parameter>
+</method>
+<method name="setDuration"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="duration" type="long">
+</parameter>
+</method>
+<method name="setElevationGain"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="elevationGain" type="org.lineageos.mod.health.sdk.model.values.LengthValue">
+</parameter>
+</method>
+<method name="setNotes"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="notes" type="java.lang.String">
+</parameter>
+</method>
+<method name="setSteps"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="steps" type="long">
+</parameter>
+</method>
+<method name="toContentValues"
+ return="android.content.ContentValues"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+</class>
+<class name="CyclingRecord"
+ extends="org.lineageos.mod.health.sdk.model.records.activity.ActivityRecord"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="CyclingRecord"
+ type="org.lineageos.mod.health.sdk.model.records.activity.CyclingRecord"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="id" type="long">
+</parameter>
+<parameter name="time" type="long">
+</parameter>
+<parameter name="duration" type="long">
+</parameter>
+<parameter name="avgSpeed" type="org.lineageos.mod.health.sdk.model.values.SpeedValue">
+</parameter>
+<parameter name="distance" type="org.lineageos.mod.health.sdk.model.values.LengthValue">
+</parameter>
+<parameter name="elevationGain" type="org.lineageos.mod.health.sdk.model.values.LengthValue">
+</parameter>
+</constructor>
+<method name="getAvgSpeed"
+ return="org.lineageos.mod.health.sdk.model.values.SpeedValue"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getDistance"
+ return="org.lineageos.mod.health.sdk.model.values.LengthValue"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getElevationGain"
+ return="org.lineageos.mod.health.sdk.model.values.LengthValue"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="setAvgSpeed"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="avgSpeed" type="org.lineageos.mod.health.sdk.model.values.SpeedValue">
+</parameter>
+</method>
+<method name="setDistance"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="distance" type="org.lineageos.mod.health.sdk.model.values.LengthValue">
+</parameter>
+</method>
+<method name="setElevationGain"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="elevationGain" type="org.lineageos.mod.health.sdk.model.values.LengthValue">
+</parameter>
+</method>
+</class>
+<class name="RunningRecord"
+ extends="org.lineageos.mod.health.sdk.model.records.activity.ActivityRecord"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="RunningRecord"
+ type="org.lineageos.mod.health.sdk.model.records.activity.RunningRecord"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="id" type="long">
+</parameter>
+<parameter name="time" type="long">
+</parameter>
+<parameter name="duration" type="long">
+</parameter>
+<parameter name="avgSpeed" type="org.lineageos.mod.health.sdk.model.values.SpeedValue">
+</parameter>
+<parameter name="distance" type="org.lineageos.mod.health.sdk.model.values.LengthValue">
+</parameter>
+</constructor>
+<method name="getAvgSpeed"
+ return="org.lineageos.mod.health.sdk.model.values.SpeedValue"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getDistance"
+ return="org.lineageos.mod.health.sdk.model.values.LengthValue"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="setAvgSpeed"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="avgSpeed" type="org.lineageos.mod.health.sdk.model.values.SpeedValue">
+</parameter>
+</method>
+<method name="setDistance"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="distance" type="org.lineageos.mod.health.sdk.model.values.LengthValue">
+</parameter>
+</method>
+</class>
+<class name="WalkingRecord"
+ extends="org.lineageos.mod.health.sdk.model.records.activity.ActivityRecord"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="WalkingRecord"
+ type="org.lineageos.mod.health.sdk.model.records.activity.WalkingRecord"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="id" type="long">
+</parameter>
+<parameter name="time" type="long">
+</parameter>
+<parameter name="duration" type="long">
+</parameter>
+<parameter name="distance" type="org.lineageos.mod.health.sdk.model.values.LengthValue">
+</parameter>
+<parameter name="steps" type="long">
+</parameter>
+</constructor>
+<method name="getDistance"
+ return="org.lineageos.mod.health.sdk.model.values.LengthValue"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getSteps"
+ return="long"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="setDistance"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="distance" type="org.lineageos.mod.health.sdk.model.values.LengthValue">
+</parameter>
+</method>
+<method name="setSteps"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="steps" type="long">
+</parameter>
+</method>
+</class>
+<class name="WorkoutRecord"
+ extends="org.lineageos.mod.health.sdk.model.records.activity.ActivityRecord"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="WorkoutRecord"
+ type="org.lineageos.mod.health.sdk.model.records.activity.WorkoutRecord"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="id" type="long">
+</parameter>
+<parameter name="time" type="long">
+</parameter>
+<parameter name="duration" type="long">
+</parameter>
+<parameter name="calories" type="int">
+</parameter>
+<parameter name="notes" type="java.lang.String">
+</parameter>
+</constructor>
+<method name="getCalories"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getNotes"
+ return="java.lang.String"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="setCalories"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="calories" type="int">
+</parameter>
+</method>
+<method name="setNotes"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="notes" type="java.lang.String">
+</parameter>
+</method>
+</class>
+</package>
+<package name="org.lineageos.mod.health.sdk.model.records.body"
+>
+<class name="AbdominalCircumferenceRecord"
+ extends="org.lineageos.mod.health.sdk.model.records.body.BodyRecord"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="AbdominalCircumferenceRecord"
+ type="org.lineageos.mod.health.sdk.model.records.body.AbdominalCircumferenceRecord"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="id" type="long">
+</parameter>
+<parameter name="time" type="long">
+</parameter>
+<parameter name="value" type="org.lineageos.mod.health.sdk.model.values.LengthValue">
+</parameter>
+</constructor>
+<method name="valueAsDouble"
+ return="double"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</method>
+</class>
+<class name="BaseBodyRecord"
+ extends="org.lineageos.mod.health.sdk.model.records.body.BodyRecord"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="valueAsDouble"
+ return="double"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</method>
+</class>
+<class name="BodyMassIndexRecord"
+ extends="org.lineageos.mod.health.sdk.model.records.body.BaseBodyRecord"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="BodyMassIndexRecord"
+ type="org.lineageos.mod.health.sdk.model.records.body.BodyMassIndexRecord"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="id" type="long">
+</parameter>
+<parameter name="time" type="long">
+</parameter>
+<parameter name="value" type="double">
+</parameter>
+</constructor>
+<method name="setValue"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="value" type="java.lang.Double">
+</parameter>
+</method>
+</class>
+<class name="BodyRecord"
+ extends="org.lineageos.mod.health.sdk.model.records.Record"
+ abstract="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="getNotes"
+ return="java.lang.String"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</method>
+<method name="getOtherSymptoms"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</method>
+<method name="getPhysicalSymptoms"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</method>
+<method name="getSexualActivity"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</method>
+<method name="getValue"
+ return="T"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="setNotes"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="notes" type="java.lang.String">
+</parameter>
+</method>
+<method name="setOtherSymptoms"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="otherSymptoms" type="int">
+</parameter>
+</method>
+<method name="setPhysicalSymptoms"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="physicalSymptoms" type="int">
+</parameter>
+</method>
+<method name="setSexualActivity"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="sexualActivity" type="int">
+</parameter>
+</method>
+<method name="setValue"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="value" type="T">
+</parameter>
+</method>
+<method name="toContentValues"
+ return="android.content.ContentValues"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="valueAsDouble"
+ return="double"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</method>
+<field name="value"
+ type="T"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+</class>
+<class name="BodyTemperatureRecord"
+ extends="org.lineageos.mod.health.sdk.model.records.body.BodyRecord"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="BodyTemperatureRecord"
+ type="org.lineageos.mod.health.sdk.model.records.body.BodyTemperatureRecord"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="id" type="long">
+</parameter>
+<parameter name="time" type="long">
+</parameter>
+<parameter name="value" type="org.lineageos.mod.health.sdk.model.values.TemperatureValue">
+</parameter>
+</constructor>
+<method name="valueAsDouble"
+ return="double"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</method>
+</class>
+<class name="LeanBodyMassRecord"
+ extends="org.lineageos.mod.health.sdk.model.records.body.BaseBodyRecord"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="LeanBodyMassRecord"
+ type="org.lineageos.mod.health.sdk.model.records.body.LeanBodyMassRecord"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="id" type="long">
+</parameter>
+<parameter name="time" type="long">
+</parameter>
+<parameter name="value" type="double">
+</parameter>
+</constructor>
+</class>
+<class name="MenstrualCycleRecord"
+ extends="org.lineageos.mod.health.sdk.model.records.body.BaseBodyRecord"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="MenstrualCycleRecord"
+ type="org.lineageos.mod.health.sdk.model.records.body.MenstrualCycleRecord"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="id" type="long">
+</parameter>
+<parameter name="time" type="long">
+</parameter>
+<parameter name="otherSymptoms" type="int">
+</parameter>
+<parameter name="physicalSymptoms" type="int">
+</parameter>
+<parameter name="sexualActivity" type="int">
+</parameter>
+<parameter name="value" type="double">
+</parameter>
+</constructor>
+<method name="getOtherSymptoms"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getPhysicalSymptoms"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getSexualActivity"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="setOtherSymptoms"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="otherSymptoms" type="int">
+</parameter>
+</method>
+<method name="setPhysicalSymptoms"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="physicalSymptoms" type="int">
+</parameter>
+</method>
+<method name="setSexualActivity"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="sexualActivity" type="int">
+</parameter>
+</method>
+<method name="setValue"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="value" type="java.lang.Double">
+</parameter>
+</method>
+</class>
+<class name="UvIndexRecord"
+ extends="org.lineageos.mod.health.sdk.model.records.body.BaseBodyRecord"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="UvIndexRecord"
+ type="org.lineageos.mod.health.sdk.model.records.body.UvIndexRecord"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="id" type="long">
+</parameter>
+<parameter name="time" type="long">
+</parameter>
+<parameter name="value" type="double">
+</parameter>
+</constructor>
+<method name="setValue"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="value" type="java.lang.Double">
+</parameter>
+</method>
+</class>
+<class name="WaterIntakeRecord"
+ extends="org.lineageos.mod.health.sdk.model.records.body.BaseBodyRecord"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="WaterIntakeRecord"
+ type="org.lineageos.mod.health.sdk.model.records.body.WaterIntakeRecord"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="id" type="long">
+</parameter>
+<parameter name="time" type="long">
+</parameter>
+<parameter name="notes" type="java.lang.String">
+</parameter>
+<parameter name="value" type="double">
+</parameter>
+</constructor>
+<method name="getNotes"
+ return="java.lang.String"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="setNotes"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="notes" type="java.lang.String">
+</parameter>
+</method>
+<method name="setValue"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="value" type="java.lang.Double">
+</parameter>
+</method>
+</class>
+<class name="WeightRecord"
+ extends="org.lineageos.mod.health.sdk.model.records.body.BodyRecord"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="WeightRecord"
+ type="org.lineageos.mod.health.sdk.model.records.body.WeightRecord"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="id" type="long">
+</parameter>
+<parameter name="time" type="long">
+</parameter>
+<parameter name="value" type="org.lineageos.mod.health.sdk.model.values.MassValue">
+</parameter>
+</constructor>
+<method name="valueAsDouble"
+ return="double"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</method>
+</class>
+</package>
+<package name="org.lineageos.mod.health.sdk.model.records.breathing"
+>
+<class name="BreathingRecord"
+ extends="org.lineageos.mod.health.sdk.model.records.Record"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="getNotes"
+ return="java.lang.String"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</method>
+<method name="getValue"
+ return="double"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</method>
+<method name="setNotes"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="notes" type="java.lang.String">
+</parameter>
+</method>
+<method name="setValue"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="value" type="double">
+</parameter>
+</method>
+<method name="toContentValues"
+ return="android.content.ContentValues"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+</class>
+<class name="InhalerUsageRecord"
+ extends="org.lineageos.mod.health.sdk.model.records.breathing.BreathingRecord"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="InhalerUsageRecord"
+ type="org.lineageos.mod.health.sdk.model.records.breathing.InhalerUsageRecord"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="id" type="long">
+</parameter>
+<parameter name="time" type="long">
+</parameter>
+<parameter name="notes" type="java.lang.String">
+</parameter>
+</constructor>
+<method name="getNotes"
+ return="java.lang.String"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="setNotes"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="notes" type="java.lang.String">
+</parameter>
+</method>
+</class>
+<class name="OxygenSaturationRecord"
+ extends="org.lineageos.mod.health.sdk.model.records.breathing.BreathingRecord"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="OxygenSaturationRecord"
+ type="org.lineageos.mod.health.sdk.model.records.breathing.OxygenSaturationRecord"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="id" type="long">
+</parameter>
+<parameter name="time" type="long">
+</parameter>
+<parameter name="value" type="double">
+</parameter>
+</constructor>
+<method name="getValue"
+ return="double"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="setValue"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="value" type="double">
+</parameter>
+</method>
+</class>
+<class name="PeakExpiratoryFlowRecord"
+ extends="org.lineageos.mod.health.sdk.model.records.breathing.BreathingRecord"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="PeakExpiratoryFlowRecord"
+ type="org.lineageos.mod.health.sdk.model.records.breathing.PeakExpiratoryFlowRecord"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="id" type="long">
+</parameter>
+<parameter name="time" type="long">
+</parameter>
+<parameter name="value" type="double">
+</parameter>
+</constructor>
+<method name="getValue"
+ return="double"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="setValue"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="value" type="double">
+</parameter>
+</method>
+</class>
+<class name="RespiratoryRateRecord"
+ extends="org.lineageos.mod.health.sdk.model.records.breathing.BreathingRecord"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="RespiratoryRateRecord"
+ type="org.lineageos.mod.health.sdk.model.records.breathing.RespiratoryRateRecord"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="id" type="long">
+</parameter>
+<parameter name="time" type="long">
+</parameter>
+<parameter name="value" type="double">
+</parameter>
+</constructor>
+<method name="getValue"
+ return="double"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="setValue"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="value" type="double">
+</parameter>
+</method>
+</class>
+<class name="VitalCapacityRecord"
+ extends="org.lineageos.mod.health.sdk.model.records.breathing.BreathingRecord"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="VitalCapacityRecord"
+ type="org.lineageos.mod.health.sdk.model.records.breathing.VitalCapacityRecord"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="id" type="long">
+</parameter>
+<parameter name="time" type="long">
+</parameter>
+<parameter name="value" type="double">
+</parameter>
+</constructor>
+<method name="getValue"
+ return="double"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="setValue"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="value" type="double">
+</parameter>
+</method>
+</class>
+</package>
+<package name="org.lineageos.mod.health.sdk.model.records.heartblood"
+>
+<class name="BaseHeartBloodRecord"
+ extends="org.lineageos.mod.health.sdk.model.records.heartblood.HeartBloodRecord"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="valueAsDouble"
+ return="double"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</method>
+</class>
+<class name="BloodAlcoholConcentrationRecord"
+ extends="org.lineageos.mod.health.sdk.model.records.heartblood.BaseHeartBloodRecord"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="BloodAlcoholConcentrationRecord"
+ type="org.lineageos.mod.health.sdk.model.records.heartblood.BloodAlcoholConcentrationRecord"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="id" type="long">
+</parameter>
+<parameter name="time" type="long">
+</parameter>
+<parameter name="value" type="double">
+</parameter>
+</constructor>
+<method name="getValue"
+ return="java.lang.Double"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="setValue"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="value" type="java.lang.Double">
+</parameter>
+</method>
+</class>
+<class name="BloodPressureRecord"
+ extends="org.lineageos.mod.health.sdk.model.records.heartblood.HeartBloodRecord"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="BloodPressureRecord"
+ type="org.lineageos.mod.health.sdk.model.records.heartblood.BloodPressureRecord"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="id" type="long">
+</parameter>
+<parameter name="time" type="long">
+</parameter>
+<parameter name="systolic" type="org.lineageos.mod.health.sdk.model.values.PressureValue">
+</parameter>
+<parameter name="diastolic" type="org.lineageos.mod.health.sdk.model.values.PressureValue">
+</parameter>
+</constructor>
+<method name="getDiastolic"
+ return="org.lineageos.mod.health.sdk.model.values.PressureValue"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getSystolic"
+ return="org.lineageos.mod.health.sdk.model.values.PressureValue"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="setDiastolic"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="diastolic" type="org.lineageos.mod.health.sdk.model.values.PressureValue">
+</parameter>
+</method>
+<method name="setSystolic"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="systolic" type="org.lineageos.mod.health.sdk.model.values.PressureValue">
+</parameter>
+</method>
+<method name="valueAsDouble"
+ return="double"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</method>
+</class>
+<class name="GlucoseRecord"
+ extends="org.lineageos.mod.health.sdk.model.records.heartblood.HeartBloodRecord"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="GlucoseRecord"
+ type="org.lineageos.mod.health.sdk.model.records.heartblood.GlucoseRecord"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="id" type="long">
+</parameter>
+<parameter name="time" type="long">
+</parameter>
+<parameter name="mealRelation" type="int">
+</parameter>
+<parameter name="value" type="org.lineageos.mod.health.sdk.model.values.BloodGlucoseValue">
+</parameter>
+</constructor>
+<method name="getMealRelation"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getValue"
+ return="org.lineageos.mod.health.sdk.model.values.BloodGlucoseValue"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="setMealRelation"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="mealRelation" type="int">
+</parameter>
+</method>
+<method name="setValue"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="value" type="org.lineageos.mod.health.sdk.model.values.BloodGlucoseValue">
+</parameter>
+</method>
+<method name="valueAsDouble"
+ return="double"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</method>
+</class>
+<class name="HeartBloodRecord"
+ extends="org.lineageos.mod.health.sdk.model.records.Record"
+ abstract="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="getDiastolic"
+ return="org.lineageos.mod.health.sdk.model.values.PressureValue"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</method>
+<method name="getMealRelation"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</method>
+<method name="getSystolic"
+ return="org.lineageos.mod.health.sdk.model.values.PressureValue"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</method>
+<method name="getValue"
+ return="T"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</method>
+<method name="setDiastolic"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="diastolic" type="org.lineageos.mod.health.sdk.model.values.PressureValue">
+</parameter>
+</method>
+<method name="setMealRelation"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="mealRelation" type="int">
+</parameter>
+</method>
+<method name="setSystolic"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="systolic" type="org.lineageos.mod.health.sdk.model.values.PressureValue">
+</parameter>
+</method>
+<method name="setValue"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="value" type="T">
+</parameter>
+</method>
+<method name="toContentValues"
+ return="android.content.ContentValues"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="valueAsDouble"
+ return="double"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</method>
+<field name="value"
+ type="T"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+</class>
+<class name="HeartRateRecord"
+ extends="org.lineageos.mod.health.sdk.model.records.heartblood.BaseHeartBloodRecord"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="HeartRateRecord"
+ type="org.lineageos.mod.health.sdk.model.records.heartblood.HeartRateRecord"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="id" type="long">
+</parameter>
+<parameter name="time" type="long">
+</parameter>
+<parameter name="value" type="double">
+</parameter>
+</constructor>
+<method name="getValue"
+ return="java.lang.Double"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="setValue"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="value" type="java.lang.Double">
+</parameter>
+</method>
+</class>
+<class name="PerfusionIndexRecord"
+ extends="org.lineageos.mod.health.sdk.model.records.heartblood.BaseHeartBloodRecord"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="PerfusionIndexRecord"
+ type="org.lineageos.mod.health.sdk.model.records.heartblood.PerfusionIndexRecord"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="id" type="long">
+</parameter>
+<parameter name="time" type="long">
+</parameter>
+<parameter name="value" type="double">
+</parameter>
+</constructor>
+<method name="getValue"
+ return="java.lang.Double"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="setValue"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="value" type="java.lang.Double">
+</parameter>
+</method>
+</class>
+</package>
+<package name="org.lineageos.mod.health.sdk.model.records.mindfulness"
+>
+<class name="MeditationRecord"
+ extends="org.lineageos.mod.health.sdk.model.records.mindfulness.MindfulnessRecord"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="MeditationRecord"
+ type="org.lineageos.mod.health.sdk.model.records.mindfulness.MeditationRecord"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="id" type="long">
+</parameter>
+<parameter name="time" type="long">
+</parameter>
+<parameter name="duration" type="long">
+</parameter>
+</constructor>
+<method name="getDuration"
+ return="long"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="setDuration"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="duration" type="long">
+</parameter>
+</method>
+</class>
+<class name="MindfulnessRecord"
+ extends="org.lineageos.mod.health.sdk.model.records.Record"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="getDuration"
+ return="long"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</method>
+<method name="getMoodLevel"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</method>
+<method name="getNotes"
+ return="java.lang.String"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</method>
+<method name="setDuration"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="duration" type="long">
+</parameter>
+</method>
+<method name="setMoodLevel"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="moodLevel" type="int">
+</parameter>
+</method>
+<method name="setNotes"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="notes" type="java.lang.String">
+</parameter>
+</method>
+<method name="toContentValues"
+ return="android.content.ContentValues"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+</class>
+<class name="MoodRecord"
+ extends="org.lineageos.mod.health.sdk.model.records.mindfulness.MindfulnessRecord"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="MoodRecord"
+ type="org.lineageos.mod.health.sdk.model.records.mindfulness.MoodRecord"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="id" type="long">
+</parameter>
+<parameter name="time" type="long">
+</parameter>
+<parameter name="moodLevel" type="int">
+</parameter>
+<parameter name="notes" type="java.lang.String">
+</parameter>
+</constructor>
+<method name="getMoodLevel"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getNotes"
+ return="java.lang.String"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="setMoodLevel"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="moodLevel" type="int">
+</parameter>
+</method>
+<method name="setNotes"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="notes" type="java.lang.String">
+</parameter>
+</method>
+</class>
+<class name="SleepRecord"
+ extends="org.lineageos.mod.health.sdk.model.records.mindfulness.MindfulnessRecord"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="SleepRecord"
+ type="org.lineageos.mod.health.sdk.model.records.mindfulness.SleepRecord"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="id" type="long">
+</parameter>
+<parameter name="time" type="long">
+</parameter>
+<parameter name="duration" type="long">
+</parameter>
+</constructor>
+<method name="getDuration"
+ return="long"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="setDuration"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="duration" type="long">
+</parameter>
+</method>
+</class>
+</package>
+<package name="org.lineageos.mod.health.sdk.model.values"
+>
+<class name="BloodGlucoseValue"
+ extends="java.lang.Object"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="mgdL"
+ return="org.lineageos.mod.health.sdk.model.values.BloodGlucoseValue"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="value" type="long">
+</parameter>
+</method>
+<method name="mgdL"
+ return="long"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="minus"
+ return="org.lineageos.mod.health.sdk.model.values.BloodGlucoseValue"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="other" type="org.lineageos.mod.health.sdk.model.values.BloodGlucoseValue">
+</parameter>
+</method>
+<method name="mmolL"
+ return="org.lineageos.mod.health.sdk.model.values.BloodGlucoseValue"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="value" type="double">
+</parameter>
+</method>
+<method name="mmolL"
+ return="double"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="plus"
+ return="org.lineageos.mod.health.sdk.model.values.BloodGlucoseValue"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="other" type="org.lineageos.mod.health.sdk.model.values.BloodGlucoseValue">
+</parameter>
+</method>
+</class>
+<class name="LengthValue"
+ extends="java.lang.Object"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="centimeters"
+ return="org.lineageos.mod.health.sdk.model.values.LengthValue"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="value" type="double">
+</parameter>
+</method>
+<method name="centimeters"
+ return="double"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="feet"
+ return="org.lineageos.mod.health.sdk.model.values.LengthValue"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="value" type="double">
+</parameter>
+</method>
+<method name="feet"
+ return="double"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="inches"
+ return="org.lineageos.mod.health.sdk.model.values.LengthValue"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="value" type="double">
+</parameter>
+</method>
+<method name="inches"
+ return="double"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="kilometers"
+ return="org.lineageos.mod.health.sdk.model.values.LengthValue"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="value" type="double">
+</parameter>
+</method>
+<method name="kilometers"
+ return="double"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="meters"
+ return="org.lineageos.mod.health.sdk.model.values.LengthValue"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="value" type="double">
+</parameter>
+</method>
+<method name="meters"
+ return="double"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="miles"
+ return="org.lineageos.mod.health.sdk.model.values.LengthValue"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="value" type="double">
+</parameter>
+</method>
+<method name="miles"
+ return="double"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="millimeters"
+ return="org.lineageos.mod.health.sdk.model.values.LengthValue"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="value" type="double">
+</parameter>
+</method>
+<method name="millimeters"
+ return="double"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="minus"
+ return="org.lineageos.mod.health.sdk.model.values.LengthValue"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="other" type="org.lineageos.mod.health.sdk.model.values.LengthValue">
+</parameter>
+</method>
+<method name="plus"
+ return="org.lineageos.mod.health.sdk.model.values.LengthValue"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="other" type="org.lineageos.mod.health.sdk.model.values.LengthValue">
+</parameter>
+</method>
+<method name="yards"
+ return="org.lineageos.mod.health.sdk.model.values.LengthValue"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="value" type="double">
+</parameter>
+</method>
+<method name="yards"
+ return="double"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<field name="ZERO"
+ type="org.lineageos.mod.health.sdk.model.values.LengthValue"
+ transient="false"
+ volatile="false"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+</class>
+<class name="MassValue"
+ extends="java.lang.Object"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="grams"
+ return="org.lineageos.mod.health.sdk.model.values.MassValue"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="value" type="double">
+</parameter>
+</method>
+<method name="grams"
+ return="double"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="kilograms"
+ return="org.lineageos.mod.health.sdk.model.values.MassValue"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="value" type="double">
+</parameter>
+</method>
+<method name="kilograms"
+ return="double"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="minus"
+ return="org.lineageos.mod.health.sdk.model.values.MassValue"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="other" type="org.lineageos.mod.health.sdk.model.values.MassValue">
+</parameter>
+</method>
+<method name="ounces"
+ return="org.lineageos.mod.health.sdk.model.values.MassValue"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="value" type="double">
+</parameter>
+</method>
+<method name="ounces"
+ return="double"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="plus"
+ return="org.lineageos.mod.health.sdk.model.values.MassValue"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="other" type="org.lineageos.mod.health.sdk.model.values.MassValue">
+</parameter>
+</method>
+<method name="pounds"
+ return="org.lineageos.mod.health.sdk.model.values.MassValue"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="value" type="double">
+</parameter>
+</method>
+<method name="pounds"
+ return="double"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+</class>
+<class name="PressureValue"
+ extends="java.lang.Object"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="atmospheres"
+ return="org.lineageos.mod.health.sdk.model.values.PressureValue"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="value" type="double">
+</parameter>
+</method>
+<method name="atmospheres"
+ return="double"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="bars"
+ return="org.lineageos.mod.health.sdk.model.values.PressureValue"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="value" type="double">
+</parameter>
+</method>
+<method name="bars"
+ return="double"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="inHg"
+ return="org.lineageos.mod.health.sdk.model.values.PressureValue"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="value" type="double">
+</parameter>
+</method>
+<method name="inHg"
+ return="double"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="minus"
+ return="org.lineageos.mod.health.sdk.model.values.PressureValue"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="other" type="org.lineageos.mod.health.sdk.model.values.PressureValue">
+</parameter>
+</method>
+<method name="mmHg"
+ return="org.lineageos.mod.health.sdk.model.values.PressureValue"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="value" type="double">
+</parameter>
+</method>
+<method name="mmHg"
+ return="double"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="pascals"
+ return="org.lineageos.mod.health.sdk.model.values.PressureValue"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="value" type="double">
+</parameter>
+</method>
+<method name="pascals"
+ return="double"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="plus"
+ return="org.lineageos.mod.health.sdk.model.values.PressureValue"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="other" type="org.lineageos.mod.health.sdk.model.values.PressureValue">
+</parameter>
+</method>
+<field name="ZERO"
+ type="org.lineageos.mod.health.sdk.model.values.PressureValue"
+ transient="false"
+ volatile="false"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+</class>
+<class name="SpeedValue"
+ extends="java.lang.Object"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="kilometersPerHour"
+ return="org.lineageos.mod.health.sdk.model.values.SpeedValue"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="value" type="double">
+</parameter>
+</method>
+<method name="kilometersPerHour"
+ return="double"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="metersPerSecond"
+ return="org.lineageos.mod.health.sdk.model.values.SpeedValue"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="value" type="double">
+</parameter>
+</method>
+<method name="metersPerSecond"
+ return="double"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="milesPerHour"
+ return="org.lineageos.mod.health.sdk.model.values.SpeedValue"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="value" type="double">
+</parameter>
+</method>
+<method name="milesPerHour"
+ return="double"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="minus"
+ return="org.lineageos.mod.health.sdk.model.values.SpeedValue"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="other" type="org.lineageos.mod.health.sdk.model.values.SpeedValue">
+</parameter>
+</method>
+<method name="plus"
+ return="org.lineageos.mod.health.sdk.model.values.SpeedValue"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="other" type="org.lineageos.mod.health.sdk.model.values.SpeedValue">
+</parameter>
+</method>
+<field name="ZERO"
+ type="org.lineageos.mod.health.sdk.model.values.SpeedValue"
+ transient="false"
+ volatile="false"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+</class>
+<class name="TemperatureValue"
+ extends="java.lang.Object"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="celsius"
+ return="org.lineageos.mod.health.sdk.model.values.TemperatureValue"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="value" type="double">
+</parameter>
+</method>
+<method name="celsius"
+ return="double"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="fahrenheit"
+ return="org.lineageos.mod.health.sdk.model.values.TemperatureValue"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="value" type="double">
+</parameter>
+</method>
+<method name="fahrenheit"
+ return="double"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="kevin"
+ return="org.lineageos.mod.health.sdk.model.values.TemperatureValue"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="value" type="double">
+</parameter>
+</method>
+<method name="kevin"
+ return="double"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="minus"
+ return="org.lineageos.mod.health.sdk.model.values.TemperatureValue"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="other" type="org.lineageos.mod.health.sdk.model.values.TemperatureValue">
+</parameter>
+</method>
+<method name="plus"
+ return="org.lineageos.mod.health.sdk.model.values.TemperatureValue"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="other" type="org.lineageos.mod.health.sdk.model.values.TemperatureValue">
+</parameter>
+</method>
+<field name="ZERO"
+ type="org.lineageos.mod.health.sdk.model.values.TemperatureValue"
+ transient="false"
+ volatile="false"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+</class>
+</package>
+<package name="org.lineageos.mod.health.sdk.repo"
+>
+<class name="ActivityRecordsRepo"
+ extends="org.lineageos.mod.health.sdk.repo.RecordsRepo"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="delete"
+ return="org.lineageos.mod.health.sdk.repo.OperationResult"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="record" type="org.lineageos.mod.health.sdk.model.records.activity.ActivityRecord">
+</parameter>
+</method>
+<method name="getAll"
+ return="java.util.List&lt;org.lineageos.mod.health.sdk.model.records.activity.ActivityRecord&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getAllCyclingRecords"
+ return="java.util.List&lt;org.lineageos.mod.health.sdk.model.records.activity.CyclingRecord&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getAllRunningRecords"
+ return="java.util.List&lt;org.lineageos.mod.health.sdk.model.records.activity.RunningRecord&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getAllWalkingRecords"
+ return="java.util.List&lt;org.lineageos.mod.health.sdk.model.records.activity.WalkingRecord&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getAllWorkoutRecords"
+ return="java.util.List&lt;org.lineageos.mod.health.sdk.model.records.activity.WorkoutRecord&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getCyclingRecord"
+ return="org.lineageos.mod.health.sdk.model.records.activity.CyclingRecord"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="id" type="long">
+</parameter>
+</method>
+<method name="getInstance"
+ return="org.lineageos.mod.health.sdk.repo.ActivityRecordsRepo"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="contentResolver" type="android.content.ContentResolver">
+</parameter>
+</method>
+<method name="getRunningRecord"
+ return="org.lineageos.mod.health.sdk.model.records.activity.RunningRecord"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="id" type="long">
+</parameter>
+</method>
+<method name="getWalkingRecord"
+ return="org.lineageos.mod.health.sdk.model.records.activity.WalkingRecord"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="id" type="long">
+</parameter>
+</method>
+<method name="getWorkoutRecord"
+ return="org.lineageos.mod.health.sdk.model.records.activity.WorkoutRecord"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="id" type="long">
+</parameter>
+</method>
+<method name="insert"
+ return="org.lineageos.mod.health.sdk.repo.OperationResult"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="record" type="org.lineageos.mod.health.sdk.model.records.activity.ActivityRecord">
+</parameter>
+</method>
+<method name="parseRow"
+ return="org.lineageos.mod.health.sdk.model.records.activity.ActivityRecord"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="cursor" type="android.database.Cursor">
+</parameter>
+</method>
+<method name="update"
+ return="org.lineageos.mod.health.sdk.repo.OperationResult"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="record" type="org.lineageos.mod.health.sdk.model.records.activity.ActivityRecord">
+</parameter>
+</method>
+</class>
+<class name="BatchOperations"
+ extends="java.lang.Object"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="delete"
+ return="org.lineageos.mod.health.sdk.repo.BatchOperations&lt;T&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="record" type="T">
+</parameter>
+</method>
+<method name="insert"
+ return="org.lineageos.mod.health.sdk.repo.BatchOperations&lt;T&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="record" type="T">
+</parameter>
+</method>
+<method name="update"
+ return="org.lineageos.mod.health.sdk.repo.BatchOperations&lt;T&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="record" type="T">
+</parameter>
+</method>
+</class>
+<interface name="BatchOperations.Builder"
+ abstract="true"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="build"
+ return="void"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="composer" type="org.lineageos.mod.health.sdk.repo.BatchOperations&lt;T&gt;">
+</parameter>
+</method>
+</interface>
+<class name="BodyRecordsRepo"
+ extends="org.lineageos.mod.health.sdk.repo.RecordsRepo"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="delete"
+ return="org.lineageos.mod.health.sdk.repo.OperationResult"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="record" type="org.lineageos.mod.health.sdk.model.records.body.BodyRecord&lt;?&gt;">
+</parameter>
+</method>
+<method name="getAbdominalCircumferenceRecord"
+ return="org.lineageos.mod.health.sdk.model.records.body.AbdominalCircumferenceRecord"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="id" type="long">
+</parameter>
+</method>
+<method name="getAll"
+ return="java.util.List&lt;org.lineageos.mod.health.sdk.model.records.body.BodyRecord&lt;?&gt;&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getAllAbdominalCircumferenceRecords"
+ return="java.util.List&lt;org.lineageos.mod.health.sdk.model.records.body.AbdominalCircumferenceRecord&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getAllBodyMassIndexRecords"
+ return="java.util.List&lt;org.lineageos.mod.health.sdk.model.records.body.BodyMassIndexRecord&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getAllBodyTemperatureRecords"
+ return="java.util.List&lt;org.lineageos.mod.health.sdk.model.records.body.BodyTemperatureRecord&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getAllLeanBodyMassRecords"
+ return="java.util.List&lt;org.lineageos.mod.health.sdk.model.records.body.LeanBodyMassRecord&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getAllMenstrualCycleRecords"
+ return="java.util.List&lt;org.lineageos.mod.health.sdk.model.records.body.MenstrualCycleRecord&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getAllUvIndexRecords"
+ return="java.util.List&lt;org.lineageos.mod.health.sdk.model.records.body.UvIndexRecord&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getAllWaterIntakeRecords"
+ return="java.util.List&lt;org.lineageos.mod.health.sdk.model.records.body.WaterIntakeRecord&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getAllWeightRecords"
+ return="java.util.List&lt;org.lineageos.mod.health.sdk.model.records.body.WeightRecord&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getBodyMassIndexRecord"
+ return="org.lineageos.mod.health.sdk.model.records.body.BodyMassIndexRecord"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="id" type="long">
+</parameter>
+</method>
+<method name="getBodyTemperatureRecord"
+ return="org.lineageos.mod.health.sdk.model.records.body.BodyTemperatureRecord"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="id" type="long">
+</parameter>
+</method>
+<method name="getInstance"
+ return="org.lineageos.mod.health.sdk.repo.BodyRecordsRepo"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="contentResolver" type="android.content.ContentResolver">
+</parameter>
+</method>
+<method name="getLeanBodyMassRecord"
+ return="org.lineageos.mod.health.sdk.model.records.body.LeanBodyMassRecord"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="id" type="long">
+</parameter>
+</method>
+<method name="getMenstrualCycleRecord"
+ return="org.lineageos.mod.health.sdk.model.records.body.MenstrualCycleRecord"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="id" type="long">
+</parameter>
+</method>
+<method name="getUvIndexRecord"
+ return="org.lineageos.mod.health.sdk.model.records.body.UvIndexRecord"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="id" type="long">
+</parameter>
+</method>
+<method name="getWaterIntakeRecord"
+ return="org.lineageos.mod.health.sdk.model.records.body.WaterIntakeRecord"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="id" type="long">
+</parameter>
+</method>
+<method name="getWeightRecord"
+ return="org.lineageos.mod.health.sdk.model.records.body.WeightRecord"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="id" type="long">
+</parameter>
+</method>
+<method name="insert"
+ return="org.lineageos.mod.health.sdk.repo.OperationResult"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="record" type="org.lineageos.mod.health.sdk.model.records.body.BodyRecord&lt;?&gt;">
+</parameter>
+</method>
+<method name="parseRow"
+ return="org.lineageos.mod.health.sdk.model.records.body.BodyRecord&lt;?&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="cursor" type="android.database.Cursor">
+</parameter>
+</method>
+<method name="update"
+ return="org.lineageos.mod.health.sdk.repo.OperationResult"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="record" type="org.lineageos.mod.health.sdk.model.records.body.BodyRecord&lt;?&gt;">
+</parameter>
+</method>
+</class>
+<class name="BreathingRecordsRepo"
+ extends="org.lineageos.mod.health.sdk.repo.RecordsRepo"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="delete"
+ return="org.lineageos.mod.health.sdk.repo.OperationResult"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="record" type="org.lineageos.mod.health.sdk.model.records.breathing.BreathingRecord">
+</parameter>
+</method>
+<method name="getAll"
+ return="java.util.List&lt;org.lineageos.mod.health.sdk.model.records.breathing.BreathingRecord&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getAllInhalerUsageRecords"
+ return="java.util.List&lt;org.lineageos.mod.health.sdk.model.records.breathing.InhalerUsageRecord&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getAllOxygenSaturationRecords"
+ return="java.util.List&lt;org.lineageos.mod.health.sdk.model.records.breathing.OxygenSaturationRecord&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getAllPeakExpiratoryFlowRecords"
+ return="java.util.List&lt;org.lineageos.mod.health.sdk.model.records.breathing.PeakExpiratoryFlowRecord&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getAllRespiratoryRateRecords"
+ return="java.util.List&lt;org.lineageos.mod.health.sdk.model.records.breathing.RespiratoryRateRecord&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getAllVitalCapacityRecords"
+ return="java.util.List&lt;org.lineageos.mod.health.sdk.model.records.breathing.VitalCapacityRecord&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getInhalerUsageRecord"
+ return="org.lineageos.mod.health.sdk.model.records.breathing.InhalerUsageRecord"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="id" type="long">
+</parameter>
+</method>
+<method name="getInstance"
+ return="org.lineageos.mod.health.sdk.repo.BreathingRecordsRepo"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="contentResolver" type="android.content.ContentResolver">
+</parameter>
+</method>
+<method name="getOxygenSaturationRecord"
+ return="org.lineageos.mod.health.sdk.model.records.breathing.OxygenSaturationRecord"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="id" type="long">
+</parameter>
+</method>
+<method name="getPeakExpiratoryFlowRecord"
+ return="org.lineageos.mod.health.sdk.model.records.breathing.PeakExpiratoryFlowRecord"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="id" type="long">
+</parameter>
+</method>
+<method name="getRespiratoryRateRecord"
+ return="org.lineageos.mod.health.sdk.model.records.breathing.RespiratoryRateRecord"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="id" type="long">
+</parameter>
+</method>
+<method name="getVitalCapacityRecord"
+ return="org.lineageos.mod.health.sdk.model.records.breathing.VitalCapacityRecord"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="id" type="long">
+</parameter>
+</method>
+<method name="insert"
+ return="org.lineageos.mod.health.sdk.repo.OperationResult"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="record" type="org.lineageos.mod.health.sdk.model.records.breathing.BreathingRecord">
+</parameter>
+</method>
+<method name="parseRow"
+ return="org.lineageos.mod.health.sdk.model.records.breathing.BreathingRecord"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="cursor" type="android.database.Cursor">
+</parameter>
+</method>
+<method name="update"
+ return="org.lineageos.mod.health.sdk.repo.OperationResult"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="record" type="org.lineageos.mod.health.sdk.model.records.breathing.BreathingRecord">
+</parameter>
+</method>
+</class>
+<class name="HeartBloodRecordsRepo"
+ extends="org.lineageos.mod.health.sdk.repo.RecordsRepo"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="delete"
+ return="org.lineageos.mod.health.sdk.repo.OperationResult"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="record" type="org.lineageos.mod.health.sdk.model.records.heartblood.HeartBloodRecord&lt;?&gt;">
+</parameter>
+</method>
+<method name="getAll"
+ return="java.util.List&lt;org.lineageos.mod.health.sdk.model.records.heartblood.HeartBloodRecord&lt;?&gt;&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getAllBloodAlcoholConcentrationRecords"
+ return="java.util.List&lt;org.lineageos.mod.health.sdk.model.records.heartblood.BloodAlcoholConcentrationRecord&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getAllBloodPressureRecords"
+ return="java.util.List&lt;org.lineageos.mod.health.sdk.model.records.heartblood.BloodPressureRecord&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getAllGlucoseRecords"
+ return="java.util.List&lt;org.lineageos.mod.health.sdk.model.records.heartblood.GlucoseRecord&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getAllHeartRateRecords"
+ return="java.util.List&lt;org.lineageos.mod.health.sdk.model.records.heartblood.HeartRateRecord&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getAllPerfusionIndexRecords"
+ return="java.util.List&lt;org.lineageos.mod.health.sdk.model.records.heartblood.PerfusionIndexRecord&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getBloodAlcoholConcentrationRecord"
+ return="org.lineageos.mod.health.sdk.model.records.heartblood.BloodAlcoholConcentrationRecord"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="id" type="long">
+</parameter>
+</method>
+<method name="getBloodPressureRecord"
+ return="org.lineageos.mod.health.sdk.model.records.heartblood.BloodPressureRecord"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="id" type="long">
+</parameter>
+</method>
+<method name="getGlucoseRecord"
+ return="org.lineageos.mod.health.sdk.model.records.heartblood.GlucoseRecord"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="id" type="long">
+</parameter>
+</method>
+<method name="getHeartRateRecord"
+ return="org.lineageos.mod.health.sdk.model.records.heartblood.HeartRateRecord"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="id" type="long">
+</parameter>
+</method>
+<method name="getInstance"
+ return="org.lineageos.mod.health.sdk.repo.HeartBloodRecordsRepo"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="contentResolver" type="android.content.ContentResolver">
+</parameter>
+</method>
+<method name="getPerfusionIndexRecord"
+ return="org.lineageos.mod.health.sdk.model.records.heartblood.PerfusionIndexRecord"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="id" type="long">
+</parameter>
+</method>
+<method name="insert"
+ return="org.lineageos.mod.health.sdk.repo.OperationResult"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="record" type="org.lineageos.mod.health.sdk.model.records.heartblood.HeartBloodRecord&lt;?&gt;">
+</parameter>
+</method>
+<method name="parseRow"
+ return="org.lineageos.mod.health.sdk.model.records.heartblood.HeartBloodRecord&lt;?&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="cursor" type="android.database.Cursor">
+</parameter>
+</method>
+<method name="update"
+ return="org.lineageos.mod.health.sdk.repo.OperationResult"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="record" type="org.lineageos.mod.health.sdk.model.records.heartblood.HeartBloodRecord&lt;?&gt;">
+</parameter>
+</method>
+</class>
+<class name="MedicalProfileRepo"
+ extends="java.lang.Object"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="get"
+ return="org.lineageos.mod.health.sdk.model.profile.MedicalProfile"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getInstance"
+ return="org.lineageos.mod.health.sdk.repo.MedicalProfileRepo"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="contentResolver" type="android.content.ContentResolver">
+</parameter>
+</method>
+<method name="reset"
+ return="boolean"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="set"
+ return="boolean"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="medicalProfile" type="org.lineageos.mod.health.sdk.model.profile.MedicalProfile">
+</parameter>
+</method>
+</class>
+<class name="MindfulnessRecordsRepo"
+ extends="org.lineageos.mod.health.sdk.repo.RecordsRepo"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="delete"
+ return="org.lineageos.mod.health.sdk.repo.OperationResult"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="record" type="org.lineageos.mod.health.sdk.model.records.mindfulness.MindfulnessRecord">
+</parameter>
+</method>
+<method name="getAll"
+ return="java.util.List&lt;org.lineageos.mod.health.sdk.model.records.mindfulness.MindfulnessRecord&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getAllMeditationRecords"
+ return="java.util.List&lt;org.lineageos.mod.health.sdk.model.records.mindfulness.MeditationRecord&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getAllMoodRecords"
+ return="java.util.List&lt;org.lineageos.mod.health.sdk.model.records.mindfulness.MoodRecord&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getAllSleepRecords"
+ return="java.util.List&lt;org.lineageos.mod.health.sdk.model.records.mindfulness.SleepRecord&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getInstance"
+ return="org.lineageos.mod.health.sdk.repo.MindfulnessRecordsRepo"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="contentResolver" type="android.content.ContentResolver">
+</parameter>
+</method>
+<method name="getMeditationRecord"
+ return="org.lineageos.mod.health.sdk.model.records.mindfulness.MeditationRecord"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="id" type="long">
+</parameter>
+</method>
+<method name="getMoodRecord"
+ return="org.lineageos.mod.health.sdk.model.records.mindfulness.MoodRecord"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="id" type="long">
+</parameter>
+</method>
+<method name="getSleepRecord"
+ return="org.lineageos.mod.health.sdk.model.records.mindfulness.SleepRecord"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="id" type="long">
+</parameter>
+</method>
+<method name="insert"
+ return="org.lineageos.mod.health.sdk.repo.OperationResult"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="record" type="org.lineageos.mod.health.sdk.model.records.mindfulness.MindfulnessRecord">
+</parameter>
+</method>
+<method name="parseRow"
+ return="org.lineageos.mod.health.sdk.model.records.mindfulness.MindfulnessRecord"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="cursor" type="android.database.Cursor">
+</parameter>
+</method>
+<method name="update"
+ return="org.lineageos.mod.health.sdk.repo.OperationResult"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="record" type="org.lineageos.mod.health.sdk.model.records.mindfulness.MindfulnessRecord">
+</parameter>
+</method>
+</class>
+<class name="OperationResult"
+ extends="java.lang.Object"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</class>
+<class name="OperationResult.Failure"
+ extends="org.lineageos.mod.health.sdk.repo.OperationResult"
+ abstract="false"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</class>
+<class name="OperationResult.PolicyError"
+ extends="org.lineageos.mod.health.sdk.repo.OperationResult"
+ abstract="false"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</class>
+<class name="OperationResult.Success"
+ extends="org.lineageos.mod.health.sdk.repo.OperationResult"
+ abstract="false"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<field name="result"
+ type="T"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+</class>
+<class name="RecordsRepo"
+ extends="java.lang.Object"
+ abstract="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="delete"
+ return="org.lineageos.mod.health.sdk.repo.OperationResult"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="record" type="T">
+</parameter>
+</method>
+<method name="executeBatch"
+ return="org.lineageos.mod.health.sdk.repo.OperationResult[]"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="builder" type="org.lineageos.mod.health.sdk.repo.BatchOperations.Builder&lt;T&gt;">
+</parameter>
+</method>
+<method name="getAll"
+ return="java.util.List&lt;T&gt;"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getById"
+ return="T"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="metric" type="int">
+</parameter>
+<parameter name="id" type="long">
+</parameter>
+</method>
+<method name="getByMetric"
+ return="java.util.List&lt;T&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="metric" type="int">
+</parameter>
+</method>
+<method name="insert"
+ return="org.lineageos.mod.health.sdk.repo.OperationResult"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="record" type="T">
+</parameter>
+</method>
+<method name="parseRow"
+ return="T"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="cursor" type="android.database.Cursor">
+</parameter>
+</method>
+<method name="update"
+ return="org.lineageos.mod.health.sdk.repo.OperationResult"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="record" type="T">
+</parameter>
+</method>
+</class>
+</package>
+<package name="org.lineageos.mod.health.sdk.util"
+>
+<class name="CcRuntimePermission"
+ extends="java.lang.Object"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<field name="ACTIVITY"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;lineageos.permission.HEALTH_ACTIVITY&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="BODY"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;lineageos.permission.HEALTH_BODY&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="BREATHING"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;lineageos.permission.HEALTH_BREATHING&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="HEART_BLOOD"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;lineageos.permission.HEALTH_HEART_BLOOD&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="MEDICAL_PROFILE"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;lineageos.permission.HEALTH_MEDICAL_PROFILE&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="MINDFULNESS"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ value="&quot;lineageos.permission.HEALTH_MINDFULNESS&quot;"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+</class>
+</package>
+</api>
